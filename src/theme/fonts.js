@@ -1,0 +1,12 @@
+export const POPPINS_REGULAR = 'Poppins-Regular';
+export const POPPINS_BLACK = 'Poppins-Black';
+export const POPPINS_BLACKITALIC = 'Poppins-BlackItalic';
+export const POPPINS_BOLD = 'Poppins-Bold';
+export const POPPINS_BOLDITALIC = 'Poppins-BoldItalic';
+export const POPPINS_EXTRABOLD = 'Poppins-ExtraBold';
+export const POPPINS_EXTRABOLDITALIC = 'Poppins-ExtraBoldItalic';
+export const FIRAGO_SEMIBOLD = 'FiraGO-SemiBold';
+export const FIRAGO_BOLD = 'FiraGO-Bold';
+export const FIRAGO_REGULAR = 'FiraGO-Regular';
+export const FIRAGO_LIGHT = 'FiraGO-Light';
+export const FIRAGO_MEDIUM = 'FiraGO-Medium';
