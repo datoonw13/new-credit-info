@@ -22,6 +22,7 @@ import RegisterStep2 from '../../components/auth/RegisterStep2';
 import RegisterStep3 from '../../components/auth/RegisterStep3';
 import RegisterStep4 from '../../components/auth/RegisterStep4';
 import RegisterStep5 from '../../components/auth/RegisterStep5';
+import RegisterStep6 from '../../components/auth/RegisterStep6';
 
 const SignUpScreen = ({navigation}) => {
   const dispatch = useDispatch();
@@ -30,8 +31,8 @@ const SignUpScreen = ({navigation}) => {
   );
 
   useEffect(() => {
-    dispatch(setRegisterSelectedStepAction(4));
-    dispatch(setRegisterLastStepAction(4));
+    dispatch(setRegisterSelectedStepAction(3));
+    dispatch(setRegisterLastStepAction(3));
   }, []);
 
   const footerHandler = () => {
@@ -66,10 +67,18 @@ const SignUpScreen = ({navigation}) => {
           />
         );
       case 4:
-        return <RegisterStep4 lastStep={registerLastStep} />;
-      case 5:
         return (
-          <RegisterStep5
+          <RegisterStep4
+            lastStep={registerLastStep}
+            registerData={registerData}
+            isPerson={registerData.customerType === 'PERSON'}
+          />
+        );
+      case 5:
+        return <RegisterStep5 lastStep={registerLastStep} />;
+      case 6:
+        return (
+          <RegisterStep6
             lastStep={registerLastStep}
             registerData={registerData}
           />

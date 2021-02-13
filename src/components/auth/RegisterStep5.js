@@ -1,107 +1,105 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {BLUE, GRAY2} from '../../theme/colors';
-import AuthSubmitButton from './AuthSubmitButton';
-import {Divider} from 'react-native-elements';
+import {StyleSheet, ScrollView, View} from 'react-native';
+import {CheckBox, Divider} from 'react-native-elements';
 import {translate} from '../../services/localizeService';
+import {
+  acceptAgreementAction,
+  setRegisterSelectedStepAction,
+} from '../../store/ducks/authDuck';
 import {useDispatch} from 'react-redux';
-import {Controller, useForm} from 'react-hook-form';
-import CusInput from '../shared/CusInput';
-import {checkOTPAction, sendOTPAction} from '../../store/ducks/authDuck';
-import {notifyAction} from '../../store/ducks/mainDuck';
+import Button from '../shared/Button';
+import * as colors from '../../theme/colors';
+import Text from '../shared/Text';
 
-const RegisterStep5 = ({registerData, lastStep}) => {
+const RegisterStep5 = ({lastStep}) => {
   const dispatch = useDispatch();
-  const {control, handleSubmit, errors} = useForm({
-    mode: 'onSubmit',
-    defaultValues: {
-      phone: registerData.phone ? registerData.phone : '',
-      code: '',
-    },
-  });
+  const [checked, setChecked] = React.useState(lastStep !== 4);
 
-  // React.useEffect(() => {
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [dispatch, registerData]);
-
-  const onSubmit = (data) => {
-    console.log(data);
-    if (registerData.phone) {
-      dispatch(checkOTPAction(data.code));
-    } else {
-      dispatch(sendOTPAction(data.phone));
+  const onSubmit = () => {
+    if (lastStep === 4) {
+      dispatch(acceptAgreementAction());
     }
+    dispatch(setRegisterSelectedStepAction(5));
   };
 
   return (
-    <>
-      <Controller
-        name="phone"
-        control={control}
-        render={({onChange, onBlur, value}) => (
-          <CusInput
-            placeholder={translate('PHONE')}
-            onBlur={onBlur}
-            onChangeText={(val) => onChange(val)}
-            value={value}
-            maxLength={9}
-            keyboardType="number-pad"
-            errorMessage={errors.phone && translate('VALID_PHONE')}
-            label={translate('PHONE')}
-            editable={!registerData.phone}
-            inputStyle={{marginLeft: 10}}
-            leftIcon={
-              <View style={styles.prefixContainer}>
-                <Text style={styles.prefix}>+995</Text>
-              </View>
-            }
-          />
-        )}
-        rules={{
-          required: true,
-          minLength: 9,
-          pattern: /^5[0-9]{8}$/,
-        }}
+    <ScrollView>
+      <View style={styles.contractContainer}>
+        {contract.map(({id, heading, description}) => {
+          return (
+            <View key={id} style={styles.paragraph}>
+              <Text style={styles.heading} dontTranslate capsBold>
+                {heading}
+              </Text>
+              <Text style={styles.description} dontTranslate>
+                {description}
+              </Text>
+            </View>
+          );
+        })}
+      </View>
+      <CheckBox
+        center
+        title={translate('ACCEPT_TERMS')}
+        iconLeft
+        containerStyle={styles.container}
+        iconType="fontisto"
+        checkedIcon="checkbox-active"
+        uncheckedIcon="checkbox-passive"
+        uncheckedColor={colors.GRAY8}
+        checkedColor={colors.RED2}
+        checked={checked}
+        onPress={lastStep === 4 ? () => setChecked(!checked) : null}
       />
-      {registerData.phone ? (
-        <Controller
-          name="code"
-          control={control}
-          render={({onChange, onBlur, value}) => (
-            <CusInput
-              placeholder={translate('OTP')}
-              onBlur={onBlur}
-              onChangeText={(val) => onChange(val)}
-              value={value}
-              maxLength={6}
-              keyboardType="number-pad"
-              errorMessage={errors.code && translate('VALID_OTP')}
-              label={translate('OTP')}
-            />
-          )}
-          rules={{
-            required: true,
-            minLength: 6,
-            pattern: /^\d*$/,
-          }}
-        />
-      ) : null}
       <Divider />
-      <AuthSubmitButton text={'CONTINUE'} onPress={handleSubmit(onSubmit)} />
-    </>
+      <Button
+        text={'CONTINUE'}
+        disabled={!checked}
+        onPress={() => onSubmit()}
+      />
+    </ScrollView>
   );
 };
 
+export default RegisterStep5;
+
 const styles = StyleSheet.create({
-  prefixContainer: {
-    borderRightWidth: 1,
-    borderColor: GRAY2,
-    paddingRight: 18,
+  container: {
+    backgroundColor: 'transparent',
+    borderWidth: 0,
   },
-  prefix: {
-    color: BLUE,
-    height: 20,
+  contractContainer: {
+    backgroundColor: colors.whiteGrey,
+    padding: 10,
+    borderColor: colors.lightestGrey,
+    borderWidth: 1,
+    borderRadius: 12,
+  },
+  paragraph: {
+    marginBottom: 20,
+  },
+  heading: {
+    marginTop: 10,
+    marginBottom: 5,
+    fontSize: 14,
+  },
+  description: {
+    lineHeight: 25,
+    fontSize: 13,
   },
 });
 
-export default RegisterStep5;
+const contract = [
+  {
+    id: 1,
+    heading: '1. ხელშეკრულების საგანი',
+    description:
+      'კომპანია შესაძლებლობას აძლევს მომხმარებელს ისარგებლოს კომპანიის სერვისით - „ჩემი კრედიტინფო“, რის საფუძველზეც მომხმარებელს ენიჭება უფლება გაეცნოს კომპანიის მონაცემთა ბაზაში მის შესახებ არსებულ ინფორმაციას ინტერნეტის მეშვეობით წინამდებარე ხელშეკრულების პირობების შესაბამისად.',
+  },
+  {
+    id: 2,
+    heading: '2. მხარეთა ვალდებულებები',
+    description:
+      'სერვისით „ჩემი კრედიტინფო“ სარგებლობის უზრუნველყოფის მიზნით კომპანია ვალდებულია მიანიჭოს მომხმარებელს შესაბამისი სახელი და პაროლი და დაარეგისტრიროს იგი სერვისით „ჩემი კრედიტინფო“ სარგებლობის',
+  },
+];

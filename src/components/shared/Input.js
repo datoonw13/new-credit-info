@@ -18,6 +18,7 @@ const Input = ({
   keyboardType,
   maxLength,
   rightIcon,
+  leftIcon,
   editable,
   onBlur,
   label,
@@ -39,6 +40,9 @@ const Input = ({
           {rightIcon}
         </TouchableOpacity>
       )}
+      {leftIcon && (
+        <TouchableOpacity style={styles.leftIcon}>{leftIcon}</TouchableOpacity>
+      )}
       <View style={styles.inputWrapper}>
         <TextInput
           placeholder={label && translate(label)}
@@ -46,7 +50,7 @@ const Input = ({
           onChangeText={onChangeText}
           pointerEvents={pointerEvents}
           maxLength={maxLength}
-          style={styles.input}
+          style={[styles.input, leftIcon && styles.paddingLeft]}
           editable={editable}
           onBlur={onBlur}
           value={value}
@@ -111,5 +115,17 @@ const styles = StyleSheet.create({
     top: 17,
     width: 32,
     height: 32,
+  },
+  leftIcon: {
+    position: 'absolute',
+    left: 10,
+    top: 24,
+    width: 78,
+    borderRightWidth: 2,
+    borderRightColor: colors.lighterGrey,
+    height: 20,
+  },
+  paddingLeft: {
+    paddingLeft: 22 + 78,
   },
 });
