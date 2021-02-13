@@ -3,10 +3,11 @@ import {StyleSheet, Text as NativeText} from 'react-native';
 import {translate} from '../../services/localizeService';
 
 const Text = ({
+  dontTranslate = false,
+  capsBold = false,
+  caps = false,
   children,
   style,
-  caps = false,
-  capsBold = false,
   ...allTheRest
 }) => {
   return (
@@ -17,7 +18,7 @@ const Text = ({
         caps ? styles.caps : {},
         capsBold ? styles.capsBold : {},
       ]}
-      children={translate(children)}
+      children={dontTranslate ? children : translate(children)}
       {...allTheRest}
     />
   );

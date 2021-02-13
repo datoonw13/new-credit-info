@@ -30,8 +30,8 @@ const SignUpScreen = ({navigation}) => {
   );
 
   useEffect(() => {
-    dispatch(setRegisterSelectedStepAction(3));
-    dispatch(setRegisterLastStepAction(3));
+    dispatch(setRegisterSelectedStepAction(4));
+    dispatch(setRegisterLastStepAction(4));
   }, []);
 
   const footerHandler = () => {

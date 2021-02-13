@@ -23,6 +23,7 @@ export const pureWhite = 'white';
 export const lightGrey = 'rgba(0, 0, 0, 0.5)';
 export const lighterGrey = 'rgba(0, 0, 0, 0.3)';
 export const lightestGrey = 'rgba(0, 0, 0, 0.1)';
+export const whiteGrey = 'rgba(0, 0, 0, 0.05)';
 export const primaryCrimson = '#C62B27';
 export const lightCrimson = 'rgba(198, 43, 39, .2)';
 export const lightestCrimson = 'rgba(198, 43, 39, .1)';
