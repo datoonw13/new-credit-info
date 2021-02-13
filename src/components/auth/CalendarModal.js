@@ -1,12 +1,9 @@
 import React from 'react';
 import Modal from 'react-native-modal';
-import {
-  StyleSheet,
-  View,
-} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {Calendar} from 'react-native-calendars';
 import {BLACK, RED2, WHITE} from '../../theme/colors';
-import AuthSubmitButton from './AuthSubmitButton';
+import Button from '../shared/Button';
 
 const CalendarModal = ({
   isVisible,
@@ -38,12 +35,7 @@ const CalendarModal = ({
       propagateSwipe={true}
       onSwipeComplete={closeModal}
       style={styles.modal}>
-      {/*<TouchableWithoutFeedback*/}
-      {/*  onPress={() => {*/}
-      {/*    // console.log('clicked');*/}
-      {/*    setModalVisible(false);*/}
-      {/*  }}>*/}
-      <View style={{flex: 1, justifyContent: 'flex-end'}}>
+      <View style={styles.innerContainer}>
         <View style={styles.modalContent}>
           <View style={styles.dividerContainer}>
             <View style={styles.divider} />
@@ -76,13 +68,9 @@ const CalendarModal = ({
               selectedDayTextColor: WHITE,
             }}
           />
-          <AuthSubmitButton
-            text={'SAVE2'}
-            onPress={() => setDate(selectedDate)}
-          />
+          <Button text={'SAVE2'} onPress={() => setDate(selectedDate)} />
         </View>
       </View>
-      {/*</TouchableWithoutFeedback>*/}
     </Modal>
   );
 };
@@ -92,6 +80,10 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     margin: 0,
     backgroundColor: 'transparent',
+  },
+  innerContainer: {
+    justifyContent: 'flex-end',
+    flex: 1,
   },
   modalContent: {
     backgroundColor: 'white',
