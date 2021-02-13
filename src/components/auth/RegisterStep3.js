@@ -13,8 +13,8 @@ import {
   setRegisterSelectedStepAction,
   signUpAction,
 } from '../../store/ducks/authDuck';
-import RegisterPasswordStrength from './RegisterPasswordStrength';
 import Button from '../shared/Button';
+import Input from '../shared/Input';
 
 const RegisterStep2 = ({lastStep, registerData, isPerson}) => {
   const dispatch = useDispatch();
@@ -50,27 +50,29 @@ const RegisterStep2 = ({lastStep, registerData, isPerson}) => {
             name="password"
             control={control}
             render={({onChange, onBlur, value}) => (
-              <CusInput
-                placeholder={translate('PASSWORD')}
+              <Input
                 onBlur={onBlur}
+                value={value}
+                maxLength={35}
+                label={'PASSWORD'}
+                secureTextEntry={passwordSTE}
+                rightIconPressHandler={() => {
+                  console.log('მეკლიკებააა!');
+                  setPasswordSTE(!passwordSTE);
+                }}
+                errorStyle={styles.passwordError}
+                editable={lastStep === 3}
                 onChangeText={(val) => {
                   onChange(val);
                   setPasswordScore(zxc(val).score);
                 }}
-                value={value}
-                maxLength={35}
-                label={translate('PASSWORD')}
-                secureTextEntry={passwordSTE}
                 rightIcon={
                   <Ionicons
                     name={passwordSTE ? 'eye-off' : 'eye'}
-                    size={22}
                     color={GRAY8}
+                    size={22}
                   />
                 }
-                rightIconPressHandler={() => setPasswordSTE(!passwordSTE)}
-                editable={lastStep === 2}
-                errorStyle={{height: 0}}
               />
             )}
             rules={{
@@ -78,33 +80,33 @@ const RegisterStep2 = ({lastStep, registerData, isPerson}) => {
               validate: () => passwordScore >= 3,
             }}
           />
-          <RegisterPasswordStrength score={passwordScore} />
+          <Divider />
           <Controller
             name="repeatPassword"
             control={control}
             render={({onChange, onBlur, value}) => (
-              <CusInput
-                placeholder={translate('REPEAT_PASSWORD')}
+              <Input
                 onBlur={onBlur}
-                onChangeText={(val) => onChange(val)}
                 value={value}
                 maxLength={35}
+                label={'REPEAT_PASSWORD'}
+                secureTextEntry={repeatPasswordSTE}
+                rightIconPressHandler={() => {
+                  setRepeatPasswordSTE(!repeatPasswordSTE);
+                }}
+                errorStyle={styles.passwordError}
+                editable={lastStep === 3}
+                onChangeText={onChange}
+                rightIcon={
+                  <Ionicons
+                    name={passwordSTE ? 'eye-off' : 'eye'}
+                    color={GRAY8}
+                    size={22}
+                  />
+                }
                 errorMessage={
                   errors.repeatPassword && translate('VALID_REPEAT_PASSWORD')
                 }
-                label={translate('REPEAT_PASSWORD')}
-                secureTextEntry={repeatPasswordSTE}
-                rightIcon={
-                  <Ionicons
-                    name={repeatPasswordSTE ? 'eye-off' : 'eye'}
-                    size={22}
-                    color={GRAY8}
-                  />
-                }
-                rightIconPressHandler={() =>
-                  setRepeatPasswordSTE(!repeatPasswordSTE)
-                }
-                editable={lastStep === 2}
               />
             )}
             rules={{
@@ -129,6 +131,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginBottom: 10,
+  },
+  passwordError: {
+    height: 0,
   },
 });
 

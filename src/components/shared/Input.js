@@ -1,18 +1,20 @@
 import React from 'react';
 import {
+  TouchableOpacity,
   StyleSheet,
   TextInput,
   View,
   Text,
-  TouchableOpacity,
 } from 'react-native';
 import * as colors from '../../theme/colors';
 import {translate} from '../../services/localizeService';
 
 const Input = ({
   labelOnBorderToo = false,
+  rightIconPressHandler,
   notRequired = false,
   inputPressHandler,
+  secureTextEntry,
   pointerEvents,
   onChangeText,
   keyboardType,
@@ -36,7 +38,9 @@ const Input = ({
         <Text style={styles.notRequired}>{translate('NOT_REQUIRED')}</Text>
       )}
       {rightIcon && (
-        <TouchableOpacity style={styles.rightIcon}>
+        <TouchableOpacity
+          style={styles.rightIcon}
+          onPress={rightIconPressHandler}>
           {rightIcon}
         </TouchableOpacity>
       )}
@@ -45,12 +49,13 @@ const Input = ({
       )}
       <View style={styles.inputWrapper}>
         <TextInput
+          style={[styles.input, leftIcon && styles.paddingLeft]}
           placeholder={label && translate(label)}
+          secureTextEntry={secureTextEntry}
+          pointerEvents={pointerEvents}
           keyboardType={keyboardType}
           onChangeText={onChangeText}
-          pointerEvents={pointerEvents}
           maxLength={maxLength}
-          style={[styles.input, leftIcon && styles.paddingLeft]}
           editable={editable}
           onBlur={onBlur}
           value={value}
@@ -112,9 +117,13 @@ const styles = StyleSheet.create({
   rightIcon: {
     position: 'absolute',
     right: 10,
-    top: 17,
+    top: 0,
     width: 32,
-    height: 32,
+    height: 67,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 1,
   },
   leftIcon: {
     position: 'absolute',
