@@ -12,6 +12,7 @@ import {
   updateRegisterDataAction,
 } from '../../store/ducks/authDuck';
 import {useDispatch} from 'react-redux';
+import Button from '../shared/Button';
 
 const RegisterStep1 = ({lastStep, customerType}) => {
   const dispatch = useDispatch();
@@ -58,10 +59,10 @@ const RegisterStep1 = ({lastStep, customerType}) => {
         </TouchableOpacity>
       </View>
       <Divider />
-      <AuthSubmitButton
-        text={'CONTINUE'}
-        disabled={selectedType === null}
+      <Button
+        text="CONTINUE"
         onPress={() => onSubmit(selectedType)}
+        disabled={selectedType === null}
       />
     </>
   );

@@ -15,13 +15,15 @@ import {useDispatch} from 'react-redux';
 import {signInAction} from '../../store/ducks/authDuck';
 import {colors} from '../../services/theme.js';
 import {translate} from '../../services/localizeService';
-import {BLACK, BLUE, GRAY2, GREEN1, RED1, WHITE} from '../../theme/colors';
+import {BLACK, BLUE, GRAY2, GREEN1, WHITE} from '../../theme/colors';
 import CusInput from '../../components/shared/CusInput';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import {FIRAGO_BOLD, FIRAGO_REGULAR, FIRAGO_MEDIUM} from '../../theme/fonts';
+import {FIRAGO_BOLD, FIRAGO_REGULAR} from '../../theme/fonts';
 import HeaderWithLogo from '../../components/shared/HeaderWithLogo';
 import AuthFooter from '../../components/auth/AuthFooter';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import {RedGirl} from '../../assets/svg';
+import Button from '../../components/shared/Button';
 
 const SignIn = ({navigation}) => {
   const dispatch = useDispatch();
@@ -41,10 +43,6 @@ const SignIn = ({navigation}) => {
     Keyboard.dismiss();
     dispatch(
       signInAction({
-        // username,
-        // password,
-        // username: '001130052215',
-        // password: '123asdASD!@#',
         username: '00000000098',
         password: 'asdASD123!@#',
       }),
@@ -65,6 +63,7 @@ const SignIn = ({navigation}) => {
     <>
       <ScrollView>
         <HeaderWithLogo mode="WithMenu" style={styles.header} />
+        <RedGirl style={styles.redGirl} />
         <View style={styles.wrapper}>
           <View style={styles.titleWrapper}>
             <Text style={styles.authText}>{translate('AUTHORIZATION')}</Text>
@@ -133,13 +132,11 @@ const SignIn = ({navigation}) => {
             </TouchableOpacity>
           </View>
           <Divider />
-          <TouchableOpacity
-            style={styles.button}
-            testID="SignUpButton"
-            title="Sign Up"
-            onPress={handleSubmit(onSubmit)}>
-            <Text style={styles.buttonText}>{translate('LOGIN')}</Text>
-          </TouchableOpacity>
+          <Button
+            text="LOGIN"
+            touchableStyle={styles.authBtn}
+            onPress={handleSubmit(onSubmit)}
+          />
           <Divider />
         </View>
       </ScrollView>
@@ -162,6 +159,11 @@ const styles = StyleSheet.create({
   },
   header: {
     marginBottom: 42,
+  },
+  redGirl: {
+    marginTop: 36,
+    marginBottom: 32,
+    alignSelf: 'center',
   },
   container: {
     flex: 1,
@@ -211,18 +213,8 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontFamily: FIRAGO_REGULAR,
   },
-  button: {
-    marginTop: 25,
-    borderRadius: 18,
-    backgroundColor: RED1,
-    height: 54,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  buttonText: {
-    color: WHITE,
-    fontFamily: FIRAGO_MEDIUM,
-    fontSize: 14,
+  authBtn: {
+    marginTop: 18,
   },
 });
 
