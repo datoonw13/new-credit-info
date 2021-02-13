@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_233" data-name="Rectangle 233" width="20" height="20" transform="translate(167 856)" fill="#4267b2"/>
+    </clipPath>
+  </defs>
+  <g id="Mask_Group_56" data-name="Mask Group 56" transform="translate(-167 -856)" clip-path="url(#clip-path)">
+    <g id="brands-and-logotypes" transform="translate(167 856)">
+      <path id="Path_261" data-name="Path 261" d="M16.157,27.818q-.125.02-.251.038Q16.032,27.838,16.157,27.818Zm0,0" transform="translate(-4.545 -7.948)" fill="#4267b2"/>
+      <path id="Path_262" data-name="Path 262" d="M16.49,27.77l-.119.021Zm0,0" transform="translate(-4.677 -7.934)" fill="#4267b2"/>
+      <path id="Path_263" data-name="Path 263" d="M15.476,27.909q-.146.016-.294.029Q15.329,27.926,15.476,27.909Zm0,0" transform="translate(-4.338 -7.974)" fill="#4267b2"/>
+      <path id="Path_264" data-name="Path 264" d="M15.806,27.876l-.141.018Zm0,0" transform="translate(-4.476 -7.965)" fill="#4267b2"/>
+      <path id="Path_265" data-name="Path 265" d="M16.876,27.694l-.106.022Zm0,0" transform="translate(-4.792 -7.913)" fill="#4267b2"/>
+      <path id="Path_266" data-name="Path 266" d="M17.83,27.459l-.085.024Zm0,0" transform="translate(-5.07 -7.846)" fill="#4267b2"/>
+      <path id="Path_267" data-name="Path 267" d="M17.541,27.538l-.093.024Zm0,0" transform="translate(-4.985 -7.868)" fill="#4267b2"/>
+      <path id="Path_268" data-name="Path 268" d="M17.165,27.631l-.1.022Zm0,0" transform="translate(-4.876 -7.895)" fill="#4267b2"/>
+      <path id="Path_269" data-name="Path 269" d="M15.114,27.95l-.158.012Zm0,0" transform="translate(-4.273 -7.986)" fill="#4267b2"/>
+      <path id="Path_270" data-name="Path 270" d="M20,10A10,10,0,1,0,10,20l.176,0V12.213H8.027v-2.5h2.148V7.867a3.008,3.008,0,0,1,3.211-3.3,17.686,17.686,0,0,1,1.926.1V6.9H14c-1.037,0-1.238.493-1.238,1.216V9.709h2.48l-.323,2.5H12.76v7.4A10.005,10.005,0,0,0,20,10Zm0,0" transform="translate(0 0)" fill="#4267b2"/>
+      <path id="Path_271" data-name="Path 271" d="M14.8,27.969q-.156.01-.313.016Q14.643,27.979,14.8,27.969Zm0,0" transform="translate(-4.139 -7.991)" fill="#4267b2"/>
+      <path id="Path_272" data-name="Path 272" d="M14.412,27.991l-.166,0Zm0,0" transform="translate(-4.07 -7.997)" fill="#4267b2"/>
+    </g>
+  </g>
+</svg>

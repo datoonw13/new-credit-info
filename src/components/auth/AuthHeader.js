@@ -15,11 +15,6 @@ const AuthHeader = () => {
             style={styles.image}
           />
         </View>
-        <View style={styles.levelsContainer}>
-          <View style={styles.firstLevel} />
-          <View style={styles.secondLevel} />
-          <View style={styles.thirdLevel} />
-        </View>
       </View>
     </>
   );

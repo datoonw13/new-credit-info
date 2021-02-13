@@ -30,7 +30,7 @@ const RegisterStep1 = ({lastStep, customerType}) => {
       <View style={styles.container}>
         <TouchableOpacity
           disabled={lastStep !== 1}
-          style={{...styles.selectionBox, marginRight: 6}}
+          style={[styles.selectionBox, styles.personMargins]}
           onPress={() => setSelectedType('PERSON')}>
           {selectedType === 'PERSON' ? (
             <View style={styles.selectionCircle}>
@@ -44,7 +44,7 @@ const RegisterStep1 = ({lastStep, customerType}) => {
         </TouchableOpacity>
         <TouchableOpacity
           disabled={lastStep !== 1}
-          style={{...styles.selectionBox, marginTop: 20, marginLeft: 6}}
+          style={[styles.selectionBox, styles.companyMargins]}
           onPress={() => setSelectedType('COMPANY')}>
           {selectedType === 'COMPANY' ? (
             <View style={styles.selectionCircle}>
@@ -81,6 +81,13 @@ const styles = StyleSheet.create({
     height: 140,
     alignItems: 'center',
     justifyContent: 'center',
+    marginTop: 20,
+  },
+  personMargins: {
+    marginRight: 6,
+  },
+  companyMargins: {
+    marginLeft: 6,
   },
   iconContainer: {
     width: 40,

@@ -1,25 +1,19 @@
 import React from 'react';
 import {
   KeyboardAvoidingView,
-  Platform,
-  ScrollView,
   StyleSheet,
+  Platform,
   Text,
   View,
 } from 'react-native';
 import {Divider} from 'react-native-elements';
-import {useForm} from 'react-hook-form';
-import {
-  setRegisterSelectedStepAction,
-  signUpAction,
-} from '../../store/ducks/authDuck';
+import {setRegisterSelectedStepAction} from '../../store/ducks/authDuck';
 import {useDispatch, useSelector} from 'react-redux';
-import AuthHeader from '../../components/auth/AuthHeader';
+import HeaderWithLogo from '../../components/shared/HeaderWithLogo';
 import {BLACK, WHITE} from '../../theme/colors';
 import AuthFooter from '../../components/auth/AuthFooter';
 import {translate} from '../../services/localizeService';
 import {FIRAGO_BOLD, FIRAGO_REGULAR} from '../../theme/fonts';
-import RegisterTabs from '../../components/auth/RegisterTabs';
 import RegisterStep1 from '../../components/auth/RegisterStep1';
 import RegisterStep2 from '../../components/auth/RegisterStep2';
 import RegisterStep3 from '../../components/auth/RegisterStep3';
@@ -32,36 +26,10 @@ const SignUpScreen = ({navigation}) => {
     (state) => state.authReducer,
   );
 
-  const onSubmit = (data) => {
-    console.log(data);
-    // dispatch(signUpAction({email: data.email, password: data.password}));
-    dispatch(setRegisterSelectedStepAction(registerSelectedStep + 1));
-    // switch (registerSelectedStep) {
-    //   case 1:
-    //     return <RegisterStep1 onSubmit={onSubmit} />;
-    //   case 2:
-    //     return <RegisterStep1 onSubmit={onSubmit} />;
-    //   case 3:
-    //     return <RegisterStep1 onSubmit={onSubmit} />;
-    //   case 4:
-    //     return <RegisterStep1 onSubmit={onSubmit} />;
-    //   case 5:
-    //     return <RegisterStep1 onSubmit={onSubmit} />;
-    //   default:
-    //     return null;
-    // }
-  };
-
   const footerHandler = () => {
     registerSelectedStep === 1
       ? navigation.navigate('SignIn')
       : dispatch(setRegisterSelectedStepAction(registerLastStep - 1));
-  };
-
-  const tabPressHandler = (step) => {
-    if (registerLastStep >= step) {
-      dispatch(setRegisterSelectedStepAction(step));
-    }
   };
 
   const setTabData = () => {
@@ -106,9 +74,9 @@ const SignUpScreen = ({navigation}) => {
 
   return (
     <>
-      <AuthHeader />
+      <HeaderWithLogo mode="WithMenu" style={styles.header} />
       <KeyboardAvoidingView
-        style={{flex: 1, flexGrow: 1}}
+        style={styles.keyboardAvoidingView}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
         <View style={styles.wrapper}>
           <View style={styles.titleWrapper}>
@@ -117,11 +85,6 @@ const SignUpScreen = ({navigation}) => {
               {translate('SELECT_SERVICE_TYPE')}
             </Text>
           </View>
-          <RegisterTabs
-            currentStep={registerSelectedStep}
-            handler={tabPressHandler}
-            lastStep={registerLastStep}
-          />
           <Divider />
           {setTabData()}
         </View>
@@ -144,6 +107,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: WHITE,
+  },
+  header: {
+    marginBottom: 42,
+  },
+  keyboardAvoidingView: {
+    flexGrow: 1,
+    flex: 1,
   },
   contentContainerStyle: {
     justifyContent: 'space-between',

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="14" viewBox="0 0 20 14">
+  <defs>
+    <filter id="Rectangle_3269" x="-6" y="-4" width="32" height="26" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feFlood flood-opacity="0.149"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <clipPath id="clip-path">
+      <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Rectangle_3269)">
+        <rect id="Rectangle_3269-2" data-name="Rectangle 3269" width="20" height="14" rx="2" transform="translate(228 627)" fill="#fff"/>
+      </g>
+    </clipPath>
+  </defs>
+  <g id="Mask_Group_268" data-name="Mask Group 268" transform="translate(-228 -627)" clip-path="url(#clip-path)">
+    <g id="Flag_of_Great_Britain__1707_1800_" data-name="Flag_of_Great_Britain_(1707–1800)" transform="translate(224.667 626)">
+      <rect id="Rectangle_3268" data-name="Rectangle 3268" width="26.666" height="16" fill="#00247d"/>
+      <path id="Path_1217" data-name="Path 1217" d="M0,0,26.666,16m0-16L0,16" stroke="#fff" stroke-width="2.39"/>
+      <path id="Path_1218" data-name="Path 1218" d="M13.333,0V16M0,8H26.666" stroke="#fff" stroke-width="3.984"/>
+      <path id="Path_1219" data-name="Path 1219" d="M13.333,0V16M0,8H26.666" stroke="#cf142b" stroke-width="2.39"/>
+    </g>
+  </g>
+</svg>

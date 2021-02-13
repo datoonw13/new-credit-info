@@ -19,7 +19,7 @@ import {BLACK, BLUE, GRAY2, GREEN1, RED1, WHITE} from '../../theme/colors';
 import CusInput from '../../components/shared/CusInput';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {FIRAGO_BOLD, FIRAGO_REGULAR, FIRAGO_MEDIUM} from '../../theme/fonts';
-import AuthHeader from '../../components/auth/AuthHeader';
+import HeaderWithLogo from '../../components/shared/HeaderWithLogo';
 import AuthFooter from '../../components/auth/AuthFooter';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
@@ -64,10 +64,10 @@ const SignIn = ({navigation}) => {
   return (
     <>
       <ScrollView>
-        <AuthHeader />
+        <HeaderWithLogo mode="WithMenu" style={styles.header} />
         <View style={styles.wrapper}>
           <View style={styles.titleWrapper}>
-            <Text style={styles.authText}>{translate('REGISTRATION')}</Text>
+            <Text style={styles.authText}>{translate('AUTHORIZATION')}</Text>
             <Text style={styles.descText}>
               {translate('FILL_GIVEN_FIELDS')}
             </Text>
@@ -159,6 +159,9 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     paddingLeft: 10,
     paddingRight: 10,
+  },
+  header: {
+    marginBottom: 42,
   },
   container: {
     flex: 1,
