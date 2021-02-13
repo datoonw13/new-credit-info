@@ -33,7 +33,6 @@ const SignUpScreen = ({navigation}) => {
   };
 
   const setTabData = () => {
-    console.log(registerSelectedStep);
     switch (registerSelectedStep) {
       case 1:
         return (

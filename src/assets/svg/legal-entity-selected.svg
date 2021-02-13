@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_954" data-name="Rectangle 954" width="24" height="24" transform="translate(265 348)" fill="#34c36b" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+  </defs>
+  <g id="Mask_Group_185" data-name="Mask Group 185" transform="translate(-265 -348)" clip-path="url(#clip-path)">
+    <g id="_29-auction" data-name="29-auction" transform="translate(265.204 348.21)">
+      <g id="Glyph">
+        <path id="Path_728" data-name="Path 728" d="M0,21.808H13.878V23.79H0Z" fill="#34c36b"/>
+        <path id="Path_729" data-name="Path 729" d="M11.9,19.809a.991.991,0,0,0-.991-.991H2.974a.991.991,0,0,0-.991.991v1.007H11.9Z" fill="#34c36b"/>
+        <path id="Path_730" data-name="Path 730" d="M13.488,11.7a6.916,6.916,0,0,0-1.15,1.654L20.5,21.518a.991.991,0,0,0,1.4,0l1.4-1.4a.991.991,0,0,0,0-1.4l-8.159-8.157A6.756,6.756,0,0,0,13.488,11.7Z" fill="#34c36b"/>
+        <path id="Path_731" data-name="Path 731" d="M8.581,6.8A8.6,8.6,0,0,1,6.019,8.441l5.123,5.123A8.736,8.736,0,0,1,12.787,11,8.6,8.6,0,0,1,15.35,9.36L10.226,4.238A8.743,8.743,0,0,1,8.581,6.8Z" fill="#34c36b"/>
+        <rect id="Rectangle_956" data-name="Rectangle 956" width="3.964" height="9.911" rx="0.991" transform="translate(9.982 2.594) rotate(-45)" fill="#34c36b"/>
+        <rect id="Rectangle_957" data-name="Rectangle 957" width="3.964" height="9.911" rx="0.991" transform="translate(1.571 11.003) rotate(-45)" fill="#34c36b"/>
+      </g>
+    </g>
+  </g>
+</svg>
