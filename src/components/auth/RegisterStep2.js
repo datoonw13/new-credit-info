@@ -5,7 +5,6 @@ import {Divider} from 'react-native-elements';
 import {translate} from '../../services/localizeService';
 import {useDispatch} from 'react-redux';
 import {Controller, useForm} from 'react-hook-form';
-import CusInput from '../shared/CusInput';
 import i18n from 'i18n-js';
 import {
   getCostumerInfoAction,
@@ -13,6 +12,8 @@ import {
   setRegisterSelectedStepAction,
   signUpAction,
 } from '../../store/ducks/authDuck';
+import Input from '../shared/Input';
+import Button from '../shared/Button';
 
 const RegisterStep2 = ({lastStep, registerData, isPerson}) => {
   const dispatch = useDispatch();
@@ -58,20 +59,19 @@ const RegisterStep2 = ({lastStep, registerData, isPerson}) => {
   return (
     <>
       <View style={styles.container}>
-        <ScrollView>
+        <ScrollView contentContainerStyle={styles.scrollViewContainer}>
           <Controller
             name="userName"
             control={control}
             render={({onChange, onBlur, value}) => (
-              <CusInput
-                placeholder={translate(
-                  isPerson ? 'PERSONAL_NUMBER' : 'IDENTIFICATION_CODE',
-                )}
-                onBlur={onBlur}
+              <Input
+                label={isPerson ? 'PERSONAL_NUMBER' : 'IDENTIFICATION_CODE'}
+                editable={lastStep === 2}
+                keyboardType="number-pad"
                 onChangeText={(val) => onChange(val)}
+                onBlur={onBlur}
                 value={value}
                 maxLength={isPerson ? 11 : 9}
-                keyboardType="number-pad"
                 errorMessage={
                   errors.userName &&
                   translate(
@@ -80,10 +80,7 @@ const RegisterStep2 = ({lastStep, registerData, isPerson}) => {
                       : 'VALID_IDENTIFICATION_CODE',
                   )
                 }
-                label={translate(
-                  isPerson ? 'PERSONAL_NUMBER' : 'IDENTIFICATION_CODE',
-                )}
-                editable={lastStep === 2}
+                labelOnBorderToo
               />
             )}
             rules={{
@@ -92,21 +89,23 @@ const RegisterStep2 = ({lastStep, registerData, isPerson}) => {
               pattern: /^\d*$/,
             }}
           />
+          <Divider />
           <Controller
             name="repeatUserName"
             control={control}
             render={({onChange, onBlur, value}) => (
-              <CusInput
-                placeholder={translate(
+              <Input
+                label={
                   isPerson
                     ? 'REPEAT_PERSONAL_NUMBER'
-                    : 'REPEAT_IDENTIFICATION_CODE',
-                )}
-                onBlur={onBlur}
+                    : 'REPEAT_IDENTIFICATION_CODE'
+                }
+                editable={lastStep === 2}
+                keyboardType="number-pad"
                 onChangeText={(val) => onChange(val)}
+                onBlur={onBlur}
                 value={value}
                 maxLength={isPerson ? 11 : 9}
-                keyboardType="number-pad"
                 errorMessage={
                   errors.repeatUserName &&
                   translate(
@@ -115,12 +114,6 @@ const RegisterStep2 = ({lastStep, registerData, isPerson}) => {
                       : 'VALID_REPEAT_IDENTIFICATION_CODE',
                   )
                 }
-                label={translate(
-                  isPerson
-                    ? 'REPEAT_PERSONAL_NUMBER'
-                    : 'REPEAT_IDENTIFICATION_CODE',
-                )}
-                editable={lastStep === 2}
               />
             )}
             rules={{
@@ -128,19 +121,19 @@ const RegisterStep2 = ({lastStep, registerData, isPerson}) => {
               validate: (value) => value === watch('userName'),
             }}
           />
+          <Divider />
           <Controller
             name="firstName"
             control={control}
             render={({onChange, onBlur, value}) => (
-              <CusInput
-                placeholder={translate('FIRST_NAME')}
-                onBlur={onBlur}
+              <Input
+                label={'FIRST_NAME'}
+                editable={lastStep === 2}
                 onChangeText={(val) => onChange(val)}
+                onBlur={onBlur}
                 value={value}
                 maxLength={35}
                 errorMessage={errors.firstName && translate('VALID_FIRST_NAME')}
-                label={translate('FIRST_NAME')}
-                editable={lastStep === 2}
               />
             )}
             rules={{
@@ -148,20 +141,20 @@ const RegisterStep2 = ({lastStep, registerData, isPerson}) => {
               pattern: i18n.locale === 'ka' ? /^[ა-ჰ]*$/ : /^[A-Za-z]*$/,
             }}
           />
+          <Divider />
           {isPerson ? (
             <Controller
               name="lastName"
               control={control}
               render={({onChange, onBlur, value}) => (
-                <CusInput
-                  placeholder={translate('LAST_NAME')}
-                  onBlur={onBlur}
+                <Input
+                  label={'LAST_NAME'}
+                  editable={lastStep === 2}
                   onChangeText={(val) => onChange(val)}
+                  onBlur={onBlur}
                   value={value}
                   maxLength={35}
                   errorMessage={errors.lastName && translate('VALID_LAST_NAME')}
-                  label={translate('LAST_NAME')}
-                  editable={lastStep === 2}
                 />
               )}
               rules={{
@@ -172,7 +165,7 @@ const RegisterStep2 = ({lastStep, registerData, isPerson}) => {
           ) : null}
         </ScrollView>
         <Divider />
-        <AuthSubmitButton
+        <Button
           text={'CONTINUE'}
           onPress={() =>
             lastStep === 2 ? handleSubmit(onSubmit)() : onSubmit()
@@ -187,6 +180,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginBottom: 10,
+  },
+  scrollViewContainer: {
+    paddingTop: 10,
   },
 });
 
