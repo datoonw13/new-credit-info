@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {StyleSheet, View, ScrollView} from 'react-native';
 import AuthSubmitButton from './AuthSubmitButton';
 import {Divider} from 'react-native-elements';
@@ -6,16 +6,22 @@ import {translate} from '../../services/localizeService';
 import {useDispatch} from 'react-redux';
 import {Controller, useForm} from 'react-hook-form';
 import CusInput from '../shared/CusInput';
+import zxc from 'zxcvbn';
 import i18n from 'i18n-js';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import {GRAY8} from '../../theme/colors';
 import {
   getCostumerInfoAction,
-  setRegisterLastStepAction,
   setRegisterSelectedStepAction,
   signUpAction,
 } from '../../store/ducks/authDuck';
+import RegisterPasswordStrength from './RegisterPasswordStrength';
 
 const RegisterStep2 = ({lastStep, registerData, isPerson}) => {
   const dispatch = useDispatch();
+  const [passwordScore, setPasswordScore] = React.useState(0);
+  const [repeatPasswordSTE, setRepeatPasswordSTE] = React.useState(true);
+  const [passwordSTE, setPasswordSTE] = React.useState(true);
   const {control, handleSubmit, errors, watch, setValue} = useForm({
     mode: 'onSubmit',
     defaultValues: {
@@ -23,10 +29,12 @@ const RegisterStep2 = ({lastStep, registerData, isPerson}) => {
       repeatUserName: !registerData.userName ? '' : registerData.userName,
       firstName: !registerData.firstName ? '' : registerData.firstName,
       lastName: !registerData.lastName ? '' : registerData.lastName,
+      password: '',
+      repeatPassword: '',
     },
   });
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (lastStep !== 2) {
       if (registerData.userName) {
         setValue('userName', registerData.userName);
@@ -42,14 +50,12 @@ const RegisterStep2 = ({lastStep, registerData, isPerson}) => {
 
   const onSubmit = (data) => {
     if (lastStep === 2) {
-      dispatch(setRegisterLastStepAction(3));
-      dispatch(setRegisterSelectedStepAction(3));
-      // dispatch(
-      //   signUpAction({
-      //     ...data,
-      //     ...registerData,
-      //   }),
-      // );
+      dispatch(
+        signUpAction({
+          ...data,
+          ...registerData,
+        }),
+      );
     } else {
       dispatch(setRegisterSelectedStepAction(3));
     }
@@ -170,6 +176,72 @@ const RegisterStep2 = ({lastStep, registerData, isPerson}) => {
               }}
             />
           ) : null}
+          <Controller
+            name="password"
+            control={control}
+            render={({onChange, onBlur, value}) => (
+              <CusInput
+                placeholder={translate('PASSWORD')}
+                onBlur={onBlur}
+                onChangeText={(val) => {
+                  onChange(val);
+                  setPasswordScore(zxc(val).score);
+                }}
+                value={value}
+                maxLength={35}
+                label={translate('PASSWORD')}
+                secureTextEntry={passwordSTE}
+                rightIcon={
+                  <Ionicons
+                    name={passwordSTE ? 'eye-off' : 'eye'}
+                    size={22}
+                    color={GRAY8}
+                  />
+                }
+                rightIconPressHandler={() => setPasswordSTE(!passwordSTE)}
+                editable={lastStep === 2}
+                errorStyle={{height: 0}}
+              />
+            )}
+            rules={{
+              required: true,
+              validate: () => passwordScore >= 3,
+            }}
+          />
+          <RegisterPasswordStrength score={passwordScore} />
+          <Controller
+            name="repeatPassword"
+            control={control}
+            render={({onChange, onBlur, value}) => (
+              <CusInput
+                placeholder={translate('REPEAT_PASSWORD')}
+                onBlur={onBlur}
+                onChangeText={(val) => onChange(val)}
+                value={value}
+                maxLength={35}
+                errorMessage={
+                  errors.repeatPassword && translate('VALID_REPEAT_PASSWORD')
+                }
+                label={translate('REPEAT_PASSWORD')}
+                secureTextEntry={repeatPasswordSTE}
+                rightIcon={
+                  <Ionicons
+                    name={repeatPasswordSTE ? 'eye-off' : 'eye'}
+                    size={22}
+                    color={GRAY8}
+                  />
+                }
+                rightIconPressHandler={() =>
+                  setRepeatPasswordSTE(!repeatPasswordSTE)
+                }
+                editable={lastStep === 2}
+              />
+            )}
+            rules={{
+              required: true,
+              validate: (value) => value === watch('password'),
+            }}
+          />
         </ScrollView>
         <Divider />
         <AuthSubmitButton

@@ -57,6 +57,7 @@ const styles = StyleSheet.create({
   },
   selectedBox: {
     backgroundColor: colors.secondaryGreenLightest,
+    borderColor: colors.secondaryGreenLight,
   },
   personMargins: {
     marginRight: 6,

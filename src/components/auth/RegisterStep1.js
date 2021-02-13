@@ -1,8 +1,6 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import {BLACK, GRAY5, GRAY8, GRAY7, WHITE} from '../../theme/colors';
 import {Divider} from 'react-native-elements';
-import {FIRAGO_MEDIUM} from '../../theme/fonts';
 import {
   setRegisterLastStepAction,
   setRegisterSelectedStepAction,
