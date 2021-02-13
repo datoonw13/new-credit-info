@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   KeyboardAvoidingView,
   StyleSheet,
@@ -7,7 +7,10 @@ import {
   View,
 } from 'react-native';
 import {Divider} from 'react-native-elements';
-import {setRegisterSelectedStepAction} from '../../store/ducks/authDuck';
+import {
+  setRegisterSelectedStepAction,
+  setRegisterLastStepAction,
+} from '../../store/ducks/authDuck';
 import {useDispatch, useSelector} from 'react-redux';
 import HeaderWithLogo from '../../components/shared/HeaderWithLogo';
 import {BLACK, WHITE} from '../../theme/colors';
@@ -25,6 +28,11 @@ const SignUpScreen = ({navigation}) => {
   const {registerSelectedStep, registerLastStep, registerData} = useSelector(
     (state) => state.authReducer,
   );
+
+  useEffect(() => {
+    dispatch(setRegisterSelectedStepAction(3));
+    dispatch(setRegisterLastStepAction(3));
+  }, []);
 
   const footerHandler = () => {
     registerSelectedStep === 1

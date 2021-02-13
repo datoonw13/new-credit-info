@@ -1,6 +1,5 @@
 import React, {useEffect} from 'react';
 import {StyleSheet, View, ScrollView} from 'react-native';
-import AuthSubmitButton from './AuthSubmitButton';
 import {Divider} from 'react-native-elements';
 import {translate} from '../../services/localizeService';
 import {useDispatch} from 'react-redux';
