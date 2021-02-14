@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   TouchableOpacity,
   StyleSheet,
   TextInput,
+  Animated,
   View,
   Text,
 } from 'react-native';
@@ -19,6 +20,7 @@ const Input = ({
   pointerEvents,
   onChangeText,
   keyboardType,
+  errorMessage,
   maxLength,
   rightIcon,
   leftIcon,
@@ -27,6 +29,23 @@ const Input = ({
   label,
   value,
 }) => {
+  const height = useRef(new Animated.Value(0)).current;
+  const [inputBorderColor, setInputBorderColor] = useState(colors.lightGrey);
+  /**
+   * Control animation on error Value.
+   */
+  useEffect(() => {
+    const toValue = errorMessage ? 20 : 0;
+    const borderColor = errorMessage ? colors.primaryCrimson : colors.lightGrey;
+    setInputBorderColor(borderColor);
+
+    Animated.timing(height, {
+      toValue,
+      useNativeDriver: false,
+      duration: 1000,
+    }).start();
+  }, [errorMessage, height, inputBorderColor]);
+
   return (
     <TouchableOpacity
       style={styles.container}
@@ -50,7 +69,11 @@ const Input = ({
       )}
       <View style={styles.inputWrapper}>
         <TextInput
-          style={[styles.input, leftIcon && styles.paddingLeft]}
+          style={[
+            styles.input,
+            leftIcon && styles.paddingLeft,
+            {borderColor: inputBorderColor},
+          ]}
           placeholder={label && translate(label)}
           secureTextEntry={secureTextEntry}
           autoCapitalize={autoCapitalize}
@@ -62,6 +85,9 @@ const Input = ({
           onBlur={onBlur}
           value={value}
         />
+        <Animated.View style={[styles.errorTextWrapper, {height}]}>
+          <Text style={styles.errorText} children={errorMessage} />
+        </Animated.View>
       </View>
     </TouchableOpacity>
   );
@@ -138,5 +164,15 @@ const styles = StyleSheet.create({
   },
   paddingLeft: {
     paddingLeft: 22 + 78,
+  },
+  errorTextWrapper: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    paddingRight: 10,
+    paddingTop: 2,
+  },
+  errorText: {
+    color: colors.primaryCrimson,
   },
 });

@@ -44,6 +44,12 @@ const RegisterStep2 = ({lastStep, registerData, isPerson}) => {
     }
   };
 
+  const passwordGuidText = {
+    bold: 'ძლიერი პაროლი უნდა იყოს რთულად გამოსაცნობი.',
+    norm:
+      'გამოიყენეთ ძნელად მისახვედრი და გამოსაცნობი სიტყვები, ფრაზები, სიმბოლოები და რიცხვები, არასტანდართული uPPercasing-ი.',
+  };
+
   return (
     <>
       <View style={styles.container}>
@@ -53,13 +59,16 @@ const RegisterStep2 = ({lastStep, registerData, isPerson}) => {
               <Info />
             </View>
             <View>
-              <Text style={styles.guideTextBold} dontTranslate>
-                ძლიერი პაროლი უნდა იყოს რთულად გამოსაცნობი.
-              </Text>
-              <Text style={styles.guideTextNorm} dontTranslate>
-                გამოიყენეთ ძნელად მისახვედრი და გამოსაცნობი სიტყვები, ფრაზები,
-                სიმბოლოები და რიცხვები, არასტანდართული uPPercasing-ი.
-              </Text>
+              <Text
+                children={passwordGuidText.bold}
+                style={styles.guideTextBold}
+                dontTranslate
+              />
+              <Text
+                children={passwordGuidText.norm}
+                style={styles.guideTextNorm}
+                dontTranslate
+              />
             </View>
           </View>
           <Controller
