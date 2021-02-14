@@ -15,6 +15,7 @@ const Input = ({
   notRequired = false,
   inputPressHandler,
   secureTextEntry,
+  autoCapitalize,
   pointerEvents,
   onChangeText,
   keyboardType,
@@ -52,6 +53,7 @@ const Input = ({
           style={[styles.input, leftIcon && styles.paddingLeft]}
           placeholder={label && translate(label)}
           secureTextEntry={secureTextEntry}
+          autoCapitalize={autoCapitalize}
           pointerEvents={pointerEvents}
           keyboardType={keyboardType}
           onChangeText={onChangeText}

@@ -4,7 +4,6 @@ import {Divider} from 'react-native-elements';
 import {translate} from '../../services/localizeService';
 import {useDispatch} from 'react-redux';
 import {Controller, useForm} from 'react-hook-form';
-import CusInput from '../shared/CusInput';
 import zxc from 'zxcvbn';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {GRAY8} from '../../theme/colors';

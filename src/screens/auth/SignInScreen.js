@@ -11,6 +11,7 @@ import {
 import {Divider} from 'react-native-elements';
 import {Controller, useForm} from 'react-hook-form';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useDispatch} from 'react-redux';
 import {signInAction} from '../../store/ducks/authDuck';
 import {colors} from '../../services/theme.js';
@@ -24,6 +25,7 @@ import AuthFooter from '../../components/auth/AuthFooter';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {RedGirl} from '../../assets/svg';
 import Button from '../../components/shared/Button';
+import Input from '../../components/shared/Input';
 
 const SignIn = ({navigation}) => {
   const dispatch = useDispatch();
@@ -36,6 +38,7 @@ const SignIn = ({navigation}) => {
   });
 
   const [saveIsEnabled, setSaveIsEnabled] = useState(false);
+  const [passwordVisible, setPasswordVisible] = useState(true);
   const toggleSwitch = () =>
     setSaveIsEnabled((previousState) => !previousState);
 
@@ -75,15 +78,15 @@ const SignIn = ({navigation}) => {
             name="username"
             control={control}
             render={({onChange, onBlur, value}) => (
-              <CusInput
+              <Input
                 autoCapitalize="none"
                 placeholder="username"
-                leftIcon={<FontAwesome name="user-o" size={22} color={BLACK} />}
                 onBlur={onBlur}
-                onChangeText={(val) => onChange(val)}
+                onChangeText={onChange}
                 value={value}
                 errorMessage={errors.username && 'Please enter valid username'}
-                label={translate('USER')}
+                label={'USER'}
+                labelOnBorderToo
               />
             )}
             rules={
@@ -92,22 +95,38 @@ const SignIn = ({navigation}) => {
               }
             }
           />
+          <Divider />
           <Controller
             name="password"
             control={control}
             render={({onChange, onBlur, value}) => (
-              <CusInput
-                testID="PasswordInput"
-                secureTextEntry={true}
-                placeholder="password"
-                leftIcon={
-                  <AntDesign name="unlock" size={22} color={colors.grey} />
-                }
+              // <Input
+              //   errorMessage={errors.password && 'Please enter password'}
+              //   onChangeText={onChange}
+              //   secureTextEntry={true}
+              //   testID="PasswordInput"
+              //   label={'PASSWORD'}
+              //   onBlur={onBlur}
+              //   value={value}
+              // />
+              <Input
                 onBlur={onBlur}
-                onChangeText={(val) => onChange(val)}
                 value={value}
-                errorMessage={errors.password && 'Please enter password'}
-                label={translate('PASSWORD')}
+                maxLength={35}
+                label={'PASSWORD'}
+                secureTextEntry={passwordVisible}
+                rightIconPressHandler={() =>
+                  setPasswordVisible(!passwordVisible)
+                }
+                errorStyle={styles.passwordError}
+                onChangeText={onChange}
+                rightIcon={
+                  <Ionicons
+                    name={passwordVisible ? 'eye-off' : 'eye'}
+                    color={colors.GRAY8}
+                    size={22}
+                  />
+                }
               />
             )}
             rules={
@@ -116,6 +135,7 @@ const SignIn = ({navigation}) => {
               }
             }
           />
+          <Divider />
           <View style={styles.saveWrapper}>
             <Switch
               trackColor={{false: GRAY2, true: GREEN1}}
