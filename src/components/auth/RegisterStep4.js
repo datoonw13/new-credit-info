@@ -40,20 +40,20 @@ const RegisterStep4 = ({lastStep, registerData, isPerson}) => {
   });
 
   React.useEffect(() => {
-    if (lastStep !== 3) {
+    if (lastStep !== 4) {
       if (registerData.address) {
         setValue('email', registerData.email);
         setValue('address', registerData.address);
         setValue('birthDate', registerData.birthDate);
         setValue('country', registerData.country);
       } else {
-        // dispatch(getCostumerInfoAction(1));
+        dispatch(getCostumerInfoAction(1));
       }
     }
-    if (lastStep === 3 && countries.length === 0) {
-      // dispatch(getCountriesAction());
+    if (lastStep === 4 && countries.length === 0) {
+      dispatch(getCountriesAction());
     }
-    if (lastStep === 3 && countries.length !== 0 && activeCountry.id === null) {
+    if (lastStep === 4 && countries.length !== 0 && activeCountry.id === null) {
       const country = countries.find((el) => el.alpha2Code === 'GE');
       setActiveCountry(country);
       setValue('country', country.name);
@@ -63,7 +63,7 @@ const RegisterStep4 = ({lastStep, registerData, isPerson}) => {
   }, [dispatch, countries, registerData]);
 
   const onSubmit = (data) => {
-    if (lastStep === 3) {
+    if (lastStep === 4) {
       dispatch(
         setCustomerExtraAction({
           ...data,
@@ -114,7 +114,7 @@ const RegisterStep4 = ({lastStep, registerData, isPerson}) => {
                   />
                 }
                 inputPressHandler={() =>
-                  lastStep === 3 ? setCalendarModalVisible(true) : null
+                  lastStep === 4 ? setCalendarModalVisible(true) : null
                 }
               />
             )}
@@ -136,7 +136,7 @@ const RegisterStep4 = ({lastStep, registerData, isPerson}) => {
                 maxLength={35}
                 errorMessage={errors.country && translate('VALID_COUNTRY')}
                 inputPressHandler={
-                  lastStep === 3 ? () => setCountryModalVisible(true) : null
+                  lastStep === 4 ? () => setCountryModalVisible(true) : null
                 }
                 pointerEvents="none"
                 rightIcon={
@@ -159,7 +159,7 @@ const RegisterStep4 = ({lastStep, registerData, isPerson}) => {
             render={({onChange, onBlur, value}) => (
               <Input
                 label={'ADDRESS'}
-                editable={lastStep === 3}
+                editable={lastStep === 4}
                 onChangeText={(val) => onChange(val)}
                 onBlur={onBlur}
                 value={value}
@@ -178,7 +178,7 @@ const RegisterStep4 = ({lastStep, registerData, isPerson}) => {
             render={({onChange, onBlur, value}) => (
               <Input
                 label={'EMAIL'}
-                editable={lastStep === 3}
+                editable={lastStep === 4}
                 onChangeText={(val) => onChange(val)}
                 onBlur={onBlur}
                 value={value}
@@ -198,7 +198,7 @@ const RegisterStep4 = ({lastStep, registerData, isPerson}) => {
         <Button
           text={'CONTINUE'}
           onPress={() =>
-            lastStep === 3 ? handleSubmit(onSubmit)() : onSubmit()
+            lastStep === 4 ? handleSubmit(onSubmit)() : onSubmit()
           }
         />
       </View>

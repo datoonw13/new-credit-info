@@ -20,7 +20,6 @@ const RegisterStep6 = ({registerData, lastStep}) => {
   });
 
   const onSubmit = (data) => {
-    console.log(data);
     if (registerData.phone) {
       dispatch(checkOTPAction(data.code));
     } else {
@@ -56,7 +55,7 @@ const RegisterStep6 = ({registerData, lastStep}) => {
           pattern: /^5[0-9]{8}$/,
         }}
       />
-      {registerData.phone || true ? (
+      {registerData.phone ? (
         <View style={styles.receivedCodeContainer}>
           <Controller
             name="code"

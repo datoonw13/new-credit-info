@@ -10,16 +10,25 @@ import {useDispatch} from 'react-redux';
 import Button from '../shared/Button';
 import * as colors from '../../theme/colors';
 import Text from '../shared/Text';
+import notificationService from '../../services/notificationService';
 
 const RegisterStep5 = ({lastStep}) => {
   const dispatch = useDispatch();
-  const [checked, setChecked] = useState(lastStep !== 4);
+  const [checked, setChecked] = useState(lastStep !== 5);
 
   const onSubmit = () => {
-    if (lastStep === 4) {
+    if (!checked) {
+      notificationService.notify(
+        'error',
+        'შეცდომ!',
+        'გთხოვთ დაეთანხმოთ წესებს და პირობებს',
+      );
+      return;
+    }
+    if (lastStep === 5) {
       dispatch(acceptAgreementAction());
     }
-    dispatch(setRegisterSelectedStepAction(5));
+    dispatch(setRegisterSelectedStepAction(6));
   };
 
   return (
@@ -49,7 +58,7 @@ const RegisterStep5 = ({lastStep}) => {
         uncheckedColor={colors.GRAY8}
         checkedColor={colors.RED2}
         checked={checked}
-        onPress={lastStep === 4 ? () => setChecked(!checked) : null}
+        onPress={lastStep === 5 ? () => setChecked(!checked) : null}
       />
       <Divider />
       <Button

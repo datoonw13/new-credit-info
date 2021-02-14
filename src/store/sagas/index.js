@@ -1,23 +1,27 @@
 import {all, takeLatest} from 'redux-saga/effects';
 import {checkSignedInSaga} from './mainSaga';
 import {
-  acceptAgreementSaga, checkOTPSaga,
+  acceptAgreementSaga,
+  checkOTPSaga,
   getCountriesSaga,
   getCustomerInfoSaga,
-  logoutSaga, sendOTPSaga,
+  logoutSaga,
+  sendOTPSaga,
   setCustomerExtraSaga,
   signInSaga,
   signUpSaga,
   updatePasswordSaga,
 } from './authSaga';
 import {
-  ACCEPT_AGREEMENT, CHECK_OTP,
+  ACCEPT_AGREEMENT,
+  CHECK_OTP,
   CHECK_SIGNED_IN,
   GET_COUNTRIES,
   GET_CUSTOMER_INFO,
   LOGOUT,
   REQUEST_SIGN_IN,
-  REQUEST_SIGN_UP, SEND_OTP,
+  REQUEST_SIGN_UP,
+  SEND_OTP,
   SET_CUSTOMER_EXTRA,
   UPDATE_PASSWORD,
 } from '../ducks/authDuck';

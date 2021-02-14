@@ -113,9 +113,10 @@ export function* setCustomerExtraSaga(payload) {
   try {
     yield axiosInstance.put('customer/extra', payload.data);
     yield put(updateRegisterDataAction(payload.data));
-    yield put(setRegisterLastStepAction(4));
-    yield put(setRegisterSelectedStepAction(4));
+    yield put(setRegisterLastStepAction(5));
+    yield put(setRegisterSelectedStepAction(5));
   } catch (error) {
+    console.log(error);
     if (error.response.status === 409) {
       yield notifyAction(
         'error',
@@ -130,8 +131,8 @@ export function* acceptAgreementSaga() {
   try {
     yield axiosInstance.patch('customer/agreement');
     yield put(updateRegisterDataAction({agreement: true}));
-    yield put(setRegisterLastStepAction(5));
-    yield put(setRegisterSelectedStepAction(5));
+    yield put(setRegisterLastStepAction(6));
+    yield put(setRegisterSelectedStepAction(6));
   } catch (error) {
     if (error.response.status === 409) {
       yield notifyAction(
