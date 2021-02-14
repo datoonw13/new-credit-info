@@ -10,15 +10,12 @@ import {
 } from 'react-native';
 import {Divider} from 'react-native-elements';
 import {Controller, useForm} from 'react-hook-form';
-import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useDispatch} from 'react-redux';
 import {signInAction} from '../../store/ducks/authDuck';
 import {colors} from '../../services/theme.js';
 import {translate} from '../../services/localizeService';
 import {BLACK, BLUE, GRAY2, GREEN1, WHITE} from '../../theme/colors';
-import CusInput from '../../components/shared/CusInput';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {FIRAGO_BOLD, FIRAGO_REGULAR} from '../../theme/fonts';
 import HeaderWithLogo from '../../components/shared/HeaderWithLogo';
 import AuthFooter from '../../components/auth/AuthFooter';

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, ScrollView, View} from 'react-native';
 import {CheckBox, Divider} from 'react-native-elements';
 import {translate} from '../../services/localizeService';
@@ -13,7 +13,7 @@ import Text from '../shared/Text';
 
 const RegisterStep5 = ({lastStep}) => {
   const dispatch = useDispatch();
-  const [checked, setChecked] = React.useState(lastStep !== 4);
+  const [checked, setChecked] = useState(lastStep !== 4);
 
   const onSubmit = () => {
     if (lastStep === 4) {

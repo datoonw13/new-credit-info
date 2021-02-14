@@ -16,3 +16,4 @@ export {default as IndividualEntity} from './individual-entity.svg';
 export {default as LegalEntity} from './legal-entity.svg';
 export {default as IndividualEntitySelected} from './individual-entity-selected.svg';
 export {default as LegalEntitySelected} from './legal-entity-selected.svg';
+export {default as Info} from './info.svg';

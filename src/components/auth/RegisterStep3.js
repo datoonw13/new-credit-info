@@ -14,6 +14,9 @@ import {
 } from '../../store/ducks/authDuck';
 import Button from '../shared/Button';
 import Input from '../shared/Input';
+import Text from '../shared/Text';
+import {Info} from '../../assets/svg';
+import * as colors from '../../theme/colors';
 
 const RegisterStep2 = ({lastStep, registerData, isPerson}) => {
   const dispatch = useDispatch();
@@ -45,6 +48,20 @@ const RegisterStep2 = ({lastStep, registerData, isPerson}) => {
     <>
       <View style={styles.container}>
         <ScrollView>
+          <View style={styles.setPasswordGuide}>
+            <View style={styles.infoIconWrapper}>
+              <Info />
+            </View>
+            <View>
+              <Text style={styles.guideTextBold} dontTranslate>
+                ძლიერი პაროლი უნდა იყოს რთულად გამოსაცნობი.
+              </Text>
+              <Text style={styles.guideTextNorm} dontTranslate>
+                გამოიყენეთ ძნელად მისახვედრი და გამოსაცნობი სიტყვები, ფრაზები,
+                სიმბოლოები და რიცხვები, არასტანდართული uPPercasing-ი.
+              </Text>
+            </View>
+          </View>
           <Controller
             name="password"
             control={control}
@@ -133,6 +150,36 @@ const styles = StyleSheet.create({
   },
   passwordError: {
     height: 0,
+  },
+  setPasswordGuide: {
+    display: 'flex',
+    flexDirection: 'row',
+    backgroundColor: colors.lightestStrangeBlue,
+    borderRadius: 18,
+    padding: 12,
+    marginTop: 5,
+    marginBottom: 15,
+  },
+  infoIconWrapper: {
+    width: 32,
+    height: 32,
+    backgroundColor: colors.lightestGrey,
+    borderRadius: 25,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 9,
+  },
+  guideTextBold: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    lineHeight: 20,
+  },
+  guideTextNorm: {
+    fontSize: 14,
+    marginTop: 8,
+    lineHeight: 20,
+    marginRight: 30,
   },
 });
 
