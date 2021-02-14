@@ -24,15 +24,6 @@ export function* signInSaga({data}) {
     yield AsyncStorage.setItem('accessToken', res.accessToken);
     yield AsyncStorage.setItem('refreshToken', res.refreshToken);
     const jwtData = jwtDecode(res.accessToken);
-    console.log(jwtData);
-    // yield put(
-    //   setUserDataAction({
-    //     displayName: res.displayName,
-    //     email: res.email,
-    //     role: res.role,
-    //     id: res.id,
-    //   }),
-    // );
     if (jwtData.status === 'REGISTERED') {
       const userInfo = yield axiosInstance.get(
         'customer/info?language=' + i18n.locale.toUpperCase(),
@@ -81,14 +72,15 @@ export function* signUpSaga(payload) {
     yield AsyncStorage.setItem('accessToken', res.accessToken);
     yield AsyncStorage.setItem('refreshToken', res.refreshToken);
     yield put(updateRegisterDataAction(payload.data));
-    yield put(setRegisterLastStepAction(3));
-    yield put(setRegisterSelectedStepAction(3));
+    yield put(setRegisterLastStepAction(4));
+    yield put(setRegisterSelectedStepAction(4));
     yield notifyAction(
       'success',
       translate('SUCCESS'),
       translate('USER_CREATE_SUCCESS'),
     );
   } catch (error) {
+    console.log(error);
     if (error.response.status === 409) {
       yield notifyAction(
         'error',

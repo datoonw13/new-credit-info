@@ -30,10 +30,7 @@ const SignUpScreen = ({navigation}) => {
     (state) => state.authReducer,
   );
 
-  // useEffect(() => {
-  //   dispatch(setRegisterSelectedStepAction(3));
-  //   dispatch(setRegisterLastStepAction(3));
-  // }, []);
+  console.log(registerData);
 
   const footerHandler = () => {
     registerSelectedStep === 1

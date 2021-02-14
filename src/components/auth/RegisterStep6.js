@@ -5,9 +5,7 @@ import {Divider} from 'react-native-elements';
 import {translate} from '../../services/localizeService';
 import {useDispatch} from 'react-redux';
 import {Controller, useForm} from 'react-hook-form';
-import CusInput from '../shared/CusInput';
 import {checkOTPAction, sendOTPAction} from '../../store/ducks/authDuck';
-import {notifyAction} from '../../store/ducks/mainDuck';
 import Input from '../shared/Input';
 import Button from '../shared/Button';
 

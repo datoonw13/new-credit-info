@@ -9,7 +9,7 @@ import {
   getCostumerInfoAction,
   setRegisterLastStepAction,
   setRegisterSelectedStepAction,
-  signUpAction,
+  updateRegisterDataAction,
 } from '../../store/ducks/authDuck';
 import Input from '../shared/Input';
 import Button from '../shared/Button';
@@ -42,14 +42,9 @@ const RegisterStep2 = ({lastStep, registerData, isPerson}) => {
 
   const onSubmit = (data) => {
     if (lastStep === 2) {
+      dispatch(updateRegisterDataAction(data));
       dispatch(setRegisterLastStepAction(3));
       dispatch(setRegisterSelectedStepAction(3));
-      // dispatch(
-      //   signUpAction({
-      //     ...data,
-      //     ...registerData,
-      //   }),
-      // );
     } else {
       dispatch(setRegisterSelectedStepAction(3));
     }

@@ -4,11 +4,9 @@ import {Divider} from 'react-native-elements';
 import {translate} from '../../services/localizeService';
 import {useDispatch} from 'react-redux';
 import {Controller, useForm} from 'react-hook-form';
-import zxc from 'zxcvbn';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {GRAY8} from '../../theme/colors';
 import {
-  getCostumerInfoAction,
   setRegisterSelectedStepAction,
   signUpAction,
 } from '../../store/ducks/authDuck';
@@ -18,12 +16,11 @@ import Text from '../shared/Text';
 import {Info} from '../../assets/svg';
 import * as colors from '../../theme/colors';
 
-const RegisterStep2 = ({lastStep, registerData, isPerson}) => {
+const RegisterStep3 = ({lastStep, registerData}) => {
   const dispatch = useDispatch();
-  const [passwordScore, setPasswordScore] = useState(0);
-  const [repeatPasswordSTE, setRepeatPasswordSTE] = useState(true);
-  const [passwordSTE, setPasswordSTE] = useState(true);
-  const {control, handleSubmit, errors, watch, setValue} = useForm({
+  const [passwordVisible, setPasswordVisible] = useState(true);
+  const [repeatPasswordVisible, setRepeatPasswordVisible] = useState(true);
+  const {control, handleSubmit, errors, watch} = useForm({
     mode: 'onSubmit',
     defaultValues: {
       password: '',
@@ -32,17 +29,19 @@ const RegisterStep2 = ({lastStep, registerData, isPerson}) => {
   });
 
   const onSubmit = (data) => {
+    console.log({...data, ...registerData});
     if (lastStep === 3) {
-      // dispatch(
-      //   signUpAction({
-      //     ...data,
-      //     ...registerData,
-      //   }),
-      // );
+      dispatch(
+        signUpAction({
+          ...data,
+          ...registerData,
+        }),
+      );
     } else {
-      dispatch(setRegisterSelectedStepAction(3));
+      dispatch(setRegisterSelectedStepAction(4));
     }
   };
+  console.log(errors);
 
   const passwordGuidText = {
     bold: 'ძლიერი პაროლი უნდა იყოს რთულად გამოსაცნობი.',
@@ -80,20 +79,17 @@ const RegisterStep2 = ({lastStep, registerData, isPerson}) => {
                 value={value}
                 maxLength={35}
                 label={'PASSWORD'}
-                secureTextEntry={passwordSTE}
+                secureTextEntry={passwordVisible}
                 rightIconPressHandler={() => {
-                  console.log('მეკლიკებააა!');
-                  setPasswordSTE(!passwordSTE);
+                  setPasswordVisible(!passwordVisible);
                 }}
                 errorStyle={styles.passwordError}
                 editable={lastStep === 3}
-                onChangeText={(val) => {
-                  onChange(val);
-                  setPasswordScore(zxc(val).score);
-                }}
+                errorMessage={errors.password?.message}
+                onChangeText={onChange}
                 rightIcon={
                   <Ionicons
-                    name={passwordSTE ? 'eye-off' : 'eye'}
+                    name={passwordVisible ? 'eye-off' : 'eye'}
                     color={GRAY8}
                     size={22}
                   />
@@ -102,7 +98,10 @@ const RegisterStep2 = ({lastStep, registerData, isPerson}) => {
             )}
             rules={{
               required: true,
-              validate: () => passwordScore >= 3,
+              minLength: {
+                value: 8,
+                message: 'საჭიროა მინიმუმ 8 სიმბოლო!',
+              },
             }}
           />
           <Divider />
@@ -115,28 +114,35 @@ const RegisterStep2 = ({lastStep, registerData, isPerson}) => {
                 value={value}
                 maxLength={35}
                 label={'REPEAT_PASSWORD'}
-                secureTextEntry={repeatPasswordSTE}
-                rightIconPressHandler={() => {
-                  setRepeatPasswordSTE(!repeatPasswordSTE);
-                }}
+                secureTextEntry={repeatPasswordVisible}
+                rightIconPressHandler={() =>
+                  setRepeatPasswordVisible(!repeatPasswordVisible)
+                }
                 errorStyle={styles.passwordError}
                 editable={lastStep === 3}
                 onChangeText={onChange}
                 rightIcon={
                   <Ionicons
-                    name={passwordSTE ? 'eye-off' : 'eye'}
+                    name={repeatPasswordVisible ? 'eye-off' : 'eye'}
                     color={GRAY8}
                     size={22}
                   />
                 }
-                errorMessage={
-                  errors.repeatPassword && translate('VALID_REPEAT_PASSWORD')
-                }
+                errorMessage={errors.repeatPassword?.message}
               />
             )}
             rules={{
-              required: true,
-              validate: (value) => value === watch('password'),
+              required: {
+                value: true,
+                message: translate('VALID_REPEAT_PASSWORD'),
+              },
+              validate: (value) => {
+                if (value === watch('password')) {
+                  return true;
+                }
+
+                return translate('VALID_REPEAT_PASSWORD');
+              },
             }}
           />
         </ScrollView>
@@ -144,7 +150,7 @@ const RegisterStep2 = ({lastStep, registerData, isPerson}) => {
         <Button
           text={'CONTINUE'}
           onPress={() =>
-            lastStep === 2 ? handleSubmit(onSubmit)() : onSubmit()
+            lastStep === 3 ? handleSubmit(onSubmit)() : onSubmit()
           }
         />
       </View>
@@ -192,4 +198,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default RegisterStep2;
+export default RegisterStep3;
