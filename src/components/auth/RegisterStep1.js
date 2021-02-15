@@ -42,7 +42,7 @@ const RegisterStep1 = ({lastStep, customerType}) => {
       <Button
         text="CONTINUE"
         onPress={() => onSubmit(selectedType)}
-        disabled={selectedType === null}
+        disabled={!selectedType}
       />
     </>
   );

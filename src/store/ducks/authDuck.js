@@ -1,5 +1,6 @@
 export const CHECK_SIGNED_IN = 'my-creditinfo/auth/checkSignedIn';
 export const SET_USER_DATA = 'my-creditinfo/auth/setUserData';
+export const RESET_REGISTER_DATA = 'my-creditinfo/auth/resetRegisterData';
 export const REQUEST_SIGN_IN = 'my-creditinfo/auth/requestSignIn';
 export const REQUEST_SIGN_UP = 'my-creditinfo/auth/requestSignUp';
 export const SET_CUSTOMER_EXTRA = 'my-creditinfo/auth/setCustomerExtra';
@@ -47,6 +48,13 @@ export const authReducer = (state = initialState, action) => {
         ...state,
         registerData: action.data,
       };
+    case RESET_REGISTER_DATA:
+      return {
+        ...state,
+        registerSelectedStep: 1,
+        registerLastStep: 1,
+        registerData: {},
+      };
     case UPDATE_REGISTER_DATA:
       return {
         ...state,
@@ -84,6 +92,10 @@ export const setCustomerExtraAction = (data) => ({
 export const setUserDataAction = (userData) => ({
   type: SET_USER_DATA,
   userData,
+});
+
+export const resetRegisterDataAction = () => ({
+  type: RESET_REGISTER_DATA,
 });
 
 export const updatePasswordAction = (data) => ({

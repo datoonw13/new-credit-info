@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {
   Keyboard,
+  KeyboardAvoidingView,
   Platform,
   ScrollView,
   StyleSheet,
@@ -25,6 +26,7 @@ import Button from '../../components/shared/Button';
 import Input from '../../components/shared/Input';
 
 const SignIn = ({navigation}) => {
+  const scrollViewRef = React.useRef();
   const dispatch = useDispatch();
   const {control, handleSubmit, errors, setValue} = useForm({
     mode: 'onSubmit',
@@ -33,9 +35,28 @@ const SignIn = ({navigation}) => {
       password: '',
     },
   });
-
   const [saveIsEnabled, setSaveIsEnabled] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(true);
+
+  React.useEffect(() => {
+    if (Platform.OS === 'ios') {
+      Keyboard.addListener('keyboardWillShow', keyboardWillShow);
+    } else {
+      Keyboard.addListener('keyboardDidShow', keyboardWillShow);
+    }
+    return () => {
+      if (Platform.OS === 'ios') {
+        Keyboard.removeListener('keyboardWillShow', keyboardWillShow);
+      } else {
+        Keyboard.removeListener('keyboardDidShow', keyboardWillShow);
+      }
+    };
+  }, [keyboardWillShow]);
+
+  const keyboardWillShow = React.useCallback(() => {
+    scrollViewRef.current.scrollToEnd();
+  }, []);
+
   const toggleSwitch = () =>
     setSaveIsEnabled((previousState) => !previousState);
 
@@ -61,102 +82,99 @@ const SignIn = ({navigation}) => {
 
   return (
     <>
-      <ScrollView>
+      <KeyboardAvoidingView
+        style={styles.keyboardAvoidingView}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'padding'}>
         <HeaderWithLogo mode="WithMenu" style={styles.header} />
-        <RedGirl style={styles.redGirl} />
-        <View style={styles.wrapper}>
-          <View style={styles.titleWrapper}>
-            <Text style={styles.authText}>{translate('AUTHORIZATION')}</Text>
-            <Text style={styles.descText}>
-              {translate('FILL_GIVEN_FIELDS')}
-            </Text>
-          </View>
-          <Controller
-            name="username"
-            control={control}
-            render={({onChange, onBlur, value}) => (
-              <Input
-                autoCapitalize="none"
-                placeholder="username"
-                onBlur={onBlur}
-                onChangeText={onChange}
-                value={value}
-                errorMessage={errors.username && 'Please enter valid username'}
-                label={'USER'}
-                labelOnBorderToo
-              />
-            )}
-            rules={
-              {
-                // required: true,
-              }
-            }
-          />
-          <Divider />
-          <Controller
-            name="password"
-            control={control}
-            render={({onChange, onBlur, value}) => (
-              // <Input
-              //   errorMessage={errors.password && 'Please enter password'}
-              //   onChangeText={onChange}
-              //   secureTextEntry={true}
-              //   testID="PasswordInput"
-              //   label={'PASSWORD'}
-              //   onBlur={onBlur}
-              //   value={value}
-              // />
-              <Input
-                onBlur={onBlur}
-                value={value}
-                maxLength={35}
-                label={'PASSWORD'}
-                secureTextEntry={passwordVisible}
-                rightIconPressHandler={() =>
-                  setPasswordVisible(!passwordVisible)
-                }
-                errorStyle={styles.passwordError}
-                onChangeText={onChange}
-                rightIcon={
-                  <Ionicons
-                    name={passwordVisible ? 'eye-off' : 'eye'}
-                    color={colors.GRAY8}
-                    size={22}
-                  />
-                }
-              />
-            )}
-            rules={
-              {
-                // required: true,
-              }
-            }
-          />
-          <Divider />
-          <View style={styles.saveWrapper}>
-            <Switch
-              trackColor={{false: GRAY2, true: GREEN1}}
-              thumbColor={WHITE}
-              ios_backgroundColor="#3e3e3e"
-              onValueChange={toggleSwitch}
-              value={saveIsEnabled}
-            />
-            <Text style={styles.saveText}>{translate('SAVE')}</Text>
-            <TouchableOpacity>
-              <Text style={styles.forgetText}>
-                {translate('FORGET_PASSWORD') + '?'}
+        <ScrollView style={{flex: 1}} ref={scrollViewRef}>
+          <RedGirl style={styles.redGirl} />
+          <View style={styles.wrapper}>
+            <View style={styles.titleWrapper}>
+              <Text style={styles.authText}>{translate('AUTHORIZATION')}</Text>
+              <Text style={styles.descText}>
+                {translate('FILL_GIVEN_FIELDS')}
               </Text>
-            </TouchableOpacity>
+            </View>
+            <Controller
+              name="username"
+              control={control}
+              render={({onChange, onBlur, value}) => (
+                <Input
+                  autoCapitalize="none"
+                  placeholder="username"
+                  onBlur={onBlur}
+                  onChangeText={onChange}
+                  value={value}
+                  errorMessage={
+                    errors.username && 'Please enter valid username'
+                  }
+                  label={'USER'}
+                  labelOnBorderToo
+                />
+              )}
+              rules={
+                {
+                  // required: true,
+                }
+              }
+            />
+            <Divider />
+            <Controller
+              name="password"
+              control={control}
+              render={({onChange, onBlur, value}) => (
+                <Input
+                  onBlur={onBlur}
+                  value={value}
+                  maxLength={35}
+                  label={'PASSWORD'}
+                  secureTextEntry={passwordVisible}
+                  rightIconPressHandler={() =>
+                    setPasswordVisible(!passwordVisible)
+                  }
+                  errorStyle={styles.passwordError}
+                  onChangeText={onChange}
+                  rightIcon={
+                    <Ionicons
+                      name={passwordVisible ? 'eye-off' : 'eye'}
+                      color={colors.gray}
+                      size={22}
+                    />
+                  }
+                />
+              )}
+              rules={
+                {
+                  // required: true,
+                }
+              }
+            />
+            <Divider />
+            <View style={styles.saveWrapper}>
+              <Switch
+                trackColor={{false: GRAY2, true: GREEN1}}
+                thumbColor={WHITE}
+                ios_backgroundColor="#3e3e3e"
+                onValueChange={toggleSwitch}
+                value={saveIsEnabled}
+              />
+              <Text style={styles.saveText}>{translate('SAVE')}</Text>
+              <TouchableOpacity>
+                <Text style={styles.forgetText}>
+                  {translate('FORGET_PASSWORD') + '?'}
+                </Text>
+              </TouchableOpacity>
+            </View>
+            <Divider />
+            <Button
+              text="LOGIN"
+              touchableStyle={styles.authBtn}
+              onPress={handleSubmit(onSubmit)}
+            />
+            <Divider />
           </View>
-          <Divider />
-          <Button
-            text="LOGIN"
-            touchableStyle={styles.authBtn}
-            onPress={handleSubmit(onSubmit)}
-          />
-          <Divider />
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </KeyboardAvoidingView>
       <AuthFooter
         text={translate('NO_ACCOUNT')}
         link={translate('REGISTRATION')}
@@ -168,33 +186,24 @@ const SignIn = ({navigation}) => {
 };
 
 const styles = StyleSheet.create({
-  contentContainerStyle: {
-    justifyContent: 'space-between',
+  keyboardAvoidingView: {
     flexGrow: 1,
-    paddingLeft: 10,
-    paddingRight: 10,
+    flex: 1,
   },
   header: {
-    marginBottom: 42,
+    marginBottom: 20,
   },
   redGirl: {
+    flex: 1,
     marginTop: 36,
     marginBottom: 32,
     alignSelf: 'center',
-  },
-  container: {
-    flex: 1,
-    backgroundColor: WHITE,
   },
   wrapper: {
     flex: 1,
     paddingLeft: 15,
     paddingRight: 15,
     backgroundColor: WHITE,
-  },
-  tinyLogo: {
-    width: 50,
-    height: 50,
   },
   titleWrapper: {
     alignItems: 'center',

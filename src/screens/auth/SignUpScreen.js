@@ -1,15 +1,18 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {
   KeyboardAvoidingView,
-  StyleSheet,
   Platform,
+  StyleSheet,
   Text,
   View,
+  ScrollView,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from 'react-native';
 import {Divider} from 'react-native-elements';
 import {
+  resetRegisterDataAction,
   setRegisterSelectedStepAction,
-  setRegisterLastStepAction,
 } from '../../store/ducks/authDuck';
 import {useDispatch, useSelector} from 'react-redux';
 import HeaderWithLogo from '../../components/shared/HeaderWithLogo';
@@ -30,12 +33,16 @@ const SignUpScreen = ({navigation}) => {
     (state) => state.authReducer,
   );
 
-  console.log(registerData);
+  React.useEffect(() => {
+    return () => {
+      dispatch(resetRegisterDataAction());
+    };
+  }, [dispatch]);
 
   const footerHandler = () => {
     registerSelectedStep === 1
       ? navigation.navigate('SignIn')
-      : dispatch(setRegisterSelectedStepAction(registerLastStep - 1));
+      : dispatch(setRegisterSelectedStepAction(registerSelectedStep - 1));
   };
 
   const setTabData = () => {
@@ -88,20 +95,22 @@ const SignUpScreen = ({navigation}) => {
   return (
     <>
       <HeaderWithLogo mode="WithMenu" style={styles.header} />
-      <KeyboardAvoidingView
-        style={styles.keyboardAvoidingView}
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-        <View style={styles.wrapper}>
-          <View style={styles.titleWrapper}>
-            <Text style={styles.authText}>{translate('REGISTRATION')}</Text>
-            <Text style={styles.descText}>
-              {translate('SELECT_SERVICE_TYPE')}
-            </Text>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <KeyboardAvoidingView
+          style={styles.keyboardAvoidingView}
+          behavior={Platform.OS === 'ios' ? 'padding' : 'padding'}>
+          <View style={styles.wrapper}>
+            <View style={styles.titleWrapper}>
+              <Text style={styles.authText}>{translate('REGISTRATION')}</Text>
+              <Text style={styles.descText}>
+                {translate('SELECT_SERVICE_TYPE')}
+              </Text>
+            </View>
+            <Divider />
+            {setTabData()}
           </View>
-          <Divider />
-          {setTabData()}
-        </View>
-      </KeyboardAvoidingView>
+        </KeyboardAvoidingView>
+      </TouchableWithoutFeedback>
       {registerSelectedStep === 1 ? (
         <AuthFooter
           text={translate('HAVE_ACCOUNT')}
@@ -127,10 +136,6 @@ const styles = StyleSheet.create({
   keyboardAvoidingView: {
     flexGrow: 1,
     flex: 1,
-  },
-  contentContainerStyle: {
-    justifyContent: 'space-between',
-    flexGrow: 1,
   },
   wrapper: {
     flex: 1,

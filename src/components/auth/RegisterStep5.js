@@ -1,11 +1,8 @@
 import React, {useState} from 'react';
-import {StyleSheet, ScrollView, View} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import {CheckBox, Divider} from 'react-native-elements';
 import {translate} from '../../services/localizeService';
-import {
-  acceptAgreementAction,
-  setRegisterSelectedStepAction,
-} from '../../store/ducks/authDuck';
+import {acceptAgreementAction, setRegisterSelectedStepAction,} from '../../store/ducks/authDuck';
 import {useDispatch} from 'react-redux';
 import Button from '../shared/Button';
 import * as colors from '../../theme/colors';
@@ -32,21 +29,23 @@ const RegisterStep5 = ({lastStep}) => {
   };
 
   return (
-    <ScrollView>
-      <View style={styles.contractContainer}>
-        {contract.map(({id, heading, description}) => {
-          return (
-            <View key={id} style={styles.paragraph}>
-              <Text style={styles.heading} dontTranslate capsBold>
-                {heading}
-              </Text>
-              <Text style={styles.description} dontTranslate>
-                {description}
-              </Text>
-            </View>
-          );
-        })}
-      </View>
+    <>
+      <ScrollView style={{flex: 1}}>
+        <View style={styles.contractContainer}>
+          {contract.map(({id, heading, description}) => {
+            return (
+              <View key={id} style={styles.paragraph}>
+                <Text style={styles.heading} dontTranslate capsBold>
+                  {heading}
+                </Text>
+                <Text style={styles.description} dontTranslate>
+                  {description}
+                </Text>
+              </View>
+            );
+          })}
+        </View>
+      </ScrollView>
       <CheckBox
         center
         title={translate('ACCEPT_TERMS')}
@@ -66,7 +65,7 @@ const RegisterStep5 = ({lastStep}) => {
         disabled={!checked}
         onPress={() => onSubmit()}
       />
-    </ScrollView>
+    </>
   );
 };
 

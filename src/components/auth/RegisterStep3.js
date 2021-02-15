@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
-import {StyleSheet, View, ScrollView} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import {Divider} from 'react-native-elements';
 import {translate} from '../../services/localizeService';
 import {useDispatch} from 'react-redux';
 import {Controller, useForm} from 'react-hook-form';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import * as colors from '../../theme/colors';
 import {GRAY8} from '../../theme/colors';
 import {
   setRegisterSelectedStepAction,
@@ -14,11 +15,12 @@ import Button from '../shared/Button';
 import Input from '../shared/Input';
 import Text from '../shared/Text';
 import {Info} from '../../assets/svg';
-import * as colors from '../../theme/colors';
+import zxc from 'zxcvbn';
 
 const RegisterStep3 = ({lastStep, registerData}) => {
   const dispatch = useDispatch();
   const [passwordVisible, setPasswordVisible] = useState(true);
+  const [passwordScore, setPasswordScore] = React.useState(0);
   const [repeatPasswordVisible, setRepeatPasswordVisible] = useState(true);
   const {control, handleSubmit, errors, watch} = useForm({
     mode: 'onSubmit',
@@ -41,7 +43,6 @@ const RegisterStep3 = ({lastStep, registerData}) => {
       dispatch(setRegisterSelectedStepAction(4));
     }
   };
-  console.log(errors);
 
   const passwordGuidText = {
     bold: 'ძლიერი პაროლი უნდა იყოს რთულად გამოსაცნობი.',
@@ -86,7 +87,10 @@ const RegisterStep3 = ({lastStep, registerData}) => {
                 errorStyle={styles.passwordError}
                 editable={lastStep === 3}
                 errorMessage={errors.password?.message}
-                onChangeText={onChange}
+                onChangeText={(val) => {
+                  onChange(val);
+                  setPasswordScore(zxc(val).score);
+                }}
                 rightIcon={
                   <Ionicons
                     name={passwordVisible ? 'eye-off' : 'eye'}
@@ -98,10 +102,7 @@ const RegisterStep3 = ({lastStep, registerData}) => {
             )}
             rules={{
               required: true,
-              minLength: {
-                value: 8,
-                message: 'საჭიროა მინიმუმ 8 სიმბოლო!',
-              },
+              validate: () => passwordScore >= 3,
             }}
           />
           <Divider />

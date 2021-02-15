@@ -84,6 +84,7 @@ const Input = ({
           editable={editable}
           onBlur={onBlur}
           value={value}
+          placeholderTextColor={colors.BLACK}
         />
         <Animated.View style={[styles.errorTextWrapper, {height}]}>
           <Text style={styles.errorText} children={errorMessage} />
@@ -109,6 +110,7 @@ const styles = StyleSheet.create({
   input: {
     borderWidth: 1,
     borderColor: colors.lightGrey,
+    color: colors.BLACK,
     width: '100%',
     height: 67,
     borderStyle: 'solid',
