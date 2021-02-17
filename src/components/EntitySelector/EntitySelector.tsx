@@ -9,7 +9,12 @@ import {
   IndividualEntitySelected,
 } from 'assets/svg';
 
-const EntitySelector = ({entity, lastStep, selectedType, onPress}) => {
+const EntitySelector: EntitySelectorFC = ({
+  selectedType,
+  lastStep,
+  onPress,
+  entity,
+}) => {
   const EntityIcon = entity === 'PERSON' ? IndividualEntity : LegalEntity;
   const EntityIconSelected =
     entity === 'PERSON' ? IndividualEntitySelected : LegalEntitySelected;

@@ -10,7 +10,7 @@ import {translate} from 'services/localizeService';
 import {BLACK, BLUE, GRAY4, WHITE} from 'theme/colors';
 import {FIRAGO_LIGHT, FIRAGO_REGULAR} from 'theme/fonts';
 
-const AuthFooter = ({mode, handler, text, link}) => {
+const AuthFooter: AuthFooterFC = ({mode, handler, text, link}) => {
   return (
     <>
       {mode === 'link' ? (

@@ -11,11 +11,11 @@ import {
 import {BLACK, GRAY2, RED2, WHITE} from 'theme/colors';
 import {FIRAGO_REGULAR} from 'theme/fonts';
 
-const CountrySelectModal = ({
-  isVisible,
+const CountrySelectModal: CountrySelectedModalFC = ({
   setModalVisible,
-  setCountry,
   activeCountry,
+  setCountry,
+  isVisible,
   countries,
 }) => {
   return (

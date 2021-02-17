@@ -2,14 +2,15 @@ import React from 'react';
 import {View, StyleSheet, TouchableOpacity} from 'react-native';
 import Text from 'components/Text';
 import * as colors from 'theme/colors';
+import {ButtonFC} from './types';
 
-const Button = ({
+const Button: ButtonFC = ({
+  disabled = false,
   containerStyle,
   touchableStyle,
   textStyle,
   onPress,
   text,
-  disabled,
 }) => {
   return (
     <TouchableOpacity

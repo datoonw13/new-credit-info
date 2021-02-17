@@ -5,12 +5,12 @@ import {Calendar} from 'react-native-calendars';
 import {BLACK, RED2, WHITE} from 'theme/colors';
 import Button from 'components/Button';
 
-const CalendarModal = ({
-  isVisible,
+const CalendarModal: CalendarModalFC = ({
   setModalVisible,
-  setDate,
+  isVisible,
   activeDate,
   isPerson,
+  setDate,
 }) => {
   const [selectedDate, setSelectedDate] = React.useState(
     activeDate ? activeDate : null,
