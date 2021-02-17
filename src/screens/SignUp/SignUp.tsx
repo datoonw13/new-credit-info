@@ -26,6 +26,7 @@ import {
   SetPassword,
   VerifyPhone,
 } from './components';
+import {RegistrationSteps} from './enum';
 
 const SignUp = ({navigation}) => {
   const dispatch = useDispatch();
@@ -47,14 +48,14 @@ const SignUp = ({navigation}) => {
 
   const setTabData = () => {
     switch (registerSelectedStep) {
-      case 1:
+      case RegistrationSteps.ChooseEntity:
         return (
           <ChooseEntity
             lastStep={registerLastStep}
             customerType={registerData.customerType}
           />
         );
-      case 2:
+      case RegistrationSteps.SetPersonalInfo:
         return (
           <SetPersonalInfo
             lastStep={registerLastStep}
@@ -62,14 +63,14 @@ const SignUp = ({navigation}) => {
             isPerson={registerData.customerType === 'PERSON'}
           />
         );
-      case 3:
+      case RegistrationSteps.SetPassword:
         return (
           <SetPassword
             lastStep={registerLastStep}
             registerData={registerData}
           />
         );
-      case 4:
+      case RegistrationSteps.SetAdditionalInfo:
         return (
           <SetAdditionalInfo
             lastStep={registerLastStep}
@@ -77,9 +78,9 @@ const SignUp = ({navigation}) => {
             isPerson={registerData.customerType === 'PERSON'}
           />
         );
-      case 5:
+      case RegistrationSteps.AcceptTerms:
         return <AcceptTerms lastStep={registerLastStep} />;
-      case 6:
+      case RegistrationSteps.VerifyPhone:
         return <VerifyPhone registerData={registerData} />;
       default:
         return null;
