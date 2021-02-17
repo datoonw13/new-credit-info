@@ -17,13 +17,15 @@ import {useDispatch, useSelector} from 'react-redux';
 import {BLACK, WHITE} from 'theme/colors';
 import {translate} from 'services/localizeService';
 import {FIRAGO_BOLD, FIRAGO_REGULAR} from 'theme/fonts';
-import RegisterStep1 from './components/RegisterStep1';
-import RegisterStep2 from './components/RegisterStep2';
-import RegisterStep3 from './components/RegisterStep3';
-import RegisterStep4 from './components/RegisterStep4';
-import RegisterStep5 from './components/RegisterStep5';
-import RegisterStep6 from './components/RegisterStep6';
 import {HeaderWithLogo, AuthFooter} from 'components';
+import {
+  SetAdditionalInfo,
+  SetPersonalInfo,
+  ChooseEntity,
+  AcceptTerms,
+  SetPassword,
+  VerifyPhone,
+} from './components';
 
 const SignUp = ({navigation}) => {
   const dispatch = useDispatch();
@@ -47,14 +49,14 @@ const SignUp = ({navigation}) => {
     switch (registerSelectedStep) {
       case 1:
         return (
-          <RegisterStep1
+          <ChooseEntity
             lastStep={registerLastStep}
             customerType={registerData.customerType}
           />
         );
       case 2:
         return (
-          <RegisterStep2
+          <SetPersonalInfo
             lastStep={registerLastStep}
             registerData={registerData}
             isPerson={registerData.customerType === 'PERSON'}
@@ -62,29 +64,23 @@ const SignUp = ({navigation}) => {
         );
       case 3:
         return (
-          <RegisterStep3
+          <SetPassword
             lastStep={registerLastStep}
             registerData={registerData}
-            isPerson={registerData.customerType === 'PERSON'}
           />
         );
       case 4:
         return (
-          <RegisterStep4
+          <SetAdditionalInfo
             lastStep={registerLastStep}
             registerData={registerData}
             isPerson={registerData.customerType === 'PERSON'}
           />
         );
       case 5:
-        return <RegisterStep5 lastStep={registerLastStep} />;
+        return <AcceptTerms lastStep={registerLastStep} />;
       case 6:
-        return (
-          <RegisterStep6
-            lastStep={registerLastStep}
-            registerData={registerData}
-          />
-        );
+        return <VerifyPhone registerData={registerData} />;
       default:
         return null;
     }

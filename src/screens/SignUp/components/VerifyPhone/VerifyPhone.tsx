@@ -3,29 +3,14 @@ import {StyleSheet, Text, View} from 'react-native';
 import {BLUE, GRAY2} from 'theme/colors';
 import {Divider} from 'react-native-elements';
 import {translate} from 'services/localizeService';
-import {useDispatch} from 'react-redux';
-import {Controller, useForm} from 'react-hook-form';
-import {checkOTPAction, sendOTPAction} from 'store/ducks/authDuck';
+import {Controller} from 'react-hook-form';
 import {Button, Input} from 'components';
+import useVerifyPhone from './useVerifyPhone';
 
-const RegisterStep6 = ({registerData, lastStep}) => {
-  const dispatch = useDispatch();
-  const {control, handleSubmit, errors} = useForm({
-    mode: 'onSubmit',
-    defaultValues: {
-      phone: registerData.phone ? registerData.phone : '',
-      code: '',
-    },
+const VerifyPhone: VerifyPhoneFC = ({registerData}) => {
+  const {onSubmit, handleSubmit, errors, control} = useVerifyPhone({
+    registerData,
   });
-
-  const onSubmit = (data) => {
-    if (registerData.phone) {
-      dispatch(checkOTPAction(data.code));
-    } else {
-      dispatch(sendOTPAction(data.phone));
-    }
-  };
-
   return (
     <>
       <Controller
@@ -84,7 +69,7 @@ const RegisterStep6 = ({registerData, lastStep}) => {
   );
 };
 
-export default RegisterStep6;
+export default VerifyPhone;
 
 const styles = StyleSheet.create({
   prefixContainer: {

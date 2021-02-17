@@ -1,51 +1,33 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import {Divider} from 'react-native-elements';
 import {translate} from 'services/localizeService';
-import {useDispatch} from 'react-redux';
 import zxc from 'zxcvbn';
-import {Controller, useForm} from 'react-hook-form';
+import {Controller} from 'react-hook-form';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import * as colors from 'theme/colors';
-import {
-  setRegisterSelectedStepAction,
-  signUpAction,
-} from 'store/ducks/authDuck';
+import {passwordGuidText} from './config';
 import {Info} from 'assets/svg';
 import {Button, Input, Text} from 'components';
+import useSetPassword from './useSetPassword';
 
-const RegisterStep3 = ({lastStep, registerData}) => {
-  const dispatch = useDispatch();
-  const [passwordVisible, setPasswordVisible] = useState(true);
-  const [passwordScore, setPasswordScore] = React.useState(0);
-  const [repeatPasswordVisible, setRepeatPasswordVisible] = useState(true);
-  const {control, handleSubmit, errors, watch} = useForm({
-    mode: 'onSubmit',
-    defaultValues: {
-      password: '',
-      repeatPassword: '',
-    },
+const SetPassword: SetPasswordFC = ({lastStep, registerData}) => {
+  const {
+    setRepeatPasswordVisible,
+    repeatPasswordVisible,
+    setPasswordVisible,
+    setPasswordScore,
+    passwordVisible,
+    passwordScore,
+    handleSubmit,
+    onSubmit,
+    control,
+    errors,
+    watch,
+  } = useSetPassword({
+    registerData,
+    lastStep,
   });
-
-  const onSubmit = (data) => {
-    console.log({...data, ...registerData});
-    if (lastStep === 3) {
-      dispatch(
-        signUpAction({
-          ...data,
-          ...registerData,
-        }),
-      );
-    } else {
-      dispatch(setRegisterSelectedStepAction(4));
-    }
-  };
-
-  const passwordGuidText = {
-    bold: 'ძლიერი პაროლი უნდა იყოს რთულად გამოსაცნობი.',
-    norm:
-      'გამოიყენეთ ძნელად მისახვედრი და გამოსაცნობი სიტყვები, ფრაზები, სიმბოლოები და რიცხვები, არასტანდართული uPPercasing-ი.',
-  };
 
   return (
     <>
@@ -81,7 +63,6 @@ const RegisterStep3 = ({lastStep, registerData}) => {
                 rightIconPressHandler={() => {
                   setPasswordVisible(!passwordVisible);
                 }}
-                errorStyle={styles.passwordError}
                 editable={lastStep === 3}
                 errorMessage={errors.password?.message}
                 onChangeText={(val) => {
@@ -91,7 +72,7 @@ const RegisterStep3 = ({lastStep, registerData}) => {
                 rightIcon={
                   <Ionicons
                     name={passwordVisible ? 'eye-off' : 'eye'}
-                    color={GRAY8}
+                    color={colors.GRAY8}
                     size={22}
                   />
                 }
@@ -116,13 +97,12 @@ const RegisterStep3 = ({lastStep, registerData}) => {
                 rightIconPressHandler={() =>
                   setRepeatPasswordVisible(!repeatPasswordVisible)
                 }
-                errorStyle={styles.passwordError}
                 editable={lastStep === 3}
                 onChangeText={onChange}
                 rightIcon={
                   <Ionicons
                     name={repeatPasswordVisible ? 'eye-off' : 'eye'}
-                    color={GRAY8}
+                    color={colors.GRAY8}
                     size={22}
                   />
                 }
@@ -155,6 +135,8 @@ const RegisterStep3 = ({lastStep, registerData}) => {
     </>
   );
 };
+
+export default SetPassword;
 
 const styles = StyleSheet.create({
   container: {
@@ -195,5 +177,3 @@ const styles = StyleSheet.create({
     marginRight: 30,
   },
 });
-
-export default RegisterStep3;

@@ -1,38 +1,16 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import {CheckBox, Divider} from 'react-native-elements';
-import notificationService from 'services/notificationService';
 import {translate} from 'services/localizeService';
-import {
-  setRegisterSelectedStepAction,
-  acceptAgreementAction,
-} from 'store/ducks/authDuck';
-import {useDispatch} from 'react-redux';
 import * as colors from 'theme/colors';
 import {Text, Button} from 'components';
+import useAcceptTerms from './useAcceptTerms';
 
-const RegisterStep5 = ({lastStep}) => {
-  const dispatch = useDispatch();
-  const [checked, setChecked] = useState(lastStep !== 5);
-
-  const onSubmit = () => {
-    if (!checked) {
-      notificationService.notify(
-        'error',
-        'შეცდომ!',
-        'გთხოვთ დაეთანხმოთ წესებს და პირობებს',
-      );
-      return;
-    }
-    if (lastStep === 5) {
-      dispatch(acceptAgreementAction());
-    }
-    dispatch(setRegisterSelectedStepAction(6));
-  };
-
+const AcceptTerms: AcceptTermsFC = ({lastStep}) => {
+  const {onSubmit, checked, setChecked} = useAcceptTerms({lastStep});
   return (
     <>
-      <ScrollView style={{flex: 1}}>
+      <ScrollView style={styles.scrollViewContainer}>
         <View style={styles.contractContainer}>
           {contract.map(({id, heading, description}) => {
             return (
@@ -51,7 +29,6 @@ const RegisterStep5 = ({lastStep}) => {
       <CheckBox
         center
         title={translate('ACCEPT_TERMS')}
-        iconLeft
         containerStyle={styles.container}
         iconType="fontisto"
         checkedIcon="checkbox-active"
@@ -59,7 +36,7 @@ const RegisterStep5 = ({lastStep}) => {
         uncheckedColor={colors.GRAY8}
         checkedColor={colors.RED2}
         checked={checked}
-        onPress={lastStep === 5 ? () => setChecked(!checked) : null}
+        onPress={lastStep === 5 ? () => setChecked(!checked) : undefined}
       />
       <Divider />
       <Button
@@ -71,9 +48,12 @@ const RegisterStep5 = ({lastStep}) => {
   );
 };
 
-export default RegisterStep5;
+export default AcceptTerms;
 
 const styles = StyleSheet.create({
+  scrollViewContainer: {
+    flex: 1,
+  },
   container: {
     backgroundColor: 'transparent',
     borderWidth: 0,

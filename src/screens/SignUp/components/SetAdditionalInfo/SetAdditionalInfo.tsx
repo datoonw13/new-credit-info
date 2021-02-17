@@ -2,90 +2,33 @@ import React from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import {Divider} from 'react-native-elements';
 import {translate} from 'services/localizeService';
-import {useDispatch, useSelector} from 'react-redux';
-import {Controller, useForm} from 'react-hook-form';
+import {Controller} from 'react-hook-form';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {GRAY8} from 'theme/colors';
-import {
-  getCostumerInfoAction,
-  getCountriesAction,
-  setCustomerExtraAction,
-  setRegisterSelectedStepAction,
-} from 'store/ducks/authDuck';
 import {CalendarModal, CountrySelectModal, Input, Button} from 'components';
+import {expression} from './config';
+import useSetAdditionalInfo from './useSetAdditionalInfo';
 
-const expression = /(?!.*\.{2})^([a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+(\.[a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+)*|"((([\t]*\r\n)?[\t]+)?([\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*(([\t]*\r\n)?[\t]+)?")@(([a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.)+([a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.?$/i;
-
-const RegisterStep4 = ({lastStep, registerData, isPerson}) => {
-  const dispatch = useDispatch();
-  const {countries} = useSelector((state) => state.authReducer);
-  const [calendarModalVisible, setCalendarModalVisible] = React.useState(false);
-  const [countryModalVisible, setCountryModalVisible] = React.useState(false);
-  const [activeDate, setActiveDate] = React.useState(null);
-  const [activeCountry, setActiveCountry] = React.useState({
-    id: null,
-    name: '',
-  });
-  const {control, handleSubmit, errors, setValue, trigger} = useForm({
-    mode: 'onSubmit',
-    defaultValues: {
-      email: registerData.email ? registerData.email : '',
-      address: registerData.address ? registerData.address : '',
-      birthDate: registerData.birthDate ? registerData.birthDate : '',
-      country: registerData.country ? registerData.country : '',
-    },
-  });
-
-  React.useEffect(() => {
-    if (lastStep !== 4) {
-      if (registerData.address) {
-        setValue('email', registerData.email);
-        setValue('address', registerData.address);
-        setValue('birthDate', registerData.birthDate);
-        setValue('country', registerData.country);
-      } else {
-        dispatch(getCostumerInfoAction(1));
-      }
-    }
-    if (lastStep === 4 && countries.length === 0) {
-      dispatch(getCountriesAction());
-    }
-    if (lastStep === 4 && countries.length !== 0 && activeCountry.id === null) {
-      const country = countries.find((el) => el.alpha2Code === 'GE');
-      setActiveCountry(country);
-      setValue('country', country.name);
-      trigger('country').done();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, countries, registerData]);
-
-  const onSubmit = (data) => {
-    if (lastStep === 4) {
-      dispatch(
-        setCustomerExtraAction({
-          ...data,
-          countryId: activeCountry.id,
-        }),
-      );
-    } else {
-      dispatch(setRegisterSelectedStepAction(4));
-    }
-  };
-
-  const updateBirthDay = (date) => {
-    setCalendarModalVisible(false);
-    setActiveDate(date);
-    setValue('birthDate', date.split('-').reverse().join('/'));
-    trigger('birthDate').done();
-  };
-
-  const updateCountry = (country) => {
-    setCountryModalVisible(false);
-    setActiveCountry(country);
-    setValue('country', country.name);
-    trigger('country').done();
-  };
-
+const SetAdditionalInfo: SetAdditionalInfoFC = ({
+  lastStep,
+  registerData,
+  isPerson,
+}) => {
+  const {
+    setCalendarModalVisible,
+    setCountryModalVisible,
+    calendarModalVisible,
+    countryModalVisible,
+    updateBirthDay,
+    updateCountry,
+    activeCountry,
+    handleSubmit,
+    activeDate,
+    countries,
+    onSubmit,
+    control,
+    errors,
+  } = useSetAdditionalInfo({lastStep, registerData});
   return (
     <>
       <View style={styles.container}>
@@ -133,7 +76,9 @@ const RegisterStep4 = ({lastStep, registerData, isPerson}) => {
                 maxLength={35}
                 errorMessage={errors.country && translate('VALID_COUNTRY')}
                 inputPressHandler={
-                  lastStep === 4 ? () => setCountryModalVisible(true) : null
+                  lastStep === 4
+                    ? () => setCountryModalVisible(true)
+                    : undefined
                 }
                 pointerEvents="none"
                 rightIcon={
@@ -204,7 +149,7 @@ const RegisterStep4 = ({lastStep, registerData, isPerson}) => {
         setModalVisible={setCalendarModalVisible}
         setDate={updateBirthDay}
         activeDate={activeDate}
-        isPerson={isPerson}
+        isPerson={!!isPerson}
       />
       <CountrySelectModal
         isVisible={countryModalVisible}
@@ -217,7 +162,7 @@ const RegisterStep4 = ({lastStep, registerData, isPerson}) => {
   );
 };
 
-export default RegisterStep4;
+export default SetAdditionalInfo;
 
 const styles = StyleSheet.create({
   container: {

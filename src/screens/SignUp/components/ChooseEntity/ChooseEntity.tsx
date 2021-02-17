@@ -1,25 +1,14 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Divider} from 'react-native-elements';
-import {
-  setRegisterLastStepAction,
-  setRegisterSelectedStepAction,
-  updateRegisterDataAction,
-} from 'store/ducks/authDuck';
-import {useDispatch} from 'react-redux';
 import {EntitySelector, Button} from 'components';
+import useChooseEntity from './useChooseEntity';
 
-const ChooseEntity = ({lastStep, customerType}) => {
-  const dispatch = useDispatch();
-  const [selectedType, setSelectedType] = React.useState(customerType);
-
-  const onSubmit = () => {
-    if (lastStep === 1) {
-      dispatch(updateRegisterDataAction({customerType: selectedType}));
-      dispatch(setRegisterLastStepAction(2));
-    }
-    dispatch(setRegisterSelectedStepAction(2));
-  };
+const ChooseEntity: ChooseEntityFC = ({lastStep, customerType}) => {
+  const {onSubmit, selectedType, setSelectedType} = useChooseEntity({
+    lastStep,
+    customerType,
+  });
 
   return (
     <>
@@ -40,7 +29,7 @@ const ChooseEntity = ({lastStep, customerType}) => {
       <Divider />
       <Button
         text="CONTINUE"
-        onPress={() => onSubmit(selectedType)}
+        onPress={() => onSubmit()}
         disabled={!selectedType}
       />
     </>
