@@ -2,7 +2,7 @@ import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {BLACK, WHITE} from 'theme/colors';
 
-const PinLine = ({fillNumber}) => {
+const PinLine: PinLineFC = ({fillNumber}) => {
   const pinList = new Array(6).fill(false);
   return (
     <View style={styles.pinContent}>

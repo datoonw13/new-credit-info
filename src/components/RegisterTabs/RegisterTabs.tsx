@@ -5,7 +5,7 @@ import {FIRAGO_SEMIBOLD} from 'theme/fonts';
 
 const tabs = new Array(5).fill(0).map((el, i) => i + 1);
 
-const RegisterTabs = ({currentStep, handler, lastStep}) => {
+const RegisterTabs: RegisterTabsFC = ({currentStep, handler, lastStep}) => {
   return (
     <View style={styles.container}>
       {tabs.map((el) => (

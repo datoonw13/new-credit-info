@@ -1,8 +1,9 @@
 import React from 'react';
 import {StyleSheet, Text as NativeText} from 'react-native';
 import {translate} from 'services/localizeService';
+import {TextPropsFC} from './type';
 
-const Text = ({
+const Text: TextPropsFC = ({
   dontTranslate = false,
   capsBold = false,
   caps = false,

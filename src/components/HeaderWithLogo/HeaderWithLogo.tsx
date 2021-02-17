@@ -2,8 +2,9 @@ import React from 'react';
 import {StyleSheet, View, SafeAreaView} from 'react-native';
 import {Logo} from 'assets/svg';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {HeaderWithLogoFC} from './types';
 
-const HeaderWithLogo = ({mode = 'Middle', style}) => {
+const HeaderWithLogo: HeaderWithLogoFC = ({mode = 'Middle', style}) => {
   return (
     <>
       <SafeAreaView />

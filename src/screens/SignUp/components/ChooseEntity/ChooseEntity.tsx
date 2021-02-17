@@ -9,7 +9,7 @@ import {
 import {useDispatch} from 'react-redux';
 import {EntitySelector, Button} from 'components';
 
-const RegisterStep1 = ({lastStep, customerType}) => {
+const ChooseEntity = ({lastStep, customerType}) => {
   const dispatch = useDispatch();
   const [selectedType, setSelectedType] = React.useState(customerType);
 
@@ -54,4 +54,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default RegisterStep1;
+export default ChooseEntity;
