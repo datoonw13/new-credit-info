@@ -1,9 +1,9 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {DrawerContentScrollView} from '@react-navigation/drawer';
-import {logoutAction} from '../../store/ducks/authDuck';
+import {logoutAction} from 'store/ducks/authDuck';
 import {useDispatch} from 'react-redux';
-import {colors} from '../../services/theme';
+import {colors} from 'services/theme';
 
 const SideDrawer = (props) => {
   const dispatch = useDispatch();

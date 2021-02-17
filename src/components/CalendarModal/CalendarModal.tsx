@@ -2,8 +2,8 @@ import React from 'react';
 import Modal from 'react-native-modal';
 import {StyleSheet, View} from 'react-native';
 import {Calendar} from 'react-native-calendars';
-import {BLACK, RED2, WHITE} from '../../theme/colors';
-import Button from '../Button/Button';
+import {BLACK, RED2, WHITE} from 'theme/colors';
+import Button from 'components/Button';
 
 const CalendarModal = ({
   isVisible,

@@ -5,8 +5,8 @@ import {Ping} from 'screens';
 import LoginNavigation from './LoginNavigation';
 import MainNavigation from './MainNavigation';
 import {useSelector} from 'react-redux';
-import navigationService from '../services/navigationService';
-import {WHITE} from '../theme/colors';
+import navigationService from 'services/navigationService';
+import {WHITE} from 'theme/colors';
 
 const Stack = createStackNavigator();
 

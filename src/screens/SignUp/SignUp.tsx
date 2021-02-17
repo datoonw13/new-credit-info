@@ -12,19 +12,18 @@ import {Divider} from 'react-native-elements';
 import {
   resetRegisterDataAction,
   setRegisterSelectedStepAction,
-} from '../../store/ducks/authDuck';
+} from 'store/ducks/authDuck';
 import {useDispatch, useSelector} from 'react-redux';
-import HeaderWithLogo from '../../components/HeaderWithLogo/HeaderWithLogo';
-import {BLACK, WHITE} from '../../theme/colors';
-import AuthFooter from '../../components/AuthFooter/AuthFooter';
-import {translate} from '../../services/localizeService';
-import {FIRAGO_BOLD, FIRAGO_REGULAR} from '../../theme/fonts';
+import {BLACK, WHITE} from 'theme/colors';
+import {translate} from 'services/localizeService';
+import {FIRAGO_BOLD, FIRAGO_REGULAR} from 'theme/fonts';
 import RegisterStep1 from './components/RegisterStep1';
 import RegisterStep2 from './components/RegisterStep2';
 import RegisterStep3 from './components/RegisterStep3';
 import RegisterStep4 from './components/RegisterStep4';
 import RegisterStep5 from './components/RegisterStep5';
 import RegisterStep6 from './components/RegisterStep6';
+import {HeaderWithLogo, AuthFooter} from 'components';
 
 const SignUp = ({navigation}) => {
   const dispatch = useDispatch();

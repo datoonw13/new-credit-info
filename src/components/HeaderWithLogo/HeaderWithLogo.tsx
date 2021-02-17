@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, View, SafeAreaView} from 'react-native';
-import {Logo} from '../../assets/svg';
+import {Logo} from 'assets/svg';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const HeaderWithLogo = ({mode = 'Middle', style}) => {

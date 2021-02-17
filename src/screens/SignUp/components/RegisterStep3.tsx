@@ -1,21 +1,18 @@
 import React, {useState} from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import {Divider} from 'react-native-elements';
-import {translate} from '../../services/localizeService';
+import {translate} from 'services/localizeService';
 import {useDispatch} from 'react-redux';
+import zxc from 'zxcvbn';
 import {Controller, useForm} from 'react-hook-form';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import * as colors from '../../theme/colors';
-import {GRAY8} from '../../theme/colors';
+import * as colors from 'theme/colors';
 import {
   setRegisterSelectedStepAction,
   signUpAction,
-} from '../../store/ducks/authDuck';
-import Button from '../shared/Button';
-import Input from '../shared/Input';
-import Text from '../shared/Text';
-import {Info} from '../../assets/svg';
-import zxc from 'zxcvbn';
+} from 'store/ducks/authDuck';
+import {Info} from 'assets/svg';
+import {Button, Input, Text} from 'components';
 
 const RegisterStep3 = ({lastStep, registerData}) => {
   const dispatch = useDispatch();

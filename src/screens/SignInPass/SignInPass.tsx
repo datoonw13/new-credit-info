@@ -7,12 +7,10 @@ import {
   Text,
   View,
 } from 'react-native';
-import {translate} from '../../services/localizeService';
-import {BLACK, BLUE, GRAY6, GRAY3, GRAY4, WHITE} from '../../theme/colors';
-import {FIRAGO_BOLD, FIRAGO_REGULAR} from '../../theme/fonts';
-import AuthHeader from '../../components/AuthHeader/AuthHeader';
-import PinLine from '../../components/PinLine/PinLine';
-import PinKeyboard from '../../components/PinKeyboard/PinKeyboard';
+import {translate} from 'services/localizeService';
+import {BLACK, BLUE, GRAY6, GRAY3, GRAY4, WHITE} from 'theme/colors';
+import {FIRAGO_BOLD, FIRAGO_REGULAR} from 'theme/fonts';
+import {PinKeyboard, PinLine, AuthHeader} from 'components';
 
 const width = Dimensions.get('window').width;
 

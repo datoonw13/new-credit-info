@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import {BLACK, WHITE} from '../../theme/colors';
+import {BLACK, WHITE} from 'theme/colors';
 
 const PinLine = ({fillNumber}) => {
   const pinList = new Array(6).fill(false);

@@ -1,4 +1,4 @@
-import {loaderRef} from '../App';
+import {loaderRef} from 'App';
 
 const loaderService = {
   start: () => {

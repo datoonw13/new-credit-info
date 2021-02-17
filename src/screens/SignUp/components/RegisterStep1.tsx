@@ -5,10 +5,9 @@ import {
   setRegisterLastStepAction,
   setRegisterSelectedStepAction,
   updateRegisterDataAction,
-} from '../../../store/ducks/authDuck';
+} from 'store/ducks/authDuck';
 import {useDispatch} from 'react-redux';
-import Button from '../../../components/Button/Button';
-import EntitySelector from '../../../components/EntitySelector/EntitySelector';
+import {EntitySelector, Button} from 'components';
 
 const RegisterStep1 = ({lastStep, customerType}) => {
   const dispatch = useDispatch();

@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {StyleSheet, View, ScrollView} from 'react-native';
 import {Divider} from 'react-native-elements';
-import {translate} from '../../services/localizeService';
+import {translate} from 'services/localizeService';
 import {useDispatch} from 'react-redux';
 import {Controller, useForm} from 'react-hook-form';
 import i18n from 'i18n-js';
@@ -10,9 +10,8 @@ import {
   setRegisterLastStepAction,
   setRegisterSelectedStepAction,
   updateRegisterDataAction,
-} from '../../store/ducks/authDuck';
-import Input from '../shared/Input';
-import Button from '../shared/Button';
+} from 'store/ducks/authDuck';
+import {Input, Button} from 'components';
 
 const RegisterStep2 = ({lastStep, registerData, isPerson}) => {
   const dispatch = useDispatch();

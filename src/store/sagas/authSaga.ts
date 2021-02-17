@@ -4,8 +4,8 @@ import {
   navigateAction,
   notifyAction,
   resetStoreAction,
-} from '../ducks/mainDuck';
-import axiosInstance from '../../services/interceptorService';
+} from 'store/ducks/mainDuck';
+import axiosInstance from 'services/interceptorService';
 import AsyncStorage from '@react-native-community/async-storage';
 import {
   SET_COUNTRIES,
@@ -13,9 +13,9 @@ import {
   setRegisterLastStepAction,
   setRegisterSelectedStepAction,
   updateRegisterDataAction,
-} from '../ducks/authDuck';
+} from 'store/ducks/authDuck';
 import i18n from 'i18n-js';
-import {translate} from '../../services/localizeService';
+import {translate} from 'services/localizeService';
 import jwtDecode from 'jwt-decode';
 
 export function* signInSaga({data}) {

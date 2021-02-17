@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, StyleSheet, TouchableOpacity} from 'react-native';
-import Text from '../Text/Text';
-import * as colors from '../../theme/colors';
+import Text from 'components/Text';
+import * as colors from 'theme/colors';
 
 const Button = ({
   containerStyle,

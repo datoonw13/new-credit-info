@@ -1,13 +1,13 @@
 import React from 'react';
 import {TouchableOpacity, View, StyleSheet} from 'react-native';
-import * as colors from '../../theme/colors';
-import Text from '../Text/Text';
+import * as colors from 'theme/colors';
+import Text from 'components/Text';
 import {
   LegalEntity,
   IndividualEntity,
   LegalEntitySelected,
   IndividualEntitySelected,
-} from '../../assets/svg';
+} from 'assets/svg';
 
 const EntitySelector = ({entity, lastStep, selectedType, onPress}) => {
   const EntityIcon = entity === 'PERSON' ? IndividualEntity : LegalEntity;

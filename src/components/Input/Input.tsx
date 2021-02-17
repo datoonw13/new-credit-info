@@ -7,8 +7,8 @@ import {
   View,
   Text,
 } from 'react-native';
-import * as colors from '../../theme/colors';
-import {translate} from '../../services/localizeService';
+import * as colors from 'theme/colors';
+import {translate} from 'services/localizeService';
 
 const Input = ({
   labelOnBorderToo = false,

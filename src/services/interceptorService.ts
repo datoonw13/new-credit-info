@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import notificationService from './notificationService';
 import loader from './loaderService';
 import {backendUrl} from './credentials';
-import storeRegistry from '../store/storeRegistry';
+import storeRegistry from 'store/storeRegistry';
 import {resetStoreAction} from '../store/ducks/mainDuck';
 import navigationService from './navigationService';
 

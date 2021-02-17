@@ -1,13 +1,12 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {BLUE, GRAY2} from '../../theme/colors';
+import {BLUE, GRAY2} from 'theme/colors';
 import {Divider} from 'react-native-elements';
-import {translate} from '../../services/localizeService';
+import {translate} from 'services/localizeService';
 import {useDispatch} from 'react-redux';
 import {Controller, useForm} from 'react-hook-form';
-import {checkOTPAction, sendOTPAction} from '../../store/ducks/authDuck';
-import Input from '../shared/Input';
-import Button from '../shared/Button';
+import {checkOTPAction, sendOTPAction} from 'store/ducks/authDuck';
+import {Button, Input} from 'components';
 
 const RegisterStep6 = ({registerData, lastStep}) => {
   const dispatch = useDispatch();

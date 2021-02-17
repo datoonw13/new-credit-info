@@ -1,6 +1,6 @@
 import React from 'react';
 import {Dimensions, Image, SafeAreaView, StyleSheet, View} from 'react-native';
-import {GRAY2, GRAY3, GRAY4, WHITE} from '../../theme/colors';
+import {GRAY2, GRAY3, GRAY4, WHITE} from 'theme/colors';
 
 const width = Dimensions.get('window').width;
 
@@ -11,7 +11,7 @@ const AuthHeader = () => {
       <View style={styles.container}>
         <View style={styles.imageContainer}>
           <Image
-            source={require('../../assets/images/logo.png')}
+            source={require('assets/images/logo.png')}
             style={styles.image}
           />
         </View>

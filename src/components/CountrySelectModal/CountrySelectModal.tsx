@@ -1,15 +1,15 @@
 import React from 'react';
 import Modal from 'react-native-modal';
 import {
+  TouchableWithoutFeedback,
+  TouchableOpacity,
   ScrollView,
   StyleSheet,
   Text,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import {BLACK, GRAY2, RED2, WHITE} from '../../theme/colors';
-import {FIRAGO_REGULAR} from '../../theme/fonts';
+import {BLACK, GRAY2, RED2, WHITE} from 'theme/colors';
+import {FIRAGO_REGULAR} from 'theme/fonts';
 
 const CountrySelectModal = ({
   isVisible,
@@ -30,7 +30,7 @@ const CountrySelectModal = ({
         onPress={() => {
           setModalVisible(false);
         }}>
-        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <View style={styles.modalInnerContainer}>
           <View style={styles.modalContent}>
             <ScrollView>
               {countries.map((el) => (
@@ -63,6 +63,11 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     margin: 0,
     backgroundColor: 'transparent',
+  },
+  modalInnerContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   modalContent: {
     backgroundColor: 'white',

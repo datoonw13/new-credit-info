@@ -4,8 +4,8 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {Main} from 'screens';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/Entypo';
-import SideDrawer from '../components/SideDrawer/SideDrawer';
-import {colors} from '../services/theme';
+import {SideDrawer} from 'components';
+import {colors} from 'services/theme';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();

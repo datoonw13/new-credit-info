@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {BLACK, GRAY3, GRAY5, RED3, WHITE} from '../../theme/colors';
-import {FIRAGO_SEMIBOLD} from '../../theme/fonts';
+import {BLACK, GRAY3, GRAY5, RED3, WHITE} from 'theme/colors';
+import {FIRAGO_SEMIBOLD} from 'theme/fonts';
 
 const tabs = new Array(5).fill(0).map((el, i) => i + 1);
 

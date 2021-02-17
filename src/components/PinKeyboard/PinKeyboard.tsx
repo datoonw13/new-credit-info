@@ -1,10 +1,10 @@
 import React from 'react';
 import {View, StyleSheet, Text} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {BLACK, GRAY1, GRAY6, WHITE} from '../../theme/colors';
+import {BLACK, GRAY1, GRAY6, WHITE} from 'theme/colors';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Feather from 'react-native-vector-icons/Feather';
-import {POPPINS_BOLD} from '../../theme/fonts';
+import {POPPINS_BOLD} from 'theme/fonts';
 
 const PinKeyboard = ({onPress}) => {
   const onPressHandler = (value) => {

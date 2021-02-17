@@ -1,7 +1,7 @@
 import {put} from 'redux-saga/effects';
-import axiosInstance from '../../services/interceptorService';
-import {setUserDataAction} from '../ducks/authDuck';
-import {CHECKED_SIGNED_IN} from '../ducks/mainDuck';
+import axiosInstance from 'services/interceptorService';
+import {setUserDataAction} from 'store/ducks/authDuck';
+import {CHECKED_SIGNED_IN} from 'store/ducks/mainDuck';
 
 export function* checkSignedInSaga() {
   try {

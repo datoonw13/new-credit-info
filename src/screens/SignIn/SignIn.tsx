@@ -12,18 +12,15 @@ import {
 import {Divider} from 'react-native-elements';
 import {Controller, useForm} from 'react-hook-form';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useDispatch} from 'react-redux';
 import {signInAction} from 'store/ducks/authDuck';
 import {colors} from 'services/theme';
 import {translate} from 'services/localizeService';
 import {BLACK, BLUE, GRAY2, GREEN1, WHITE} from 'theme/colors';
 import {FIRAGO_BOLD, FIRAGO_REGULAR} from 'theme/fonts';
-import HeaderWithLogo from '../../components/HeaderWithLogo/HeaderWithLogo';
-import AuthFooter from '../../components/AuthFooter/AuthFooter';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import {RedGirl} from '../../assets/svg';
-import Button from '../../components/Button/Button';
-import Input from '../../components/Input/Input';
+import {RedGirl} from 'assets/svg';
+import {Input, Button, HeaderWithLogo, AuthFooter} from 'components';
 
 const SignIn = ({navigation}) => {
   const scrollViewRef = React.useRef();

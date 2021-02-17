@@ -1,13 +1,15 @@
 import React, {useState} from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import {CheckBox, Divider} from 'react-native-elements';
-import {translate} from '../../services/localizeService';
-import {acceptAgreementAction, setRegisterSelectedStepAction,} from '../../store/ducks/authDuck';
+import notificationService from 'services/notificationService';
+import {translate} from 'services/localizeService';
+import {
+  setRegisterSelectedStepAction,
+  acceptAgreementAction,
+} from 'store/ducks/authDuck';
 import {useDispatch} from 'react-redux';
-import Button from '../shared/Button';
-import * as colors from '../../theme/colors';
-import Text from '../shared/Text';
-import notificationService from '../../services/notificationService';
+import * as colors from 'theme/colors';
+import {Text, Button} from 'components';
 
 const RegisterStep5 = ({lastStep}) => {
   const dispatch = useDispatch();

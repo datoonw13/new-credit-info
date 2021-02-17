@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text as NativeText} from 'react-native';
-import {translate} from '../../services/localizeService';
+import {translate} from 'services/localizeService';
 
 const Text = ({
   dontTranslate = false,

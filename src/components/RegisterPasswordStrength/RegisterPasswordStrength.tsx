@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import {GRAY9, GREEN1, YELLOW} from '../../theme/colors';
+import {GRAY9, GREEN1, YELLOW} from 'theme/colors';
 
 const RegisterPasswordStrength = ({score}) => {
   const blockArray = score ? new Array(score < 4 ? score * 3 : 9).fill(1) : [];
