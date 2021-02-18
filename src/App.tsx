@@ -7,30 +7,14 @@ import StartupNavigation from './navigation/StartupNavigation';
 import {ThemeProvider} from 'react-native-elements';
 import {theme} from './services/theme';
 import {setDropdownRef} from './services/notificationService';
-import {setI18nConfig} from './services/localizeService';
-import * as RNLocalize from 'react-native-localize';
 import * as colors from 'theme/colors';
+import 'utils/localization/config';
 
 export let loaderRef;
 
 enableScreens();
 
 const App = () => {
-  let [, setState] = React.useState();
-
-  React.useEffect(() => {
-    setI18nConfig(); // set initial config
-    RNLocalize.addEventListener('change', handleLocalizationChange);
-    return () => {
-      RNLocalize.removeEventListener('change', handleLocalizationChange);
-    };
-  });
-
-  const handleLocalizationChange = () => {
-    setI18nConfig();
-    setState({});
-  };
-
   return (
     <>
       <ThemeProvider theme={theme}>

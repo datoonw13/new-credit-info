@@ -1,81 +1,35 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
   KeyboardAvoidingView,
   StyleSheet,
   ScrollView,
-  Keyboard,
   Platform,
   Switch,
   Text,
   View,
 } from 'react-native';
 import {Divider} from 'react-native-elements';
-import {Controller, useForm} from 'react-hook-form';
+import {Controller} from 'react-hook-form';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {useDispatch} from 'react-redux';
-import {signInAction} from 'store/ducks/authDuck';
-import {translate} from 'services/localizeService';
 import * as colors from 'theme/colors';
 import {FIRAGO_BOLD, FIRAGO_REGULAR} from 'theme/fonts';
 import {RedGirl} from 'assets/svg';
 import {Input, Button, HeaderWithLogo, AuthFooter} from 'components';
+import useSignIn from './useSignIn';
 
-const SignIn = ({navigation}) => {
-  const scrollViewRef = React.useRef();
-  const dispatch = useDispatch();
-  const {control, handleSubmit, errors, setValue} = useForm({
-    mode: 'onSubmit',
-    defaultValues: {
-      username: '',
-      password: '',
-    },
-  });
-  const [saveIsEnabled, setSaveIsEnabled] = useState(false);
-  const [passwordVisible, setPasswordVisible] = useState(true);
-
-  React.useEffect(() => {
-    if (Platform.OS === 'ios') {
-      Keyboard.addListener('keyboardWillShow', keyboardWillShow);
-    } else {
-      Keyboard.addListener('keyboardDidShow', keyboardWillShow);
-    }
-    return () => {
-      if (Platform.OS === 'ios') {
-        Keyboard.removeListener('keyboardWillShow', keyboardWillShow);
-      } else {
-        Keyboard.removeListener('keyboardDidShow', keyboardWillShow);
-      }
-    };
-  }, [keyboardWillShow]);
-
-  const keyboardWillShow = React.useCallback(() => {
-    scrollViewRef.current.scrollToEnd();
-  }, []);
-
-  const toggleSwitch = () =>
-    setSaveIsEnabled((previousState) => !previousState);
-
-  const onSubmit = async ({username, password}) => {
-    Keyboard.dismiss();
-    dispatch(
-      signInAction({
-        username: '00000000098',
-        password: 'asdASD123!@#',
-      }),
-    );
-    try {
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  const footerHandler = () => {
-    setValue('email', '');
-    setValue('password', '');
-    navigation.navigate('SignUp');
-  };
-
+const SignIn = () => {
+  const {
+    setPasswordVisible,
+    passwordVisible,
+    footerHandler,
+    scrollViewRef,
+    toggleSwitch,
+    handleSubmit,
+    onSubmit,
+    control,
+    errors,
+  } = useSignIn();
   return (
     <>
       <KeyboardAvoidingView
@@ -179,6 +133,7 @@ const SignIn = ({navigation}) => {
     </>
   );
 };
+export default SignIn;
 
 const styles = StyleSheet.create({
   keyboardAvoidingView: {
@@ -238,5 +193,3 @@ const styles = StyleSheet.create({
     marginTop: 18,
   },
 });
-
-export default SignIn;

@@ -53,12 +53,11 @@ export const setDateLocale = () => {
     monthNamesShort: monthsShort,
     dayNames: weekdays,
     dayNamesShort: weekdaysShort,
-    today: 'დღეს',
   };
   LocaleConfig.defaultLocale = 'ka';
 };
 
-export const parseDateFromServer = (dateTime) => {
+export const parseDateFromServer = (dateTime: string) => {
   const date = dateTime.split(' ')[0].split('-');
   const time = dateTime.split(' ')[1].split(':');
   const formattedDate = new Date(
