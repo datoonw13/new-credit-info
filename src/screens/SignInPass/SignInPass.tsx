@@ -8,7 +8,7 @@ import {
   View,
 } from 'react-native';
 import {translate} from 'services/localizeService';
-import {BLACK, BLUE, GRAY6, GRAY3, GRAY4, WHITE} from 'theme/colors';
+import * as colors from 'theme/colors';
 import {FIRAGO_BOLD, FIRAGO_REGULAR} from 'theme/fonts';
 import {PinKeyboard, PinLine, AuthHeader} from 'components';
 
@@ -71,11 +71,11 @@ const SignInPass = () => {
 
 const styles = StyleSheet.create({
   scrollView: {
-    backgroundColor: GRAY6,
+    backgroundColor: colors.GRAY6,
   },
   wrapper: {
     flex: 1,
-    backgroundColor: WHITE,
+    backgroundColor: colors.white,
   },
   imageWrapper: {
     justifyContent: 'center',
@@ -95,11 +95,11 @@ const styles = StyleSheet.create({
   nameText: {
     fontFamily: FIRAGO_BOLD,
     fontSize: 18,
-    color: BLACK,
+    color: colors.black,
   },
   otherUserText: {
     marginTop: 22,
-    color: BLUE,
+    color: colors.blue,
     fontSize: 12,
     fontFamily: FIRAGO_REGULAR,
   },
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
   },
   firstLevel: {
     height: 40,
-    backgroundColor: GRAY4,
+    backgroundColor: colors.GRAY4,
     borderTopLeftRadius: 28,
     borderTopRightRadius: 28,
     position: 'absolute',
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
   },
   secondLevel: {
     height: 40,
-    backgroundColor: GRAY3,
+    backgroundColor: colors.GRAY3,
     borderTopLeftRadius: 28,
     borderTopRightRadius: 28,
     position: 'absolute',
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
   },
   thirdLevel: {
     height: 40,
-    backgroundColor: WHITE,
+    backgroundColor: colors.white,
     borderTopLeftRadius: 28,
     borderTopRightRadius: 28,
     position: 'absolute',
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
   },
   mainAreaWrapper: {
     flex: 1,
-    backgroundColor: GRAY6,
+    backgroundColor: colors.GRAY6,
     borderTopLeftRadius: 28,
     borderTopRightRadius: 28,
     paddingTop: 28,
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 14,
     fontFamily: FIRAGO_REGULAR,
-    color: BLACK,
+    color: colors.black,
   },
   pinWrapper: {
     marginTop: 22,

@@ -34,7 +34,7 @@ const AcceptTerms: AcceptTermsFC = ({lastStep}) => {
         checkedIcon="checkbox-active"
         uncheckedIcon="checkbox-passive"
         uncheckedColor={colors.GRAY8}
-        checkedColor={colors.RED2}
+        checkedColor={colors.crimson}
         checked={checked}
         onPress={lastStep === 5 ? () => setChecked(!checked) : undefined}
       />
@@ -59,9 +59,9 @@ const styles = StyleSheet.create({
     borderWidth: 0,
   },
   contractContainer: {
-    backgroundColor: colors.whiteGrey,
+    backgroundColor: colors.blackOp05,
     padding: 10,
-    borderColor: colors.lightestGrey,
+    borderColor: colors.blackOp1,
     borderWidth: 1,
     borderRadius: 12,
   },

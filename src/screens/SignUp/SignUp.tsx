@@ -14,7 +14,7 @@ import {
   setRegisterSelectedStepAction,
 } from 'store/ducks/authDuck';
 import {useDispatch, useSelector} from 'react-redux';
-import {BLACK, WHITE} from 'theme/colors';
+import * as colors from 'theme/colors';
 import {translate} from 'services/localizeService';
 import {FIRAGO_BOLD, FIRAGO_REGULAR} from 'theme/fonts';
 import {HeaderWithLogo, AuthFooter} from 'components';
@@ -123,7 +123,7 @@ const SignUp = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: WHITE,
+    backgroundColor: colors.white,
   },
   header: {
     marginBottom: 42,
@@ -136,19 +136,19 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingLeft: 15,
     paddingRight: 15,
-    backgroundColor: WHITE,
+    backgroundColor: colors.white,
   },
   titleWrapper: {
     alignItems: 'center',
   },
   authText: {
-    color: BLACK,
+    color: colors.black,
     fontSize: 24,
     fontFamily: FIRAGO_BOLD,
     marginBottom: 15,
   },
   descText: {
-    color: BLACK,
+    color: colors.black,
     opacity: 0.3,
     fontSize: 12,
     fontFamily: FIRAGO_REGULAR,

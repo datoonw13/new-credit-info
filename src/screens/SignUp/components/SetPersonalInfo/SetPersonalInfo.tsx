@@ -6,6 +6,7 @@ import {Controller} from 'react-hook-form';
 import i18n from 'i18n-js';
 import {Input, Button} from 'components';
 import useSetPersonalInfo from './useSetPersonalInfo';
+import {RegistrationSteps} from 'screens/SignUp/enum';
 
 const SetPersonalInfo: SetPersonalInfoFC = ({
   lastStep,
@@ -16,6 +17,7 @@ const SetPersonalInfo: SetPersonalInfoFC = ({
     lastStep,
     registerData,
   });
+  console.log(errors);
   return (
     <>
       <View style={styles.container}>
@@ -26,7 +28,7 @@ const SetPersonalInfo: SetPersonalInfoFC = ({
             render={({onChange, onBlur, value}) => (
               <Input
                 label={isPerson ? 'PERSONAL_NUMBER' : 'IDENTIFICATION_CODE'}
-                editable={lastStep === 2}
+                editable={lastStep === RegistrationSteps.SetPersonalInfo}
                 keyboardType="number-pad"
                 onChangeText={(val) => onChange(val)}
                 onBlur={onBlur}
@@ -60,7 +62,7 @@ const SetPersonalInfo: SetPersonalInfoFC = ({
                     ? 'REPEAT_PERSONAL_NUMBER'
                     : 'REPEAT_IDENTIFICATION_CODE'
                 }
-                editable={lastStep === 2}
+                editable={lastStep === RegistrationSteps.SetPersonalInfo}
                 keyboardType="number-pad"
                 onChangeText={(val) => onChange(val)}
                 onBlur={onBlur}
@@ -128,7 +130,9 @@ const SetPersonalInfo: SetPersonalInfoFC = ({
         <Button
           text={'CONTINUE'}
           onPress={() =>
-            lastStep === 2 ? handleSubmit(onSubmit)() : onSubmit()
+            lastStep === RegistrationSteps.SetPersonalInfo
+              ? handleSubmit(onSubmit)()
+              : onSubmit()
           }
         />
       </View>

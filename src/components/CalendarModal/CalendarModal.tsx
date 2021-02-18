@@ -2,7 +2,7 @@ import React from 'react';
 import Modal from 'react-native-modal';
 import {StyleSheet, View} from 'react-native';
 import {Calendar} from 'react-native-calendars';
-import {BLACK, RED2, WHITE} from 'theme/colors';
+import * as colors from 'theme/colors';
 import Button from 'components/Button';
 
 const CalendarModal: CalendarModalFC = ({
@@ -59,13 +59,13 @@ const CalendarModal: CalendarModalFC = ({
             // Enable the option to swipe between months. Default = false
             enableSwipeMonths={true}
             theme={{
-              dayTextColor: BLACK,
-              monthTextColor: BLACK,
-              indicatorColor: BLACK,
-              arrowColor: BLACK,
-              todayTextColor: BLACK,
-              selectedDayBackgroundColor: RED2,
-              selectedDayTextColor: WHITE,
+              dayTextColor: colors.black,
+              monthTextColor: colors.black,
+              indicatorColor: colors.black,
+              arrowColor: colors.black,
+              todayTextColor: colors.black,
+              selectedDayBackgroundColor: colors.RED2,
+              selectedDayTextColor: colors.white,
             }}
           />
           <Button text={'SAVE2'} onPress={() => setDate(selectedDate)} />
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
   divider: {
     width: 64,
     height: 5,
-    backgroundColor: BLACK,
+    backgroundColor: colors.black,
     opacity: 0.1,
     borderRadius: 100,
   },

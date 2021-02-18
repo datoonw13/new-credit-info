@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import {BLACK, WHITE} from 'theme/colors';
+import * as colors from 'theme/colors';
 
 const PinLine: PinLineFC = ({fillNumber}) => {
   const pinList = new Array(6).fill(false);
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     height: 28,
     borderRadius: 14,
     marginLeft: 12,
-    backgroundColor: WHITE,
+    backgroundColor: colors.white,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -34,6 +34,6 @@ const styles = StyleSheet.create({
     width: 18,
     height: 18,
     borderRadius: 9,
-    backgroundColor: BLACK,
+    backgroundColor: colors.black,
   },
 });

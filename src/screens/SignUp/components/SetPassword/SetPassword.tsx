@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
   setPasswordGuide: {
     display: 'flex',
     flexDirection: 'row',
-    backgroundColor: colors.lightestStrangeBlue,
+    backgroundColor: colors.strangeBlueOp1,
     borderRadius: 18,
     padding: 12,
     marginTop: 5,
@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
   infoIconWrapper: {
     width: 32,
     height: 32,
-    backgroundColor: colors.lightestGrey,
+    backgroundColor: colors.blackOp1,
     borderRadius: 25,
     display: 'flex',
     justifyContent: 'center',

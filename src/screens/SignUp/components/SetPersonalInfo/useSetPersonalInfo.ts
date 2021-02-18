@@ -34,6 +34,7 @@ const useSetPersonalInfo = ({registerData, lastStep}: SetPersonalInfoProps) => {
   }, [dispatch, registerData]);
 
   const onSubmit = (data: any = null) => {
+    console.log('aq shemodis?');
     if (lastStep === 2) {
       dispatch(updateRegisterDataAction(data));
       dispatch(setRegisterLastStepAction(3));

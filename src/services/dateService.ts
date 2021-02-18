@@ -47,6 +47,7 @@ export const setDateLocale = () => {
     weekdays,
     weekdaysShort,
   });
+
   LocaleConfig.locales.ka = {
     monthNames: months,
     monthNamesShort: monthsShort,

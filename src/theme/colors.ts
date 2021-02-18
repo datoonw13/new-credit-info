@@ -1,40 +1,37 @@
-export const BLACK = '#000000';
-export const WHITE = '#FFFFFF';
-export const GRAY1 = '#2A3331';
-export const GRAY2 = '#EAEBF0';
-export const GRAY3 = '#F4F4F4';
-export const GRAY4 = '#EFEFEF';
-export const GRAY5 = '#F9FCFF';
-export const GRAY6 = '#F7F8FD';
-export const GRAY7 = '#E9E9EB';
-export const GRAY8 = '#C7CAD1';
-export const GRAY9 = '#CFCFCF';
-export const RED1 = '#C62B27';
-export const RED2 = '#F2524E';
-export const RED3 = '#D70B02';
-export const GREEN1 = '#45B870';
-export const GREEN2 = '#68B845';
-export const BLUE = '#0076FF';
-export const YELLOW = '#F4C670';
+export const GRAY1 = 'rgba(42, 51, 49, 1)';
+export const GRAY2 = 'rgba(234, 235, 240, 1)';
+export const GRAY3 = 'rgba(244, 244, 244, 1)';
+export const GRAY4 = 'rgba(239, 239, 239, 1)';
+export const GRAY5 = 'rgba(249, 252, 255, 1)';
+export const GRAY6 = 'rgba(247, 248, 253, 1)';
+export const GRAY7 = 'rgba(233, 233, 235, 1)';
+export const GRAY8 = 'rgba(199, 202, 209, 1)';
+export const GRAY9 = 'rgba(207, 207, 207, 1)';
 
-export const pureBlack = 'black';
-export const lighterBlack = 'rgba(0, 0, 0, .8)';
-export const pureWhite = 'white';
-export const lightGrey = 'rgba(0, 0, 0, 0.5)';
-export const lighterGrey = 'rgba(0, 0, 0, 0.3)';
-export const lightestGrey = 'rgba(0, 0, 0, 0.1)';
-export const whiteGrey = 'rgba(0, 0, 0, 0.05)';
-export const primaryCrimson = '#C62B27';
-export const lightCrimson = 'rgba(198, 43, 39, .2)';
-export const lightestCrimson = 'rgba(198, 43, 39, .1)';
-export const actionBlue = 'rgba(0, 118, 255, 1)';
-export const lightBlue = 'rgba(0, 118, 255, .1)';
-export const primaryGreen = 'rgba(82, 185, 37, 1)';
-export const secondaryGreen = 'rgba(52, 195, 107, 1)';
-export const secondaryGreenLight = 'rgba(52, 195, 107, 0.2)';
-export const secondaryGreenLightest = 'rgba(52, 195, 107, 0.1)';
+export const RED3 = 'rgba(215, 11, 2, 1)';
+export const GREEN1 = 'rgba(69, 184, 112, 1)';
+
+export const YELLOW = 'rgba(244, 198, 112, 1)';
+
+export const black = 'black';
+export const blackOp8 = 'rgba(0, 0, 0, .8)';
+export const blackOp5 = 'rgba(0, 0, 0, 0.5)';
+export const blackOp3 = 'rgba(0, 0, 0, 0.3)';
+export const blackOp1 = 'rgba(0, 0, 0, 0.1)';
+export const blackOp05 = 'rgba(0, 0, 0, 0.05)';
+
+export const white = 'rgba(255, 255, 255, 1)';
+
+export const crimson = 'rgba(198, 43, 39, 1)';
+export const crimsonOp2 = 'rgba(198, 43, 39, .2)';
+
+export const blue = 'rgba(0, 118, 255, 1)';
+
+export const green = 'rgba(52, 195, 107, 1)';
+export const greenOp2 = 'rgba(52, 195, 107, 0.2)';
+export const greenOp1 = 'rgba(52, 195, 107, 0.1)';
+
 export const lightGreen = 'rgba(82, 185, 37, .1)';
-export const primaryYellow = 'rgba(226, 155, 20, 1)';
-export const lightYellow = 'rgba(226, 155, 20, .1)';
+
 export const strangeBlue = 'rgba(111, 133, 226, 1)';
-export const lightestStrangeBlue = 'rgba(111, 133, 226, .1)';
+export const strangeBlueOp1 = 'rgba(111, 133, 226, .1)';

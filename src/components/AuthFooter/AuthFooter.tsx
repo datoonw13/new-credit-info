@@ -7,7 +7,7 @@ import {
   View,
 } from 'react-native';
 import {translate} from 'services/localizeService';
-import {BLACK, BLUE, GRAY4, WHITE} from 'theme/colors';
+import * as colors from 'theme/colors';
 import {FIRAGO_LIGHT, FIRAGO_REGULAR} from 'theme/fonts';
 
 const AuthFooter: AuthFooterFC = ({mode, handler, text, link}) => {
@@ -27,29 +27,29 @@ const AuthFooter: AuthFooterFC = ({mode, handler, text, link}) => {
           </TouchableOpacity>
         </View>
       )}
-      <SafeAreaView style={{backgroundColor: WHITE}} />
+      <SafeAreaView style={{backgroundColor: colors.white}} />
     </>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: WHITE,
+    backgroundColor: colors.white,
     height: 40,
     borderTopWidth: 1,
-    borderColor: GRAY4,
+    borderColor: colors.GRAY4,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
   },
   textStyle: {
-    color: BLACK,
+    color: colors.black,
     fontFamily: FIRAGO_LIGHT,
     fontSize: 12,
     marginRight: 10,
   },
   linkStyle: {
-    color: BLUE,
+    color: colors.blue,
     fontFamily: FIRAGO_REGULAR,
     fontSize: 12,
   },

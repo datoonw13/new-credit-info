@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import {
-  Keyboard,
   KeyboardAvoidingView,
-  Platform,
-  ScrollView,
   StyleSheet,
+  ScrollView,
+  Keyboard,
+  Platform,
   Switch,
   Text,
   View,
@@ -15,9 +15,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useDispatch} from 'react-redux';
 import {signInAction} from 'store/ducks/authDuck';
-import {colors} from 'services/theme';
 import {translate} from 'services/localizeService';
-import {BLACK, BLUE, GRAY2, GREEN1, WHITE} from 'theme/colors';
+import * as colors from 'theme/colors';
 import {FIRAGO_BOLD, FIRAGO_REGULAR} from 'theme/fonts';
 import {RedGirl} from 'assets/svg';
 import {Input, Button, HeaderWithLogo, AuthFooter} from 'components';
@@ -129,7 +128,6 @@ const SignIn = ({navigation}) => {
                   rightIconPressHandler={() =>
                     setPasswordVisible(!passwordVisible)
                   }
-                  errorStyle={styles.passwordError}
                   onChangeText={onChange}
                   rightIcon={
                     <Ionicons
@@ -149,8 +147,8 @@ const SignIn = ({navigation}) => {
             <Divider />
             <View style={styles.saveWrapper}>
               <Switch
-                trackColor={{false: GRAY2, true: GREEN1}}
-                thumbColor={WHITE}
+                trackColor={{false: colors.GRAY2, true: colors.GREEN1}}
+                thumbColor={colors.white}
                 ios_backgroundColor="#3e3e3e"
                 onValueChange={toggleSwitch}
                 value={saveIsEnabled}
@@ -200,7 +198,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingLeft: 15,
     paddingRight: 15,
-    backgroundColor: WHITE,
+    backgroundColor: colors.white,
   },
   titleWrapper: {
     alignItems: 'center',
@@ -209,14 +207,14 @@ const styles = StyleSheet.create({
   authText: {
     fontFamily: FIRAGO_BOLD,
     fontSize: 24,
-    color: BLACK,
+    color: colors.black,
   },
   descText: {
     marginTop: 12,
     marginBottom: 32,
     fontFamily: FIRAGO_REGULAR,
     fontSize: 12,
-    color: BLACK,
+    color: colors.black,
     opacity: 0.3,
   },
   saveWrapper: {
@@ -225,14 +223,14 @@ const styles = StyleSheet.create({
   },
   saveText: {
     paddingLeft: Platform.OS === 'ios' ? 10 : 5,
-    color: BLACK,
+    color: colors.black,
     opacity: 0.3,
     fontSize: 12,
     fontFamily: FIRAGO_REGULAR,
     flex: 1,
   },
   forgetText: {
-    color: BLUE,
+    color: colors.blue,
     fontSize: 12,
     fontFamily: FIRAGO_REGULAR,
   },

@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {BLACK, GRAY3, GRAY5, RED3, WHITE} from 'theme/colors';
+import * as colors from 'theme/colors';
 import {FIRAGO_SEMIBOLD} from 'theme/fonts';
 
 const tabs = new Array(5).fill(0).map((el, i) => i + 1);
@@ -14,7 +14,10 @@ const RegisterTabs: RegisterTabsFC = ({currentStep, handler, lastStep}) => {
             onPress={() => handler(el)}
             style={{
               ...styles.tab,
-              borderColor: el < lastStep || el === currentStep ? RED3 : GRAY3,
+              borderColor:
+                el < lastStep || el === currentStep
+                  ? colors.RED3
+                  : colors.GRAY3,
             }}>
             <Text
               style={{
@@ -51,18 +54,18 @@ const styles = StyleSheet.create({
     height: 35,
     borderRadius: 35,
     borderWidth: 1,
-    backgroundColor: WHITE,
+    backgroundColor: colors.white,
     alignItems: 'center',
     justifyContent: 'center',
   },
   textStyle: {
-    color: BLACK,
+    color: colors.black,
     fontFamily: FIRAGO_SEMIBOLD,
     fontSize: 18,
   },
   indicator: {
     height: 5,
-    backgroundColor: RED3,
+    backgroundColor: colors.RED3,
     borderTopRightRadius: 8,
     borderTopLeftRadius: 8,
   },

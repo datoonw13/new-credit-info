@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {BLUE, GRAY2} from 'theme/colors';
+import * as colors from 'theme/colors';
 import {Divider} from 'react-native-elements';
 import {translate} from 'services/localizeService';
 import {Controller} from 'react-hook-form';
@@ -74,11 +74,11 @@ export default VerifyPhone;
 const styles = StyleSheet.create({
   prefixContainer: {
     borderRightWidth: 1,
-    borderColor: GRAY2,
+    borderColor: colors.GRAY2,
     paddingRight: 18,
   },
   prefix: {
-    color: BLUE,
+    color: colors.blue,
     height: 20,
   },
   receivedCodeContainer: {

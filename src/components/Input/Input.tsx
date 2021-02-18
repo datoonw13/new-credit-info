@@ -31,13 +31,13 @@ const Input: InputFC = ({
   value,
 }) => {
   const height = useRef(new Animated.Value(0)).current;
-  const [inputBorderColor, setInputBorderColor] = useState(colors.lightGrey);
+  const [inputBorderColor, setInputBorderColor] = useState(colors.blackOp5);
   /**
    * Control animation on error Value.
    */
   useEffect(() => {
     const toValue = errorMessage ? 20 : 0;
-    const borderColor = errorMessage ? colors.primaryCrimson : colors.lightGrey;
+    const borderColor = errorMessage ? colors.primaryCrimson : colors.blackOp5;
     setInputBorderColor(borderColor);
 
     Animated.timing(height, {
@@ -85,7 +85,7 @@ const Input: InputFC = ({
           editable={editable}
           onBlur={onBlur}
           value={value}
-          placeholderTextColor={colors.BLACK}
+          placeholderTextColor={colors.blackOp3}
         />
         <Animated.View style={[styles.errorTextWrapper, {height}]}>
           <Text style={styles.errorText} children={errorMessage} />
@@ -110,8 +110,8 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: colors.lightGrey,
-    color: colors.BLACK,
+    borderColor: colors.blackOp5,
+    color: colors.black,
     width: '100%',
     height: 67,
     borderStyle: 'solid',
@@ -120,9 +120,9 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 12,
-    color: colors.lightGrey,
+    color: colors.blackOp5,
     position: 'absolute',
-    backgroundColor: colors.pureWhite,
+    backgroundColor: colors.white,
     paddingHorizontal: 10,
     left: '10%',
     top: -8,
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
   },
   notRequired: {
     fontSize: 12,
-    color: colors.lightGrey,
+    color: colors.blackOp5,
     position: 'absolute',
     right: '5%',
     bottom: 10,
@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
     right: 20,
     top: 13,
     zIndex: 1,
-    backgroundColor: colors.lightestGrey,
+    backgroundColor: colors.blackOp1,
     padding: 10,
     borderRadius: 10,
   },
@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
     top: 24,
     width: 78,
     borderRightWidth: 2,
-    borderRightColor: colors.lighterGrey,
+    borderRightColor: colors.blackOp3,
     height: 20,
   },
   paddingLeft: {
@@ -176,6 +176,6 @@ const styles = StyleSheet.create({
     paddingTop: 2,
   },
   errorText: {
-    color: colors.primaryCrimson,
+    color: colors.crimson,
   },
 });

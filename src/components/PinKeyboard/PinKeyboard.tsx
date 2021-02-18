@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, StyleSheet, Text} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {BLACK, GRAY1, GRAY6, WHITE} from 'theme/colors';
+import * as colors from 'theme/colors';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Feather from 'react-native-vector-icons/Feather';
 import {POPPINS_BOLD} from 'theme/fonts';
@@ -67,7 +67,7 @@ const PinKeyboard = ({onPress}) => {
         <TouchableOpacity
           style={[styles.pinItem, styles.firstPinItem]}
           onPress={() => onPressHandler('finger print')}>
-          <MaterialIcons name="fingerprint" color={GRAY1} size={30} />
+          <MaterialIcons name="fingerprint" color={colors.GRAY1} size={30} />
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.pinItem}
@@ -77,7 +77,7 @@ const PinKeyboard = ({onPress}) => {
         <TouchableOpacity
           style={styles.pinItem}
           onPress={() => onPressHandler('back')}>
-          <Feather name="delete" color={GRAY1} size={24} />
+          <Feather name="delete" color={colors.GRAY1} size={24} />
         </TouchableOpacity>
       </View>
     </View>
@@ -88,7 +88,7 @@ export default PinKeyboard;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: GRAY6,
+    backgroundColor: colors.GRAY6,
   },
   pinRow: {
     flexDirection: 'row',
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     height: 58,
     borderRadius: 14,
     marginLeft: 6,
-    backgroundColor: WHITE,
+    backgroundColor: colors.white,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -109,12 +109,12 @@ const styles = StyleSheet.create({
   pinItemText: {
     fontSize: 18,
     fontFamily: POPPINS_BOLD,
-    color: BLACK,
+    color: colors.black,
   },
   pinItemContent: {
     width: 18,
     height: 18,
     borderRadius: 9,
-    backgroundColor: BLACK,
+    backgroundColor: colors.black,
   },
 });

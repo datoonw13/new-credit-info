@@ -5,7 +5,7 @@ import {Main} from 'screens';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/Entypo';
 import {SideDrawer} from 'components';
-import {colors} from 'services/theme';
+import * as colors from 'theme/colors';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -15,7 +15,7 @@ function Menu({navigation}) {
     <TouchableOpacity
       onPress={() => navigation.openDrawer()}
       style={{marginRight: 20}}>
-      <Icon testID="DrawerIcon" name="menu" size={30} color="black" />
+      <Icon testID="DrawerIcon" name="menu" size={30} color={colors.black} />
     </TouchableOpacity>
   );
 }

@@ -61,8 +61,8 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   selectedBox: {
-    backgroundColor: colors.secondaryGreenLightest,
-    borderColor: colors.secondaryGreenLight,
+    backgroundColor: colors.greenOp1,
+    borderColor: colors.greenOp2,
   },
   personMargins: {
     marginRight: 6,
@@ -76,20 +76,20 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 1,
     borderColor: colors.GRAY7,
-    backgroundColor: colors.WHITE,
+    backgroundColor: colors.white,
     alignItems: 'center',
     justifyContent: 'center',
   },
   selectedIcon: {
-    backgroundColor: colors.secondaryGreenLight,
+    backgroundColor: colors.greenOp1,
     borderWidth: 0,
   },
   text: {
-    color: colors.BLACK,
+    color: colors.black,
     fontSize: 14,
     marginTop: 20,
   },
   selectedText: {
-    color: colors.secondaryGreen,
+    color: colors.green,
   },
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Platform, StatusBar, StyleSheet, View} from 'react-native';
+import {StatusBar, StyleSheet, View} from 'react-native';
 import {enableScreens} from 'react-native-screens';
 import Loader from './components/Loader/Loader';
 import DropdownAlert from 'react-native-dropdownalert';
@@ -9,6 +9,7 @@ import {theme} from './services/theme';
 import {setDropdownRef} from './services/notificationService';
 import {setI18nConfig} from './services/localizeService';
 import * as RNLocalize from 'react-native-localize';
+import * as colors from 'theme/colors';
 
 export let loaderRef;
 
@@ -34,7 +35,7 @@ const App = () => {
     <>
       <ThemeProvider theme={theme}>
         <View style={styles.statusBar}>
-          <StatusBar backgroundColor="black" barStyle="light-content" />
+          <StatusBar backgroundColor={colors.black} barStyle="light-content" />
         </View>
         <StartupNavigation />
         <Loader ref={(ref) => (loaderRef = ref)} />
@@ -50,7 +51,7 @@ const App = () => {
 
 const styles = StyleSheet.create({
   statusBar: {
-    backgroundColor: 'black',
+    backgroundColor: colors.black,
   },
 });
 

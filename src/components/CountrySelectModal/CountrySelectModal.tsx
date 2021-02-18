@@ -8,7 +8,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import {BLACK, GRAY2, RED2, WHITE} from 'theme/colors';
+import * as colors from 'theme/colors';
 import {FIRAGO_REGULAR} from 'theme/fonts';
 
 const CountrySelectModal: CountrySelectedModalFC = ({
@@ -39,12 +39,16 @@ const CountrySelectModal: CountrySelectedModalFC = ({
                   onPress={() => setCountry(el)}
                   style={{
                     ...styles.box,
-                    backgroundColor: activeCountry.id === el.id ? RED2 : WHITE,
+                    backgroundColor:
+                      activeCountry.id === el.id ? colors.RED2 : colors.white,
                   }}>
                   <Text
                     style={{
                       ...styles.boxText,
-                      color: activeCountry.id === el.id ? WHITE : BLACK,
+                      color:
+                        activeCountry.id === el.id
+                          ? colors.white
+                          : colors.black,
                     }}>
                     {el.name}
                   </Text>
@@ -78,7 +82,7 @@ const styles = StyleSheet.create({
   box: {
     width: '100%',
     height: 50,
-    borderColor: GRAY2,
+    borderColor: colors.GRAY2,
     borderBottomWidth: 1,
     justifyContent: 'center',
     paddingLeft: 18,
