@@ -7,14 +7,15 @@ import {
   Text,
   View,
 } from 'react-native';
-import {translate} from 'services/localizeService';
 import * as colors from 'theme/colors';
 import {FIRAGO_BOLD, FIRAGO_REGULAR} from 'theme/fonts';
 import {PinKeyboard, PinLine, AuthHeader} from 'components';
+import {useTranslation} from 'react-i18next';
 
 const width = Dimensions.get('window').width;
 
 const SignInPass = () => {
+  const {t} = useTranslation();
   const [pinFillNumber, setPinFillNumber] = useState(0);
   const onPinKeyboardPress = (value) => {
     if (value === 'finger print') {
@@ -47,7 +48,7 @@ const SignInPass = () => {
           </View>
           <View style={styles.titleWrapper}>
             <Text style={styles.nameText}> სახელი გვარი </Text>
-            <Text style={styles.otherUserText}>{translate('OTHER_USER')}</Text>
+            <Text style={styles.otherUserText}>{t('OTHER_USER')}</Text>
           </View>
           <View style={styles.levelsContainer}>
             <View style={styles.firstLevel} />

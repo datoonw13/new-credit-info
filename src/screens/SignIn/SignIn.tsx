@@ -5,7 +5,6 @@ import {
   ScrollView,
   Platform,
   Switch,
-  Text,
   View,
 } from 'react-native';
 import {Divider} from 'react-native-elements';
@@ -15,7 +14,7 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import * as colors from 'theme/colors';
 import {FIRAGO_BOLD, FIRAGO_REGULAR} from 'theme/fonts';
 import {RedGirl} from 'assets/svg';
-import {Input, Button, HeaderWithLogo, AuthFooter} from 'components';
+import {Input, Button, HeaderWithLogo, AuthFooter, Text} from 'components';
 import useSignIn from './useSignIn';
 
 const SignIn = () => {
@@ -23,6 +22,7 @@ const SignIn = () => {
     setPasswordVisible,
     passwordVisible,
     footerHandler,
+    saveIsEnabled,
     scrollViewRef,
     toggleSwitch,
     handleSubmit,
@@ -32,18 +32,19 @@ const SignIn = () => {
   } = useSignIn();
   return (
     <>
+      <HeaderWithLogo mode="WithMenu" style={styles.header} />
       <KeyboardAvoidingView
         style={styles.keyboardAvoidingView}
         behavior={Platform.OS === 'ios' ? 'padding' : 'padding'}>
-        <HeaderWithLogo mode="WithMenu" style={styles.header} />
-        <ScrollView style={{flex: 1}} ref={scrollViewRef}>
+        <ScrollView style={styles.scrollViewContainer} ref={scrollViewRef}>
           <RedGirl style={styles.redGirl} />
           <View style={styles.wrapper}>
             <View style={styles.titleWrapper}>
-              <Text style={styles.authText}>{translate('AUTHORIZATION')}</Text>
-              <Text style={styles.descText}>
-                {translate('FILL_GIVEN_FIELDS')}
-              </Text>
+              <Text style={styles.authText} children="auth" />
+              <Text
+                style={styles.descText}
+                children="authorization.pleaseFill"
+              />
             </View>
             <Controller
               name="username"
@@ -58,15 +59,13 @@ const SignIn = () => {
                   errorMessage={
                     errors.username && 'Please enter valid username'
                   }
-                  label={'USER'}
+                  label={'user'}
                   labelOnBorderToo
                 />
               )}
-              rules={
-                {
-                  // required: true,
-                }
-              }
+              rules={{
+                required: true,
+              }}
             />
             <Divider />
             <Controller
@@ -77,7 +76,7 @@ const SignIn = () => {
                   onBlur={onBlur}
                   value={value}
                   maxLength={35}
-                  label={'PASSWORD'}
+                  label={'password'}
                   secureTextEntry={passwordVisible}
                   rightIconPressHandler={() =>
                     setPasswordVisible(!passwordVisible)
@@ -86,17 +85,15 @@ const SignIn = () => {
                   rightIcon={
                     <Ionicons
                       name={passwordVisible ? 'eye-off' : 'eye'}
-                      color={colors.gray}
+                      color={colors.blackOp05}
                       size={22}
                     />
                   }
                 />
               )}
-              rules={
-                {
-                  // required: true,
-                }
-              }
+              rules={{
+                required: true,
+              }}
             />
             <Divider />
             <View style={styles.saveWrapper}>
@@ -107,16 +104,20 @@ const SignIn = () => {
                 onValueChange={toggleSwitch}
                 value={saveIsEnabled}
               />
-              <Text style={styles.saveText}>{translate('SAVE')}</Text>
+              <Text
+                style={styles.saveText}
+                children="authorization.rememberMe"
+              />
               <TouchableOpacity>
-                <Text style={styles.forgetText}>
-                  {translate('FORGET_PASSWORD') + '?'}
-                </Text>
+                <Text
+                  style={styles.forgetText}
+                  children="authorization.forgotPassword"
+                />
               </TouchableOpacity>
             </View>
             <Divider />
             <Button
-              text="LOGIN"
+              text="login"
               touchableStyle={styles.authBtn}
               onPress={handleSubmit(onSubmit)}
             />
@@ -125,8 +126,8 @@ const SignIn = () => {
         </ScrollView>
       </KeyboardAvoidingView>
       <AuthFooter
-        text={translate('NO_ACCOUNT')}
-        link={translate('REGISTRATION')}
+        text="authorization.areYouNotRegistered"
+        link="authorization.register"
         handler={footerHandler}
         mode="link"
       />
@@ -138,6 +139,9 @@ export default SignIn;
 const styles = StyleSheet.create({
   keyboardAvoidingView: {
     flexGrow: 1,
+    flex: 1,
+  },
+  scrollViewContainer: {
     flex: 1,
   },
   header: {

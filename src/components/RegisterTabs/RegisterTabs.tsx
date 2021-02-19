@@ -36,7 +36,7 @@ const RegisterTabs: RegisterTabsFC = ({currentStep, handler, lastStep}) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: GRAY5,
+    backgroundColor: colors.GRAY5,
     height: 55,
     borderRadius: 12,
     flexDirection: 'row',

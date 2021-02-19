@@ -3,6 +3,7 @@ import {View, StyleSheet, TouchableOpacity} from 'react-native';
 import Text from 'components/Text';
 import * as colors from 'theme/colors';
 import {ButtonFC} from './types';
+import {useTranslation} from 'react-i18next';
 
 const Button: ButtonFC = ({
   disabled = false,
@@ -12,6 +13,7 @@ const Button: ButtonFC = ({
   onPress,
   text,
 }) => {
+  const {t} = useTranslation();
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -19,7 +21,7 @@ const Button: ButtonFC = ({
       style={[styles.touchableView, touchableStyle]}>
       <View style={[styles.buttonView, containerStyle]}>
         <Text style={[styles.buttonText, textStyle]} caps>
-          {text}
+          {t(text)}
         </Text>
       </View>
     </TouchableOpacity>

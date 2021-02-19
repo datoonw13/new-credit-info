@@ -1,13 +1,14 @@
 import React from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import {CheckBox, Divider} from 'react-native-elements';
-import {translate} from 'services/localizeService';
 import * as colors from 'theme/colors';
 import {Text, Button} from 'components';
 import useAcceptTerms from './useAcceptTerms';
+import {useTranslation} from 'react-i18next';
 
 const AcceptTerms: AcceptTermsFC = ({lastStep}) => {
   const {onSubmit, checked, setChecked} = useAcceptTerms({lastStep});
+  const {t} = useTranslation();
   return (
     <>
       <ScrollView style={styles.scrollViewContainer}>
@@ -28,7 +29,7 @@ const AcceptTerms: AcceptTermsFC = ({lastStep}) => {
       </ScrollView>
       <CheckBox
         center
-        title={translate('ACCEPT_TERMS')}
+        title={t('ACCEPT_TERMS')}
         containerStyle={styles.container}
         iconType="fontisto"
         checkedIcon="checkbox-active"

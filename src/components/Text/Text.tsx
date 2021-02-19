@@ -1,6 +1,6 @@
 import React from 'react';
+import {useTranslation} from 'react-i18next';
 import {StyleSheet, Text as NativeText} from 'react-native';
-import {translate} from 'services/localizeService';
 import {TextPropsFC} from './type';
 
 const Text: TextPropsFC = ({
@@ -11,6 +11,7 @@ const Text: TextPropsFC = ({
   style,
   ...allTheRest
 }) => {
+  const {t} = useTranslation();
   return (
     <NativeText
       style={[
@@ -19,7 +20,7 @@ const Text: TextPropsFC = ({
         caps ? styles.caps : {},
         capsBold ? styles.capsBold : {},
       ]}
-      children={dontTranslate ? children : translate(children)}
+      children={dontTranslate ? children : t(children)}
       {...allTheRest}
     />
   );

@@ -2,15 +2,18 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import * as colors from 'theme/colors';
 import {Divider} from 'react-native-elements';
-import {translate} from 'services/localizeService';
 import {Controller} from 'react-hook-form';
 import {Button, Input} from 'components';
 import useVerifyPhone from './useVerifyPhone';
+import {useTranslation} from 'react-i18next';
 
 const VerifyPhone: VerifyPhoneFC = ({registerData}) => {
   const {onSubmit, handleSubmit, errors, control} = useVerifyPhone({
     registerData,
   });
+
+  const {t} = useTranslation();
+
   return (
     <>
       <Controller
@@ -23,7 +26,7 @@ const VerifyPhone: VerifyPhoneFC = ({registerData}) => {
             onChangeText={onChange}
             value={value}
             maxLength={9}
-            errorMessage={errors.phone && translate('VALID_PHONE')}
+            errorMessage={errors.phone && t('VALID_PHONE')}
             editable={!registerData.phone}
             keyboardType="number-pad"
             leftIcon={
@@ -51,7 +54,7 @@ const VerifyPhone: VerifyPhoneFC = ({registerData}) => {
                 value={value}
                 maxLength={6}
                 keyboardType="number-pad"
-                errorMessage={errors.code && translate('VALID_OTP')}
+                errorMessage={errors.code && t('VALID_OTP')}
                 label={'OTP'}
               />
             )}

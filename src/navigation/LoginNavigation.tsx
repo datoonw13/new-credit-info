@@ -26,7 +26,7 @@ const LoginNavigation = () => {
           name="SignUp"
           component={SignUp}
           options={{
-            title: 'Sign In',
+            title: 'Sign Up',
           }}
         />
       </Stack.Navigator>

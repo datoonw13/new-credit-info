@@ -1,12 +1,11 @@
 import React from 'react';
 import {StyleSheet, View, ScrollView} from 'react-native';
 import {Divider} from 'react-native-elements';
-import {translate} from 'services/localizeService';
 import {Controller} from 'react-hook-form';
-import i18n from 'i18n-js';
 import {Input, Button} from 'components';
 import useSetPersonalInfo from './useSetPersonalInfo';
 import {RegistrationSteps} from 'screens/SignUp/enum';
+import {useTranslation} from 'react-i18next';
 
 const SetPersonalInfo: SetPersonalInfoFC = ({
   lastStep,
@@ -17,7 +16,7 @@ const SetPersonalInfo: SetPersonalInfoFC = ({
     lastStep,
     registerData,
   });
-  console.log(errors);
+  const {i18n, t} = useTranslation();
   return (
     <>
       <View style={styles.container}>
@@ -36,7 +35,7 @@ const SetPersonalInfo: SetPersonalInfoFC = ({
                 maxLength={isPerson ? 11 : 9}
                 errorMessage={
                   errors.userName &&
-                  translate(
+                  t(
                     isPerson
                       ? 'VALID_PERSONAL_NUMBER'
                       : 'VALID_IDENTIFICATION_CODE',
@@ -70,7 +69,7 @@ const SetPersonalInfo: SetPersonalInfoFC = ({
                 maxLength={isPerson ? 11 : 9}
                 errorMessage={
                   errors.repeatUserName &&
-                  translate(
+                  t(
                     isPerson
                       ? 'VALID_REPEAT_PERSONAL_NUMBER'
                       : 'VALID_REPEAT_IDENTIFICATION_CODE',
@@ -95,12 +94,12 @@ const SetPersonalInfo: SetPersonalInfoFC = ({
                 onBlur={onBlur}
                 value={value}
                 maxLength={35}
-                errorMessage={errors.firstName && translate('VALID_FIRST_NAME')}
+                errorMessage={errors.firstName && t('VALID_FIRST_NAME')}
               />
             )}
             rules={{
               required: true,
-              pattern: i18n.locale === 'ka' ? /^[ა-ჰ]*$/ : /^[A-Za-z]*$/,
+              pattern: i18n.language === 'ka' ? /^[ა-ჰ]*$/ : /^[A-Za-z]*$/,
             }}
           />
           <Divider />
@@ -116,12 +115,12 @@ const SetPersonalInfo: SetPersonalInfoFC = ({
                   onBlur={onBlur}
                   value={value}
                   maxLength={35}
-                  errorMessage={errors.lastName && translate('VALID_LAST_NAME')}
+                  errorMessage={errors.lastName && t('VALID_LAST_NAME')}
                 />
               )}
               rules={{
                 required: true,
-                pattern: i18n.locale === 'ka' ? /^[ა-ჰ]*$/ : /^[A-Za-z]*$/,
+                pattern: i18n.language === 'ka' ? /^[ა-ჰ]*$/ : /^[A-Za-z]*$/,
               }}
             />
           ) : null}

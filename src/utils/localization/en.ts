@@ -4,6 +4,7 @@ export default {
   appName: 'CreditInfo',
   auth: 'Authorization',
   user: 'User',
+  password: 'Password',
   company: 'JSC `CREDITINFO GEORGIA`',
   companyAddress: 'Tarkhnishvili street 2 Tbilisi 0179 Georgia',
   back: 'Back',
@@ -15,6 +16,8 @@ export default {
 
   individualPerson: 'Individual',
   legalEntity: 'Legal Entity',
+
+  notRequired: 'Not Required',
 
   privacyText: privacyTextEN,
 

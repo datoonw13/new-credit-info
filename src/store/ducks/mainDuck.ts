@@ -1,5 +1,5 @@
-import navigationService from '../../services/navigationService';
-import notificationService from '../../services/notificationService';
+import navigationService from 'services/navigationService';
+import notificationService from 'services/notificationService';
 
 export const DEFAULT = 'my-creditinfo/main/default';
 export const RESET_STORE = 'my-creditinfo/main/resetStore';
@@ -36,7 +36,7 @@ export const navigateAction = (screen) => {
   };
 };
 
-export const notifyAction = (type, title, message) => {
+export const notifyAction = (type: string, title: string, message: string) => {
   notificationService.notify(type, title, message);
   return {
     type: DEFAULT,

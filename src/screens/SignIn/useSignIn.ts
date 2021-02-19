@@ -45,8 +45,10 @@ const useSignIn = () => {
     Keyboard.dismiss();
     dispatch(
       signInAction({
-        username: '00000000098',
-        password: 'asdASD123!@#',
+        // username: '00000000098',
+        // password: 'asdASD123!@#',
+        username,
+        password,
       }),
     );
     try {
@@ -65,6 +67,7 @@ const useSignIn = () => {
     setPasswordVisible,
     passwordVisible,
     footerHandler,
+    saveIsEnabled,
     scrollViewRef,
     toggleSwitch,
     handleSubmit,

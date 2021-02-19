@@ -5,6 +5,7 @@ export default {
   appName: 'კრედიტინფო',
   auth: 'ავტორიზაცია',
   user: 'მომხმარებელი',
+  password: 'პაროლი',
   company: 'სს `კრედიტინფო საქართველო`',
   companyAddress: 'თარხნიშვილის ქ. 2 თბილისი 0179 საქართველო',
   back: 'უკან',
@@ -16,6 +17,8 @@ export default {
 
   individualPerson: 'ფიზიკური პირი',
   legalEntity: 'იურიდიული პირი',
+
+  notRequired: 'არასავალდებულოა',
 
   privacyText: privacyTextKA,
 

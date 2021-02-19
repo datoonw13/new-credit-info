@@ -1,7 +1,6 @@
 import React from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import {Divider} from 'react-native-elements';
-import {translate} from 'services/localizeService';
 import zxc from 'zxcvbn';
 import {Controller} from 'react-hook-form';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -10,6 +9,7 @@ import {passwordGuidText} from './config';
 import {Info} from 'assets/svg';
 import {Button, Input, Text} from 'components';
 import useSetPassword from './useSetPassword';
+import {useTranslation} from 'react-i18next';
 
 const SetPassword: SetPasswordFC = ({lastStep, registerData}) => {
   const {
@@ -28,7 +28,7 @@ const SetPassword: SetPasswordFC = ({lastStep, registerData}) => {
     registerData,
     lastStep,
   });
-
+  const {t} = useTranslation();
   return (
     <>
       <View style={styles.container}>
@@ -112,14 +112,14 @@ const SetPassword: SetPasswordFC = ({lastStep, registerData}) => {
             rules={{
               required: {
                 value: true,
-                message: translate('VALID_REPEAT_PASSWORD'),
+                message: t('VALID_REPEAT_PASSWORD'),
               },
               validate: (value) => {
                 if (value === watch('password')) {
                   return true;
                 }
 
-                return translate('VALID_REPEAT_PASSWORD');
+                return t('VALID_REPEAT_PASSWORD');
               },
             }}
           />

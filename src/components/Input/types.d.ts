@@ -13,4 +13,8 @@ type InputProps = {
   value: string;
 } & TextInputProps;
 
+type UseInputProps = {
+  errorMessage?: string;
+};
+
 type InputFC = (props: InputProps) => JSX.Element;

@@ -1,29 +1,30 @@
 import React from 'react';
+import {useTranslation} from 'react-i18next';
 import {
+  TouchableOpacity,
   SafeAreaView,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
 } from 'react-native';
-import {translate} from 'services/localizeService';
 import * as colors from 'theme/colors';
 import {FIRAGO_LIGHT, FIRAGO_REGULAR} from 'theme/fonts';
 
 const AuthFooter: AuthFooterFC = ({mode, handler, text, link}) => {
+  const {t} = useTranslation();
   return (
     <>
       {mode === 'link' ? (
         <View style={styles.container}>
-          <Text style={styles.textStyle}>{text}</Text>
+          <Text style={styles.textStyle}>{text && t(text)}</Text>
           <TouchableOpacity onPress={handler}>
-            <Text style={styles.linkStyle}>{link}</Text>
+            <Text style={styles.linkStyle}>{link && t(link)}</Text>
           </TouchableOpacity>
         </View>
       ) : (
         <View style={styles.container}>
           <TouchableOpacity onPress={handler}>
-            <Text style={styles.linkStyle}>{translate('GO_BACK')}</Text>
+            <Text style={styles.linkStyle}>{t('back')}</Text>
           </TouchableOpacity>
         </View>
       )}

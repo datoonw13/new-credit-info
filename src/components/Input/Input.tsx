@@ -1,4 +1,5 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React from 'react';
+import {useTranslation} from 'react-i18next';
 import {
   TouchableOpacity,
   StyleSheet,
@@ -8,8 +9,8 @@ import {
   Text,
 } from 'react-native';
 import * as colors from 'theme/colors';
-import {translate} from 'services/localizeService';
 import {InputFC} from './types';
+import useInput from './useInput';
 
 const Input: InputFC = ({
   labelOnBorderToo = false,
@@ -30,22 +31,8 @@ const Input: InputFC = ({
   label,
   value,
 }) => {
-  const height = useRef(new Animated.Value(0)).current;
-  const [inputBorderColor, setInputBorderColor] = useState(colors.blackOp5);
-  /**
-   * Control animation on error Value.
-   */
-  useEffect(() => {
-    const toValue = errorMessage ? 20 : 0;
-    const borderColor = errorMessage ? colors.primaryCrimson : colors.blackOp5;
-    setInputBorderColor(borderColor);
-
-    Animated.timing(height, {
-      toValue,
-      useNativeDriver: false,
-      duration: 1000,
-    }).start();
-  }, [errorMessage, height, inputBorderColor]);
+  const {inputBorderColor, height} = useInput({errorMessage});
+  const {t} = useTranslation();
 
   return (
     <TouchableOpacity
@@ -53,10 +40,10 @@ const Input: InputFC = ({
       onPress={inputPressHandler}
       disabled={!inputPressHandler}>
       {labelOnBorderToo && (
-        <Text style={styles.label}>{label && translate(label)}</Text>
+        <Text style={styles.label}>{label && t(label)}</Text>
       )}
       {notRequired && (
-        <Text style={styles.notRequired}>{translate('NOT_REQUIRED')}</Text>
+        <Text style={styles.notRequired}>{t('notRequired')}</Text>
       )}
       {rightIcon && (
         <TouchableOpacity
@@ -75,7 +62,7 @@ const Input: InputFC = ({
             leftIcon && styles.paddingLeft,
             {borderColor: inputBorderColor},
           ]}
-          placeholder={label && translate(label)}
+          placeholder={label && t(label)}
           secureTextEntry={secureTextEntry}
           autoCapitalize={autoCapitalize}
           pointerEvents={pointerEvents}

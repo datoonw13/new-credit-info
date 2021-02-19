@@ -5,7 +5,6 @@ import {
   StyleSheet,
   Platform,
   Keyboard,
-  Text,
   View,
 } from 'react-native';
 import {Divider} from 'react-native-elements';
@@ -15,9 +14,8 @@ import {
 } from 'store/ducks/authDuck';
 import {useDispatch, useSelector} from 'react-redux';
 import * as colors from 'theme/colors';
-import {translate} from 'services/localizeService';
 import {FIRAGO_BOLD, FIRAGO_REGULAR} from 'theme/fonts';
-import {HeaderWithLogo, AuthFooter} from 'components';
+import {HeaderWithLogo, AuthFooter, Text} from 'components';
 import {
   SetAdditionalInfo,
   SetPersonalInfo,
@@ -27,8 +25,10 @@ import {
   VerifyPhone,
 } from './components';
 import {RegistrationSteps} from './enum';
+import {useNavigation} from '@react-navigation/native';
 
-const SignUp = ({navigation}) => {
+const SignUp = () => {
+  const {navigate} = useNavigation();
   const dispatch = useDispatch();
   const {registerSelectedStep, registerLastStep, registerData} = useSelector(
     (state) => state.authReducer,
@@ -42,7 +42,7 @@ const SignUp = ({navigation}) => {
 
   const footerHandler = () => {
     registerSelectedStep === 1
-      ? navigation.navigate('SignIn')
+      ? navigate('SignIn')
       : dispatch(setRegisterSelectedStepAction(registerSelectedStep - 1));
   };
 
@@ -96,10 +96,8 @@ const SignUp = ({navigation}) => {
           behavior={Platform.OS === 'ios' ? 'padding' : 'padding'}>
           <View style={styles.wrapper}>
             <View style={styles.titleWrapper}>
-              <Text style={styles.authText}>{translate('REGISTRATION')}</Text>
-              <Text style={styles.descText}>
-                {translate('SELECT_SERVICE_TYPE')}
-              </Text>
+              <Text style={styles.authText} children="REGISTRATION" />
+              <Text style={styles.descText} children="SELECT_SERVICE_TYPE" />
             </View>
             <Divider />
             {setTabData()}
@@ -108,8 +106,8 @@ const SignUp = ({navigation}) => {
       </TouchableWithoutFeedback>
       {registerSelectedStep === 1 ? (
         <AuthFooter
-          text={translate('HAVE_ACCOUNT')}
-          link={translate('AUTHORIZATION')}
+          text="HAVE_ACCOUNT"
+          link="AUTHORIZATION"
           handler={footerHandler}
           mode="link"
         />
