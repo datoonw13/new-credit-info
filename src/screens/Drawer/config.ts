@@ -1,4 +1,4 @@
-import * as colors from 'theme/colors';
+import {colors} from 'theme';
 import {Login, Service, FAQ, Privacy} from 'assets/svg';
 import {goTo} from 'utils/navigation';
 
@@ -6,10 +6,10 @@ export const menuList = [
   {
     id: 1,
     title: 'login',
-    color: colors.crimson,
+    color: colors.crimsonOp2,
     Icon: Login,
     dividerWidth: '100%',
-    navigate: null,
+    navigate: goTo('MainStackNavigator', 'Auth'),
   },
   {
     id: 2,
@@ -22,7 +22,7 @@ export const menuList = [
   {
     id: 3,
     title: 'faq',
-    color: colors.YELLOW,
+    color: colors.yellowOp1,
     Icon: FAQ,
     dividerWidth: '80%',
     navigate: () => goTo('MainStackNavigator', 'FAQ'),
