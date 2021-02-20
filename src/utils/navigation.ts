@@ -25,3 +25,10 @@ export const goTo = (stack: string, screen: string) => {
 export const openDrawer = () => {
   references.navigator?.dispatch(DrawerActions.openDrawer());
 };
+
+/**
+ * Get current route name.
+ */
+export const getCurrentRoute = () => {
+  return references.navigator?.getCurrentRoute()?.name;
+};

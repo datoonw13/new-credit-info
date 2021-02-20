@@ -1,9 +1,5 @@
 import {put} from 'redux-saga/effects';
-import {
-  CHECKED_SIGNED_IN,
-  notifyAction,
-  resetStoreAction,
-} from 'store/ducks/mainDuck';
+import {CHECKED_SIGNED_IN, resetStoreAction} from 'store/ducks/mainDuck';
 import axiosInstance from 'services/interceptorService';
 import AsyncStorage from '@react-native-community/async-storage';
 import {
@@ -16,8 +12,9 @@ import {
 import jwtDecode from 'jwt-decode';
 import {global} from 'utils';
 import {goTo} from 'utils/navigation';
+import {alertError, alertSuccess} from 'utils/dropdownAlert';
 
-export async function* signInSaga({data}) {
+export async function* signInSaga({data}: any) {
   try {
     const res = yield axiosInstance.post('auth', data);
     yield AsyncStorage.setItem('accessToken', res.accessToken);
@@ -49,16 +46,12 @@ export async function* signInSaga({data}) {
     }
   } catch (error) {
     if (error.response.status === 409) {
-      yield notifyAction(
-        'error',
-        'ERROR',
-        error.response.data.errorCode.toUpperCase(),
-      );
+      alertError('error', error.response.data.errorCode.toUpperCase());
     }
   }
 }
 
-export function* signUpSaga(payload) {
+export function* signUpSaga(payload: any) {
   try {
     yield axiosInstance.post(
       'register?language=' + global.lang.toUpperCase(),
@@ -73,20 +66,16 @@ export function* signUpSaga(payload) {
     yield put(updateRegisterDataAction(payload.data));
     yield put(setRegisterLastStepAction(4));
     yield put(setRegisterSelectedStepAction(4));
-    yield notifyAction('success', 'SUCCESS', 'USER_CREATE_SUCCESS');
+    yield alertSuccess('success', 'registration.userCreateSuccess');
   } catch (error) {
     console.log(error);
     if (error.response.status === 409) {
-      yield notifyAction(
-        'error',
-        'ERROR',
-        error.response.data.errorCode.toUpperCase(),
-      );
+      yield alertError('error', error.response.data.errorCode.toUpperCase());
     }
   }
 }
 
-export function* getCustomerInfoSaga(payload) {
+export function* getCustomerInfoSaga(payload: any) {
   try {
     const query = payload.step !== null ? '&step=' + payload.step : '';
     const userInfo = yield axiosInstance.get(
@@ -95,29 +84,20 @@ export function* getCustomerInfoSaga(payload) {
     yield put(updateRegisterDataAction(userInfo));
   } catch (error) {
     if (error.response.status === 409) {
-      yield notifyAction(
-        'error',
-        'ERROR',
-        error.response.data.errorCode.toUpperCase(),
-      );
+      alertError('error', error.response.data.errorCode.toUpperCase());
     }
   }
 }
 
-export function* setCustomerExtraSaga(payload) {
+export function* setCustomerExtraSaga(payload: any) {
   try {
     yield axiosInstance.put('customer/extra', payload.data);
     yield put(updateRegisterDataAction(payload.data));
     yield put(setRegisterLastStepAction(5));
     yield put(setRegisterSelectedStepAction(5));
   } catch (error) {
-    console.log(error);
     if (error.response.status === 409) {
-      yield notifyAction(
-        'error',
-        'ERROR',
-        error.response.data.errorCode.toUpperCase(),
-      );
+      alertError('error', error.response.data.errorCode.toUpperCase());
     }
   }
 }
@@ -130,58 +110,40 @@ export function* acceptAgreementSaga() {
     yield put(setRegisterSelectedStepAction(6));
   } catch (error) {
     if (error.response.status === 409) {
-      yield notifyAction(
-        'error',
-        'ERROR',
-        error.response.data.errorCode.toUpperCase(),
-      );
+      alertError('error', error.response.data.errorCode.toUpperCase());
     }
   }
 }
 
-export function* sendOTPSaga(payload) {
+export function* sendOTPSaga(payload: any) {
   try {
     yield axiosInstance.put('customer/sendotp?phone=' + payload.phone);
     yield put(updateRegisterDataAction({phone: payload.phone}));
-    yield put(
-      notifyAction(
-        'success',
-        'SUCCESS',
-        '+995' + payload.phone + 'SEND_OTP_SUCCESS',
-      ),
-    );
+    alertSuccess('success', 'SEND_OTP_SUCCESS');
   } catch (error) {
     if (error.response.status === 409) {
-      yield notifyAction(
-        'error',
-        'ERROR',
-        error.response.data.errorCode.toUpperCase(),
-      );
+      alertError('error', error.response.data.errorCode.toUpperCase());
     }
   }
 }
 
-export function* checkOTPSaga(payload) {
+export function* checkOTPSaga(payload: any) {
   try {
     yield axiosInstance.put('customer/checkotp', {code: payload.code});
-    yield put(notifyAction('success', 'SUCCESS', 'REGISTER_SUCCESS'));
+    alertSuccess('success', 'dropdownAlert.registerSuccess');
   } catch (error) {
     if (error.response.status === 409) {
-      yield notifyAction(
-        'error',
-        'ERROR',
-        error.response.data.errorCode.toUpperCase(),
-      );
+      alertError('error', error.response.data.errorCode.toUpperCase());
     }
   }
 }
 
-export function* updatePasswordSaga(payload) {
+export function* updatePasswordSaga(payload: any) {
   try {
     yield axiosInstance.patch('auth/updatePassword', payload.data);
-    yield notifyAction('success', 'Success', 'Password Changed Successfully');
+    alertSuccess('success', 'Password Changed Successfully');
   } catch (error) {
-    yield notifyAction('error', 'Error', error.response.data.errorCode);
+    alertError('error', error.response.data.errorCode);
   }
 }
 
@@ -191,7 +153,7 @@ export function* logoutSaga() {
     yield AsyncStorage.removeItem('token');
     yield put(resetStoreAction());
   } catch (error) {
-    yield notifyAction('error', 'Error', 'Something went wrong');
+    alertError('error');
   }
 }
 
@@ -202,6 +164,6 @@ export function* getCountriesSaga() {
     );
     yield put({type: SET_COUNTRIES, countries});
   } catch (error) {
-    yield notifyAction('error', 'Error', 'Something went wrong');
+    alertError('error');
   }
 }

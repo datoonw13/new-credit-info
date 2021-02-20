@@ -8,6 +8,8 @@ export default {
   company: 'JSC `CREDITINFO GEORGIA`',
   companyAddress: 'Tarkhnishvili street 2 Tbilisi 0179 Georgia',
   back: 'Back',
+  error: 'Error Encountered',
+  success: 'Success',
 
   login: 'Log In',
   service: 'Service',

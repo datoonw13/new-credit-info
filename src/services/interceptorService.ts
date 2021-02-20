@@ -3,10 +3,10 @@ import {BackHandler} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import {alertError} from 'utils/dropdownAlert';
 import {startLoading, stopLoading} from 'utils/loader';
-import {backendUrl} from './credentials';
+import {domain} from 'utils/config';
 import storeRegistry from 'store/storeRegistry';
-import {resetStoreAction} from '../store/ducks/mainDuck';
-import navigationService from './navigationService';
+import {resetStoreAction} from 'store/ducks/mainDuck';
+import {getCurrentRoute} from 'utils/navigation';
 
 let canNotPressBackButton = false;
 let counter = 0;
@@ -16,7 +16,7 @@ const onBackButtonPressAndroid = () => {
 BackHandler.addEventListener('hardwareBackPress', onBackButtonPressAndroid);
 
 const axiosInstance = axios.create({
-  baseURL: `${backendUrl}`,
+  baseURL: `${domain}`,
 });
 
 axiosInstance.interceptors.request.use(
@@ -47,7 +47,7 @@ axiosInstance.interceptors.response.use(
   },
 );
 
-const onResponseFulfilled = (response) => {
+const onResponseFulfilled = (response: any) => {
   canNotPressBackButton = false;
   if (--counter < 1) {
     stopLoading();
@@ -55,7 +55,7 @@ const onResponseFulfilled = (response) => {
   return response.data;
 };
 
-const onResponseRejected = (error) => {
+const onResponseRejected = (error: any) => {
   canNotPressBackButton = false;
   if (--counter < 1) {
     stopLoading();
@@ -72,7 +72,7 @@ const onResponseRejected = (error) => {
     error.response.status === 404 ||
     error.response.status === 403
   ) {
-    if (navigationService.getCurrentRoute() !== 'Ping') {
+    if (getCurrentRoute() !== 'Ping') {
       AsyncStorage.setItem('authData', '');
       storeRegistry.getStore().dispatch(resetStoreAction());
     }

@@ -1,6 +1,3 @@
-import navigationService from 'services/navigationService';
-import {rawNotify} from 'utils/dropdownAlert';
-
 export const DEFAULT = 'my-creditinfo/main/default';
 export const RESET_STORE = 'my-creditinfo/main/resetStore';
 export const CHECKED_SIGNED_IN = 'my-creditinfo/main/checkedSignedIn';
@@ -10,7 +7,7 @@ const initialState = {
   isSignedIn: false,
 };
 
-export const mainReducer = (state = initialState, action) => {
+export const mainReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case CHECKED_SIGNED_IN:
       return {
@@ -28,17 +25,3 @@ export const mainReducer = (state = initialState, action) => {
 export const resetStoreAction = () => ({
   type: RESET_STORE,
 });
-
-export const navigateAction = (screen) => {
-  navigationService.navigate(screen);
-  return {
-    type: DEFAULT,
-  };
-};
-
-export const notifyAction = (type: string, title: string, message: string) => {
-  rawNotify(type, title, message);
-  return {
-    type: DEFAULT,
-  };
-};

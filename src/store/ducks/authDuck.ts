@@ -26,7 +26,7 @@ const initialState = {
   countries: [],
 };
 
-export const authReducer = (state = initialState, action) => {
+export const authReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case SET_USER_DATA:
       return {
@@ -96,15 +96,6 @@ export const setUserDataAction = (userData) => ({
 
 export const resetRegisterDataAction = () => ({
   type: RESET_REGISTER_DATA,
-});
-
-export const updatePasswordAction = (data) => ({
-  type: UPDATE_PASSWORD,
-  data,
-});
-
-export const logoutAction = () => ({
-  type: LOGOUT,
 });
 
 export const getCountriesAction = () => ({
