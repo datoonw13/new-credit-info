@@ -28,7 +28,7 @@ const ChooseEntity: ChooseEntityFC = ({lastStep, customerType}) => {
       </View>
       <Divider />
       <Button
-        text="CONTINUE"
+        text="continue"
         onPress={() => onSubmit()}
         disabled={!selectedType}
       />

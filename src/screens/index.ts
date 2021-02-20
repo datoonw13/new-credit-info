@@ -2,7 +2,7 @@ export {default as Main} from './Main';
 export {default as Ping} from './Ping';
 export {default as Auth} from './Auth';
 export {default as SignInPass} from './SignInPass';
-export {default as SignUp} from './SignUp';
+export {default as Register} from './Register';
 export {default as Drawer} from './Drawer';
 export {default as FAQ} from './FAQ';
 export {default as ForgotPassword} from './ForgotPassword';

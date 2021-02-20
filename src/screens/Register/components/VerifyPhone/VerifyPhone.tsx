@@ -21,12 +21,12 @@ const VerifyPhone: VerifyPhoneFC = ({registerData}) => {
         control={control}
         render={({onChange, onBlur, value}) => (
           <Input
-            label={'PHONE'}
+            label={'registration.phone'}
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
             maxLength={9}
-            errorMessage={errors.phone && t('VALID_PHONE')}
+            errorMessage={errors.phone && t('registration.validPhone')}
             editable={!registerData.phone}
             keyboardType="number-pad"
             leftIcon={
@@ -54,8 +54,8 @@ const VerifyPhone: VerifyPhoneFC = ({registerData}) => {
                 value={value}
                 maxLength={6}
                 keyboardType="number-pad"
-                errorMessage={errors.code && t('VALID_OTP')}
-                label={'OTP'}
+                label={'registration.OTP'}
+                errorMessage={errors.code && t('registration.validOTP')}
               />
             )}
             rules={{
@@ -67,7 +67,7 @@ const VerifyPhone: VerifyPhoneFC = ({registerData}) => {
         </View>
       ) : null}
       <Divider />
-      <Button text={'CONTINUE'} onPress={handleSubmit(onSubmit)} />
+      <Button text="continue" onPress={handleSubmit(onSubmit)} />
     </>
   );
 };

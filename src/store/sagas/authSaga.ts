@@ -1,7 +1,6 @@
 import {put} from 'redux-saga/effects';
 import {
   CHECKED_SIGNED_IN,
-  navigateAction,
   notifyAction,
   resetStoreAction,
 } from 'store/ducks/mainDuck';
@@ -16,6 +15,7 @@ import {
 } from 'store/ducks/authDuck';
 import jwtDecode from 'jwt-decode';
 import {global} from 'utils';
+import {goTo} from 'utils/navigation';
 
 export async function* signInSaga({data}) {
   try {
@@ -43,7 +43,7 @@ export async function* signInSaga({data}) {
         yield put(setRegisterLastStepAction(5));
         yield put(setRegisterSelectedStepAction(5));
       }
-      yield put(navigateAction('SignUp'));
+      goTo('MainStackNavigator', 'Register');
     } else {
       yield put({type: CHECKED_SIGNED_IN, isSignedIn: true});
     }
@@ -180,7 +180,6 @@ export function* updatePasswordSaga(payload) {
   try {
     yield axiosInstance.patch('auth/updatePassword', payload.data);
     yield notifyAction('success', 'Success', 'Password Changed Successfully');
-    yield navigateAction('Apartments');
   } catch (error) {
     yield notifyAction('error', 'Error', error.response.data.errorCode);
   }

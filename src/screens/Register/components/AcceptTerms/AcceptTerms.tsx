@@ -29,7 +29,7 @@ const AcceptTerms: AcceptTermsFC = ({lastStep}) => {
       </ScrollView>
       <CheckBox
         center
-        title={t('ACCEPT_TERMS')}
+        title={t('registration.acceptTerms')}
         containerStyle={styles.container}
         iconType="fontisto"
         checkedIcon="checkbox-active"
@@ -40,11 +40,7 @@ const AcceptTerms: AcceptTermsFC = ({lastStep}) => {
         onPress={lastStep === 5 ? () => setChecked(!checked) : undefined}
       />
       <Divider />
-      <Button
-        text={'CONTINUE'}
-        disabled={!checked}
-        onPress={() => onSubmit()}
-      />
+      <Button text="continue" disabled={!checked} onPress={() => onSubmit()} />
     </>
   );
 };

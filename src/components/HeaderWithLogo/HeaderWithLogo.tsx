@@ -4,6 +4,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import {Logo} from 'assets/svg';
 import {HeaderWithLogoFC} from './types';
 import {openDrawer} from 'utils/navigation';
+import {colors} from 'theme';
 
 const HeaderWithLogo: HeaderWithLogoFC = ({mode = 'Middle', style}) => {
   return (
@@ -33,12 +34,12 @@ export default HeaderWithLogo;
 
 const styles = StyleSheet.create({
   container: {
-    position: 'relative',
-    zIndex: 1,
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'row',
     paddingHorizontal: 15,
+    position: 'relative',
+    flexDirection: 'row',
+    display: 'flex',
+    width: '100%',
+    zIndex: 1,
   },
   left: {
     justifyContent: 'flex-start',

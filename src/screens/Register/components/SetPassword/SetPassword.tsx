@@ -58,7 +58,7 @@ const SetPassword: SetPasswordFC = ({lastStep, registerData}) => {
                 onBlur={onBlur}
                 value={value}
                 maxLength={35}
-                label={'PASSWORD'}
+                label="registration.password"
                 secureTextEntry={passwordVisible}
                 rightIconPressHandler={() => {
                   setPasswordVisible(!passwordVisible);
@@ -92,7 +92,7 @@ const SetPassword: SetPasswordFC = ({lastStep, registerData}) => {
                 onBlur={onBlur}
                 value={value}
                 maxLength={35}
-                label={'REPEAT_PASSWORD'}
+                label="registration.repeatPassword"
                 secureTextEntry={repeatPasswordVisible}
                 rightIconPressHandler={() =>
                   setRepeatPasswordVisible(!repeatPasswordVisible)
@@ -112,21 +112,21 @@ const SetPassword: SetPasswordFC = ({lastStep, registerData}) => {
             rules={{
               required: {
                 value: true,
-                message: t('VALID_REPEAT_PASSWORD'),
+                message: t('registration.validRepeatPassword'),
               },
               validate: (value) => {
                 if (value === watch('password')) {
                   return true;
                 }
 
-                return t('VALID_REPEAT_PASSWORD');
+                return t('registration.validRepeatPassword');
               },
             }}
           />
         </ScrollView>
         <Divider />
         <Button
-          text={'CONTINUE'}
+          text="continue"
           onPress={() =>
             lastStep === 3 ? handleSubmit(onSubmit)() : onSubmit()
           }

@@ -31,7 +31,7 @@ const SignIn = () => {
     errors,
   } = useSignIn();
   return (
-    <>
+    <View style={styles.container}>
       <HeaderWithLogo mode="WithMenu" style={styles.header} />
       <KeyboardAvoidingView
         style={styles.keyboardAvoidingView}
@@ -131,12 +131,16 @@ const SignIn = () => {
         handler={footerHandler}
         mode="link"
       />
-    </>
+    </View>
   );
 };
 export default SignIn;
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: colors.white,
+    flex: 1,
+  },
   keyboardAvoidingView: {
     flexGrow: 1,
     flex: 1,

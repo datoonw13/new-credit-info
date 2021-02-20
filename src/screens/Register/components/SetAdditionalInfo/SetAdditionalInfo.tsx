@@ -39,13 +39,15 @@ const SetAdditionalInfo: SetAdditionalInfoFC = ({
             control={control}
             render={({onChange, onBlur, value}) => (
               <Input
-                label={'BIRTH_DATE'}
+                label={'registration.birthDate'}
                 editable={false}
                 onChangeText={(val) => onChange(val)}
                 onBlur={onBlur}
                 value={value}
                 maxLength={35}
-                errorMessage={errors.birthDate && t('VALID_BIRTH_DATE')}
+                errorMessage={
+                  errors.birthDate && t('registration.validBirthDate')
+                }
                 pointerEvents="none"
                 rightIcon={
                   <MaterialIcons
@@ -69,13 +71,13 @@ const SetAdditionalInfo: SetAdditionalInfoFC = ({
             control={control}
             render={({onChange, onBlur, value}) => (
               <Input
-                label={'COUNTRY'}
+                label="registration.country"
                 editable={false}
                 onChangeText={(val) => onChange(val)}
                 onBlur={onBlur}
                 value={value}
                 maxLength={35}
-                errorMessage={errors.country && t('VALID_COUNTRY')}
+                errorMessage={errors.country && t('registration.validCountry')}
                 inputPressHandler={
                   lastStep === 4
                     ? () => setCountryModalVisible(true)
@@ -101,13 +103,13 @@ const SetAdditionalInfo: SetAdditionalInfoFC = ({
             control={control}
             render={({onChange, onBlur, value}) => (
               <Input
-                label={'ADDRESS'}
+                label="registration.address"
                 editable={lastStep === 4}
                 onChangeText={(val) => onChange(val)}
                 onBlur={onBlur}
                 value={value}
                 maxLength={35}
-                errorMessage={errors.address && t('VALID_ADDRESS')}
+                errorMessage={errors.address && t('registration.validAddress')}
               />
             )}
             rules={{
@@ -120,13 +122,13 @@ const SetAdditionalInfo: SetAdditionalInfoFC = ({
             control={control}
             render={({onChange, onBlur, value}) => (
               <Input
-                label={'EMAIL'}
+                label="registration.email"
                 editable={lastStep === 4}
                 onChangeText={(val) => onChange(val)}
                 onBlur={onBlur}
                 value={value}
                 maxLength={35}
-                errorMessage={errors.email && t('VALID_EMAIL')}
+                errorMessage={errors.email && t('registration.validEmail')}
                 labelOnBorderToo
                 notRequired
               />
@@ -139,7 +141,7 @@ const SetAdditionalInfo: SetAdditionalInfoFC = ({
         </ScrollView>
         <Divider />
         <Button
-          text={'CONTINUE'}
+          text="continue"
           onPress={() =>
             lastStep === 4 ? handleSubmit(onSubmit)() : onSubmit()
           }

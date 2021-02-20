@@ -61,7 +61,7 @@ const useAuth = () => {
   const footerHandler = () => {
     setValue('email', '');
     setValue('password', '');
-    navigate('SignUp');
+    navigate('Register');
   };
 
   return {

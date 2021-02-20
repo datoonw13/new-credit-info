@@ -4,13 +4,13 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import {NavigationContainer} from '@react-navigation/native';
 import {
   ForgotPassword,
+  Register,
   Privacy,
   Service,
   Drawer,
   Auth,
   FAQ,
   Test,
-  SignUp,
 } from 'screens';
 import {
   drawerNavigatorScreenOptions,
@@ -32,7 +32,7 @@ const MainStackNavigator = () => (
     <MainStack.Screen component={Privacy} name="Privacy" />
     <MainStack.Screen component={FAQ} name="FAQ" />
     <MainStack.Screen component={Service} name="Service" />
-    <MainStack.Screen component={SignUp} name="SignUp" />
+    <MainStack.Screen component={Register} name="Register" />
   </MainStack.Navigator>
 );
 

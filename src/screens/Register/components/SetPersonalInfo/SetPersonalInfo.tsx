@@ -4,7 +4,7 @@ import {Divider} from 'react-native-elements';
 import {Controller} from 'react-hook-form';
 import {Input, Button} from 'components';
 import useSetPersonalInfo from './useSetPersonalInfo';
-import {RegistrationSteps} from 'screens/SignUp/enum';
+import {RegistrationSteps} from '../RegistrationStep/enum';
 import {useTranslation} from 'react-i18next';
 
 const SetPersonalInfo: SetPersonalInfoFC = ({
@@ -26,7 +26,11 @@ const SetPersonalInfo: SetPersonalInfoFC = ({
             control={control}
             render={({onChange, onBlur, value}) => (
               <Input
-                label={isPerson ? 'PERSONAL_NUMBER' : 'IDENTIFICATION_CODE'}
+                label={
+                  isPerson
+                    ? 'registration.personalNumber'
+                    : 'registration.identificationCode'
+                }
                 editable={lastStep === RegistrationSteps.SetPersonalInfo}
                 keyboardType="number-pad"
                 onChangeText={(val) => onChange(val)}
@@ -37,8 +41,8 @@ const SetPersonalInfo: SetPersonalInfoFC = ({
                   errors.userName &&
                   t(
                     isPerson
-                      ? 'VALID_PERSONAL_NUMBER'
-                      : 'VALID_IDENTIFICATION_CODE',
+                      ? 'registration.validPersonalNumber'
+                      : 'registration.validIdentificationCode',
                   )
                 }
                 labelOnBorderToo
@@ -58,8 +62,8 @@ const SetPersonalInfo: SetPersonalInfoFC = ({
               <Input
                 label={
                   isPerson
-                    ? 'REPEAT_PERSONAL_NUMBER'
-                    : 'REPEAT_IDENTIFICATION_CODE'
+                    ? 'registration.repeatPersonalNumber'
+                    : 'registration.repeatIdentificationNumber'
                 }
                 editable={lastStep === RegistrationSteps.SetPersonalInfo}
                 keyboardType="number-pad"
@@ -71,8 +75,8 @@ const SetPersonalInfo: SetPersonalInfoFC = ({
                   errors.repeatUserName &&
                   t(
                     isPerson
-                      ? 'VALID_REPEAT_PERSONAL_NUMBER'
-                      : 'VALID_REPEAT_IDENTIFICATION_CODE',
+                      ? 'registration.validRepeatPersonalNumber'
+                      : 'registration.validRepeatIdentificationCode',
                   )
                 }
               />
@@ -88,13 +92,15 @@ const SetPersonalInfo: SetPersonalInfoFC = ({
             control={control}
             render={({onChange, onBlur, value}) => (
               <Input
-                label={'FIRST_NAME'}
+                label={'registration.firstName'}
                 editable={lastStep === 2}
                 onChangeText={(val) => onChange(val)}
                 onBlur={onBlur}
                 value={value}
                 maxLength={35}
-                errorMessage={errors.firstName && t('VALID_FIRST_NAME')}
+                errorMessage={
+                  errors.firstName && t('registration.validFirstName')
+                }
               />
             )}
             rules={{
@@ -109,13 +115,15 @@ const SetPersonalInfo: SetPersonalInfoFC = ({
               control={control}
               render={({onChange, onBlur, value}) => (
                 <Input
-                  label={'LAST_NAME'}
+                  label="registration.lastName"
                   editable={lastStep === 2}
                   onChangeText={(val) => onChange(val)}
                   onBlur={onBlur}
                   value={value}
                   maxLength={35}
-                  errorMessage={errors.lastName && t('VALID_LAST_NAME')}
+                  errorMessage={
+                    errors.lastName && t('registration.validLastName')
+                  }
                 />
               )}
               rules={{
@@ -127,7 +135,7 @@ const SetPersonalInfo: SetPersonalInfoFC = ({
         </ScrollView>
         <Divider />
         <Button
-          text={'CONTINUE'}
+          text="continue"
           onPress={() =>
             lastStep === RegistrationSteps.SetPersonalInfo
               ? handleSubmit(onSubmit)()
