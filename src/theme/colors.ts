@@ -13,7 +13,7 @@ export const GREEN1 = 'rgba(69, 184, 112, 1)';
 
 export const YELLOW = 'rgba(244, 198, 112, 1)';
 
-export const black = 'black';
+export const black = 'rgba(0, 0, 0, 1)';
 export const blackOp8 = 'rgba(0, 0, 0, .8)';
 export const blackOp5 = 'rgba(0, 0, 0, 0.5)';
 export const blackOp3 = 'rgba(0, 0, 0, 0.3)';

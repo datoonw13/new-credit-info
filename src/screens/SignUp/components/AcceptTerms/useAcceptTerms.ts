@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import notificationService from 'services/notificationService';
+import {alertError} from 'utils/dropdownAlert';
 import {
   setRegisterSelectedStepAction,
   acceptAgreementAction,
@@ -12,11 +12,7 @@ const useAcceptTerms = ({lastStep}: AcceptTermsProps) => {
 
   const onSubmit = () => {
     if (!checked) {
-      notificationService.notify(
-        'error',
-        'შეცდომ!',
-        'გთხოვთ დაეთანხმოთ წესებს და პირობებს',
-      );
+      alertError('შეცდომ!', 'გთხოვთ დაეთანხმოთ წესებს და პირობებს');
       return;
     }
     if (lastStep === 5) {

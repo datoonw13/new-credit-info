@@ -1,8 +1,8 @@
 import axios from 'axios';
 import {BackHandler} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-import notificationService from './notificationService';
-import loader from './loaderService';
+import {alertError} from 'utils/dropdownAlert';
+import {startLoading, stopLoading} from 'utils/loader';
 import {backendUrl} from './credentials';
 import storeRegistry from 'store/storeRegistry';
 import {resetStoreAction} from '../store/ducks/mainDuck';
@@ -23,7 +23,7 @@ axiosInstance.interceptors.request.use(
   async (request) => {
     canNotPressBackButton = true;
     if (++counter < 2) {
-      loader.start();
+      startLoading();
     }
     const accessToken = await AsyncStorage.getItem('accessToken');
     if (accessToken) {
@@ -33,7 +33,7 @@ axiosInstance.interceptors.request.use(
   },
   (error) => {
     canNotPressBackButton = false;
-    loader.stop();
+    stopLoading();
     return Promise.reject({...error});
   },
 );
@@ -50,7 +50,7 @@ axiosInstance.interceptors.response.use(
 const onResponseFulfilled = (response) => {
   canNotPressBackButton = false;
   if (--counter < 1) {
-    loader.stop();
+    stopLoading();
   }
   return response.data;
 };
@@ -58,18 +58,14 @@ const onResponseFulfilled = (response) => {
 const onResponseRejected = (error) => {
   canNotPressBackButton = false;
   if (--counter < 1) {
-    loader.stop();
+    stopLoading();
   }
   if (error.response.status === 408 || error.response.status === 504) {
-    notificationService.notify(
-      'error',
-      'შეცდომა #' + error.response.status,
-      'რექვესთს ვადა გაუვიდა',
-    );
+    alertError('შეცდომა #' + error.response.status, 'რექვესთს ვადა გაუვიდა');
   } else if (error.response.status === 404 || error.response.status === 504) {
-    notificationService.notify('error', 'Not Found');
+    alertError('error', 'Not Found');
   } else if (error.response.status === 500) {
-    notificationService.notify('error', 'Internal Server Error');
+    alertError('error', 'Internal Server Error');
   }
   if (
     error.response.status === 401 ||

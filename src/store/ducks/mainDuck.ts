@@ -1,5 +1,5 @@
 import navigationService from 'services/navigationService';
-import notificationService from 'services/notificationService';
+import {rawNotify} from 'utils/dropdownAlert';
 
 export const DEFAULT = 'my-creditinfo/main/default';
 export const RESET_STORE = 'my-creditinfo/main/resetStore';
@@ -37,7 +37,7 @@ export const navigateAction = (screen) => {
 };
 
 export const notifyAction = (type: string, title: string, message: string) => {
-  notificationService.notify(type, title, message);
+  rawNotify(type, title, message);
   return {
     type: DEFAULT,
   };
