@@ -1,8 +1,9 @@
 import React from 'react';
-import {StyleSheet, View, SafeAreaView} from 'react-native';
-import {Logo} from 'assets/svg';
+import {StyleSheet, View, SafeAreaView, TouchableOpacity} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {Logo} from 'assets/svg';
 import {HeaderWithLogoFC} from './types';
+import {openDrawer} from 'utils/navigation';
 
 const HeaderWithLogo: HeaderWithLogoFC = ({mode = 'Middle', style}) => {
   return (
@@ -19,7 +20,9 @@ const HeaderWithLogo: HeaderWithLogoFC = ({mode = 'Middle', style}) => {
         ]}>
         <Logo />
         {mode === 'WithMenu' && (
-          <MaterialCommunityIcons size={28} name="menu" />
+          <TouchableOpacity onPress={openDrawer}>
+            <MaterialCommunityIcons size={28} name="menu" />
+          </TouchableOpacity>
         )}
       </View>
     </>

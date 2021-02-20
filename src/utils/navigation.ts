@@ -1,4 +1,8 @@
-import {NavigationContainerRef, CommonActions} from '@react-navigation/native';
+import {
+  NavigationContainerRef,
+  CommonActions,
+  DrawerActions,
+} from '@react-navigation/native';
 import references from './references';
 
 /**
@@ -13,4 +17,11 @@ export const saveReference = (navigator: NavigationContainerRef) => {
  */
 export const goTo = (stack: string, screen: string) => {
   references.navigator?.dispatch(CommonActions.navigate(stack, {screen}));
+};
+
+/**
+ * Open drawer.
+ */
+export const openDrawer = () => {
+  references.navigator?.dispatch(DrawerActions.openDrawer());
 };
