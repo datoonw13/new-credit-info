@@ -3,7 +3,7 @@ import {StatusBar, StyleSheet, View} from 'react-native';
 import {enableScreens} from 'react-native-screens';
 import Loader from './components/Loader/Loader';
 import DropdownAlert from 'react-native-dropdownalert';
-import StartupNavigation from './navigation/StartupNavigation';
+import Navigation from './navigation';
 import {ThemeProvider} from 'react-native-elements';
 import {theme} from './services/theme';
 import {setDropdownRef} from './services/notificationService';
@@ -21,7 +21,7 @@ const App = () => {
         <View style={styles.statusBar}>
           <StatusBar backgroundColor={colors.black} barStyle="light-content" />
         </View>
-        <StartupNavigation />
+        <Navigation />
         <Loader ref={(ref) => (loaderRef = ref)} />
         <DropdownAlert
           updateStatusBar={false}
