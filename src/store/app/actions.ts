@@ -11,6 +11,6 @@ export const resetStoreAction = () => ({
  * Save user auth status.
  */
 export const setAuthStatusAction = (isSignedIn: boolean) => ({
-  type: actionTypes.CHECKED_SIGNED_IN,
+  type: actionTypes.CHECK_SIGNED_IN,
   isSignedIn,
 });

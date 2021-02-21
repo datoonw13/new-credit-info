@@ -1,13 +1,14 @@
-import {put} from 'redux-saga/effects';
+import {put, takeLatest} from 'redux-saga/effects';
 import axiosInstance from 'services/interceptorService';
 import {setUserDataAction} from 'store/registration/actions';
 import {setAuthStatusAction} from 'store/app/actions';
+import * as actionTypes from 'store/app/actionTypes';
 
 /**
  * Check if user is authenticated refresh data
  * and if not set user auth status to false.
  */
-export function* checkSignedInSaga() {
+function* checkSignedInSaga() {
   try {
     const userData = yield axiosInstance.get('ping');
     yield put(setUserDataAction(userData));
@@ -17,3 +18,12 @@ export function* checkSignedInSaga() {
   }
   yield put(setAuthStatusAction(false));
 }
+
+/**
+ * Register app sagas with the actions.
+ */
+function* appSagas() {
+  yield takeLatest(actionTypes.CHECK_SIGNED_IN, checkSignedInSaga);
+}
+
+export default appSagas;

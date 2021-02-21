@@ -3,7 +3,7 @@ import initialState from './initialState';
 
 const appReducer = (state = initialState, action: any) => {
   switch (action.type) {
-    case actionTypes.CHECKED_SIGNED_IN:
+    case actionTypes.CHECK_SIGNED_IN:
       return {
         ...state,
         isLoading: false,

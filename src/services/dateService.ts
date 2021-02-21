@@ -1,4 +1,7 @@
-export const weekdays = [
+import moment from 'moment';
+import {LocaleConfig} from 'react-native-calendars';
+
+const weekdays = [
   'კვირა',
   'ორშაბათი',
   'სამშაბათი',
@@ -7,8 +10,10 @@ export const weekdays = [
   'პარასკევი',
   'შაბათი',
 ];
-export const weekdaysShort = ['კვრ', 'ორშ', 'სამ', 'ოთხ', 'ხუთ', 'პარ', 'შაბ'];
-export const months = [
+
+const weekdaysShort = ['კვრ', 'ორშ', 'სამ', 'ოთხ', 'ხუთ', 'პარ', 'შაბ'];
+
+const months = [
   'იანვარი',
   'თებერვალი',
   'მარტი',
@@ -22,7 +27,8 @@ export const months = [
   'ნოემბერი',
   'დეკემბერი',
 ];
-export const monthsShort = [
+
+const monthsShort = [
   'იან',
   'თებ',
   'მარ',
@@ -37,9 +43,6 @@ export const monthsShort = [
   'დეკ',
 ];
 
-import moment from 'moment';
-import {LocaleConfig} from 'react-native-calendars';
-
 export const setDateLocale = () => {
   moment.locale('ka', {
     months,
@@ -49,10 +52,10 @@ export const setDateLocale = () => {
   });
 
   LocaleConfig.locales.ka = {
-    monthNames: months,
     monthNamesShort: monthsShort,
-    dayNames: weekdays,
     dayNamesShort: weekdaysShort,
+    monthNames: months,
+    dayNames: weekdays,
   };
   LocaleConfig.defaultLocale = 'ka';
 };

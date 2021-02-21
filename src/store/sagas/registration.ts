@@ -1,5 +1,4 @@
-import {put} from 'redux-saga/effects';
-import {CHECKED_SIGNED_IN, resetStoreAction} from 'store/ducks/mainDuck';
+import {put, takeLatest} from 'redux-saga/effects';
 import axiosInstance from 'services/interceptorService';
 import AsyncStorage from '@react-native-community/async-storage';
 import {
@@ -9,17 +8,24 @@ import {
   updateRegisterDataAction,
   setCountriesAction,
 } from 'store/registration/actions';
+import {resetStoreAction, setAuthStatusAction} from 'store/app/actions';
+import * as actionTypes from 'store/registration/actionTypes';
 import jwtDecode from 'jwt-decode';
 import {global} from 'utils';
 import {goTo} from 'utils/navigation';
 import {alertError, alertSuccess} from 'utils/dropdownAlert';
 
-export async function* signInSaga({data}: any) {
+/**
+ * Saga for user sign in.
+ * Also determine if user is being registered,
+ * and if so set proper data into the state.
+ */
+function* signInSaga({data}: any) {
   try {
     const res = yield axiosInstance.post('auth', data);
     yield AsyncStorage.setItem('accessToken', res.accessToken);
     yield AsyncStorage.setItem('refreshToken', res.refreshToken);
-    const jwtData = jwtDecode(res.accessToken);
+    const jwtData = jwtDecode<any>(res.accessToken);
     if (jwtData.status === 'REGISTERED') {
       const userInfo = yield axiosInstance.get(
         'customer/info?language=' + global.lang.toUpperCase(),
@@ -42,7 +48,7 @@ export async function* signInSaga({data}: any) {
       }
       goTo('MainStackNavigator', 'Register');
     } else {
-      yield put({type: CHECKED_SIGNED_IN, isSignedIn: true});
+      yield put(setAuthStatusAction(true));
     }
   } catch (error) {
     if (error.response.status === 409) {
@@ -51,7 +57,14 @@ export async function* signInSaga({data}: any) {
   }
 }
 
-export function* signUpSaga(payload: any) {
+/**
+ * Saga for signing user up.
+ * also user is created but additional info
+ * is not yet set, so we move user to the
+ * registration step concerning his birth date,
+ * country, phone number and so on...
+ */
+function* signUpSaga(payload: any) {
   try {
     yield axiosInstance.post(
       'register?language=' + global.lang.toUpperCase(),
@@ -75,7 +88,10 @@ export function* signUpSaga(payload: any) {
   }
 }
 
-export function* getCustomerInfoSaga(payload: any) {
+/**
+ * Get user info from back-end.
+ */
+function* getCustomerInfoSaga(payload: any) {
   try {
     const query = payload.step !== null ? '&step=' + payload.step : '';
     const userInfo = yield axiosInstance.get(
@@ -89,7 +105,10 @@ export function* getCustomerInfoSaga(payload: any) {
   }
 }
 
-export function* setCustomerExtraSaga(payload: any) {
+/**
+ * Saga for saving users additional data.
+ */
+function* setCustomerExtraSaga(payload: any) {
   try {
     yield axiosInstance.put('customer/extra', payload.data);
     yield put(updateRegisterDataAction(payload.data));
@@ -102,7 +121,11 @@ export function* setCustomerExtraSaga(payload: any) {
   }
 }
 
-export function* acceptAgreementSaga() {
+/**
+ * Saga for setting up agreement to the
+ * terms and policies.
+ */
+function* acceptAgreementSaga() {
   try {
     yield axiosInstance.patch('customer/agreement');
     yield put(updateRegisterDataAction({agreement: true}));
@@ -115,7 +138,11 @@ export function* acceptAgreementSaga() {
   }
 }
 
-export function* sendOTPSaga(payload: any) {
+/**
+ * Saga for sending one-time-password
+ * to the user.
+ */
+function* sendOTPSaga(payload: any) {
   try {
     yield axiosInstance.put('customer/sendotp?phone=' + payload.phone);
     yield put(updateRegisterDataAction({phone: payload.phone}));
@@ -127,7 +154,10 @@ export function* sendOTPSaga(payload: any) {
   }
 }
 
-export function* checkOTPSaga(payload: any) {
+/**
+ * Saga for verification one-time-password.
+ */
+function* checkOTPSaga(payload: any) {
   try {
     yield axiosInstance.put('customer/checkotp', {code: payload.code});
     alertSuccess('success', 'dropdownAlert.registerSuccess');
@@ -138,7 +168,10 @@ export function* checkOTPSaga(payload: any) {
   }
 }
 
-export function* updatePasswordSaga(payload: any) {
+/**
+ * Saga for updating user password.
+ */
+function* updatePasswordSaga(payload: any) {
   try {
     yield axiosInstance.patch('auth/updatePassword', payload.data);
     alertSuccess('success', 'Password Changed Successfully');
@@ -147,7 +180,10 @@ export function* updatePasswordSaga(payload: any) {
   }
 }
 
-export function* logoutSaga() {
+/**
+ * Log out saga.
+ */
+function* logoutSaga() {
   try {
     yield axiosInstance.delete('auth/signOut');
     yield AsyncStorage.removeItem('token');
@@ -157,7 +193,11 @@ export function* logoutSaga() {
   }
 }
 
-export function* getCountriesSaga() {
+/**
+ * Saga for getting countries from the back-end
+ * and saving results into the state.
+ */
+function* getCountriesSaga() {
   try {
     const countries = yield axiosInstance.get(
       'country?language=' + global.lang.toUpperCase(),
@@ -167,3 +207,21 @@ export function* getCountriesSaga() {
     alertError('error');
   }
 }
+
+/**
+ * Register all the sagas with the actions.
+ */
+function* registrationSagas() {
+  yield takeLatest(actionTypes.REQUEST_SIGN_IN, signInSaga);
+  yield takeLatest(actionTypes.REQUEST_SIGN_UP, signUpSaga);
+  yield takeLatest(actionTypes.UPDATE_PASSWORD, updatePasswordSaga);
+  yield takeLatest(actionTypes.LOGOUT, logoutSaga);
+  yield takeLatest(actionTypes.GET_COUNTRIES, getCountriesSaga);
+  yield takeLatest(actionTypes.SET_CUSTOMER_EXTRA, setCustomerExtraSaga);
+  yield takeLatest(actionTypes.GET_CUSTOMER_INFO, getCustomerInfoSaga);
+  yield takeLatest(actionTypes.ACCEPT_AGREEMENT, acceptAgreementSaga);
+  yield takeLatest(actionTypes.SEND_OTP, sendOTPSaga);
+  yield takeLatest(actionTypes.CHECK_OTP, checkOTPSaga);
+}
+
+export default registrationSagas;

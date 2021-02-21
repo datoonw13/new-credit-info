@@ -1,31 +1,36 @@
 import {applyMiddleware, compose, createStore} from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import reducer from 'store/reducer';
-import rootSaga from 'store/sagas';
+import * as sagas from 'store/sagas';
 
+declare var window: any;
+
+/**
+ * Create saga middleware.
+ */
 const sagaMiddleware = createSagaMiddleware();
 
-const configureStore = (preloadedState: any = undefined) => {
-  const middlewares = [sagaMiddleware];
-  const middlewareEnhancer = applyMiddleware(...middlewares);
+/**
+ * Create compose enhancer for redux devtools.
+ */
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-  const enhancers = [middlewareEnhancer];
-  const composeEnhancers =
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-  const composedEnhancers = composeEnhancers(...enhancers);
-
-  const store = createStore(reducer, preloadedState, composedEnhancers);
-
-  // if (process.env.NODE_ENV !== 'production' && module.hot) {
-  //   module.hot.accept('./ducks', () => store.replaceReducer(reducer));
-  // }
-
-  return store;
+/**
+ * Configure store
+ */
+const configureStore = () => {
+  return createStore(
+    reducer,
+    composeEnhancers(applyMiddleware(sagaMiddleware)),
+  );
 };
 
 const store = configureStore();
 
-sagaMiddleware.run(() => rootSaga());
+/**
+ * Register sagas.
+ */
+sagaMiddleware.run(sagas.registrationSagas);
+sagaMiddleware.run(sagas.appSagas);
 
 export default store;
