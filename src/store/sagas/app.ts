@@ -1,5 +1,5 @@
 import {put, takeLatest} from 'redux-saga/effects';
-import axiosInstance from 'services/interceptorService';
+import axiosInstance from 'services/axios';
 import {setUserDataAction} from 'store/registration/actions';
 import {setAuthStatusAction} from 'store/app/actions';
 import * as actionTypes from 'store/app/actionTypes';

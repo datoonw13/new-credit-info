@@ -18,6 +18,3 @@ export const GET_COUNTRIES = 'GET_COUNTRIES';
 export const ACCEPT_AGREEMENT = 'ACCEPT_AGREEMENT';
 export const SEND_OTP = 'SEND_OTP';
 export const CHECK_OTP = 'CHECK_OTP';
-
-export const UPDATE_PASSWORD = 'UPDATE_PASSWORD';
-export const LOGOUT = 'LOGOUT';

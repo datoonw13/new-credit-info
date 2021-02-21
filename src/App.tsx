@@ -1,11 +1,11 @@
 import React from 'react';
 import {StatusBar, StyleSheet, View} from 'react-native';
 import {enableScreens} from 'react-native-screens';
-import {Loader} from 'components';
 import DropdownAlert from 'react-native-dropdownalert';
-import Navigation from 'navigation';
 import {ThemeProvider} from 'react-native-elements';
-import {theme} from './services/theme';
+import Navigation from 'navigation';
+import {Loader} from 'components';
+import theme from 'theme/theme';
 import {colors} from 'theme';
 import {saveLoaderRef} from 'utils/loader';
 import {saveDropdownRef} from 'utils/dropdownAlert';

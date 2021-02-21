@@ -19,4 +19,4 @@ const theme = {
   },
 };
 
-export {colors, theme};
+export default theme;

@@ -1,0 +1,9 @@
+export const auth = 'auth';
+export const register = 'register';
+export const customerInfo = 'customer/info';
+export const setAdditionalUserInfo = 'customer/extra';
+export const saveAgreement = 'customer/agreement';
+export const sendOTP = 'customer/sendotp';
+export const verifyOTP = 'customer/checkotp';
+export const getCountries = 'country';
+export const refreshUserData = 'ping';
