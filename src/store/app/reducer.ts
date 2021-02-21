@@ -11,6 +11,12 @@ const appReducer = (state = initialState, action: any) => {
       };
     case actionTypes.DEFAULT:
       return state;
+    case actionTypes.RESET_STORE:
+      return {
+        ...state,
+        isLoading: false,
+        isSignedIn: false,
+      };
     default:
       return state;
   }

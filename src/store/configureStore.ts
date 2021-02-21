@@ -1,29 +1,11 @@
-import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
+import {applyMiddleware, compose, createStore} from 'redux';
 import createSagaMiddleware from 'redux-saga';
+import reducer from 'store/reducer';
+import rootSaga from 'store/sagas';
 
-import {authReducer, mainReducer} from './ducks';
-import {RESET_STORE} from './ducks/mainDuck';
+const sagaMiddleware = createSagaMiddleware();
 
-export const sagaMiddleware = createSagaMiddleware();
-
-const appReducer = combineReducers({
-  mainReducer,
-  authReducer,
-});
-
-const rootReducer = (state, action) => {
-  if (action.type === RESET_STORE) {
-    state = {
-      mainReducer: {
-        isLoading: false,
-        isSignedIn: false,
-      },
-    };
-  }
-  return appReducer(state, action);
-};
-
-export default function configureStore(preloadedState: any) {
+const configureStore = (preloadedState: any = undefined) => {
   const middlewares = [sagaMiddleware];
   const middlewareEnhancer = applyMiddleware(...middlewares);
 
@@ -33,11 +15,17 @@ export default function configureStore(preloadedState: any) {
 
   const composedEnhancers = composeEnhancers(...enhancers);
 
-  const store = createStore(rootReducer, preloadedState, composedEnhancers);
+  const store = createStore(reducer, preloadedState, composedEnhancers);
 
-  if (process.env.NODE_ENV !== 'production' && module.hot) {
-    module.hot.accept('./ducks', () => store.replaceReducer(rootReducer));
-  }
+  // if (process.env.NODE_ENV !== 'production' && module.hot) {
+  //   module.hot.accept('./ducks', () => store.replaceReducer(reducer));
+  // }
 
   return store;
-}
+};
+
+const store = configureStore();
+
+sagaMiddleware.run(() => rootSaga());
+
+export default store;

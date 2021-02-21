@@ -4,8 +4,8 @@ import AsyncStorage from '@react-native-community/async-storage';
 import {alertError} from 'utils/dropdownAlert';
 import {startLoading, stopLoading} from 'utils/loader';
 import {domain} from 'utils/config';
-import storeRegistry from 'store/storeRegistry';
-import {resetStoreAction} from 'store/ducks/mainDuck';
+import {getStore} from 'utils/redux';
+import {resetStoreAction} from 'store/app/actions';
 import {getCurrentRoute} from 'utils/navigation';
 
 let canNotPressBackButton = false;
@@ -74,7 +74,7 @@ const onResponseRejected = (error: any) => {
   ) {
     if (getCurrentRoute() !== 'Ping') {
       AsyncStorage.setItem('authData', '');
-      storeRegistry.getStore().dispatch(resetStoreAction());
+      getStore()?.dispatch(resetStoreAction());
     }
   }
   return Promise.reject({...error});

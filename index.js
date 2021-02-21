@@ -1,16 +1,12 @@
 import React from 'react';
 import {AppRegistry} from 'react-native';
-import App from './src/App';
-import {name as appName} from './app.json';
 import {Provider} from 'react-redux';
-import configureStore, {sagaMiddleware} from './src/store/configureStore';
-import rootSaga from './src/store/sagas';
-import storeRegistry from './src/store/storeRegistry';
+import App from 'App';
+import {name as appName} from './app.json';
+import store from 'store/configureStore';
+import {saveStoreRef} from 'utils/redux';
 
-export const store = configureStore();
-storeRegistry.register(store);
-
-sagaMiddleware.run(() => rootSaga());
+saveStoreRef(store);
 
 const root = () => (
   <Provider store={store}>
