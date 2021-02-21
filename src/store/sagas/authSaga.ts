@@ -3,12 +3,12 @@ import {CHECKED_SIGNED_IN, resetStoreAction} from 'store/ducks/mainDuck';
 import axiosInstance from 'services/interceptorService';
 import AsyncStorage from '@react-native-community/async-storage';
 import {
-  SET_COUNTRIES,
   setRegisterDataAction,
   setRegisterLastStepAction,
   setRegisterSelectedStepAction,
   updateRegisterDataAction,
-} from 'store/ducks/authDuck';
+  setCountriesAction,
+} from 'store/registration/actions';
 import jwtDecode from 'jwt-decode';
 import {global} from 'utils';
 import {goTo} from 'utils/navigation';
@@ -162,7 +162,7 @@ export function* getCountriesSaga() {
     const countries = yield axiosInstance.get(
       'country?language=' + global.lang.toUpperCase(),
     );
-    yield put({type: SET_COUNTRIES, countries});
+    yield put(setCountriesAction(countries));
   } catch (error) {
     alertError('error');
   }

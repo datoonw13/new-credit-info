@@ -23,7 +23,7 @@ const rootReducer = (state, action) => {
   return appReducer(state, action);
 };
 
-export default function configureStore(preloadedState) {
+export default function configureStore(preloadedState: any) {
   const middlewares = [sagaMiddleware];
   const middlewareEnhancer = applyMiddleware(...middlewares);
 

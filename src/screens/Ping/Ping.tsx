@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useDispatch} from 'react-redux';
-import {checkSignedInAction} from 'store/ducks/authDuck';
+import {checkSignedInAction} from 'store/registration/sagaActions';
 
 const PingScreen = () => {
   const dispatch = useDispatch();

@@ -1,43 +1,41 @@
 import {all, takeLatest} from 'redux-saga/effects';
 import {checkSignedInSaga} from './mainSaga';
-import {
-  acceptAgreementSaga,
-  checkOTPSaga,
-  getCountriesSaga,
-  getCustomerInfoSaga,
-  logoutSaga,
-  sendOTPSaga,
-  setCustomerExtraSaga,
-  signInSaga,
-  signUpSaga,
-  updatePasswordSaga,
-} from './authSaga';
-import {
-  ACCEPT_AGREEMENT,
-  CHECK_OTP,
-  CHECK_SIGNED_IN,
-  GET_COUNTRIES,
-  GET_CUSTOMER_INFO,
-  LOGOUT,
-  REQUEST_SIGN_IN,
-  REQUEST_SIGN_UP,
-  SEND_OTP,
-  SET_CUSTOMER_EXTRA,
-  UPDATE_PASSWORD,
-} from '../ducks/authDuck';
+import * as authSagas from './authSaga';
+import * as registrationActionTypes from 'store/registration/actionTypes';
 
 function* actionWatcher() {
-  yield takeLatest(CHECK_SIGNED_IN, checkSignedInSaga);
-  yield takeLatest(REQUEST_SIGN_IN, signInSaga);
-  yield takeLatest(REQUEST_SIGN_UP, signUpSaga);
-  yield takeLatest(UPDATE_PASSWORD, updatePasswordSaga);
-  yield takeLatest(LOGOUT, logoutSaga);
-  yield takeLatest(GET_COUNTRIES, getCountriesSaga);
-  yield takeLatest(SET_CUSTOMER_EXTRA, setCustomerExtraSaga);
-  yield takeLatest(GET_CUSTOMER_INFO, getCustomerInfoSaga);
-  yield takeLatest(ACCEPT_AGREEMENT, acceptAgreementSaga);
-  yield takeLatest(SEND_OTP, sendOTPSaga);
-  yield takeLatest(CHECK_OTP, checkOTPSaga);
+  yield takeLatest(registrationActionTypes.CHECK_SIGNED_IN, checkSignedInSaga);
+  yield takeLatest(
+    registrationActionTypes.REQUEST_SIGN_IN,
+    authSagas.signInSaga,
+  );
+  yield takeLatest(
+    registrationActionTypes.REQUEST_SIGN_UP,
+    authSagas.signUpSaga,
+  );
+  yield takeLatest(
+    registrationActionTypes.UPDATE_PASSWORD,
+    authSagas.updatePasswordSaga,
+  );
+  yield takeLatest(registrationActionTypes.LOGOUT, authSagas.logoutSaga);
+  yield takeLatest(
+    registrationActionTypes.GET_COUNTRIES,
+    authSagas.getCountriesSaga,
+  );
+  yield takeLatest(
+    registrationActionTypes.SET_CUSTOMER_EXTRA,
+    authSagas.setCustomerExtraSaga,
+  );
+  yield takeLatest(
+    registrationActionTypes.GET_CUSTOMER_INFO,
+    authSagas.getCustomerInfoSaga,
+  );
+  yield takeLatest(
+    registrationActionTypes.ACCEPT_AGREEMENT,
+    authSagas.acceptAgreementSaga,
+  );
+  yield takeLatest(registrationActionTypes.SEND_OTP, authSagas.sendOTPSaga);
+  yield takeLatest(registrationActionTypes.CHECK_OTP, authSagas.checkOTPSaga);
 }
 
 export default function* rootSaga() {
