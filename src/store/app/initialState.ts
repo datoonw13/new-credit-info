@@ -1,4 +1,4 @@
-const appInitialState: AppInitialState = {
+const appInitialState: AppState = {
   isLoading: true,
   isSignedIn: false,
 };

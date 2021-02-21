@@ -19,14 +19,14 @@ import * as services from 'services/registration';
  * Also determine if user is being registered,
  * and if so set proper data into the state.
  */
-async function* signInSaga({data}: any) {
+function* signInSaga({data}: any) {
   try {
-    const {accessToken, refreshToken} = await services.auth(data);
+    const {accessToken, refreshToken}: AuthResponse = yield services.auth(data);
     yield AsyncStorage.setItem('accessToken', accessToken);
     yield AsyncStorage.setItem('refreshToken', refreshToken);
     const jwtData = jwtDecode<any>(accessToken);
     if (jwtData.status === 'REGISTERED') {
-      const userInfo = await services.customerInfo();
+      const userInfo: CustomerInfoResponse = yield services.customerInfo();
       yield put(
         setRegisterDataAction({
           ...userInfo,
@@ -61,10 +61,10 @@ async function* signInSaga({data}: any) {
  * registration step concerning his birth date,
  * country, phone number and so on...
  */
-async function* signUpSaga(payload: any) {
+function* signUpSaga(payload: any) {
   try {
     yield services.register(payload.data);
-    const res = await services.auth({
+    const res: AuthResponse = yield services.auth({
       username: payload.data.userName,
       password: payload.data.password,
     });
@@ -86,9 +86,11 @@ async function* signUpSaga(payload: any) {
 /**
  * Get user info from back-end.
  */
-async function* getCustomerInfoSaga(payload: any) {
+function* getCustomerInfoSaga(payload: any) {
   try {
-    const userInfo = await services.customerInfo(payload.step);
+    const userInfo: CustomerInfoResponse = yield services.customerInfo(
+      payload.step,
+    );
     yield put(updateRegisterDataAction(userInfo));
   } catch (error) {
     if (error.response.status === 409) {

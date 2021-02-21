@@ -1,7 +1,7 @@
 import initialState from './initialState';
 import * as actionTypes from './actionTypes';
 
-const authReducer = (state = initialState, action: any) => {
+const registrationReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case actionTypes.SET_USER_DATA:
       return {
@@ -45,4 +45,4 @@ const authReducer = (state = initialState, action: any) => {
   }
 };
 
-export default authReducer;
+export default registrationReducer;

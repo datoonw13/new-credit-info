@@ -1,10 +1,10 @@
 import {combineReducers} from 'redux';
-import registrationReducer from './registration/reducer';
-import appReducer from './app/reducer';
+import registration from './registration/reducer';
+import app from './app/reducer';
 
 const reducer = combineReducers({
-  registrationReducer,
-  appReducer,
+  registration,
+  app,
 });
 
 export default reducer;

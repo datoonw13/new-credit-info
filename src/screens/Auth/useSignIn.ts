@@ -4,8 +4,7 @@ import {Platform, Keyboard} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {useForm} from 'react-hook-form';
 import {useDispatch} from 'react-redux';
-import {signInAction} from 'store/ducks/authDuck';
-import {goTo} from 'utils/navigation';
+import {signIn} from 'store/registration/sagaActions';
 
 const useAuth = () => {
   const {navigate} = useNavigation();
@@ -45,7 +44,7 @@ const useAuth = () => {
   const onSubmit = async ({username, password}) => {
     Keyboard.dismiss();
     dispatch(
-      signInAction({
+      signIn({
         // username: '00000000098',
         // password: 'asdASD123!@#',
         username,

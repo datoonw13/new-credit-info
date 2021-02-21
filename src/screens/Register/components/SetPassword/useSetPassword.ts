@@ -1,10 +1,8 @@
 import {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {useForm} from 'react-hook-form';
-import {
-  setRegisterSelectedStepAction,
-  signUpAction,
-} from 'store/ducks/authDuck';
+import {setRegisterSelectedStepAction} from 'store/registration/actions';
+import {signUp} from 'store/registration/sagaActions';
 
 const useSetPassword = ({registerData, lastStep}: SetPasswordProps) => {
   const dispatch = useDispatch();
@@ -23,7 +21,7 @@ const useSetPassword = ({registerData, lastStep}: SetPasswordProps) => {
     console.log({...data, ...registerData});
     if (lastStep === 3) {
       dispatch(
-        signUpAction({
+        signUp({
           ...data,
           ...registerData,
         }),

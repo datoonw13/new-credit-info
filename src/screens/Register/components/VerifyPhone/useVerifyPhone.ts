@@ -1,6 +1,6 @@
 import {useDispatch} from 'react-redux';
 import {useForm} from 'react-hook-form';
-import {checkOTPAction, sendOTPAction} from 'store/ducks/authDuck';
+import {checkOTP, sendOTP} from 'store/registration/sagaActions';
 
 const useVerifyPhone = ({registerData}: VerifyPhoneProps) => {
   const dispatch = useDispatch();
@@ -14,9 +14,9 @@ const useVerifyPhone = ({registerData}: VerifyPhoneProps) => {
 
   const onSubmit = (data) => {
     if (registerData.phone) {
-      dispatch(checkOTPAction(data.code));
+      dispatch(checkOTP(data.code));
     } else {
-      dispatch(sendOTPAction(data.phone));
+      dispatch(sendOTP(data.phone));
     }
   };
 

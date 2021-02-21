@@ -3,7 +3,7 @@ import * as actionTypes from './actionTypes';
 /**
  * Check if user is authenticated.
  */
-export const checkSignedInAction = () => ({
+export const checkSignedIn = () => ({
   type: actionTypes.CHECK_SIGNED_IN,
 });
 
@@ -12,7 +12,7 @@ export const checkSignedInAction = () => ({
  * If user is being registered,
  * make him continue registration process.
  */
-export const signInAction = (data: any) => ({
+export const signIn = (data: any) => ({
   type: actionTypes.REQUEST_SIGN_IN,
   data,
 });
@@ -21,7 +21,7 @@ export const signInAction = (data: any) => ({
  * Sign up action.
  * Without user's additional info.
  */
-export const signUpAction = (data: any) => ({
+export const signUp = (data: any) => ({
   type: actionTypes.REQUEST_SIGN_UP,
   data,
 });
@@ -29,7 +29,7 @@ export const signUpAction = (data: any) => ({
 /**
  * Set users additional info during registration.
  */
-export const setCustomerExtraAction = (data: any) => ({
+export const setCustomerExtra = (data: any) => ({
   type: actionTypes.SET_CUSTOMER_EXTRA,
   data,
 });
@@ -38,14 +38,14 @@ export const setCustomerExtraAction = (data: any) => ({
  * Get countries from the back-end and
  * save them into the state.
  */
-export const getCountriesAction = () => ({
+export const getCountries = () => ({
   type: actionTypes.GET_COUNTRIES,
 });
 
 /**
  * Get user information.
  */
-export const getCostumerInfoAction = (step: any) => ({
+export const getCostumerInfo = (step: any) => ({
   type: actionTypes.GET_CUSTOMER_INFO,
   step,
 });
@@ -53,14 +53,14 @@ export const getCostumerInfoAction = (step: any) => ({
 /**
  * Accept agreement request action to the back-end.
  */
-export const acceptAgreementAction = () => ({
+export const acceptAgreement = () => ({
   type: actionTypes.ACCEPT_AGREEMENT,
 });
 
 /**
  * Send one time password to the user.
  */
-export const sendOTPAction = (phone: any) => ({
+export const sendOTP = (phone: any) => ({
   type: actionTypes.SEND_OTP,
   phone,
 });
@@ -68,7 +68,7 @@ export const sendOTPAction = (phone: any) => ({
 /**
  * Verify one time password.
  */
-export const checkOTPAction = (code: any) => ({
+export const checkOTP = (code: any) => ({
   type: actionTypes.CHECK_OTP,
   code,
 });

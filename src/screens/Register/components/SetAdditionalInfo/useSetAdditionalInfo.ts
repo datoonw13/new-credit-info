@@ -1,19 +1,20 @@
 import {useState, useEffect} from 'react';
 import {useForm} from 'react-hook-form';
 import {useDispatch, useSelector} from 'react-redux';
+import {setRegisterSelectedStepAction} from 'store/registration/actions';
 import {
-  getCostumerInfoAction,
-  getCountriesAction,
-  setCustomerExtraAction,
-  setRegisterSelectedStepAction,
-} from 'store/ducks/authDuck';
+  setCustomerExtra,
+  getCostumerInfo,
+  getCountries,
+} from 'store/registration/sagaActions';
+import {selectRegistration} from 'store/select';
 
 const useSetAdditionalInfo = ({
   registerData,
   lastStep,
 }: SetAdditionalInfoProps) => {
   const dispatch = useDispatch();
-  const {countries} = useSelector((state) => state.authReducer);
+  const {countries} = useSelector(selectRegistration);
   const [calendarModalVisible, setCalendarModalVisible] = useState(false);
   const [countryModalVisible, setCountryModalVisible] = useState(false);
   const [activeDate, setActiveDate] = useState(null);
@@ -39,11 +40,11 @@ const useSetAdditionalInfo = ({
         setValue('birthDate', registerData.birthDate);
         setValue('country', registerData.country);
       } else {
-        dispatch(getCostumerInfoAction(1));
+        dispatch(getCostumerInfo(1));
       }
     }
     if (lastStep === 4 && countries.length === 0) {
-      dispatch(getCountriesAction());
+      dispatch(getCountries());
     }
     if (lastStep === 4 && countries.length !== 0 && activeCountry.id === null) {
       const country = countries.find((el) => el.alpha2Code === 'GE');
@@ -57,7 +58,7 @@ const useSetAdditionalInfo = ({
   const onSubmit = (data = {}) => {
     if (lastStep === 4) {
       dispatch(
-        setCustomerExtraAction({
+        setCustomerExtra({
           ...data,
           countryId: activeCountry.id,
         }),

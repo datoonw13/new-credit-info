@@ -2,11 +2,11 @@ import {useEffect} from 'react';
 import {useDispatch} from 'react-redux';
 import {useForm} from 'react-hook-form';
 import {
-  getCostumerInfoAction,
   setRegisterLastStepAction,
   setRegisterSelectedStepAction,
   updateRegisterDataAction,
-} from 'store/ducks/authDuck';
+} from 'store/registration/actions';
+import {getCostumerInfo} from 'store/registration/sagaActions';
 
 const useSetPersonalInfo = ({registerData, lastStep}: SetPersonalInfoProps) => {
   const dispatch = useDispatch();
@@ -28,13 +28,12 @@ const useSetPersonalInfo = ({registerData, lastStep}: SetPersonalInfoProps) => {
         setValue('firstName', registerData.firstName);
         setValue('lastName', registerData.lastName);
       } else {
-        dispatch(getCostumerInfoAction(0));
+        dispatch(getCostumerInfo(0));
       }
     }
   }, [dispatch, registerData]);
 
   const onSubmit = (data: any = null) => {
-    console.log('aq shemodis?');
     if (lastStep === 2) {
       dispatch(updateRegisterDataAction(data));
       dispatch(setRegisterLastStepAction(3));

@@ -3,7 +3,7 @@ import {
   setRegisterLastStepAction,
   setRegisterSelectedStepAction,
   updateRegisterDataAction,
-} from 'store/ducks/authDuck';
+} from 'store/registration/actions';
 import {useDispatch} from 'react-redux';
 
 const useChooseEntity = ({customerType, lastStep}: ChooseEntityProps) => {

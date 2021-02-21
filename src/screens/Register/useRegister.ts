@@ -4,13 +4,14 @@ import {useDispatch, useSelector} from 'react-redux';
 import {
   resetRegisterDataAction,
   setRegisterSelectedStepAction,
-} from 'store/ducks/authDuck';
+} from 'store/registration/actions';
+import {selectRegistration} from 'store/select';
 
 const useRegister = () => {
   const {navigate} = useNavigation();
   const dispatch = useDispatch();
   const {registerSelectedStep, registerLastStep, registerData} = useSelector(
-    (state) => state.authReducer,
+    selectRegistration,
   );
 
   useEffect(() => {

@@ -1,9 +1,7 @@
 import {useState} from 'react';
 import {alertError} from 'utils/dropdownAlert';
-import {
-  setRegisterSelectedStepAction,
-  acceptAgreementAction,
-} from 'store/ducks/authDuck';
+import {setRegisterSelectedStepAction} from 'store/registration/actions';
+import {acceptAgreement} from 'store/registration/sagaActions';
 import {useDispatch} from 'react-redux';
 
 const useAcceptTerms = ({lastStep}: AcceptTermsProps) => {
@@ -16,7 +14,7 @@ const useAcceptTerms = ({lastStep}: AcceptTermsProps) => {
       return;
     }
     if (lastStep === 5) {
-      dispatch(acceptAgreementAction());
+      dispatch(acceptAgreement());
     }
     dispatch(setRegisterSelectedStepAction(6));
   };
