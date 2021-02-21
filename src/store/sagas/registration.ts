@@ -63,12 +63,15 @@ function* signInSaga({data}: any) {
  */
 function* signUpSaga(payload: any) {
   try {
-    yield services.register(payload.data);
+    const registerResult = yield services.register(payload.data);
+    console.log({registerResult});
+
     const res: AuthResponse = yield services.auth({
       username: payload.data.userName,
       password: payload.data.password,
     });
 
+    console.log({authResult: res});
     yield AsyncStorage.setItem('accessToken', res.accessToken);
     yield AsyncStorage.setItem('refreshToken', res.refreshToken);
     yield put(updateRegisterDataAction(payload.data));
@@ -151,7 +154,7 @@ function* sendOTPSaga(payload: any) {
 /**
  * Saga for verification one-time-password.
  */
-function* checkOTPSaga(payload: any) {
+function* verifyOTPSaga(payload: any) {
   try {
     yield services.verifyOTP(payload.code);
     alertSuccess('success', 'dropdownAlert.registerSuccess');
@@ -186,7 +189,7 @@ function* registrationSagas() {
   yield takeLatest(actionTypes.GET_CUSTOMER_INFO, getCustomerInfoSaga);
   yield takeLatest(actionTypes.ACCEPT_AGREEMENT, acceptAgreementSaga);
   yield takeLatest(actionTypes.SEND_OTP, sendOTPSaga);
-  yield takeLatest(actionTypes.CHECK_OTP, checkOTPSaga);
+  yield takeLatest(actionTypes.CHECK_OTP, verifyOTPSaga);
 }
 
 export default registrationSagas;

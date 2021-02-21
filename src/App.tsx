@@ -1,5 +1,5 @@
 import React from 'react';
-import {StatusBar, StyleSheet, View} from 'react-native';
+import {Platform, StatusBar, StyleSheet, View} from 'react-native';
 import {enableScreens} from 'react-native-screens';
 import DropdownAlert from 'react-native-dropdownalert';
 import {ThemeProvider} from 'react-native-elements';
@@ -18,7 +18,10 @@ const App = () => {
     <>
       <ThemeProvider theme={theme}>
         <View style={styles.statusBar}>
-          <StatusBar backgroundColor={colors.black} barStyle="dark-content" />
+          <StatusBar
+            backgroundColor={colors.black}
+            barStyle={Platform.OS === 'ios' ? 'dark-content' : 'light-content'}
+          />
         </View>
         <Navigation />
         <Loader ref={saveLoaderRef} />

@@ -19,5 +19,5 @@ export const startLoading = () => {
  * Stop loader spinning on the screen.
  */
 export const stopLoading = () => {
-  references.loader?.start();
+  references.loader?.stop();
 };
