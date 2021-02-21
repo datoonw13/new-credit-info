@@ -11,7 +11,7 @@ import {Divider} from 'react-native-elements';
 import * as colors from 'theme/colors';
 import {FIRAGO_BOLD, FIRAGO_REGULAR} from 'theme/fonts';
 import {HeaderWithLogo, AuthFooter, Text} from 'components';
-import {RegistrationStep} from './components';
+import RegistrationStep from './components/RegistrationStep';
 import useRegister from './useRegister';
 
 const Register = () => {
