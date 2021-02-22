@@ -10,6 +10,7 @@ export default {
   back: 'Back',
   error: 'Error Encountered',
   success: 'Success',
+  save: 'Save',
 
   login: 'Log In',
   service: 'Service',

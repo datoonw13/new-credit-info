@@ -64,11 +64,11 @@ const CalendarModal: CalendarModalFC = ({
               indicatorColor: colors.black,
               arrowColor: colors.black,
               todayTextColor: colors.black,
-              selectedDayBackgroundColor: colors.RED2,
+              selectedDayBackgroundColor: colors.crimson,
               selectedDayTextColor: colors.white,
             }}
           />
-          <Button text={'SAVE2'} onPress={() => setDate(selectedDate)} />
+          <Button text={'save'} onPress={() => setDate(selectedDate)} />
         </View>
       </View>
     </Modal>

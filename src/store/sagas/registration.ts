@@ -143,7 +143,7 @@ function* sendOTPSaga(payload: any) {
   try {
     yield services.SendOTP(payload.phone);
     yield put(updateRegisterDataAction({phone: payload.phone}));
-    alertSuccess('success', 'SEND_OTP_SUCCESS');
+    alertSuccess('success', 'dropdownAlert.sendOTPSuccess');
   } catch (error) {
     if (error.response.status === 409) {
       alertError('error', error.response.data.errorCode.toUpperCase());

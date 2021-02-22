@@ -23,6 +23,7 @@ const Input: InputFC = ({
   onChangeText,
   keyboardType,
   errorMessage,
+  autoCorrect,
   maxLength,
   rightIcon,
   leftIcon,
@@ -62,17 +63,18 @@ const Input: InputFC = ({
             leftIcon && styles.paddingLeft,
             {borderColor: inputBorderColor},
           ]}
-          placeholder={label && t(label)}
+          placeholderTextColor={colors.blackOp3}
           secureTextEntry={secureTextEntry}
           autoCapitalize={autoCapitalize}
+          placeholder={label && t(label)}
           pointerEvents={pointerEvents}
-          keyboardType={keyboardType}
           onChangeText={onChangeText}
+          keyboardType={keyboardType}
+          autoCorrect={autoCorrect}
           maxLength={maxLength}
           editable={editable}
           onBlur={onBlur}
           value={value}
-          placeholderTextColor={colors.blackOp3}
         />
         <Animated.View style={[styles.errorTextWrapper, {height}]}>
           <Text style={styles.errorText} children={errorMessage} />

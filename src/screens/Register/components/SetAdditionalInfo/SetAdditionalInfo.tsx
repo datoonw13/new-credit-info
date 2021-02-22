@@ -110,6 +110,7 @@ const SetAdditionalInfo: SetAdditionalInfoFC = ({
                 value={value}
                 maxLength={35}
                 errorMessage={errors.address && t('registration.validAddress')}
+                autoCorrect={false}
               />
             )}
             rules={{
