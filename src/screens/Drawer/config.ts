@@ -14,7 +14,7 @@ export const menuList = [
   {
     id: 2,
     title: 'service',
-    color: colors.lightGreen,
+    color: colors.secondGreenOp1,
     Icon: Service,
     dividerWidth: '80%',
     navigate: () => goTo('MainStackNavigator', 'Service'),

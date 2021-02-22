@@ -20,3 +20,5 @@ export {default as FAQItem} from './FAQItem';
 export {default as BackButton} from './BackButton';
 export {default as ServiceSwitcher} from './ServiceSwitcher';
 export {default as IndividualLegalEntitySwitcher} from './IndividualLegalEntitySwitcher';
+export {default as RegisterBottomTab} from './RegisterBottomTab';
+export {default as BlueAction} from './BlueAction';

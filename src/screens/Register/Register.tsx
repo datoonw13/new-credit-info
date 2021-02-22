@@ -10,17 +10,12 @@ import {
 import {Divider} from 'react-native-elements';
 import * as colors from 'theme/colors';
 import {FIRAGO_BOLD, FIRAGO_REGULAR} from 'theme/fonts';
-import {HeaderWithLogo, AuthFooter, Text} from 'components';
+import {HeaderWithLogo, RegisterBottomTab, Text} from 'components';
 import RegistrationStep from './components/RegistrationStep';
 import useRegister from './useRegister';
 
 const Register = () => {
-  const {
-    registerSelectedStep,
-    registerLastStep,
-    registerData,
-    footerHandler,
-  } = useRegister();
+  const {registerSelectedStep, registerLastStep, registerData} = useRegister();
 
   return (
     <View style={styles.topContainer}>
@@ -43,16 +38,7 @@ const Register = () => {
           </View>
         </KeyboardAvoidingView>
       </TouchableWithoutFeedback>
-      {registerSelectedStep === 1 ? (
-        <AuthFooter
-          text="haveAccount"
-          link="auth"
-          handler={footerHandler}
-          mode="link"
-        />
-      ) : (
-        <AuthFooter handler={footerHandler} mode="goback" />
-      )}
+      <RegisterBottomTab />
     </View>
   );
 };

@@ -14,7 +14,14 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import * as colors from 'theme/colors';
 import {FIRAGO_BOLD, FIRAGO_REGULAR} from 'theme/fonts';
 import {RedGirl} from 'assets/svg';
-import {Input, Button, HeaderWithLogo, AuthFooter, Text} from 'components';
+import {
+  HeaderWithLogo,
+  AuthFooter,
+  BlueAction,
+  Button,
+  Input,
+  Text,
+} from 'components';
 import useSignIn from './useSignIn';
 
 const SignIn = () => {
@@ -108,12 +115,7 @@ const SignIn = () => {
                 style={styles.saveText}
                 children="authorization.rememberMe"
               />
-              <TouchableOpacity>
-                <Text
-                  style={styles.forgetText}
-                  children="authorization.forgotPassword"
-                />
-              </TouchableOpacity>
+              <BlueAction text="authorization.forgotPassword" />
             </View>
             <Divider />
             <Button
@@ -191,11 +193,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontFamily: FIRAGO_REGULAR,
     flex: 1,
-  },
-  forgetText: {
-    color: colors.blue,
-    fontSize: 12,
-    fontFamily: FIRAGO_REGULAR,
   },
   authBtn: {
     marginTop: 18,

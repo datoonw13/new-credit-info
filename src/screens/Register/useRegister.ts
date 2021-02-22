@@ -1,14 +1,9 @@
 import {useEffect} from 'react';
-import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
-import {
-  resetRegisterDataAction,
-  setRegisterSelectedStepAction,
-} from 'store/registration/actions';
+import {resetRegisterDataAction} from 'store/registration/actions';
 import {selectRegistration} from 'store/select';
 
 const useRegister = () => {
-  const {navigate} = useNavigation();
   const dispatch = useDispatch();
   const {registerSelectedStep, registerLastStep, registerData} = useSelector(
     selectRegistration,
@@ -20,16 +15,9 @@ const useRegister = () => {
     };
   }, [dispatch]);
 
-  const footerHandler = () => {
-    registerSelectedStep === 1
-      ? navigate('Register')
-      : dispatch(setRegisterSelectedStepAction(registerSelectedStep - 1));
-  };
-
   return {
     registerSelectedStep,
     registerLastStep,
-    footerHandler,
     registerData,
   };
 };
