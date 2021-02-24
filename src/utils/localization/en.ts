@@ -73,6 +73,7 @@ export default {
     validPhone: 'Please, type phone number',
     OTP: 'One Time Password',
     validOTP: 'Please, type One Time Password',
+    sendAgain: 'Send Again',
   },
 
   dropdownAlert: {

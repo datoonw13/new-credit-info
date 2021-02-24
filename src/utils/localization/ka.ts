@@ -74,6 +74,7 @@ export default {
     validPhone: 'შეიყვანეთ ტელეფონის ნომერი',
     OTP: 'ერთჯერადი კოდი',
     validOTP: 'შეიყვანეთ ერთჯერადი კოდი',
+    sendAgain: 'ხელახლა გამოგზავნა',
   },
 
   dropdownAlert: {

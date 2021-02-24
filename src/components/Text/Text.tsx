@@ -1,19 +1,23 @@
 import React from 'react';
 import {useTranslation} from 'react-i18next';
-import {StyleSheet, Text as NativeText} from 'react-native';
+import {StyleSheet, Text as NativeText, Animated} from 'react-native';
 import {TextPropsFC} from './type';
 
 const Text: TextPropsFC = ({
   dontTranslate = false,
   capsBold = false,
   caps = false,
+  animated,
   children,
   style,
   ...allTheRest
 }) => {
   const {t} = useTranslation();
+
+  const ReactNativeText = animated ? Animated.Text : NativeText;
+
   return (
-    <NativeText
+    <ReactNativeText
       style={[
         styles.text,
         style,

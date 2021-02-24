@@ -71,7 +71,6 @@ function* signUpSaga(payload: any) {
       password: payload.data.password,
     });
 
-    console.log({authResult: res});
     yield AsyncStorage.setItem('accessToken', res.accessToken);
     yield AsyncStorage.setItem('refreshToken', res.refreshToken);
     yield put(updateRegisterDataAction(payload.data));
@@ -141,10 +140,12 @@ function* acceptAgreementSaga() {
  */
 function* sendOTPSaga(payload: any) {
   try {
+    console.log({phone: payload.phone});
     yield services.SendOTP(payload.phone);
     yield put(updateRegisterDataAction({phone: payload.phone}));
     alertSuccess('success', 'dropdownAlert.sendOTPSuccess');
   } catch (error) {
+    console.dir(error);
     if (error.response.status === 409) {
       alertError('error', error.response.data.errorCode.toUpperCase());
     }

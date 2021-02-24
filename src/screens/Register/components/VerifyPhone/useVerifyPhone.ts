@@ -3,6 +3,7 @@ import {useForm} from 'react-hook-form';
 import {checkOTP, sendOTP} from 'store/registration/sagaActions';
 
 const useVerifyPhone = ({registerData}: VerifyPhoneProps) => {
+  console.log(registerData);
   const dispatch = useDispatch();
   const {control, handleSubmit, errors} = useForm({
     mode: 'onSubmit',

@@ -3,7 +3,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import * as colors from 'theme/colors';
 import {Divider} from 'react-native-elements';
 import {Controller} from 'react-hook-form';
-import {Button, Input} from 'components';
+import {Button, Input, SendAgain} from 'components';
 import useVerifyPhone from './useVerifyPhone';
 import {useTranslation} from 'react-i18next';
 
@@ -42,7 +42,7 @@ const VerifyPhone: VerifyPhoneFC = ({registerData}) => {
           pattern: /^5[0-9]{8}$/,
         }}
       />
-      {registerData.phone ? (
+      {registerData.phone && (
         <View style={styles.receivedCodeContainer}>
           <Controller
             name="code"
@@ -50,7 +50,7 @@ const VerifyPhone: VerifyPhoneFC = ({registerData}) => {
             render={({onChange, onBlur, value}) => (
               <Input
                 onBlur={onBlur}
-                onChangeText={(val) => onChange(val)}
+                onChangeText={onChange}
                 value={value}
                 maxLength={6}
                 keyboardType="number-pad"
@@ -64,8 +64,9 @@ const VerifyPhone: VerifyPhoneFC = ({registerData}) => {
               pattern: /^\d*$/,
             }}
           />
+          <SendAgain phoneNumber={registerData.phone} />
         </View>
-      ) : null}
+      )}
       <Divider />
       <Button text="continue" onPress={handleSubmit(onSubmit)} />
     </>

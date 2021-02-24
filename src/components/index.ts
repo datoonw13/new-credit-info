@@ -22,3 +22,4 @@ export {default as ServiceSwitcher} from './ServiceSwitcher';
 export {default as IndividualLegalEntitySwitcher} from './IndividualLegalEntitySwitcher';
 export {default as RegisterBottomTab} from './RegisterBottomTab';
 export {default as BlueAction} from './BlueAction';
+export {default as SendAgain} from './SendAgain';
