@@ -15,6 +15,7 @@ export const YELLOW = 'rgba(244, 198, 112, 1)';
 
 export const black = 'rgba(0, 0, 0, 1)';
 export const blackOp8 = 'rgba(0, 0, 0, .8)';
+export const blackOp7 = 'rgba(0, 0, 0, .7)';
 export const blackOp5 = 'rgba(0, 0, 0, 0.5)';
 export const blackOp3 = 'rgba(0, 0, 0, 0.3)';
 export const blackOp2 = 'rgba(0, 0, 0, 0.2)';
@@ -34,6 +35,7 @@ export const greenOp1 = 'rgba(52, 195, 107, 0.1)';
 
 export const secondGreen = 'rgba(82, 185, 37, 1)';
 export const secondGreenOp1 = 'rgba(82, 185, 37, .1)';
+export const secondGreenOp25 = 'rgba(82, 185, 37, .25)';
 
 export const yellow = 'rgba(226, 155, 20, 1)';
 export const yellowOp1 = 'rgba(226, 155, 20, 0.1)';

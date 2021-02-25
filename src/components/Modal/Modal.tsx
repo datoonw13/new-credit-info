@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet} from 'react-native';
 import RNModal from 'react-native-modal';
 import {colors} from 'theme';
+import {ConfigureModalProps} from 'types/global';
 import {config} from 'utils';
 import {ModalProps, ModalState} from './types';
 
@@ -11,11 +12,20 @@ class Modal extends Component<ModalProps, ModalState> {
 
     this.state = {
       visible: false,
+      element: undefined,
+      props: {},
+      style: undefined,
     };
 
-    this.onBackDropPress = this.onBackDropPress.bind(this)
+    this.onBackDropPress = this.onBackDropPress.bind(this);
+    this.configure = this.configure.bind(this);
+    this.close = this.close.bind(this);
+    this.show = this.show.bind(this);
   }
 
+  /**
+   * Set visible state according to props.
+   */
   componentDidMount() {
     const {isVisible} = this.props;
     this.setState({visible: !!isVisible});
@@ -27,29 +37,55 @@ class Modal extends Component<ModalProps, ModalState> {
   onBackDropPress() {
     const {closeOnBackDropPress = true} = this.props;
     if (closeOnBackDropPress) {
-      this.setState({visible: false});
+      this.close();
     }
+  }
+
+  /**
+   * Close modal.
+   */
+  close() {
+    this.setState({
+      visible: false,
+      element: undefined,
+      props: {},
+      style: undefined,
+    });
   }
 
   /**
    * Show modal.
    */
   show() {
-    this.setState({visible: true})
+    this.setState((prevState) => ({
+      ...prevState,
+      visible: true,
+    }));
+  }
+
+  /**
+   * Configure modal.
+   */
+  configure({element, style, props}: ConfigureModalProps) {
+    this.setState((prevState) => ({
+      ...prevState,
+      element,
+      style,
+      props,
+    }));
   }
 
   render() {
-    const {style, children = null} = this.props;
+    const {style} = this.props;
     const {visible} = this.state;
 
     return (
       <RNModal
-        style={[styles.modalContainer, style]}
+        style={[styles.modalContainer, style, this.state.style]}
         onBackdropPress={this.onBackDropPress}
-        isVisible={visible}>
-        <View>
-          {children}
-        </View>
+        isVisible={visible}
+        {...this.state.props}>
+        {this.state.element ?? <></>}
       </RNModal>
     );
   }

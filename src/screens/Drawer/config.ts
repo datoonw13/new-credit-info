@@ -9,7 +9,7 @@ export const menuList = [
     color: colors.crimsonOp2,
     Icon: Login,
     dividerWidth: '100%',
-    navigate: goTo('MainStackNavigator', 'Auth'),
+    navigate: () => goTo('MainStackNavigator', 'Auth'),
   },
   {
     id: 2,

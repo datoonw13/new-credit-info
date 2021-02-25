@@ -24,7 +24,7 @@ const DrawerNav = createDrawerNavigator();
 
 const MainStackNavigator = () => (
   <MainStack.Navigator
-    initialRouteName="Test"
+    initialRouteName="Auth"
     screenOptions={authStackScreenOptions}>
     <MainStack.Screen component={Test} name="Test" />
     <MainStack.Screen component={Auth} name="Auth" />

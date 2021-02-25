@@ -1,14 +1,16 @@
-import React from 'react';
-import {SafeAreaView, View, StyleSheet} from 'react-native';
-// import TouchId from 'react-native-touch-id';
-import {Modal, Text, Button} from 'components';
-import {show} from 'utils/modal'
+import React, {useEffect} from 'react';
+import {SafeAreaView, StyleSheet} from 'react-native';
+import {Button} from 'components';
+import {showSentOTPModal} from 'utils/modal';
 
 const Test = () => {
+  useEffect(() => {
+    showSentOTPModal();
+  }, []);
   return (
     <>
       <SafeAreaView />
-        <Button text="show modal" onPress={show} />
+      <Button text="show modal" onPress={showSentOTPModal} />
     </>
   );
 };

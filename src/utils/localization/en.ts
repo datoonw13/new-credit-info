@@ -11,6 +11,7 @@ export default {
   error: 'Error Encountered',
   success: 'Success',
   save: 'Save',
+  ok: 'OK',
 
   login: 'Log In',
   service: 'Service',
@@ -79,6 +80,10 @@ export default {
   dropdownAlert: {
     userCreateSuccess: 'User created successfully!',
     registerSuccess: 'You have registered successfully!',
+  },
+
+  modal: {
+    smsCode: 'SMS Code',
     sendOTPSuccess:
       'We sent you one time password, please follow instructions...',
   },

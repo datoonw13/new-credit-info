@@ -1,6 +1,6 @@
 import {ReactNode} from 'react';
 import {StyleProp, ViewStyle} from 'react-native';
-// import ReactNativeModal, {ModalProps as RNModalProps} from 'react-native-modal';
+import {ModalProps as RNModalProps} from 'react-native-modal';
 
 type ModalProps = {
   children?: ReactNode;
@@ -11,4 +11,7 @@ type ModalProps = {
 
 type ModalState = {
   visible: boolean;
+  element: ReactNode;
+  props?: Partial<RNModalProps>;
+  style: StyleProp<ViewStyle>;
 };

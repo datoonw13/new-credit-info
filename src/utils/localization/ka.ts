@@ -12,6 +12,7 @@ export default {
   error: 'დაფიქსირდა შეცდომა',
   success: 'ოპერაცია წარმატებით შესრულდა',
   save: 'შეინახე',
+  ok: 'OK',
 
   login: 'შესვლა',
   service: 'მომსახურება',
@@ -80,6 +81,11 @@ export default {
   dropdownAlert: {
     userCreateSuccess: 'მომხმარებელი წარმატებით შეიქმნა',
     registerSuccess: 'მომხმარებელი წარმატებით დარეგისტრირდა',
+    sendOTPSuccess: 'ჩვენ გამოგიგზავნეთ ერთჯერადი კოდი, მიყევით ინსტრუქციას.',
+  },
+
+  modal: {
+    smsCode: 'SMS კოდი',
     sendOTPSuccess: 'ჩვენ გამოგიგზავნეთ ერთჯერადი კოდი, მიყევით ინსტრუქციას.',
   },
 

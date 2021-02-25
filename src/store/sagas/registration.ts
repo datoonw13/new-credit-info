@@ -13,6 +13,7 @@ import jwtDecode from 'jwt-decode';
 import {goTo} from 'utils/navigation';
 import {alertError, alertSuccess} from 'utils/dropdownAlert';
 import * as services from 'services/registration';
+import {showSentOTPModal} from 'utils/modal';
 
 /**
  * Saga for user sign in.
@@ -76,7 +77,7 @@ function* signUpSaga(payload: any) {
     yield put(updateRegisterDataAction(payload.data));
     yield put(setRegisterLastStepAction(4));
     yield put(setRegisterSelectedStepAction(4));
-    yield alertSuccess('success', 'registration.userCreateSuccess');
+    yield alertSuccess('success', 'dropdownAlert.userCreateSuccess');
   } catch (error) {
     console.log(error);
     if (error.response.status === 409) {
@@ -143,7 +144,7 @@ function* sendOTPSaga(payload: any) {
     console.log({phone: payload.phone});
     yield services.SendOTP(payload.phone);
     yield put(updateRegisterDataAction({phone: payload.phone}));
-    alertSuccess('success', 'dropdownAlert.sendOTPSuccess');
+    showSentOTPModal();
   } catch (error) {
     console.dir(error);
     if (error.response.status === 409) {

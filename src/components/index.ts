@@ -24,3 +24,5 @@ export {default as RegisterBottomTab} from './RegisterBottomTab';
 export {default as BlueAction} from './BlueAction';
 export {default as SendAgain} from './SendAgain';
 export {default as Modal} from './Modal';
+export {default as SentOTPModal} from './SentOTPModal';
+export {default as LightGreyButton} from './LightGreyButton';

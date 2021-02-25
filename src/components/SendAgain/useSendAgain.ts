@@ -1,4 +1,4 @@
-import {useCallback, useMemo, useRef, useState} from 'react';
+import {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 import {Animated} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {sendOTP} from 'store/registration/sagaActions';
@@ -24,6 +24,14 @@ const useSendAgain = ({sendAgainDuration, phoneNumber}: SendAgainProps) => {
   );
 
   /**
+   * On mount start OTP animation.
+   */
+  useEffect(() => {
+    setLoading(true);
+    sendOTPAnimation.start(() => setLoading(false));
+  }, [sendOTPAnimation]);
+
+  /**
    * Send one-time-password to user.
    */
   const sendOTPRequest = useCallback(() => {
@@ -37,6 +45,7 @@ const useSendAgain = ({sendAgainDuration, phoneNumber}: SendAgainProps) => {
   }, [dispatch, sendOTPAnimation, phoneNumber, loading, setLoading]);
 
   return {
+    sendOTPAnimation,
     sendOTPRequest,
     loading,
     width,

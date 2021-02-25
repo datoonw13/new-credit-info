@@ -6,7 +6,6 @@ type TextProps = {
   caps?: boolean;
   children: string;
   animated?: boolean;
-} & NativeTextProps &
-  any;
+} & NativeTextProps;
 
 type TextPropsFC = (props: TextProps) => JSX.Element;
