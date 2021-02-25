@@ -23,3 +23,4 @@ export {default as IndividualLegalEntitySwitcher} from './IndividualLegalEntityS
 export {default as RegisterBottomTab} from './RegisterBottomTab';
 export {default as BlueAction} from './BlueAction';
 export {default as SendAgain} from './SendAgain';
+export {default as Modal} from './Modal';

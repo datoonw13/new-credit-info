@@ -4,11 +4,12 @@ import {enableScreens} from 'react-native-screens';
 import DropdownAlert from 'react-native-dropdownalert';
 import {ThemeProvider} from 'react-native-elements';
 import Navigation from 'navigation';
-import {Loader} from 'components';
+import {Loader, Modal} from 'components';
 import theme from 'theme/theme';
 import {colors} from 'theme';
 import {saveLoaderRef} from 'utils/loader';
 import {saveDropdownRef} from 'utils/dropdownAlert';
+import {saveModalRef} from 'utils/modal';
 import 'utils/localization/config';
 
 enableScreens();
@@ -30,6 +31,7 @@ const App = () => {
           closeInterval={3000}
           ref={saveDropdownRef}
         />
+        <Modal ref={saveModalRef} />
       </ThemeProvider>
     </>
   );
