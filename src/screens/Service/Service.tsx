@@ -1,11 +1,11 @@
 import React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import {
-  Text,
-  BaseHeader,
-  ServiceSwitcher,
   IndividualLegalEntitySwitcher,
+  ServiceSwitcher,
+  BaseHeader,
 } from 'components';
+import {Info} from './components';
 import useService from './useService';
 import {colors} from 'theme';
 
@@ -24,7 +24,7 @@ const Service = () => {
         serviceType={serviceType}
         onPress={setServiceType}
       />
-      <Text>this life</Text>
+      <Info text="serviceScreen.promote" />
     </SafeAreaView>
   );
 };
