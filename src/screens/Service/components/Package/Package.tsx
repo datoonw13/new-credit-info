@@ -49,7 +49,6 @@ const styles = StyleSheet.create({
   container: {
     marginHorizontal: 15,
     backgroundColor: colors.blackOp05,
-    width: '80%',
     borderRadius: 10,
     paddingVertical: 26,
     paddingHorizontal: 22,

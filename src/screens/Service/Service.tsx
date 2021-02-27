@@ -1,5 +1,6 @@
 import React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
+import Slider from 'react-native-snap-carousel';
 import {
   IndividualLegalEntitySwitcher,
   ServiceSwitcher,
@@ -9,9 +10,11 @@ import {Package, Info} from './components';
 import useService from './useService';
 import {colors} from 'theme';
 import {Divider} from 'react-native-elements';
+import {config} from 'utils';
 
 const Service = () => {
   const {serviceType, setServiceType, entityType, setEntityType} = useService();
+
   return (
     <SafeAreaView style={styles.container}>
       <BaseHeader title="service" />
@@ -27,7 +30,15 @@ const Service = () => {
       />
       <Info text="serviceScreen.promote" />
       <Divider />
-      <Package />
+      <Slider
+        data={[{}, {}, {}, {}]}
+        renderItem={() => <Package />}
+        itemWidth={config.mobileWidth * 0.8}
+        sliderWidth={config.mobileWidth}
+        callbackOffsetMargin={10}
+        activeSlideAlignment="start"
+        enableSnap
+      />
     </SafeAreaView>
   );
 };
