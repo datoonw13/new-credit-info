@@ -18,7 +18,7 @@ const SwitchServiceButton: SwitchServiceButtonFC = ({
       style={[styles.container, active ? styles.active : {}]}
       onPress={() => onPress(type)}>
       {type === 'Premium' ? (
-        <PremiumService style={styles.flag} width={22} height={14} />
+        <PremiumService style={styles.flag} width={28} height={17} />
       ) : (
         <StandardService style={styles.flag} width={22} height={14} />
       )}
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
   flag: {
-    backgroundColor: colors.white,
+    // backgroundColor: colors.white,
   },
   activeText: {
     color: colors.black,

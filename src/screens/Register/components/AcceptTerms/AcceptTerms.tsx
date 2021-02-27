@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {CheckBox, Divider} from 'react-native-elements';
 import * as colors from 'theme/colors';
-import {Button, Text} from 'components';
+import {Button} from 'components';
 import useAcceptTerms from './useAcceptTerms';
 import {useTranslation} from 'react-i18next';
 import HTML from 'react-native-render-html';
