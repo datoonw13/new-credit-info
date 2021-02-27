@@ -1,18 +1,18 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {Text} from 'components';
 import {colors} from 'theme';
 import {useTranslation} from 'react-i18next';
 import {InfoFC} from './types';
 
-const Info: InfoFC = ({text, style}) => {
+const Info: InfoFC = ({text, style, onPress}) => {
   const {t} = useTranslation();
   return (
     <View style={[styles.container, style]}>
-      <View style={styles.iconWrapper}>
+      <TouchableOpacity style={styles.iconWrapper} onPress={onPress}>
         <Icon name="information-circle-outline" size={25} style={styles.icon} />
-      </View>
+      </TouchableOpacity>
       <Text style={styles.text}>{t(text)}</Text>
     </View>
   );

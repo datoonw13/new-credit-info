@@ -5,9 +5,10 @@ import {
   ServiceSwitcher,
   BaseHeader,
 } from 'components';
-import {Info} from './components';
+import {Package, Info} from './components';
 import useService from './useService';
 import {colors} from 'theme';
+import {Divider} from 'react-native-elements';
 
 const Service = () => {
   const {serviceType, setServiceType, entityType, setEntityType} = useService();
@@ -25,6 +26,8 @@ const Service = () => {
         onPress={setServiceType}
       />
       <Info text="serviceScreen.promote" />
+      <Divider />
+      <Package />
     </SafeAreaView>
   );
 };

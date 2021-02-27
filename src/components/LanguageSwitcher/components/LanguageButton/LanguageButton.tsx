@@ -3,15 +3,14 @@ import {StyleSheet, TouchableOpacity} from 'react-native';
 import {EnglishFlag, GeorgianFlag} from 'assets/svg';
 import Text from 'components/Text';
 import {colors} from 'theme';
-import {useTranslation} from 'react-i18next';
+import useLanguageButton from './useLanguageButton';
 
 const LanguageButton: LanguageButtonFC = ({type, active}) => {
-  const {i18n} = useTranslation();
-
+  const {changeLanguage} = useLanguageButton(type);
   return (
     <TouchableOpacity
       style={[styles.container, active ? styles.active : {}]}
-      onPress={() => i18n.changeLanguage(type === 'English' ? 'en' : 'ka')}>
+      onPress={changeLanguage}>
       {type === 'English' ? (
         <EnglishFlag style={styles.flag} width={22} height={14} />
       ) : (

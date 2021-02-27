@@ -21,6 +21,7 @@ export const blackOp3 = 'rgba(0, 0, 0, 0.3)';
 export const blackOp2 = 'rgba(0, 0, 0, 0.2)';
 export const blackOp1 = 'rgba(0, 0, 0, 0.1)';
 export const blackOp05 = 'rgba(0, 0, 0, 0.05)';
+export const blackOp025 = 'rgba(0, 0, 0, 0.025)';
 
 export const white = 'rgba(255, 255, 255, 1)';
 
