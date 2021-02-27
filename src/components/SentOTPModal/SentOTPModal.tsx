@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {colors} from 'theme';
-import {close} from 'utils/modal';
+import references from 'utils/references';
 import {GreenTick} from 'assets/svg';
 import Text from 'components/Text';
 import LightGreyButton from 'components/LightGreyButton';
@@ -16,7 +16,7 @@ const SentOTPModal = () => {
         <GreenTick />
       </View>
       <Text style={styles.successText}>{t('modal.sendOTPSuccess')}</Text>
-      <LightGreyButton onPress={close} text="ok" />
+      <LightGreyButton onPress={references?.modal?.close} text="ok" />
     </View>
   );
 };

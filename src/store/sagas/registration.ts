@@ -1,10 +1,10 @@
 import {put, takeLatest} from 'redux-saga/effects';
 import AsyncStorage from '@react-native-community/async-storage';
 import {
-  setRegisterDataAction,
-  setRegisterLastStepAction,
   setRegisterSelectedStepAction,
+  setRegisterLastStepAction,
   updateRegisterDataAction,
+  setRegisterDataAction,
   setCountriesAction,
 } from 'store/registration/actions';
 import {setAuthStatusAction} from 'store/app/actions';
@@ -124,7 +124,7 @@ function* setCustomerExtraSaga(payload: any) {
  */
 function* acceptAgreementSaga() {
   try {
-    yield services.saveAgreement();
+    yield services.saveCustomerAgreement();
     yield put(updateRegisterDataAction({agreement: true}));
     yield put(setRegisterLastStepAction(6));
     yield put(setRegisterSelectedStepAction(6));

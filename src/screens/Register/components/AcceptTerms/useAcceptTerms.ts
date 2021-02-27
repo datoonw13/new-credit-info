@@ -1,13 +1,33 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
+import {useDispatch} from 'react-redux';
 import {alertError} from 'utils/dropdownAlert';
 import {setRegisterSelectedStepAction} from 'store/registration/actions';
 import {acceptAgreement} from 'store/registration/sagaActions';
-import {useDispatch} from 'react-redux';
+import * as service from 'services';
 
 const useAcceptTerms = ({lastStep}: AcceptTermsProps) => {
   const dispatch = useDispatch();
   const [checked, setChecked] = useState(lastStep !== 5);
+  const [agreement, setAgreement] = useState<string | undefined>();
 
+  /**
+   * Get agreement.
+   */
+  useEffect(() => {
+    (async () => {
+      try {
+        const {agreement: content} = await service.getCustomerAgreement();
+        setAgreement(content);
+      } catch (e) {
+        console.log(e);
+      }
+    })();
+  }, []);
+
+  /**
+   * Accept agreement
+   * then go to next step.
+   */
   const onSubmit = () => {
     if (!checked) {
       alertError('შეცდომ!', 'გთხოვთ დაეთანხმოთ წესებს და პირობებს');
@@ -22,6 +42,7 @@ const useAcceptTerms = ({lastStep}: AcceptTermsProps) => {
   return {
     checked,
     onSubmit,
+    agreement,
     setChecked,
   };
 };

@@ -1,5 +1,4 @@
-import Modal from 'components/Modal';
-import SentOTPModal from 'components/SentOTPModal';
+import {Modal, SentOTPModal} from 'components';
 import {ConfigureModal} from 'types/global';
 import {config} from 'utils';
 import references from './references';

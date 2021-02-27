@@ -35,3 +35,13 @@ type SetAdditionalUserInfoRequest = {
   email: string;
   countryId: number;
 };
+
+type Country = {
+  id: number;
+  alpha2Code: string;
+  name: string;
+};
+
+type Agreement = {
+  agreement: string;
+};

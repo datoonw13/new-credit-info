@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   TouchableWithoutFeedback,
   KeyboardAvoidingView,
@@ -13,9 +13,20 @@ import {FIRAGO_BOLD, FIRAGO_REGULAR} from 'theme/fonts';
 import {HeaderWithLogo, RegisterBottomTab, Text} from 'components';
 import RegistrationStep from './components/RegistrationStep';
 import useRegister from './useRegister';
+import {
+  setRegisterLastStepAction,
+  setRegisterSelectedStepAction,
+} from 'store/registration/actions';
+import {useDispatch} from 'react-redux';
 
 const Register = () => {
   const {registerSelectedStep, registerLastStep, registerData} = useRegister();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setRegisterLastStepAction(5));
+    dispatch(setRegisterSelectedStepAction(5));
+  }, []);
 
   return (
     <View style={styles.topContainer}>

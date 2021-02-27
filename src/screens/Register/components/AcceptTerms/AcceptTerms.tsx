@@ -1,32 +1,33 @@
 import React from 'react';
-import {ScrollView, StyleSheet, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {CheckBox, Divider} from 'react-native-elements';
 import * as colors from 'theme/colors';
-import {Text, Button} from 'components';
+import {Button, Text} from 'components';
 import useAcceptTerms from './useAcceptTerms';
 import {useTranslation} from 'react-i18next';
+import HTML from 'react-native-render-html';
+import {config} from 'utils';
+import {ScrollView} from 'react-native-gesture-handler';
 
 const AcceptTerms: AcceptTermsFC = ({lastStep}) => {
-  const {onSubmit, checked, setChecked} = useAcceptTerms({lastStep});
+  const {onSubmit, checked, setChecked, agreement} = useAcceptTerms({lastStep});
   const {t} = useTranslation();
   return (
     <>
-      <ScrollView style={styles.scrollViewContainer}>
-        <View style={styles.contractContainer}>
-          {contract.map(({id, heading, description}) => {
-            return (
-              <View key={id} style={styles.paragraph}>
-                <Text style={styles.heading} dontTranslate capsBold>
-                  {heading}
-                </Text>
-                <Text style={styles.description} dontTranslate>
-                  {description}
-                </Text>
-              </View>
-            );
-          })}
-        </View>
-      </ScrollView>
+      <View style={styles.scrollViewContainer}>
+        <ScrollView
+          style={styles.agreementContainer}
+          contentContainerStyle={styles.agreementScrollView}
+          nestedScrollEnabled>
+          {agreement && (
+            <HTML
+              source={{html: agreement}}
+              ignoredStyles={['font-weight', 'font-family']}
+              contentWidth={config.mobileWidth}
+            />
+          )}
+        </ScrollView>
+      </View>
       <CheckBox
         center
         title={t('registration.acceptTerms')}
@@ -55,7 +56,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     borderWidth: 0,
   },
-  contractContainer: {
+  agreementScrollView: {
+    padding: 20,
+  },
+  agreementContainer: {
     backgroundColor: colors.blackOp05,
     padding: 10,
     borderColor: colors.blackOp1,
@@ -75,18 +79,3 @@ const styles = StyleSheet.create({
     fontSize: 13,
   },
 });
-
-const contract = [
-  {
-    id: 1,
-    heading: '1. ხელშეკრულების საგანი',
-    description:
-      'კომპანია შესაძლებლობას აძლევს მომხმარებელს ისარგებლოს კომპანიის სერვისით - „ჩემი კრედიტინფო“, რის საფუძველზეც მომხმარებელს ენიჭება უფლება გაეცნოს კომპანიის მონაცემთა ბაზაში მის შესახებ არსებულ ინფორმაციას ინტერნეტის მეშვეობით წინამდებარე ხელშეკრულების პირობების შესაბამისად.',
-  },
-  {
-    id: 2,
-    heading: '2. მხარეთა ვალდებულებები',
-    description:
-      'სერვისით „ჩემი კრედიტინფო“ სარგებლობის უზრუნველყოფის მიზნით კომპანია ვალდებულია მიანიჭოს მომხმარებელს შესაბამისი სახელი და პაროლი და დაარეგისტრიროს იგი სერვისით „ჩემი კრედიტინფო“ სარგებლობის',
-  },
-];

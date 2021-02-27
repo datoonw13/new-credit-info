@@ -10,7 +10,6 @@ import {
 import {Divider} from 'react-native-elements';
 import {Controller} from 'react-hook-form';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 import * as colors from 'theme/colors';
 import {FIRAGO_BOLD, FIRAGO_REGULAR} from 'theme/fonts';
 import {RedGirl} from 'assets/svg';
@@ -37,6 +36,14 @@ const SignIn = () => {
     control,
     errors,
   } = useSignIn();
+
+  /**
+   * Test user.
+   *
+   * username: 87198371293
+   * password: 87198371293
+   */
+
   return (
     <View style={styles.container}>
       <HeaderWithLogo mode="WithMenu" style={styles.header} />
@@ -121,7 +128,8 @@ const SignIn = () => {
             <Button
               text="login"
               touchableStyle={styles.authBtn}
-              onPress={handleSubmit(onSubmit)}
+              // onPress={handleSubmit(onSubmit)}
+              onPress={onSubmit}
             />
             <Divider />
           </View>

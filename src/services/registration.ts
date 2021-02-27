@@ -65,9 +65,20 @@ export const setAdditionalUserInfo = ({
   });
 
 /**
+ * Get terms and conditions.
+ */
+export const getCustomerAgreement = () =>
+  axios.get<any, Agreement>(API.getCustomerAgreement, {
+    params: {
+      language: global.lang.toUpperCase(),
+    },
+  });
+
+/**
  * Agree to terms and conditions request to back-end.
  */
-export const saveAgreement = () => axios.patch(API.saveAgreement);
+export const saveCustomerAgreement = () =>
+  axios.patch(API.saveCustomerAgreement);
 
 /**
  * Send one time password to user.
@@ -95,7 +106,7 @@ export const verifyOTP = (code: string) =>
  * Get countries.
  */
 export const getCountries = () =>
-  axios.get(API.getCountries, {
+  axios.get<any, Country[]>(API.getCountries, {
     params: {
       language: global.lang.toUpperCase(),
     },

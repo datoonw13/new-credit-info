@@ -21,6 +21,10 @@ export const onBackButtonPressAndroid = () => {
  */
 export const requestMiddleware = {
   onFulfilled: async (request: AxiosRequestConfig) => {
+    console.groupCollapsed(`Request - ${request.url}`);
+    console.log(request);
+    console.groupEnd();
+
     canNotPressBackButton = true;
     if (++counter < 2) {
       startLoading();
