@@ -128,8 +128,8 @@ const SignIn = () => {
             <Button
               text="login"
               touchableStyle={styles.authBtn}
-              // onPress={handleSubmit(onSubmit)}
-              onPress={onSubmit}
+              onPress={handleSubmit(onSubmit)}
+              // onPress={onSubmit}
             />
             <Divider />
           </View>

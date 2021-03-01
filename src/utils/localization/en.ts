@@ -12,6 +12,7 @@ export default {
   success: 'Success',
   save: 'Save',
   ok: 'OK',
+  close: 'Close',
 
   login: 'Log In',
   service: 'Service',

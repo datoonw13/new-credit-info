@@ -2,15 +2,22 @@ import React from 'react';
 import {StyleSheet} from 'react-native';
 import Button from 'components/Button';
 import {colors} from 'theme';
+import {LightGreyButtonFC} from './types';
 
-const LightGreyButton: LightGreyButtonFC = ({onPress, text}) => {
+const LightGreyButton: LightGreyButtonFC = ({
+  touchableContainer,
+  contentContainer,
+  textStyle,
+  onPress,
+  text,
+}) => {
   return (
     <Button
       text={text}
       onPress={onPress}
-      touchableStyle={styles.okButtonTouchable}
-      containerStyle={styles.okButtonContainer}
-      textStyle={styles.okButtonText}
+      touchableStyle={[styles.okButtonTouchable, touchableContainer]}
+      containerStyle={[styles.okButtonContainer, contentContainer]}
+      textStyle={[styles.okButtonText, textStyle]}
     />
   );
 };

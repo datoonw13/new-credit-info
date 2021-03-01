@@ -1,22 +1,17 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import {Button} from 'components';
-import {showSentOTPModal} from 'utils/modal';
-import * as services from 'services';
+import {showNotificationsListModal} from 'utils/modal';
 import {ScrollView} from 'react-native-gesture-handler';
-import HTML from 'react-native-render-html';
 
 const Test = () => {
-  const [agreement, setAgreement] = useState('<p></p>');
   useEffect(() => {
-    services
-      .getCustomerAgreement()
-      .then(({agreement: content}) => setAgreement(content))
-      .catch(console.log);
+    showNotificationsListModal();
   }, []);
   return (
     <ScrollView style={{flex: 1}}>
-      <HTML source={{html: agreement}} />
+      <SafeAreaView />
+      <Button text="continue" onPress={showNotificationsListModal} />
     </ScrollView>
   );
 };

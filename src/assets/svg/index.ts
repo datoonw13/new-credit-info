@@ -18,6 +18,7 @@ export {default as IndividualEntitySelected} from './individual-entity-selected.
 export {default as LegalEntitySelected} from './legal-entity-selected.svg';
 export {default as Info} from './info.svg';
 export {default as GreenTick} from './green-tick.svg';
+export {default as GreenTick2} from './green-tick-2.svg';
 
 export {default as CreditHistory} from './credit-history.svg';
 export {default as CreditScore} from './credit-score.svg';

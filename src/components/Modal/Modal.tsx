@@ -66,7 +66,7 @@ class Modal extends Component<ModalProps, ModalState> {
   /**
    * Configure modal.
    */
-  configure({element, style, props}: ConfigureModalProps) {
+  configure({element, style, props = {}}: ConfigureModalProps) {
     this.setState((prevState) => ({
       ...prevState,
       element,

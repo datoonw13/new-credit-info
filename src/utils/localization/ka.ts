@@ -13,6 +13,7 @@ export default {
   success: 'ოპერაცია წარმატებით შესრულდა',
   save: 'შეინახე',
   ok: 'OK',
+  close: 'დახურვა',
 
   login: 'შესვლა',
   service: 'მომსახურება',

@@ -1,9 +1,10 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {createNativeStackNavigator} from 'react-native-screens/native-stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {NavigationContainer} from '@react-navigation/native';
 import {
   ForgotPassword,
+  SignInPass,
   Register,
   Privacy,
   Service,
@@ -27,6 +28,7 @@ const MainStackNavigator = () => (
     initialRouteName="Auth"
     screenOptions={authStackScreenOptions}>
     <MainStack.Screen component={Test} name="Test" />
+    <MainStack.Screen component={SignInPass} name="SignInPass" />
     <MainStack.Screen component={Auth} name="Auth" />
     <MainStack.Screen component={ForgotPassword} name="ForgotPassword" />
     <MainStack.Screen component={Privacy} name="Privacy" />

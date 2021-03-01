@@ -15,7 +15,7 @@ type References = {
 
 type ConfigureModalProps = {
   element: JSX.Element | JSX.Element[];
-  props: Partial<ModalProps>;
+  props?: Partial<ModalProps>;
   style: StyleProp<ViewStyle>;
 };
 

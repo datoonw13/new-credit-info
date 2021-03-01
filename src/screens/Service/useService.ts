@@ -1,6 +1,7 @@
 import {useState} from 'react';
 
 const useService = () => {
+  const [activePackage, setActivePackage] = useState<number>(0);
   const [serviceType, setServiceType] = useState<ServiceType>('Standard');
   const [entityType, setEntityType] = useState<EntityType>('Individual');
 
@@ -8,7 +9,9 @@ const useService = () => {
     entityType,
     serviceType,
     setEntityType,
+    activePackage,
     setServiceType,
+    setActivePackage,
   };
 };
 
