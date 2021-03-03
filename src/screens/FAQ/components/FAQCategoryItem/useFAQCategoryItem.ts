@@ -6,6 +6,7 @@ const useFAQCategoryItem = ({
   setActiveFAQCategoryItem,
 }: FAQCategoryItemPassedProps) => {
   const [open, setOpen] = useState(false);
+  const [activeFAQItem, setActiveFAQItem] = useState<null | number>(null);
 
   const toggleFAQItem = useCallback(() => {
     setOpen(!open);
@@ -25,6 +26,8 @@ const useFAQCategoryItem = ({
   return {
     open,
     toggleFAQItem,
+    activeFAQItem,
+    setActiveFAQItem,
   };
 };
 

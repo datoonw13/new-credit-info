@@ -2,8 +2,9 @@ import React from 'react';
 import {TouchableOpacity, StyleSheet, Animated, View} from 'react-native';
 import {Text} from 'components';
 import FAQItem from '../FAQItem';
+import ItemArrow from '../ItemArrow';
 import {colors} from 'theme';
-import useFAQItem from './useFAQCategoryItem';
+import useFAQCategoryItem from './useFAQCategoryItem';
 
 const FAQCategoryItem: FAQCategoryItemFC = ({
   id,
@@ -12,7 +13,12 @@ const FAQCategoryItem: FAQCategoryItemFC = ({
   activeFAQCategoryItem,
   setActiveFAQCategoryItem,
 }) => {
-  const {toggleFAQItem, open} = useFAQItem({
+  const {
+    toggleFAQItem,
+    open,
+    activeFAQItem,
+    setActiveFAQItem,
+  } = useFAQCategoryItem({
     activeFAQCategoryItem,
     setActiveFAQCategoryItem,
     id,
@@ -20,23 +26,23 @@ const FAQCategoryItem: FAQCategoryItemFC = ({
 
   return (
     <TouchableOpacity style={styles.container} onPress={toggleFAQItem}>
-      <View
-        style={[
-          styles.questionContainer,
-          {backgroundColor: open ? colors.blackOp5 : colors.blackOp1},
-        ]}>
-        <Text>{name}</Text>
+      <View style={styles.categoryTitleContainer}>
+        <Text style={[styles.categoryTitle, open && styles.bold]}>{name}</Text>
+        <ItemArrow open={open} color={colors.crimson} />
       </View>
       <Animated.ScrollView
-        style={[styles.answerContainer, open ? styles.answerMaxHeight : {}]}>
+        style={[
+          styles.categoryContainer,
+          open ? styles.categoryMaxHeight : {},
+        ]}>
         {records.map(({id: FAQItemId, answer, question}) => (
           <FAQItem
             key={FAQItemId}
             id={FAQItemId}
             answer={answer}
             question={question}
-            setActiveFAQItem={() => {}}
-            activeFAQItem={null}
+            setActiveFAQItem={setActiveFAQItem}
+            activeFAQItem={activeFAQItem}
           />
         ))}
       </Animated.ScrollView>
@@ -48,28 +54,34 @@ export default FAQCategoryItem;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.blackOp1,
     borderRadius: 16,
     marginTop: 8,
   },
-  questionContainer: {
+  categoryTitleContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     paddingVertical: 18,
     paddingHorizontal: 18,
-    backgroundColor: colors.blackOp1,
+    backgroundColor: colors.crimsonOp2,
     borderRadius: 16,
     fontSize: 14,
     fontWeight: 'bold',
   },
-  answerContainer: {
+  categoryTitle: {
+    color: colors.crimson,
+  },
+  bold: {
+    fontWeight: 'bold',
+  },
+  categoryContainer: {
     borderRadius: 16,
     fontSize: 14,
     maxHeight: 0,
+    paddingLeft: 20,
   },
-  answerMaxHeight: {
+  categoryMaxHeight: {
     maxHeight: 1000,
-  },
-  answerText: {
-    paddingVertical: 11,
-    paddingHorizontal: 11,
   },
 });

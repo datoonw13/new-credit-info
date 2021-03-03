@@ -3,18 +3,19 @@ import {TouchableOpacity, StyleSheet, Animated, View} from 'react-native';
 import Text from 'components/Text';
 import {colors} from 'theme';
 import useFAQItem from './useFAQItem';
+import ItemArrow from '../ItemArrow';
 
 const FAQItem: FAQItemFC = ({
+  id,
   answer,
   question,
-  setActiveFAQItem,
   activeFAQItem,
-  id,
+  setActiveFAQItem,
 }) => {
   const {toggleFAQItem, open} = useFAQItem({
-    setActiveFAQItem,
-    activeFAQItem,
     id,
+    activeFAQItem,
+    setActiveFAQItem,
   });
 
   return (
@@ -22,9 +23,12 @@ const FAQItem: FAQItemFC = ({
       <View
         style={[
           styles.questionContainer,
-          {backgroundColor: open ? colors.blackOp5 : colors.blackOp1},
+          {backgroundColor: open ? colors.blackOp2 : colors.blackOp1},
         ]}>
-        <Text>{question}</Text>
+        <Text style={[styles.questionText, open && styles.bold]}>
+          {question}
+        </Text>
+        <ItemArrow open={open} />
       </View>
       <Animated.ScrollView
         style={[styles.answerContainer, open ? styles.answerMaxHeight : {}]}>
@@ -38,16 +42,25 @@ export default FAQItem;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.blackOp1,
+    backgroundColor: colors.blackOp05,
     borderRadius: 16,
     marginTop: 8,
   },
   questionContainer: {
-    paddingVertical: 18,
+    justifyContent: 'space-between',
     paddingHorizontal: 18,
-    backgroundColor: colors.blackOp1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 18,
     borderRadius: 16,
+    display: 'flex',
     fontSize: 14,
+  },
+  questionText: {
+    flexWrap: 'wrap',
+    width: '90%',
+  },
+  bold: {
     fontWeight: 'bold',
   },
   answerContainer: {
@@ -59,7 +72,7 @@ const styles = StyleSheet.create({
     maxHeight: 1000,
   },
   answerText: {
-    paddingVertical: 11,
     paddingHorizontal: 11,
+    paddingVertical: 11,
   },
 });
