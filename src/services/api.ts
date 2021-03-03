@@ -9,4 +9,5 @@ export const verifyOTP = 'customer/checkotp';
 export const getCountries = 'country';
 export const refreshUserData = 'ping';
 
+export const FAQCategories = 'faq/categories';
 export const FAQ = 'faq';

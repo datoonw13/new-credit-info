@@ -45,16 +45,12 @@ const useAuth = () => {
     Keyboard.dismiss();
     dispatch(
       signIn({
-        // username: '87198371293',
-        // password: '87198371293',
-        username,
-        password,
+        username: '00000000001',
+        password: 'msofliomshvidoba',
+        // username,
+        // password,
       }),
     );
-    try {
-    } catch (e) {
-      console.log(e);
-    }
   };
 
   const footerHandler = () => {

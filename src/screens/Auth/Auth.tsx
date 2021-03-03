@@ -21,9 +21,9 @@ import {
   Input,
   Text,
 } from 'components';
-import useSignIn from './useSignIn';
+import useAuth from './useAuth';
 
-const SignIn = () => {
+const Auth = () => {
   const {
     setPasswordVisible,
     passwordVisible,
@@ -35,7 +35,7 @@ const SignIn = () => {
     onSubmit,
     control,
     errors,
-  } = useSignIn();
+  } = useAuth();
 
   /**
    * Test user.
@@ -128,8 +128,8 @@ const SignIn = () => {
             <Button
               text="login"
               touchableStyle={styles.authBtn}
-              onPress={handleSubmit(onSubmit)}
-              // onPress={onSubmit}
+              // onPress={handleSubmit(onSubmit)}
+              onPress={onSubmit}
             />
             <Divider />
           </View>
@@ -144,7 +144,7 @@ const SignIn = () => {
     </View>
   );
 };
-export default SignIn;
+export default Auth;
 
 const styles = StyleSheet.create({
   container: {

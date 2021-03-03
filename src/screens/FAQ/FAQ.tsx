@@ -1,23 +1,24 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {SafeAreaView, ScrollView, StyleSheet} from 'react-native';
-import {BaseHeader, FAQItem} from 'components';
-import {data} from './config';
+import {BaseHeader} from 'components';
+import {FAQCategoryItem} from './components';
+import useFAQ from './useFAQ';
 
 const FAQ = () => {
-  const [activeFAQItem, setActiveFAQItem] = useState<null | number>(null);
+  const {activeFAQCategoryItem, setActiveFAQCategoryItem, faqs} = useFAQ();
 
   return (
     <SafeAreaView style={styles.safeAreaContainer}>
       <BaseHeader title="faq" />
       <ScrollView style={styles.scrollViewContainer}>
-        {data.map(({id, answer, question}) => (
-          <FAQItem
+        {faqs.map(({id, name, records}) => (
+          <FAQCategoryItem
+            setActiveFAQCategoryItem={setActiveFAQCategoryItem}
+            activeFAQCategoryItem={activeFAQCategoryItem}
+            records={records}
+            name={name}
             key={id}
             id={id}
-            answer={answer}
-            question={question}
-            setActiveFAQItem={setActiveFAQItem}
-            activeFAQItem={activeFAQItem}
           />
         ))}
       </ScrollView>

@@ -45,3 +45,14 @@ type Country = {
 type Agreement = {
   agreement: string;
 };
+
+type FAQCategory = {
+  id: number;
+  name: string;
+};
+
+type FAQ = {
+  id: number;
+  question: string;
+  answer: string;
+};

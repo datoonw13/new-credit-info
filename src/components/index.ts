@@ -16,7 +16,6 @@ export {default as DrawerListItem} from './DrawerListItem';
 export {default as LanguageSwitcher} from './LanguageSwitcher';
 export {default as SocialLinks} from './SocialLinks';
 export {default as BaseHeader} from './BaseHeader';
-export {default as FAQItem} from './FAQItem';
 export {default as BackButton} from './BackButton';
 export {default as ServiceSwitcher} from './ServiceSwitcher';
 export {default as IndividualLegalEntitySwitcher} from './IndividualLegalEntitySwitcher';

@@ -49,6 +49,7 @@ function* signInSaga({data}: any) {
       yield put(setAuthStatusAction(true));
     }
   } catch (error) {
+    console.dir(error);
     if (error.response.status === 409) {
       alertError('error', error.response.data.errorCode.toUpperCase());
     }
