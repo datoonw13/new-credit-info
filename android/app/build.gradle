@@ -154,6 +154,12 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        release {
+            storeFile file('release.keystore')
+            storePassword 'mcipass'
+            keyAlias 'release-alias'
+            keyPassword 'mcipass'
+        }
     }
     buildTypes {
         debug {
@@ -162,7 +168,7 @@ android {
         release {
             // Caution! In production, you need to generate your own keystore file.
             // see https://reactnative.dev/docs/signed-apk-android.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
@@ -205,7 +211,8 @@ dependencies {
         exclude group:'com.facebook.flipper'
     }
 
-    androidTestImplementation('com.wix:detox:+') { transitive = true }
+    // ამის დაკომენტარება გახდა საჭირო, რაღაც ასხავს.
+//    androidTestImplementation('com.wix:detox:+') { transitive = true }
     androidTestImplementation 'junit:junit:4.12'
 
     if (enableHermes) {
