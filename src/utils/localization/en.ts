@@ -21,8 +21,6 @@ export default {
 
   haveAccount: 'I Have Account',
 
-  chooseServiceType: 'Choose Service Type',
-
   individualPerson: 'Individual',
   legalEntity: 'Legal Entity',
 
@@ -42,6 +40,13 @@ export default {
   },
 
   registration: {
+    chooseServiceType: 'Choose Entity Type',
+    personalInfo: 'Personal Info',
+    setPassword: 'Set Password',
+    contactInfo: 'Contact Info',
+    terms: 'Terms and Conditions',
+    verifyPhone: 'Verify Phone Number',
+
     title: 'Registration',
     personalNumber: 'Personal Number',
     repeatPersonalNumber: 'Repeat Personal Number',

@@ -22,8 +22,6 @@ export default {
 
   haveAccount: 'გაქვს ანგარიში?',
 
-  chooseServiceType: 'აირჩიეთ მომსახურების ტიპი',
-
   individualPerson: 'ფიზიკური პირი',
   legalEntity: 'იურიდიული პირი',
 
@@ -43,6 +41,13 @@ export default {
   },
 
   registration: {
+    chooseServiceType: 'აირჩიეთ მომსახურების ტიპი',
+    personalInfo: 'პირადი ინფორმაცია',
+    setPassword: 'დააყენეთ პაროლი',
+    contactInfo: 'საკონტაქტო ინფორმაცია',
+    terms: 'პირობები',
+    verifyPhone: 'ნომრის დადასტურება',
+
     title: 'რეგისტრაცია',
     personalNumber: 'პირადი ნომერი',
     repeatPersonalNumber: 'გაიმეორეთ პირადი ნომერი',

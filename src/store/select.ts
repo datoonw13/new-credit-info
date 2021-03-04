@@ -1,3 +1,5 @@
+import {ApplicationState} from 'store/types';
+
 /**
  * Select Registration from state.
  */

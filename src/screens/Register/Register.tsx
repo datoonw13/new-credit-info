@@ -17,6 +17,7 @@ import {
   setRegisterLastStepAction,
   setRegisterSelectedStepAction,
 } from 'store/registration/actions';
+import {registrationStepTitles} from './config';
 import {useDispatch} from 'react-redux';
 
 const Register = () => {
@@ -38,7 +39,10 @@ const Register = () => {
           <View style={styles.wrapper}>
             <View style={styles.titleWrapper}>
               <Text style={styles.authText} children="registration.title" />
-              <Text style={styles.descText} children="chooseServiceType" />
+              <Text
+                style={styles.descText}
+                children={registrationStepTitles[registerSelectedStep]}
+              />
             </View>
             <Divider />
             <RegistrationStep

@@ -1,3 +1,5 @@
+import {RegistrationSteps} from 'screens/Register/components/RegistrationStep/enum';
+
 type ApplicationState = {
   registration: RegistrationState;
   app: AppState;
@@ -5,8 +7,8 @@ type ApplicationState = {
 
 type RegistrationState = {
   userData: any;
-  registerSelectedStep: number;
-  registerLastStep: number;
+  registerSelectedStep: RegistrationSteps;
+  registerLastStep: RegistrationSteps;
   registerData: any;
   countries: any;
 };
