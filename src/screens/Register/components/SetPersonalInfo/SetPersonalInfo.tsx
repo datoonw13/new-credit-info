@@ -5,18 +5,30 @@ import {Controller} from 'react-hook-form';
 import {Input, Button} from 'components';
 import useSetPersonalInfo from './useSetPersonalInfo';
 import {RegistrationSteps} from '../RegistrationStep/enum';
-import {useTranslation} from 'react-i18next';
+import {rules} from 'utils/form';
 
 const SetPersonalInfo: SetPersonalInfoFC = ({
   lastStep,
   registerData,
   isPerson,
 }) => {
-  const {onSubmit, control, errors, handleSubmit, watch} = useSetPersonalInfo({
+  const {
+    repeatUserNameErrorMsg,
+    repeatUserNameLabel,
+    firstNameErrorMsg,
+    usernameErrorMsg,
+    lastNameErrorMsg,
+    firstNameLabel,
+    userNameLabel,
+    lastNameLabel,
+    onSubmitPress,
+    control,
+    watch,
+  } = useSetPersonalInfo({
     lastStep,
     registerData,
   });
-  const {i18n, t} = useTranslation();
+
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollViewContainer}>
@@ -25,33 +37,18 @@ const SetPersonalInfo: SetPersonalInfoFC = ({
           control={control}
           render={({onChange, onBlur, value}) => (
             <Input
-              label={
-                isPerson
-                  ? 'registration.personalNumber'
-                  : 'registration.identificationCode'
-              }
+              label={userNameLabel}
               editable={lastStep === RegistrationSteps.SetPersonalInfo}
               keyboardType="number-pad"
               onChangeText={(val) => onChange(val)}
               onBlur={onBlur}
               value={value}
               maxLength={isPerson ? 11 : 9}
-              errorMessage={
-                errors.userName &&
-                t(
-                  isPerson
-                    ? 'registration.validPersonalNumber'
-                    : 'registration.validIdentificationCode',
-                )
-              }
+              errorMessage={usernameErrorMsg}
               labelOnBorderToo
             />
           )}
-          rules={{
-            required: true,
-            minLength: isPerson ? 11 : 9,
-            pattern: /^\d*$/,
-          }}
+          rules={rules.userName(!!isPerson)}
         />
         <Divider />
         <Controller
@@ -59,31 +56,17 @@ const SetPersonalInfo: SetPersonalInfoFC = ({
           control={control}
           render={({onChange, onBlur, value}) => (
             <Input
-              label={
-                isPerson
-                  ? 'registration.repeatPersonalNumber'
-                  : 'registration.repeatIdentificationCode'
-              }
+              label={repeatUserNameLabel}
               editable={lastStep === RegistrationSteps.SetPersonalInfo}
               keyboardType="number-pad"
               onChangeText={(val) => onChange(val)}
               onBlur={onBlur}
               value={value}
               maxLength={isPerson ? 11 : 9}
-              errorMessage={
-                errors.repeatUserName &&
-                t(
-                  isPerson
-                    ? 'registration.validRepeatPersonalNumber'
-                    : 'registration.validRepeatIdentificationCode',
-                )
-              }
+              errorMessage={repeatUserNameErrorMsg}
             />
           )}
-          rules={{
-            required: true,
-            validate: (value) => value === watch('userName'),
-          }}
+          rules={rules.repeatUserName(watch)}
         />
         <Divider />
         <Controller
@@ -91,63 +74,41 @@ const SetPersonalInfo: SetPersonalInfoFC = ({
           control={control}
           render={({onChange, onBlur, value}) => (
             <Input
-              label={isPerson ? 'registration.firstName' : 'registration.name'}
+              label={firstNameLabel}
               editable={lastStep === 2}
               onChangeText={(val) => onChange(val)}
               onBlur={onBlur}
               value={value}
               maxLength={35}
-              errorMessage={
-                errors.firstName &&
-                t(
-                  isPerson
-                    ? 'registration.validFirstName'
-                    : 'registration.validName',
-                )
-              }
+              errorMessage={firstNameErrorMsg}
               autoCorrect={false}
             />
           )}
-          rules={{
-            required: true,
-            pattern: i18n.language === 'ka' ? /^[ა-ჰ]*$/ : /^[A-Za-z]*$/,
-          }}
+          rules={rules.nameField()}
         />
         <Divider />
-        {isPerson ? (
+        {isPerson && (
           <Controller
             name="lastName"
             control={control}
             render={({onChange, onBlur, value}) => (
               <Input
-                label="registration.lastName"
+                label={lastNameLabel}
                 editable={lastStep === 2}
                 onChangeText={(val) => onChange(val)}
                 onBlur={onBlur}
                 value={value}
                 maxLength={35}
-                errorMessage={
-                  errors.lastName && t('registration.validLastName')
-                }
+                errorMessage={lastNameErrorMsg}
                 autoCorrect={false}
               />
             )}
-            rules={{
-              required: true,
-              pattern: i18n.language === 'ka' ? /^[ა-ჰ]*$/ : /^[A-Za-z]*$/,
-            }}
+            rules={rules.nameField()}
           />
-        ) : null}
+        )}
       </ScrollView>
       <Divider />
-      <Button
-        text="continue"
-        onPress={() =>
-          lastStep === RegistrationSteps.SetPersonalInfo
-            ? handleSubmit(onSubmit)()
-            : onSubmit()
-        }
-      />
+      <Button text="continue" onPress={onSubmitPress} />
     </View>
   );
 };

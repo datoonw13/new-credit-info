@@ -22,6 +22,7 @@ import {
   Text,
 } from 'components';
 import useAuth from './useAuth';
+import {useTranslation} from 'react-i18next';
 
 const Auth = () => {
   const {
@@ -36,6 +37,7 @@ const Auth = () => {
     control,
     errors,
   } = useAuth();
+  const {t} = useTranslation();
 
   /**
    * Test user.
@@ -71,15 +73,13 @@ const Auth = () => {
                   onChangeText={onChange}
                   value={value}
                   errorMessage={
-                    errors.username && 'Please enter valid username'
+                    errors.username && t('authorization.validUsername')
                   }
                   label={'user'}
                   labelOnBorderToo
                 />
               )}
-              rules={{
-                required: true,
-              }}
+              rules={{required: true}}
             />
             <Divider />
             <Controller
@@ -128,8 +128,8 @@ const Auth = () => {
             <Button
               text="login"
               touchableStyle={styles.authBtn}
-              // onPress={handleSubmit(onSubmit)}
-              onPress={onSubmit}
+              onPress={handleSubmit(onSubmit)}
+              // onPress={onSubmit}
             />
             <Divider />
           </View>

@@ -36,7 +36,7 @@ export default {
     areYouNotRegistered: 'Not Registered?',
     register: 'Register',
 
-    pleaseEnterYouUsername: 'Please, enter you ID...',
+    validUsername: 'Please, enter your valid username...',
   },
 
   registration: {

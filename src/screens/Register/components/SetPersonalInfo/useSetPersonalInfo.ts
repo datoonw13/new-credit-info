@@ -1,15 +1,23 @@
 import {useEffect} from 'react';
 import {useDispatch} from 'react-redux';
 import {useForm} from 'react-hook-form';
+import {useTranslation} from 'react-i18next';
 import {
   setRegisterLastStepAction,
   setRegisterSelectedStepAction,
   updateRegisterDataAction,
 } from 'store/registration/actions';
 import {getCostumerInfo} from 'store/registration/sagaActions';
+import {RegistrationSteps} from '../RegistrationStep/enum';
 
-const useSetPersonalInfo = ({registerData, lastStep}: SetPersonalInfoProps) => {
+const useSetPersonalInfo = ({
+  registerData,
+  lastStep,
+  isPerson,
+}: SetPersonalInfoProps) => {
   const dispatch = useDispatch();
+  const {t} = useTranslation();
+
   const {control, handleSubmit, errors, watch, setValue} = useForm({
     mode: 'onSubmit',
     defaultValues: {
@@ -43,9 +51,57 @@ const useSetPersonalInfo = ({registerData, lastStep}: SetPersonalInfoProps) => {
     }
   };
 
+  const onSubmitPress = () =>
+    lastStep === RegistrationSteps.SetPersonalInfo
+      ? handleSubmit(onSubmit)()
+      : onSubmit();
+
+  const usernameErrorMsg =
+    errors.userName &&
+    t(
+      isPerson
+        ? 'registration.validPersonalNumber'
+        : 'registration.validIdentificationCode',
+    );
+
+  const userNameLabel = isPerson
+    ? 'registration.personalNumber'
+    : 'registration.identificationCode';
+
+  const repeatUserNameLabel = isPerson
+    ? 'registration.repeatPersonalNumber'
+    : 'registration.repeatIdentificationCode';
+
+  const repeatUserNameErrorMsg =
+    errors.repeatUserName &&
+    t(
+      isPerson
+        ? 'registration.validRepeatPersonalNumber'
+        : 'registration.validRepeatIdentificationCode',
+    );
+
+  const firstNameLabel = isPerson
+    ? 'registration.firstName'
+    : 'registration.name';
+
+  const firstNameErrorMsg =
+    errors.firstName &&
+    t(isPerson ? 'registration.validFirstName' : 'registration.validName');
+
+  const lastNameLabel = 'registration.lastName';
+
+  const lastNameErrorMsg = errors.lastName && t('registration.validLastName');
+
   return {
-    onSubmit,
-    handleSubmit,
+    repeatUserNameErrorMsg,
+    repeatUserNameLabel,
+    firstNameErrorMsg,
+    usernameErrorMsg,
+    lastNameErrorMsg,
+    firstNameLabel,
+    userNameLabel,
+    lastNameLabel,
+    onSubmitPress,
     control,
     errors,
     watch,

@@ -45,10 +45,10 @@ const useAuth = () => {
     Keyboard.dismiss();
     dispatch(
       signIn({
-        username: '00000000001',
-        password: 'msofliomshvidoba',
-        // username,
-        // password,
+        // username: '00000000001',
+        // password: 'msofliomshvidoba',
+        username,
+        password,
       }),
     );
   };

@@ -37,7 +37,7 @@ export default {
     areYouNotRegistered: 'არ გაქვს ანგარიში?',
     register: 'რეგისტრაცია',
 
-    pleaseEnterYouUsername: 'შეიყვანეთ პირადი ნომერი ან საიდენტიფიკაციო კოდი',
+    validUsername: 'გთხოვთ, შეიყვანეთ სწორი ID...',
   },
 
   registration: {
