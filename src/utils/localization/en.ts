@@ -67,6 +67,8 @@ export default {
     repeatPassword: 'Please, repeat password',
     validRepeatPassword: 'Passwords are not same',
 
+    dateOfFoundation: 'Date of Foundation',
+    validDateOfFoundation: 'Please, choose Date of Foundation',
     birthDate: 'Choose Date of Birth',
     validBirthDate: 'Please, choose Date of Birth',
     country: 'Choose Country',

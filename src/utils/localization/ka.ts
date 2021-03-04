@@ -68,6 +68,8 @@ export default {
     repeatPassword: 'გაიმეორეთ პაროლი',
     validRepeatPassword: 'პაროლები არ ემთხვევა',
 
+    dateOfFoundation: 'დაარსების თარიღი',
+    validDateOfFoundation: 'გთხოვთ, აირჩიეთ დაარსების თარიღი',
     birthDate: 'აირჩიეთ დაბადების თარიღი',
     validBirthDate: 'გთხოვთ, აირჩიოთ დაბადების თარიღი',
     country: 'აირჩიეთ ქვეყანა',

@@ -39,14 +39,23 @@ const SetAdditionalInfo: SetAdditionalInfoFC = ({
             control={control}
             render={({onChange, onBlur, value}) => (
               <Input
-                label={'registration.birthDate'}
+                label={
+                  isPerson
+                    ? 'registration.birthDate'
+                    : 'registration.dateOfFoundation'
+                }
                 editable={false}
                 onChangeText={(val) => onChange(val)}
                 onBlur={onBlur}
                 value={value}
                 maxLength={35}
                 errorMessage={
-                  errors.birthDate && t('registration.validBirthDate')
+                  errors.birthDate &&
+                  t(
+                    isPerson
+                      ? 'registration.validBirthDate'
+                      : 'registration.validDateOfFoundation',
+                  )
                 }
                 pointerEvents="none"
                 rightIcon={
