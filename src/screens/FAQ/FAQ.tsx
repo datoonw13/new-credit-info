@@ -1,5 +1,5 @@
 import React from 'react';
-import {SafeAreaView, ScrollView, StyleSheet} from 'react-native';
+import {SafeAreaView, ScrollView, StyleSheet, Platform} from 'react-native';
 import {BaseHeader} from 'components';
 import {FAQCategoryItem} from './components';
 import useFAQ from './useFAQ';
@@ -29,7 +29,9 @@ const FAQ = () => {
 export default FAQ;
 
 const styles = StyleSheet.create({
-  safeAreaContainer: {},
+  safeAreaContainer: {
+    paddingTop: Platform.OS === 'android' ? 10 : 0,
+  },
   scrollViewContainer: {
     paddingHorizontal: 15,
     paddingVertical: 15,

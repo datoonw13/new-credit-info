@@ -1,5 +1,5 @@
 import React from 'react';
-import {SafeAreaView, StyleSheet} from 'react-native';
+import {SafeAreaView, StyleSheet, Platform} from 'react-native';
 import Slider, {Pagination} from 'react-native-snap-carousel';
 import {
   IndividualLegalEntitySwitcher,
@@ -65,6 +65,7 @@ export default Service;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.white,
+    paddingTop: Platform.OS === 'android' ? 10 : 0,
     flex: 1,
   },
   entitySwitcher: {

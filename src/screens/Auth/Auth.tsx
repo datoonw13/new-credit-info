@@ -150,6 +150,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.white,
     flex: 1,
+    paddingTop: Platform.OS === 'android' ? 10 : 0,
   },
   keyboardAvoidingView: {
     flexGrow: 1,
