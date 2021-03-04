@@ -57,6 +57,8 @@ export default {
     repeatIdentificationCode: 'გაიმეორეთ საიდენტიფიკაციო კოდი',
     validIdentificationCode: 'გთხოვთ შეასწოროთ საიდენტიფიკაციო კოდი',
     validRepeatIdentificationCode: 'საიდენტიფიკაციო კოდები არ ემთხვევა',
+    name: 'დასახელება',
+    validName: 'გთხოვთ, შეასწორეთ კომპანიის დასახელება...',
     firstName: 'სახელი',
     validFirstName: 'გთხოვთ, შეასწორეთ სახელის ველი...',
     lastName: 'გვარი',

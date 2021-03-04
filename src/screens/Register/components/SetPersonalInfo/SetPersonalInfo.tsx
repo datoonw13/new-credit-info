@@ -62,7 +62,7 @@ const SetPersonalInfo: SetPersonalInfoFC = ({
               label={
                 isPerson
                   ? 'registration.repeatPersonalNumber'
-                  : 'registration.repeatIdentificationNumber'
+                  : 'registration.repeatIdentificationCode'
               }
               editable={lastStep === RegistrationSteps.SetPersonalInfo}
               keyboardType="number-pad"
@@ -91,14 +91,19 @@ const SetPersonalInfo: SetPersonalInfoFC = ({
           control={control}
           render={({onChange, onBlur, value}) => (
             <Input
-              label={'registration.firstName'}
+              label={isPerson ? 'registration.firstName' : 'registration.name'}
               editable={lastStep === 2}
               onChangeText={(val) => onChange(val)}
               onBlur={onBlur}
               value={value}
               maxLength={35}
               errorMessage={
-                errors.firstName && t('registration.validFirstName')
+                errors.firstName &&
+                t(
+                  isPerson
+                    ? 'registration.validFirstName'
+                    : 'registration.validName',
+                )
               }
               autoCorrect={false}
             />

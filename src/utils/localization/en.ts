@@ -56,6 +56,8 @@ export default {
     repeatIdentificationCode: 'Repeat Identification Code',
     validIdentificationCode: 'Please, correct identification code...',
     validRepeatIdentificationCode: 'Identification codes not same...',
+    name: 'Name',
+    validName: 'Please, correct company name...',
     firstName: 'First Name',
     validFirstName: 'Please, correct first name...',
     LastName: 'Last Name',
