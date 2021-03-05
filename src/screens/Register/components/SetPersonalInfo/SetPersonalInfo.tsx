@@ -25,8 +25,9 @@ const SetPersonalInfo: SetPersonalInfoFC = ({
     control,
     watch,
   } = useSetPersonalInfo({
-    lastStep,
     registerData,
+    lastStep,
+    isPerson,
   });
 
   return (

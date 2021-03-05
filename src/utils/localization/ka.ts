@@ -66,6 +66,7 @@ export default {
     validLastName: 'გთხოვთ, შეამოწმეთ გვარის ველი...',
 
     password: 'პაროლი',
+    validPassword: 'გთხოვთ, შეიყვანეთ უფრო ძლიერი პაროლი...',
     repeatPassword: 'გაიმეორეთ პაროლი',
     validRepeatPassword: 'პაროლები არ ემთხვევა',
 

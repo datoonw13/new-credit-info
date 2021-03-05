@@ -65,6 +65,7 @@ export default {
     validLastName: 'Please, correct last name...',
 
     password: 'Password',
+    validPassword: 'Please, type stronger password...',
     repeatPassword: 'Please, repeat password',
     validRepeatPassword: 'Passwords are not same',
 

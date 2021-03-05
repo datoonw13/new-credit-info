@@ -28,7 +28,9 @@ const SetPassword: SetPasswordFC = ({lastStep, registerData}) => {
     registerData,
     lastStep,
   });
+
   const {t} = useTranslation();
+
   return (
     <>
       <View style={styles.container}>
@@ -79,8 +81,14 @@ const SetPassword: SetPasswordFC = ({lastStep, registerData}) => {
               />
             )}
             rules={{
-              required: true,
-              validate: () => passwordScore >= 3,
+              required: {
+                value: true,
+                message: t('registration.validPassword'),
+              },
+              validate: () =>
+                passwordScore >= 3
+                  ? false
+                  : (t('registration.validPassword') as string),
             }}
           />
           <Divider />
@@ -115,11 +123,13 @@ const SetPassword: SetPasswordFC = ({lastStep, registerData}) => {
                 message: t('registration.validRepeatPassword'),
               },
               validate: (value) => {
-                if (value === watch('password')) {
+                if (errors.password?.message) {
+                  return t('registration.validPassword') as string;
+                } else if (value === watch('password')) {
                   return true;
                 }
 
-                return t('registration.validRepeatPassword');
+                return t('registration.validRepeatPassword') as string;
               },
             }}
           />
