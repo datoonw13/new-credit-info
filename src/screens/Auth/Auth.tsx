@@ -23,6 +23,7 @@ import {
 } from 'components';
 import useAuth from './useAuth';
 import {useTranslation} from 'react-i18next';
+import {rules} from 'utils/form';
 
 const Auth = () => {
   const {
@@ -72,14 +73,16 @@ const Auth = () => {
                   onBlur={onBlur}
                   onChangeText={onChange}
                   value={value}
+                  keyboardType="number-pad"
                   errorMessage={
                     errors.username && t('authorization.validUsername')
                   }
                   label={'user'}
+                  maxLength={11}
                   labelOnBorderToo
                 />
               )}
-              rules={{required: true}}
+              rules={rules.userName(true)}
             />
             <Divider />
             <Controller
@@ -96,6 +99,9 @@ const Auth = () => {
                     setPasswordVisible(!passwordVisible)
                   }
                   onChangeText={onChange}
+                  errorMessage={
+                    errors.username && t('authorization.validPassword')
+                  }
                   rightIcon={
                     <Ionicons
                       name={passwordVisible ? 'eye-off' : 'eye'}

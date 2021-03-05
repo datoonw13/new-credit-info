@@ -38,6 +38,7 @@ export default {
     register: 'რეგისტრაცია',
 
     validUsername: 'გთხოვთ, შეიყვანეთ სწორი ID...',
+    validPassword: 'გთხოვთ, შეიყვანეთ სწორი პაროლი...',
   },
 
   registration: {

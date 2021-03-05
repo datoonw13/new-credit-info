@@ -37,6 +37,7 @@ export default {
     register: 'Register',
 
     validUsername: 'Please, enter your valid username...',
+    validPassword: 'Please, enter your valid password...',
   },
 
   registration: {
