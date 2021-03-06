@@ -44,7 +44,7 @@ const useSetAdditionalInfo = ({
       }
     }
     if (lastStep === 4 && countries.length === 0) {
-      dispatch(getCountries());
+      // dispatch(getCountries());
     }
     if (lastStep === 4 && countries.length !== 0 && activeCountry.id === null) {
       const country = countries.find((el) => el.alpha2Code === 'GE');

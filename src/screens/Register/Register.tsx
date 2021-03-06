@@ -24,10 +24,10 @@ const Register = () => {
   const {registerSelectedStep, registerLastStep, registerData} = useRegister();
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(setRegisterLastStepAction(3));
-  //   dispatch(setRegisterSelectedStepAction(3));
-  // }, []);
+  useEffect(() => {
+    dispatch(setRegisterLastStepAction(4));
+    dispatch(setRegisterSelectedStepAction(4));
+  }, []);
 
   return (
     <View style={styles.topContainer}>

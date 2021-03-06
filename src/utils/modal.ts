@@ -1,4 +1,4 @@
-import {Modal, SentOTPModal} from 'components';
+import {Modal, SentOTPModal, DateSelector} from 'components';
 import {ConfigureModal} from 'types/global';
 import {NotificationsListModal} from 'screens/Service/components';
 import {config} from 'utils';
@@ -50,7 +50,7 @@ export const showSentOTPModal = () => {
     },
   });
 
-  references.modal?.show();
+  show();
 };
 
 /**
@@ -65,5 +65,20 @@ export const showNotificationsListModal = () => {
     },
   });
 
-  references.modal?.show();
+  show();
+};
+
+/**
+ * Show date selector.
+ */
+export const showDateSelector = () => {
+  configureModal({
+    element: DateSelector,
+    style: {
+      marginVertical: config.mobileHeight * 0.2,
+      marginHorizontal: config.mobileWidth * 0.1,
+    },
+  });
+
+  show();
 };

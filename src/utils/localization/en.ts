@@ -72,6 +72,7 @@ export default {
     dateOfFoundation: 'Date of Foundation',
     validDateOfFoundation: 'Please, choose Date of Foundation',
     birthDate: 'Choose Date of Birth',
+    chooseYear: 'Choose Year',
     validBirthDate: 'Please, choose Date of Birth',
     country: 'Choose Country',
     validCountry: 'Please, choose country',
@@ -98,6 +99,13 @@ export default {
     smsCode: 'SMS Code',
     sendOTPSuccess:
       'We sent you one time password, please follow instructions...',
+  },
+
+  dates: {
+    selectDate: 'Select Date',
+    year: 'Year',
+    month: 'Month',
+    day: 'Day',
   },
 
   serviceScreen: {

@@ -1,9 +1,12 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
+import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import Modal from 'react-native-modal';
-import {StyleSheet, View} from 'react-native';
 import {Calendar} from 'react-native-calendars';
 import * as colors from 'theme/colors';
 import Button from 'components/Button';
+import Text from 'components/Text';
+import useCalendarModal from './useCalenderModal';
+import {theme} from './config';
 
 const CalendarModal: CalendarModalFC = ({
   setModalVisible,
@@ -12,20 +15,28 @@ const CalendarModal: CalendarModalFC = ({
   isPerson,
   setDate,
 }) => {
-  const [selectedDate, setSelectedDate] = React.useState(
-    activeDate ? activeDate : null,
-  );
+  const {
+    closeModal,
+    getMaxDate,
+    setSelectedDate,
+    selectedDate,
+    currentDate,
+    setCurrentDate,
+  } = useCalendarModal({
+    setModalVisible,
+    activeDate,
+    isPerson,
+  });
 
-  const closeModal = () => {
-    setSelectedDate(activeDate);
-    setModalVisible(false);
-  };
+  useEffect(() => {
+    setTimeout(() => {
+      setCurrentDate(new Date(new Date().setFullYear(1927)));
+      calendarModal.current?.forceUpdate();
+      console.log('happened');
+    }, 3000);
+  }, []);
 
-  const getMaxDate = () => {
-    return isPerson
-      ? new Date().setFullYear(new Date().getFullYear() - 18)
-      : new Date();
-  };
+  const calendarModal = useRef<Calendar>();
 
   return (
     <Modal
@@ -41,32 +52,28 @@ const CalendarModal: CalendarModalFC = ({
             <View style={styles.divider} />
           </View>
           <Calendar
-            // Initially visible month. Default = Date()
-            current={activeDate ? activeDate : getMaxDate()}
-            // Maximum date that can be selected, dates after maxDate will be grayed out. Default = undefined
-            maxDate={getMaxDate()}
-            // Handler which gets executed on day press. Default = undefined
+            current={currentDate}
+            maxDate={getMaxDate(isPerson)}
             onDayPress={(day) => {
-              setSelectedDate(day.dateString);
+              setSelectedDate(new Date(day.dateString));
             }}
             markedDates={{[selectedDate]: {selected: true}}}
-            // Month format in calendar title. Formatting values: http://arshaw.com/xdate/#Formatting
             monthFormat={'MMMM yyyy'}
-            // If firstDay=1 week starts from Monday. Note that dayNames and dayNamesShort should still start from Sunday.
             firstDay={1}
-            // Disable all touch events for disabled days. can be override with disableTouchEvent in markedDates
             disableAllTouchEventsForDisabledDays={true}
-            // Enable the option to swipe between months. Default = false
             enableSwipeMonths={true}
-            theme={{
-              dayTextColor: colors.black,
-              monthTextColor: colors.black,
-              indicatorColor: colors.black,
-              arrowColor: colors.black,
-              todayTextColor: colors.black,
-              selectedDayBackgroundColor: colors.crimson,
-              selectedDayTextColor: colors.white,
+            theme={theme}
+            ref={calendarModal}
+            renderHeader={(date) => {
+              return (
+                // <TouchableOpacity onPress={() => setYearsVisible(true)}>
+                <TouchableOpacity>
+                  <Text>{`${date.getMonth() + ' ' + date.getFullYear()}`}</Text>
+                </TouchableOpacity>
+              );
             }}
+            pagingEnabled
+            horizontal
           />
           <Button text={'save'} onPress={() => setDate(selectedDate)} />
         </View>
@@ -112,3 +119,7 @@ const styles = StyleSheet.create({
 });
 
 export default CalendarModal;
+
+/**
+
+ */

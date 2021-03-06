@@ -25,3 +25,4 @@ export {default as SendAgain} from './SendAgain';
 export {default as Modal} from './Modal';
 export {default as SentOTPModal} from './SentOTPModal';
 export {default as LightGreyButton} from './LightGreyButton';
+export {default as DateSelector} from './DateSelector';

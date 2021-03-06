@@ -73,6 +73,7 @@ export default {
     dateOfFoundation: 'დაარსების თარიღი',
     validDateOfFoundation: 'გთხოვთ, აირჩიეთ დაარსების თარიღი',
     birthDate: 'აირჩიეთ დაბადების თარიღი',
+    chooseYear: 'აირჩიეთ წელი',
     validBirthDate: 'გთხოვთ, აირჩიოთ დაბადების თარიღი',
     country: 'აირჩიეთ ქვეყანა',
     validCountry: 'გთხოვთ, აირჩიოთ ქვეყანა',
@@ -99,6 +100,13 @@ export default {
   modal: {
     smsCode: 'SMS კოდი',
     sendOTPSuccess: 'ჩვენ გამოგიგზავნეთ ერთჯერადი კოდი, მიყევით ინსტრუქციას.',
+  },
+
+  dates: {
+    selectDate: 'აირჩიეთ თარიღი',
+    year: 'წელი',
+    month: 'თვე',
+    day: 'რიცხვი',
   },
 
   serviceScreen: {

@@ -1,17 +1,17 @@
 import React, {useEffect} from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import {Button} from 'components';
-import {showNotificationsListModal} from 'utils/modal';
+import {showDateSelector} from 'utils/modal';
 import {ScrollView} from 'react-native-gesture-handler';
 
 const Test = () => {
   useEffect(() => {
-    showNotificationsListModal();
+    showDateSelector();
   }, []);
   return (
-    <ScrollView style={{flex: 1}}>
+    <ScrollView style={styles.container}>
       <SafeAreaView />
-      <Button text="continue" onPress={showNotificationsListModal} />
+      <Button text="button" onPress={showDateSelector} />
     </ScrollView>
   );
 };
@@ -20,7 +20,6 @@ export default Test;
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 30,
-    marginHorizontal: 20,
+    flex: 1,
   },
 });
