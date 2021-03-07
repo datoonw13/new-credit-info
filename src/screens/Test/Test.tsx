@@ -1,16 +1,14 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
-import {Button} from 'components';
+import {Button, DateSelectorModal} from 'components';
 import {showDateSelector} from 'utils/modal';
 import {ScrollView} from 'react-native-gesture-handler';
 
 const Test = () => {
-  useEffect(() => {
-    showDateSelector();
-  }, []);
   return (
     <ScrollView style={styles.container}>
       <SafeAreaView />
+      <DateSelectorModal />
       <Button text="button" onPress={showDateSelector} />
     </ScrollView>
   );

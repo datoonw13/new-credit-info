@@ -32,7 +32,7 @@ const ListSelector: ListSelectorFC = ({activeElement, data, onSelect}) => {
       )}
       style={styles.selectContainer}
       keyExtractor={(item) => item.toString()}
-      ref={listSelectorRef}
+      ref={listSelectorRef as any}
     />
   );
 };

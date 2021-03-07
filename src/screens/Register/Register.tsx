@@ -25,8 +25,8 @@ const Register = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(setRegisterLastStepAction(4));
-    dispatch(setRegisterSelectedStepAction(4));
+    // dispatch(setRegisterLastStepAction(4));
+    // dispatch(setRegisterSelectedStepAction(4));
   }, []);
 
   return (

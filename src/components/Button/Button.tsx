@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, StyleSheet, TouchableOpacity, Platform} from 'react-native';
 import Text from 'components/Text';
 import * as colors from 'theme/colors';
 import {ButtonFC} from './types';
@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 12,
     backgroundColor: colors.crimsonOp2,
+    paddingBottom: Platform.OS === 'android' ? 8 : 0,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',

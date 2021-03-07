@@ -8,6 +8,7 @@ import {
   getCountries,
 } from 'store/registration/sagaActions';
 import {selectRegistration} from 'store/select';
+import {formateDate} from './helpers';
 
 const useSetAdditionalInfo = ({
   registerData,
@@ -17,7 +18,7 @@ const useSetAdditionalInfo = ({
   const {countries} = useSelector(selectRegistration);
   const [calendarModalVisible, setCalendarModalVisible] = useState(false);
   const [countryModalVisible, setCountryModalVisible] = useState(false);
-  const [activeDate, setActiveDate] = useState(null);
+  const [activeDate, setActiveDate] = useState<Date>();
   const [activeCountry, setActiveCountry] = useState({
     id: null,
     name: '',
@@ -44,7 +45,7 @@ const useSetAdditionalInfo = ({
       }
     }
     if (lastStep === 4 && countries.length === 0) {
-      // dispatch(getCountries());
+      dispatch(getCountries());
     }
     if (lastStep === 4 && countries.length !== 0 && activeCountry.id === null) {
       const country = countries.find((el) => el.alpha2Code === 'GE');
@@ -68,10 +69,10 @@ const useSetAdditionalInfo = ({
     }
   };
 
-  const updateBirthDay = (date) => {
+  const updateBirthDay = (date: Date) => {
     setCalendarModalVisible(false);
     setActiveDate(date);
-    setValue('birthDate', date.split('-').reverse().join('/'));
+    setValue('birthDate', formateDate(date));
     trigger('birthDate').done();
   };
 

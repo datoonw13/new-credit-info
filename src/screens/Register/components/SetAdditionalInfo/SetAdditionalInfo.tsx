@@ -4,7 +4,7 @@ import {Divider} from 'react-native-elements';
 import {Controller} from 'react-hook-form';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {GRAY8} from 'theme/colors';
-import {CalendarModal, CountrySelectModal, Input, Button} from 'components';
+import {CountrySelectModal, Input, Button, DateSelectorModal} from 'components';
 import {expression} from './config';
 import useSetAdditionalInfo from './useSetAdditionalInfo';
 import {useTranslation} from 'react-i18next';
@@ -70,9 +70,7 @@ const SetAdditionalInfo: SetAdditionalInfoFC = ({
                 }
               />
             )}
-            rules={{
-              required: true,
-            }}
+            rules={{required: true}}
           />
           <Divider />
           <Controller
@@ -157,9 +155,9 @@ const SetAdditionalInfo: SetAdditionalInfoFC = ({
           }
         />
       </View>
-      <CalendarModal
-        isVisible={calendarModalVisible}
-        setModalVisible={setCalendarModalVisible}
+      <DateSelectorModal
+        dateSelectorVisible={calendarModalVisible}
+        setDateSelectorVisible={setCalendarModalVisible}
         setDate={updateBirthDay}
         activeDate={activeDate}
         isPerson={!!isPerson}

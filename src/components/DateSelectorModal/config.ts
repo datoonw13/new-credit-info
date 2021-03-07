@@ -1,11 +1,11 @@
 const currentYear = new Date().getFullYear();
 
-const yearsTillNow = Array.from(Array(currentYear).keys());
+const yearsTillNow = Array.from(Array(currentYear + 1).keys());
 
 /**
  * Choosable years.
  */
-export const choosableYears = yearsTillNow.slice(1930, currentYear).reverse();
+export const choosableYears = yearsTillNow.slice(1930).reverse();
 
 /**
  * Choosable years for person.
