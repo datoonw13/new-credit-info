@@ -3,7 +3,7 @@ import {Dispatch, SetStateAction} from 'react';
 type SwitchServiceButtonProps = {
   title: string;
   active?: boolean;
-  type: 'Premium' | 'Standard';
+  type: ServiceType;
   onPress: Dispatch<SetStateAction<ServiceType>>;
 };
 

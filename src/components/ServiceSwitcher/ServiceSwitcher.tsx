@@ -9,14 +9,14 @@ const ServiceSwitcher: ServiceSwitcherFC = ({style, serviceType, onPress}) => {
     <View style={[styles.container, style]}>
       <SwitchServiceButton
         title="serviceScreen.standard"
-        active={serviceType === 'Standard'}
-        type="Standard"
+        active={serviceType === 'STANDARD'}
+        type="STANDARD"
         onPress={onPress}
       />
       <SwitchServiceButton
         title="serviceScreen.premium"
-        active={serviceType === 'Premium'}
-        type="Premium"
+        active={serviceType === 'PREMIUM'}
+        type="PREMIUM"
         onPress={onPress}
       />
     </View>

@@ -16,17 +16,17 @@ const IndividualLegalEntitySwitcher: IndividualLegalEntitySwitcherFC = ({
       <TouchableOpacity
         style={[
           styles.entity,
-          entityType === 'Individual' ? styles.borderBottomCrimson : {},
+          entityType === 'PERSON' ? styles.borderBottomCrimson : {},
         ]}
-        onPress={() => setEntityType('Individual')}>
+        onPress={() => setEntityType('PERSON')}>
         <Text style={styles.text}>{t('individualPerson')}</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={[
           styles.entity,
-          entityType === 'LegalEntity' ? styles.borderBottomCrimson : {},
+          entityType === 'COMPANY' ? styles.borderBottomCrimson : {},
         ]}
-        onPress={() => setEntityType('LegalEntity')}>
+        onPress={() => setEntityType('COMPANY')}>
         <Text style={styles.text}>{t('legalEntity')}</Text>
       </TouchableOpacity>
     </View>
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingBottom: 20,
     borderBottomWidth: 2,
-    borderBottomColor: colors.lightGrey,
+    borderBottomColor: colors.blackOp3,
   },
   borderBottomCrimson: {
     borderBottomWidth: 3,

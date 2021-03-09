@@ -25,14 +25,10 @@ const useFAQ = () => {
           });
         });
 
-        setFaqs(FAQs);
-      } catch (e) {
-        console.log(e);
-      }
+        setTimeout(() => setFaqs(FAQs), 1000);
+      } catch (e) {}
     })();
   }, []);
-
-  useEffect(() => console.log(faqs), [faqs]);
 
   return {
     faqs,

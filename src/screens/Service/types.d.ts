@@ -1,2 +1,2 @@
-type ServiceType = 'Premium' | 'Standard';
-type EntityType = 'Individual' | 'LegalEntity';
+type ServiceType = 'PREMIUM' | 'STANDARD';
+type EntityType = 'COMPANY' | 'PERSON';

@@ -17,6 +17,7 @@ const Service = () => {
   const {
     setActivePackage,
     setServiceType,
+    activeServices,
     setEntityType,
     activePackage,
     serviceType,
@@ -44,10 +45,10 @@ const Service = () => {
         activeDotIndex={activePackage}
         dotStyle={styles.dot}
         inactiveDotScale={1}
-        dotsLength={2}
+        dotsLength={activeServices ? activeServices.length : 0}
       />
       <Slider
-        data={[{}, {}]}
+        data={activeServices ?? []}
         renderItem={() => <Package />}
         itemWidth={config.mobileWidth * 0.8}
         sliderWidth={config.mobileWidth}
