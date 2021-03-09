@@ -91,6 +91,10 @@ export default {
     sendAgain: 'ხელახლა გამოგზავნა',
   },
 
+  forgotPassword: {
+    title: 'პაროლის აღდგენა',
+  },
+
   dropdownAlert: {
     userCreateSuccess: 'მომხმარებელი წარმატებით შეიქმნა',
     registerSuccess: 'მომხმარებელი წარმატებით დარეგისტრირდა',

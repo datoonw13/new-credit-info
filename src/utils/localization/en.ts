@@ -90,6 +90,10 @@ export default {
     sendAgain: 'Send Again',
   },
 
+  forgotPassword: {
+    title: 'Reset Password',
+  },
+
   dropdownAlert: {
     userCreateSuccess: 'User created successfully!',
     registerSuccess: 'You have registered successfully!',

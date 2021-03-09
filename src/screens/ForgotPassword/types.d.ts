@@ -1,0 +1,1 @@
+type ForgotPasswordStep = 'Identify' | 'Reset';
