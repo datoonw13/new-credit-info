@@ -1,9 +1,8 @@
-import {Dispatch, SetStateAction} from 'react';
 import {StyleProp, ViewStyle} from 'react-native';
 
 type ServiceSwitcherProps = {
   style?: StyleProp<ViewStyle>;
-  onPress: Dispatch<SetStateAction<ServiceType>>;
+  onPress: (type: ServiceType) => void;
   serviceType: ServiceType;
 };
 

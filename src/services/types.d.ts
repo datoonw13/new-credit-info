@@ -57,14 +57,16 @@ type FAQ = {
   answer: string;
 };
 
-type Services = Array<{
+type Services = Service[];
+
+type Service = {
   id: number;
   actionGroups: Array<{
-    id: number;
+    id: 21 | 22 | 23 | 24 | 25;
     name: string;
   }>;
-  monthlyPrice: number;
-  yearlyPrice: number;
+  monthlyPrice?: number;
+  yearlyPrice?: number;
   nameKa: string;
   organizationalProductType: 'STANDARD' | 'PREMIUM';
-}>;
+};

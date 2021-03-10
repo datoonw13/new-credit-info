@@ -3,42 +3,61 @@ import {StyleSheet, View} from 'react-native';
 import {Divider, Text} from 'components';
 import {PackageFC} from './types';
 import {colors} from 'theme';
-import {availableServices} from './config';
+import {Icons} from './config';
+import {useTranslation} from 'react-i18next';
 
-const Package: PackageFC = () => {
+const Package: PackageFC = ({style, service}) => {
+  const {
+    organizationalProductType,
+    actionGroups,
+    monthlyPrice,
+    yearlyPrice,
+  } = service;
+  const {t} = useTranslation();
+
+  const price = monthlyPrice ?? yearlyPrice;
+  const numberOfMonths = monthlyPrice ? 1 : 12;
+  const timeRange = `/ ${numberOfMonths} ${t('month')}`;
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       <View style={styles.pricingContainer}>
         <View style={styles.currencyContainer}>
           <Text style={styles.currencyText}>₾</Text>
         </View>
-        <Text style={styles.priceText}>4.99</Text>
-        <Text style={styles.timeRangeText}>/ 1 თვე</Text>
+        <Text style={styles.priceText}>{price!.toString()}</Text>
+        <Text style={styles.timeRangeText}>{timeRange}</Text>
       </View>
       <Text style={styles.serviceTitle} caps>
-        სტანდარტული
+        {organizationalProductType === 'STANDARD'
+          ? t('serviceScreen.standard')
+          : t('serviceScreen.premium')}
       </Text>
       <Divider width="100%" />
 
-      {availableServices.map(({id, Icon, active, text}) => (
-        <View style={styles.serviceUnitWrapper} key={id}>
-          <View
-            style={[
-              styles.serviceUnitIconContainer,
-              !active && styles.serviceUnitInactiveIcon,
-            ]}>
-            <Icon />
+      {actionGroups.map(({id, name}) => {
+        const Icon = Icons[id];
+        const AGIcon = Icon ? <Icon /> : <Text children="IC" />;
+        return (
+          <View style={styles.serviceUnitWrapper} key={id}>
+            <View
+              style={[
+                styles.serviceUnitIconContainer,
+                // !active && styles.serviceUnitInactiveIcon,
+              ]}>
+              {AGIcon}
+            </View>
+            <Text
+              style={[
+                styles.serviceUnitText,
+                // !active && styles.serviceUnitInactiveText,
+              ]}
+              dontTranslate>
+              {name}
+            </Text>
           </View>
-          <Text
-            style={[
-              styles.serviceUnitText,
-              !active && styles.serviceUnitInactiveText,
-            ]}
-            dontTranslate>
-            {text}
-          </Text>
-        </View>
-      ))}
+        );
+      })}
     </View>
   );
 };
@@ -52,6 +71,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingVertical: 26,
     paddingHorizontal: 22,
+    minHeight: 400,
   },
   pricingContainer: {
     display: 'flex',

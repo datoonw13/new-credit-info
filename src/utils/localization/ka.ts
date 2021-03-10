@@ -15,6 +15,8 @@ export default {
   ok: 'OK',
   close: 'დახურვა',
 
+  month: 'თვე',
+
   login: 'შესვლა',
   service: 'მომსახურება',
   faq: 'ხშირად დასმული კითხვები',

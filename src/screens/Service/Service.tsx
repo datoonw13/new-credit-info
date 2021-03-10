@@ -15,8 +15,8 @@ import {showNotificationsListModal} from 'utils/modal';
 
 const Service = () => {
   const {
+    onServiceTypeChange,
     setActivePackage,
-    setServiceType,
     activeServices,
     setEntityType,
     activePackage,
@@ -35,7 +35,7 @@ const Service = () => {
       <ServiceSwitcher
         style={styles.serviceSwitcher}
         serviceType={serviceType}
-        onPress={setServiceType}
+        onPress={onServiceTypeChange}
       />
       <Info text="serviceScreen.promote" onPress={showNotificationsListModal} />
       <Divider />
@@ -49,7 +49,7 @@ const Service = () => {
       />
       <Slider
         data={activeServices ?? []}
-        renderItem={() => <Package />}
+        renderItem={({item}: SliderItem) => <Package service={item} />}
         itemWidth={config.mobileWidth * 0.8}
         sliderWidth={config.mobileWidth}
         onSnapToItem={setActivePackage}

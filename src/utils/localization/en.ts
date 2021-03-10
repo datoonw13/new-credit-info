@@ -14,6 +14,8 @@ export default {
   ok: 'OK',
   close: 'Close',
 
+  month: 'Month',
+
   login: 'Log In',
   service: 'Service',
   faq: 'FAQ',

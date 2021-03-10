@@ -4,7 +4,6 @@ import {StandardService, PremiumService} from 'assets/svg';
 import Text from 'components/Text';
 import {colors} from 'theme';
 import {useTranslation} from 'react-i18next';
-import {SwitchServiceButtonFC} from './types';
 
 const SwitchServiceButton: SwitchServiceButtonFC = ({
   title,
@@ -17,7 +16,7 @@ const SwitchServiceButton: SwitchServiceButtonFC = ({
     <TouchableOpacity
       style={[styles.container, active ? styles.active : {}]}
       onPress={() => onPress(type)}>
-      {type === 'Premium' ? (
+      {type === 'PREMIUM' ? (
         <PremiumService width={28} height={17} />
       ) : (
         <StandardService width={22} height={14} />

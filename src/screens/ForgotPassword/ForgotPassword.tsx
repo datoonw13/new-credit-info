@@ -7,7 +7,7 @@ import {
   View,
 } from 'react-native';
 import * as colors from 'theme/colors';
-import {RedGirl} from 'assets/svg';
+import {RedGirlSearching} from 'assets/svg';
 import {HeaderWithLogo, AuthFooter, Text} from 'components';
 import ForgotPasswordStep from './components/Step';
 import useForgotPassword from './useForgotPassword';
@@ -21,17 +21,17 @@ const ForgotPassword = () => {
         style={styles.keyboardAvoidingView}
         behavior={Platform.OS === 'ios' ? 'padding' : 'padding'}>
         <ScrollView style={styles.scrollViewContainer}>
-          <RedGirl style={styles.redGirl} />
+          <RedGirlSearching style={styles.redGirl} />
           <View style={styles.wrapper}>
             <View style={styles.titleWrapper}>
               <Text
+                children="forgotPassword.title"
                 style={styles.authText}
                 capsBold
-                children="forgotPassword.title"
               />
               <Text
-                style={styles.descText}
                 children="authorization.pleaseFill"
+                style={styles.descText}
               />
             </View>
             <ForgotPasswordStep step={activeStep} />

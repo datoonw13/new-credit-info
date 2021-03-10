@@ -1,5 +1,6 @@
-import {useEffect, useState} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import * as services from 'services';
+import {formatServices} from './helpers';
 
 const useService = () => {
   const [activePackage, setActivePackage] = useState<number>(0);
@@ -9,6 +10,9 @@ const useService = () => {
   const [companyServices, setCompanyServices] = useState<Services>();
   const [activeServices, setActiveServices] = useState<Services>();
 
+  /**
+   * Fetch services from back-end.
+   */
   useEffect(() => {
     (async () => {
       try {
@@ -20,9 +24,11 @@ const useService = () => {
           services.getServices('COMPANY'),
         ]);
 
-        setPersonServices(fetchedPersonServices);
-        setCompanyServices(fetchedCompanyServices);
-        setActiveServices(fetchedPersonServices);
+        const formattedPersonServices = formatServices(fetchedPersonServices);
+        const formattedCompanyServices = formatServices(fetchedCompanyServices);
+
+        setPersonServices(formattedPersonServices);
+        setCompanyServices(formattedCompanyServices);
       } catch (e) {}
     })();
   }, []);
@@ -42,17 +48,25 @@ const useService = () => {
     );
 
     setActiveServices(filteredServiceByType);
-    console.log(filteredServiceByType);
   }, [personServices, companyServices, serviceType, entityType]);
+
+  /**
+   * change service type and reset
+   * active package.
+   */
+  const onServiceTypeChange = useCallback((type: ServiceType) => {
+    setServiceType(type);
+    setActivePackage(0);
+  }, []);
 
   return {
     entityType,
     serviceType,
     setEntityType,
     activePackage,
-    setServiceType,
     activeServices,
     setActivePackage,
+    onServiceTypeChange,
   };
 };
 

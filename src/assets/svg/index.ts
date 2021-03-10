@@ -25,3 +25,5 @@ export {default as CreditScore} from './credit-score.svg';
 export {default as Star} from './star.svg';
 export {default as Simulator} from './simulator.svg';
 export {default as Monitoring} from './monitoring.svg';
+
+export {default as RedGirlSearching} from './red-girl-searching.svg';
