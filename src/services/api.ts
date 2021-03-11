@@ -13,3 +13,6 @@ export const FAQCategories = 'landingpage/faq/categories';
 export const FAQ = 'landingpage/faq';
 
 export const getServices = 'landingpage/products';
+
+export const forgotPasswordSendOTP = 'passwordrecovery/sendotp';
+export const forgotPassword = 'passwordrecovery/checkotp';

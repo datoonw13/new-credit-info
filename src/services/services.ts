@@ -5,7 +5,7 @@ import {global} from 'utils';
 /**
  * Get available services for customers.
  */
-export const getServices = (type: EntityType2) =>
+export const getServices = (type: EntityType) =>
   axios.get<any, Services>(API.getServices, {
     params: {
       language: global.lang.toUpperCase(),
