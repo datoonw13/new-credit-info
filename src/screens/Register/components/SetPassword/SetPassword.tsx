@@ -30,7 +30,7 @@ const SetPassword: SetPasswordFC = ({lastStep, registerData}) => {
   });
 
   const {t} = useTranslation();
-
+  console.log(errors);
   return (
     <>
       <View style={styles.container}>
@@ -87,7 +87,7 @@ const SetPassword: SetPasswordFC = ({lastStep, registerData}) => {
               },
               validate: () =>
                 passwordScore >= 3
-                  ? false
+                  ? true
                   : (t('registration.validPassword') as string),
             }}
           />

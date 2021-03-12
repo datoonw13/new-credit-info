@@ -40,7 +40,7 @@ const EntitySelector: EntitySelectorFC = ({
           styles.text,
           selectedType === entity ? styles.selectedText : {},
         ]}>
-        {entity}
+        {entity === 'PERSON' ? 'individualPerson' : 'legalEntity'}
       </Text>
     </TouchableOpacity>
   );

@@ -6,7 +6,7 @@ export const formateDate = (date: Date) => {
   const month = formatDateNumber(date.getMonth() + 1);
   const day = formatDateNumber(date.getDate());
 
-  return `${year}/${month}/${day}`;
+  return `${year}\\${month}\\${day}`;
 };
 
 /**

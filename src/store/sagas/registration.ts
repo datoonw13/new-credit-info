@@ -35,14 +35,14 @@ function* signInSaga({data}: any) {
         }),
       );
       if (userInfo.userName) {
-        yield put(setRegisterLastStepAction(3));
-        yield put(setRegisterSelectedStepAction(3));
-      } else if (userInfo.birthDate) {
         yield put(setRegisterLastStepAction(4));
         yield put(setRegisterSelectedStepAction(4));
-      } else {
+      } else if (userInfo.birthDate) {
         yield put(setRegisterLastStepAction(5));
         yield put(setRegisterSelectedStepAction(5));
+      } else {
+        yield put(setRegisterLastStepAction(6));
+        yield put(setRegisterSelectedStepAction(6));
       }
       goTo('MainStackNavigator', 'Register');
     } else {

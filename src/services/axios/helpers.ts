@@ -36,6 +36,10 @@ export const requestMiddleware = {
     return request;
   },
   onRejected: (error: any) => {
+    console.groupCollapsed('Request Error');
+    console.dir({error});
+    console.groupEnd();
+
     canNotPressBackButton = false;
     stopLoading();
     return Promise.reject(error);
@@ -47,6 +51,10 @@ export const requestMiddleware = {
  */
 export const responseMiddleware = {
   onFulfilled: (response: AxiosResponse<any>) => {
+    console.groupCollapsed(`Response - ${response.config.url}`);
+    console.log(response);
+    console.groupEnd();
+
     canNotPressBackButton = false;
     if (--counter < 1) {
       stopLoading();
@@ -54,6 +62,10 @@ export const responseMiddleware = {
     return response.data;
   },
   onRejected: (error: any) => {
+    console.groupCollapsed('Response Error');
+    console.dir({error});
+    console.groupEnd();
+
     canNotPressBackButton = false;
     if (--counter < 1) {
       stopLoading();
