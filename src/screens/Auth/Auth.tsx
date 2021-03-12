@@ -28,6 +28,7 @@ import {rules} from 'utils/form';
 const Auth = () => {
   const {
     setPasswordVisible,
+    goToForgoPassword,
     passwordVisible,
     footerHandler,
     saveIsEnabled,
@@ -128,7 +129,10 @@ const Auth = () => {
                 style={styles.saveText}
                 children="authorization.rememberMe"
               />
-              <BlueAction text="authorization.forgotPassword" />
+              <BlueAction
+                text="authorization.forgotPassword"
+                onPress={goToForgoPassword}
+              />
             </View>
             <Divider />
             <Button

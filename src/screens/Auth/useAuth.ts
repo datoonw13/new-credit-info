@@ -20,28 +20,34 @@ const useAuth = () => {
   const [saveIsEnabled, setSaveIsEnabled] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(true);
 
-  useEffect(() => {
-    if (Platform.OS === 'ios') {
-      Keyboard.addListener('keyboardWillShow', keyboardWillShow);
-    } else {
-      Keyboard.addListener('keyboardDidShow', keyboardWillShow);
-    }
-    return () => {
-      if (Platform.OS === 'ios') {
-        Keyboard.removeListener('keyboardWillShow', keyboardWillShow);
-      } else {
-        Keyboard.removeListener('keyboardDidShow', keyboardWillShow);
-      }
-    };
-  }, [keyboardWillShow]);
-
-  const keyboardWillShow = useCallback(() => {
+  /**
+   * Scroll to end.
+   */
+  const scrollToEnd = useCallback(() => {
     scrollViewRef?.current?.scrollToEnd();
   }, [scrollViewRef]);
 
+  /**
+   * On keyboard appearing scroll to end.
+   */
+  useEffect(() => {
+    const event =
+      Platform.OS === 'ios' ? 'keyboardWillShow' : 'keyboardDidShow';
+    Keyboard.addListener(event, scrollToEnd);
+    return () => Keyboard.removeListener(event, scrollToEnd);
+  }, [scrollToEnd]);
+
   const toggleSwitch = () => setSaveIsEnabled(!saveIsEnabled);
 
-  const onSubmit = async ({username, password}) => {
+  /**
+   * Got to ForgotPassword screen.
+   */
+  const goToForgoPassword = () => navigate('ForgotPassword');
+
+  /**
+   * Sign in to the account.
+   */
+  const onSubmit = async ({username, password}: Credentials) => {
     Keyboard.dismiss();
     dispatch(
       signIn({
@@ -53,14 +59,18 @@ const useAuth = () => {
     );
   };
 
+  /**
+   * Clear the inputs and go to Register screen.
+   */
   const footerHandler = () => {
-    setValue('email', '');
+    setValue('username', '');
     setValue('password', '');
     navigate('Register');
   };
 
   return {
     setPasswordVisible,
+    goToForgoPassword,
     passwordVisible,
     footerHandler,
     saveIsEnabled,

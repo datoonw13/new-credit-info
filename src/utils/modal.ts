@@ -41,7 +41,7 @@ export const configureModal: ConfigureModal = ({element, props, style}) => {
  */
 export const showSentOTPModal = () => {
   configureModal({
-    element: SentOTPModal(),
+    element: SentOTPModal,
     style: {
       marginVertical: config.mobileHeight * 0.34,
       paddingVertical: 18,

@@ -21,7 +21,7 @@ const SentOTPModal = () => {
   );
 };
 
-export default SentOTPModal;
+export default <SentOTPModal />;
 
 const styles = StyleSheet.create({
   container: {
