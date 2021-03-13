@@ -15,4 +15,5 @@ export const FAQ = 'landingpage/faq';
 export const getServices = 'landingpage/products';
 
 export const forgotPasswordSendOTP = 'passwordrecovery/sendotp';
-export const forgotPassword = 'passwordrecovery/checkotp';
+export const forgotPasswordCheckOTP = 'passwordrecovery/checkotp';
+export const forgotPasswordReset = 'passwordrecovery';

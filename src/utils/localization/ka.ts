@@ -95,12 +95,15 @@ export default {
 
   forgotPassword: {
     title: 'პაროლის აღდგენა',
+    haveAccount: 'გაქვს ანგარიში?',
   },
 
   dropdownAlert: {
     userCreateSuccess: 'მომხმარებელი წარმატებით შეიქმნა',
     registerSuccess: 'მომხმარებელი წარმატებით დარეგისტრირდა',
     sendOTPSuccess: 'ჩვენ გამოგიგზავნეთ ერთჯერადი კოდი, მიყევით ინსტრუქციას.',
+    invalidCodeTitle: 'არასწორი SMS კოდი',
+    invalidCode: 'თქვენს მიერ შეყვანილი SMS კოდი არასწორია',
   },
 
   modal: {

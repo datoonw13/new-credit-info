@@ -1,18 +1,28 @@
 import {useState} from 'react';
 import * as services from 'services';
+import {alertError} from 'utils/dropdownAlert';
+import {showSentOTPModal} from 'utils/modal';
 
-const useIdentity = () => {
+const useIdentity = ({setStep, username}: UseIdentity) => {
   const [usernameEntered, setUsernameEntered] = useState(false);
+  const [code, setCode] = useState('');
 
   /**
    * Set username entered. and send One
    * time password.
    */
-  const onUsernameEntered = async (username: string) => {
+  const onUsernameEntered = async () => {
+    await sendOTP();
+    setUsernameEntered(true);
+  };
+
+  /**
+   * Send one-time-password.
+   */
+  const sendOTP = async () => {
     try {
-      const response = await services.forgotPasswordSendOTP(username);
-      console.log({response});
-      setUsernameEntered(true);
+      await services.forgotPasswordSendOTP(username);
+      showSentOTPModal();
     } catch (e) {
       console.log(e);
     }
@@ -22,15 +32,31 @@ const useIdentity = () => {
    * send one-time-password if username is not
    * entered, and if so, go verify one-time-password.
    */
-  const onPress = ({username}: IdentityFormData) => {
+  const onPress = async () => {
     if (!usernameEntered) {
-      onUsernameEntered(username);
+      onUsernameEntered();
+    } else {
+      try {
+        await services.forgotPasswordCheckOTP(username, code);
+        setStep('Reset');
+      } catch (e) {
+        console.dir(e);
+        if (e.response.status === 403) {
+          alertError(
+            'dropdownAlert.invalidCodeTitle',
+            'dropdownAlert.invalidCode',
+          );
+          setCode('');
+        }
+      }
     }
   };
 
   return {
-    onPress,
     usernameEntered,
+    setCode,
+    sendOTP,
+    onPress,
   };
 };
 

@@ -10,3 +10,13 @@ export const username = /^\d*$/;
  */
 export const nameField = () =>
   global.lang === 'ka' ? /^[ა-ჰ]*$/ : /^[A-Za-z]*$/;
+
+/**
+ * Phone regex.
+ */
+export const phone = /^5[0-9]{8}$/;
+
+/**
+ * Number regex.
+ */
+export const number = /^\d*$/;

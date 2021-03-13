@@ -23,6 +23,7 @@ const Input: InputFC = ({
   onChangeText,
   keyboardType,
   errorMessage,
+  reverseError,
   autoCorrect,
   maxLength,
   rightIcon,
@@ -76,7 +77,12 @@ const Input: InputFC = ({
           onBlur={onBlur}
           value={value}
         />
-        <Animated.View style={[styles.errorTextWrapper, {height}]}>
+        <Animated.View
+          style={[
+            styles.errorTextWrapper,
+            reverseError && styles.reverseError,
+            {height},
+          ]}>
           <Text style={styles.errorText} children={errorMessage} />
         </Animated.View>
       </View>
@@ -163,6 +169,11 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     paddingRight: 10,
     paddingTop: 2,
+  },
+  reverseError: {
+    position: 'absolute',
+    right: 0,
+    bottom: 7,
   },
   errorText: {
     color: colors.crimson,

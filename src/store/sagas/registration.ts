@@ -174,7 +174,7 @@ function* verifyOTPSaga(payload: any) {
  */
 function* getCountriesSaga() {
   try {
-    const countries = yield services.getCountries();
+    const countries: Country[] = yield services.getCountries();
     yield put(setCountriesAction(countries));
   } catch (error) {
     alertError('error');

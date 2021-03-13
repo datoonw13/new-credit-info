@@ -16,4 +16,16 @@ export const rules = {
     required: true,
     pattern: regex.nameField(),
   }),
+
+  phone: (): ValidationRules => ({
+    required: true,
+    minLength: 9,
+    pattern: regex.phone,
+  }),
+
+  smsCode: (): ValidationRules => ({
+    required: true,
+    minLength: 6,
+    pattern: regex.number,
+  }),
 };

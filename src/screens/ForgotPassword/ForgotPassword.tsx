@@ -10,10 +10,10 @@ import * as colors from 'theme/colors';
 import {RedGirlSearching} from 'assets/svg';
 import {HeaderWithLogo, AuthFooter, Text} from 'components';
 import ForgotPasswordStep from './components/Step';
-import useForgotPassword from './useForgotPassword';
+import {useNavigation} from '@react-navigation/core';
 
 const ForgotPassword = () => {
-  const {activeStep} = useForgotPassword();
+  const {navigate} = useNavigation();
   return (
     <View style={styles.container}>
       <HeaderWithLogo mode="WithMenu" style={styles.header} />
@@ -34,14 +34,14 @@ const ForgotPassword = () => {
                 style={styles.descText}
               />
             </View>
-            <ForgotPasswordStep step={activeStep} />
+            <ForgotPasswordStep />
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
       <AuthFooter
-        text="authorization.areYouNotRegistered"
-        link="authorization.register"
-        handler={() => {}}
+        text="forgotPassword.haveAccount"
+        link="login"
+        handler={() => navigate('Auth')}
         mode="link"
       />
     </View>

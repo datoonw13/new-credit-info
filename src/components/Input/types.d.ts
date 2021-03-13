@@ -11,6 +11,7 @@ type InputProps = {
   leftIcon?: JSX.Element;
   label: string;
   value: string;
+  reverseError?: boolean;
 } & TextInputProps;
 
 type UseInputProps = {

@@ -6,6 +6,7 @@ import {Controller} from 'react-hook-form';
 import {Button, Input, SendAgain} from 'components';
 import useVerifyPhone from './useVerifyPhone';
 import {useTranslation} from 'react-i18next';
+import {rules} from 'utils/form';
 
 const VerifyPhone: VerifyPhoneFC = ({registerData}) => {
   const {onSubmit, handleSubmit, errors, control} = useVerifyPhone({
@@ -36,11 +37,7 @@ const VerifyPhone: VerifyPhoneFC = ({registerData}) => {
             }
           />
         )}
-        rules={{
-          required: true,
-          minLength: 9,
-          pattern: /^5[0-9]{8}$/,
-        }}
+        rules={rules.phone()}
       />
       {registerData.phone && (
         <View style={styles.receivedCodeContainer}>
@@ -58,11 +55,7 @@ const VerifyPhone: VerifyPhoneFC = ({registerData}) => {
                 errorMessage={errors.code && t('registration.validOTP')}
               />
             )}
-            rules={{
-              required: true,
-              minLength: 6,
-              pattern: /^\d*$/,
-            }}
+            rules={rules.smsCode()}
           />
           <SendAgain phoneNumber={registerData.phone} />
         </View>

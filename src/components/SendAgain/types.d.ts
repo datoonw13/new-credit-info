@@ -1,6 +1,7 @@
 type SendAgainProps = {
-  phoneNumber: string;
+  phoneNumber?: string;
   sendAgainDuration?: number;
+  customRequest?: () => Promise<void>;
 };
 
 type SubmitData = {

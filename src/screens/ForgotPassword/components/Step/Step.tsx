@@ -1,11 +1,19 @@
 import React from 'react';
 import {Identify, Reset} from '../index';
+import useStep from './useStep';
 
-const Step: StepFC = ({step}) => {
+const Step = () => {
+  const {step, setStep, username, setUsername} = useStep();
   return (
     <>
-      {step === 'Identify' && <Identify />}
-      {step === 'Reset' && <Reset />}
+      {step === 'Identify' && (
+        <Identify
+          setUsername={setUsername}
+          username={username}
+          setStep={setStep}
+        />
+      )}
+      {step === 'Reset' && <Reset username={username} />}
     </>
   );
 };

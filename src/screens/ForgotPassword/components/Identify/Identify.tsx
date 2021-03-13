@@ -7,12 +7,17 @@ import useIdentity from './useIdentity';
 import {useForm, Controller} from 'react-hook-form';
 import {rules} from 'utils/form';
 
-const Identify = () => {
+const Identify: IdentifyFC = ({setStep, username, setUsername}) => {
   const {t} = useTranslation();
-  const {usernameEntered, onPress} = useIdentity();
+  const {usernameEntered, onPress, sendOTP, setCode} = useIdentity({
+    setStep,
+    username,
+  });
+
   const {control, errors, handleSubmit} = useForm({
     defaultValues: {
       username: '',
+      code: '',
     },
   });
 
@@ -25,7 +30,10 @@ const Identify = () => {
             autoCapitalize="none"
             placeholder="username"
             onBlur={onBlur}
-            onChangeText={onChange}
+            onChangeText={(val: string) => {
+              setUsername(val);
+              onChange(val);
+            }}
             editable={!usernameEntered}
             value={value}
             keyboardType="number-pad"
@@ -41,16 +49,27 @@ const Identify = () => {
       <Divider />
       {usernameEntered && (
         <>
-          <Input
-            onBlur={() => {}}
-            onChangeText={() => {}}
-            value={''}
-            maxLength={6}
-            keyboardType="number-pad"
-            label={'registration.OTP'}
-            errorMessage={'' && t('registration.validOTP')}
+          <Controller
+            name="code"
+            control={control}
+            render={({onBlur, onChange, value}) => (
+              <Input
+                onBlur={onBlur}
+                onChangeText={(val) => {
+                  onChange(val);
+                  setCode(val);
+                }}
+                value={value}
+                maxLength={6}
+                keyboardType="number-pad"
+                label={'registration.OTP'}
+                errorMessage={errors.code && t('registration.validOTP')}
+                reverseError
+              />
+            )}
+            rules={rules.smsCode()}
           />
-          <SendAgain phoneNumber={''} />
+          <SendAgain customRequest={sendOTP} sendAgainDuration={121} />
         </>
       )}
       <Button

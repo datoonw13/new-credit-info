@@ -6,7 +6,11 @@ import {colors} from 'theme';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import useSendAgain from './useSendAgain';
 
-const SendAgain: SendAgainFC = ({sendAgainDuration = 61, phoneNumber}) => {
+const SendAgain: SendAgainFC = ({
+  sendAgainDuration = 61,
+  customRequest,
+  phoneNumber,
+}) => {
   const {t} = useTranslation();
   const {sendOTPRequest, loading, width} = useSendAgain({
     sendAgainDuration,
@@ -17,7 +21,7 @@ const SendAgain: SendAgainFC = ({sendAgainDuration = 61, phoneNumber}) => {
     <View style={styles.sendAgainContainer}>
       <TouchableOpacity
         style={styles.buttonWrapper}
-        onPress={sendOTPRequest}
+        onPress={() => sendOTPRequest(customRequest)}
         disabled={loading === true}>
         <Animated.View
           style={[

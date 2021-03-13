@@ -94,11 +94,16 @@ export default {
 
   forgotPassword: {
     title: 'Reset Password',
+    haveAccount: 'Do you have account?',
   },
 
   dropdownAlert: {
     userCreateSuccess: 'User created successfully!',
     registerSuccess: 'You have registered successfully!',
+    sendOTPSuccess:
+      'We have sent you one-time-password, please, follow the instructions...',
+    invalidCodeTitle: 'Invalid Code',
+    invalidCode: 'The code you entered is invalid',
   },
 
   modal: {

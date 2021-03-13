@@ -34,15 +34,20 @@ const useSendAgain = ({sendAgainDuration, phoneNumber}: SendAgainProps) => {
   /**
    * Send one-time-password to user.
    */
-  const sendOTPRequest = useCallback(() => {
-    if (loading === true) {
-      return;
-    }
-    dispatch(sendOTP(phoneNumber));
-    setLoading(true);
-    sendOTPAnimation.reset();
-    sendOTPAnimation.start(() => setLoading(false));
-  }, [dispatch, sendOTPAnimation, phoneNumber, loading, setLoading]);
+  const sendOTPRequest = useCallback(
+    (customRequest?: () => Promise<void>) => {
+      if (loading === true) {
+        return;
+      }
+
+      customRequest ? customRequest() : dispatch(sendOTP(phoneNumber));
+
+      setLoading(true);
+      sendOTPAnimation.reset();
+      sendOTPAnimation.start(() => setLoading(false));
+    },
+    [dispatch, sendOTPAnimation, phoneNumber, loading, setLoading],
+  );
 
   return {
     sendOTPAnimation,
