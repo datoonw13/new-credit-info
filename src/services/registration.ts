@@ -3,15 +3,6 @@ import * as API from './api';
 import {global} from 'utils';
 
 /**
- * Auth service.
- */
-export const auth = ({username, password}: AuthRequest) =>
-  axios.post<AuthRequest, AuthResponse>(API.auth, {
-    username,
-    password,
-  });
-
-/**
  * Get user data.
  */
 export const customerInfo = (step?: number) =>

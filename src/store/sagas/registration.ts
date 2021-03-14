@@ -1,5 +1,4 @@
 import {put, takeLatest} from 'redux-saga/effects';
-import AsyncStorage from '@react-native-community/async-storage';
 import {
   setRegisterSelectedStepAction,
   setRegisterLastStepAction,
@@ -12,8 +11,9 @@ import * as actionTypes from 'store/registration/actionTypes';
 import jwtDecode from 'jwt-decode';
 import {goTo} from 'utils/navigation';
 import {alertError, alertSuccess} from 'utils/dropdownAlert';
-import * as services from 'services/registration';
+import * as services from 'services';
 import {showSentOTPModal} from 'utils/modal';
+import {setAccessToken, setRefreshToken} from 'utils/token';
 
 /**
  * Saga for user sign in.
@@ -23,8 +23,10 @@ import {showSentOTPModal} from 'utils/modal';
 function* signInSaga({data}: any) {
   try {
     const {accessToken, refreshToken}: AuthResponse = yield services.auth(data);
-    yield AsyncStorage.setItem('accessToken', accessToken);
-    yield AsyncStorage.setItem('refreshToken', refreshToken);
+
+    yield setAccessToken(accessToken);
+    yield setRefreshToken(refreshToken);
+
     const jwtData = jwtDecode<any>(accessToken);
     if (jwtData.status === 'REGISTERED') {
       const userInfo: CustomerInfoResponse = yield services.customerInfo();
@@ -68,13 +70,14 @@ function* signUpSaga(payload: any) {
     const registerResult = yield services.register(payload.data);
     console.log({registerResult});
 
-    const res: AuthResponse = yield services.auth({
+    const {accessToken, refreshToken}: AuthResponse = yield services.auth({
       username: payload.data.userName,
       password: payload.data.password,
     });
 
-    yield AsyncStorage.setItem('accessToken', res.accessToken);
-    yield AsyncStorage.setItem('refreshToken', res.refreshToken);
+    yield setAccessToken(accessToken);
+    yield setRefreshToken(refreshToken);
+
     yield put(updateRegisterDataAction(payload.data));
     yield put(setRegisterLastStepAction(4));
     yield put(setRegisterSelectedStepAction(4));

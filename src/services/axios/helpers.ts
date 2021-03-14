@@ -5,6 +5,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import {resetStoreAction} from 'store/app/actions';
 import {getCurrentRoute} from 'utils/navigation';
 import {getStore} from 'utils/redux';
+import {getAccessToken} from 'utils/token';
 
 let canNotPressBackButton = false;
 let counter = 0;
@@ -29,7 +30,7 @@ export const requestMiddleware = {
     if (++counter < 2) {
       startLoading();
     }
-    const accessToken = await AsyncStorage.getItem('accessToken');
+    const accessToken = await getAccessToken();
     if (accessToken) {
       request.headers.Authorization = `Bearer ${accessToken}`;
     }
