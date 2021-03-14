@@ -9,4 +9,4 @@ export const selectRegistration = ({registration}: ApplicationState) =>
 /**
  * Select app from state.
  */
-export const selectApp = ({app}: ApplicationState) => app;
+export const selectAuth = ({auth}: ApplicationState) => auth;

@@ -1,23 +1,6 @@
 import * as actionTypes from './actionTypes';
 
 /**
- * Check if user is authenticated.
- */
-export const checkSignedIn = () => ({
-  type: actionTypes.CHECK_SIGNED_IN,
-});
-
-/**
- * Sign in action.
- * If user is being registered,
- * make him continue registration process.
- */
-export const signIn = (data: any) => ({
-  type: actionTypes.REQUEST_SIGN_IN,
-  data,
-});
-
-/**
  * Sign up action.
  * Without user's additional info.
  */

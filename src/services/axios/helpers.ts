@@ -2,7 +2,7 @@ import {AxiosRequestConfig, AxiosResponse} from 'axios';
 import {alertError} from 'utils/dropdownAlert';
 import {startLoading, stopLoading} from 'utils/loader';
 import AsyncStorage from '@react-native-community/async-storage';
-import {resetStoreAction} from 'store/app/actions';
+import {resetStoreAction} from 'store/auth/actions';
 import {getCurrentRoute} from 'utils/navigation';
 import {getStore} from 'utils/redux';
 import {getAccessToken} from 'utils/token';

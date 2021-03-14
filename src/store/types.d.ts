@@ -2,7 +2,7 @@ import {RegistrationSteps} from 'screens/Register/components/RegistrationStep/en
 
 type ApplicationState = {
   registration: RegistrationState;
-  app: AppState;
+  auth: AuthState;
 };
 
 type RegistrationState = {
@@ -13,7 +13,7 @@ type RegistrationState = {
   countries: any;
 };
 
-type AppState = {
+type AuthState = {
   isLoading: boolean;
   isSignedIn: boolean;
 };

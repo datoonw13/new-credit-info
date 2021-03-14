@@ -1,5 +1,6 @@
 import axios from './axios';
 import * as API from './api';
+import {getRefreshToken} from 'utils/token';
 
 /**
  * Auth service.
@@ -13,6 +14,10 @@ export const auth = ({username, password}: AuthRequest) =>
 /**
  * Refresh auth state.
  */
-export const refreshAuth = () => {
-  //
+export const refreshAuth = async () => {
+  const token = await getRefreshToken();
+
+  return axios.post<any, AuthResponse>(API.authRefresh, {
+    token,
+  });
 };

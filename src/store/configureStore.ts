@@ -31,6 +31,6 @@ const store = configureStore();
  * Register sagas.
  */
 sagaMiddleware.run(sagas.registrationSagas);
-sagaMiddleware.run(sagas.appSagas);
+sagaMiddleware.run(sagas.authSagas);
 
 export default store;

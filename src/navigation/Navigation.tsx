@@ -1,4 +1,5 @@
 import React from 'react';
+import {useSelector} from 'react-redux';
 import {createNativeStackNavigator} from 'react-native-screens/native-stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {NavigationContainer} from '@react-navigation/native';
@@ -19,6 +20,7 @@ import {
   drawerStyle,
 } from './config';
 import {saveReference, goTo} from 'utils/navigation';
+import {selectAuth} from 'store/select';
 
 const MainStack = createNativeStackNavigator();
 const DrawerNav = createDrawerNavigator();
@@ -58,7 +60,11 @@ const Navigation = () => {
   //   goTo('MainStackNavigator', 'Service');
   // }, []);
 
-  return (
+  const {isSignedIn} = useSelector(selectAuth);
+
+  return isSignedIn ? (
+    <Test />
+  ) : (
     <NavigationContainer ref={saveReference}>
       <DrawerNavigator />
     </NavigationContainer>

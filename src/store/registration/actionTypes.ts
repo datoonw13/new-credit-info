@@ -9,8 +9,6 @@ export const SET_COUNTRIES = 'SET_COUNTRIES';
 /**
  * Saga initiators.
  */
-export const CHECK_SIGNED_IN = 'CHECK_SIGNED_IN';
-export const REQUEST_SIGN_IN = 'REQUEST_SIGN_IN';
 export const REQUEST_SIGN_UP = 'REQUEST_SIGN_UP';
 export const SET_CUSTOMER_EXTRA = 'SET_CUSTOMER_EXTRA';
 export const GET_CUSTOMER_INFO = 'GET_CUSTOMER_INFO';

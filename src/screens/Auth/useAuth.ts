@@ -4,7 +4,7 @@ import {Platform, Keyboard} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {useForm} from 'react-hook-form';
 import {useDispatch} from 'react-redux';
-import {signIn} from 'store/registration/sagaActions';
+import {signIn} from 'store/auth/sagaActions';
 
 const useAuth = () => {
   const {navigate} = useNavigation();

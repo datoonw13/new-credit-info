@@ -1,15 +1,19 @@
 import React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
-import {Button, DateSelectorModal} from 'components';
-import {showDateSelector} from 'utils/modal';
+import {Button} from 'components';
 import {ScrollView} from 'react-native-gesture-handler';
+import {resetStoreAction} from 'store/auth/actions';
+import {useDispatch} from 'react-redux';
 
 const Test = () => {
+  const dispatch = useDispatch();
+
+  const logout = () => dispatch(resetStoreAction());
+
   return (
     <ScrollView style={styles.container}>
       <SafeAreaView />
-      <DateSelectorModal />
-      <Button text="button" onPress={showDateSelector} />
+      <Button text="logout" onPress={logout} />
     </ScrollView>
   );
 };
