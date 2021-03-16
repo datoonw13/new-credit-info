@@ -3,12 +3,12 @@ import {View, StyleSheet} from 'react-native';
 import * as colors from 'theme/colors';
 
 const PinLine: PinLineFC = ({fillNumber}) => {
-  const pinList = new Array(6).fill(false);
+  const pinList = Array.from(Array(4).keys());
   return (
     <View style={styles.pinContent}>
-      {pinList.map((item, index) => (
-        <View style={[styles.pinItem, !index && {marginLeft: 0}]} key={index}>
-          {fillNumber > index && <View style={styles.pinItemContent} />}
+      {pinList.map((item) => (
+        <View style={[styles.pinItem, !item && styles.noMarginLeft]} key={item}>
+          {fillNumber > item && <View style={styles.pinItemContent} />}
         </View>
       ))}
     </View>
@@ -35,5 +35,8 @@ const styles = StyleSheet.create({
     height: 18,
     borderRadius: 9,
     backgroundColor: colors.black,
+  },
+  noMarginLeft: {
+    marginLeft: 0,
   },
 });

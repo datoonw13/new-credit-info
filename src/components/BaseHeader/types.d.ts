@@ -1,5 +1,5 @@
 type BaseHeaderProps = {
-  title: string;
+  title?: string;
 };
 
 type BaseHeaderFC = (props: BaseHeaderProps) => JSX.Element;

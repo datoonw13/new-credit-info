@@ -9,9 +9,11 @@ const BaseHeader: BaseHeaderFC = ({title}) => {
   return (
     <View style={styles.container}>
       <BackButton style={styles.backButton} />
-      <Text style={styles.title} capsBold>
-        {t(title)}
-      </Text>
+      {title && (
+        <Text style={styles.title} capsBold>
+          {t(title)}
+        </Text>
+      )}
     </View>
   );
 };

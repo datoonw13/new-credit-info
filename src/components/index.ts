@@ -4,7 +4,6 @@ export {default as Input} from './Input';
 export {default as Loader} from './Loader';
 export {default as Text} from './Text';
 export {default as AuthFooter} from './AuthFooter';
-export {default as AuthHeader} from './AuthHeader';
 export {default as EntitySelector} from './EntitySelector';
 export {default as CountrySelectModal} from './CountrySelectModal';
 export {default as PinKeyboard} from './PinKeyboard';
