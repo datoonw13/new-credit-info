@@ -1,30 +1,26 @@
 import React, {useState} from 'react';
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet, Text, View, SafeAreaView} from 'react-native';
 import * as colors from 'theme/colors';
-import {PinKeyboard, PinLine, BaseHeader} from 'components';
+import {BaseHeader} from 'components';
+import {PinKeyboard, PinLine} from './components';
 import {useTranslation} from 'react-i18next';
 
 const SignInPass = () => {
   const {t} = useTranslation();
-  const [pinFillNumber, setPinFillNumber] = useState(0);
-  const onPinKeyboardPress = (value) => {};
+  const [pinNumber, setPinNumber] = useState(0);
 
   return (
     <ScrollView style={styles.scrollView}>
+      <SafeAreaView />
       <BaseHeader />
       <View style={styles.wrapper}>
-        <View style={styles.titleWrapper}>
-          <Text style={styles.nameText}> სახელი გვარი </Text>
-          <Text style={styles.otherUserText}>{t('OTHER_USER')}</Text>
-        </View>
-
         <View style={styles.mainAreaWrapper}>
           <Text style={styles.enterPinText}>შეიყვანეთ პინი</Text>
           <View style={styles.pinWrapper}>
-            <PinLine fillNumber={pinFillNumber} />
+            <PinLine fillNumber={pinNumber} />
           </View>
           <View style={styles.pinKeyboardWrapper}>
-            <PinKeyboard onPress={onPinKeyboardPress} />
+            <PinKeyboard onPress={setPinNumber} />
           </View>
         </View>
       </View>
@@ -44,21 +40,6 @@ const styles = StyleSheet.create({
     width: 79,
     height: 79,
     borderRadius: 40,
-  },
-  titleWrapper: {
-    marginTop: 12,
-    marginBottom: 39,
-    alignItems: 'center',
-    flexDirection: 'column',
-  },
-  nameText: {
-    fontSize: 18,
-    color: colors.black,
-  },
-  otherUserText: {
-    marginTop: 22,
-    color: colors.blue,
-    fontSize: 12,
   },
   mainAreaWrapper: {
     flex: 1,

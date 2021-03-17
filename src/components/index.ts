@@ -6,8 +6,6 @@ export {default as Text} from './Text';
 export {default as AuthFooter} from './AuthFooter';
 export {default as EntitySelector} from './EntitySelector';
 export {default as CountrySelectModal} from './CountrySelectModal';
-export {default as PinKeyboard} from './PinKeyboard';
-export {default as PinLine} from './PinLine';
 export {default as RegisterTabs} from './RegisterTabs';
 export {default as Divider} from './Divider';
 export {default as DrawerListItem} from './DrawerListItem';
