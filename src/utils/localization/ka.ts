@@ -98,6 +98,10 @@ export default {
     haveAccount: 'გაქვს ანგარიში?',
   },
 
+  signInPass: {
+    title: 'Touch ID-ით ან პასკოდით ავტორიზაცია',
+  },
+
   dropdownAlert: {
     userCreateSuccess: 'მომხმარებელი წარმატებით შეიქმნა',
     registerSuccess: 'მომხმარებელი წარმატებით დარეგისტრირდა',

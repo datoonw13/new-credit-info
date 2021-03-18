@@ -97,6 +97,10 @@ export default {
     haveAccount: 'Do you have account?',
   },
 
+  signInPass: {
+    title: 'Sign in by Touch ID or passcode',
+  },
+
   dropdownAlert: {
     userCreateSuccess: 'User created successfully!',
     registerSuccess: 'You have registered successfully!',

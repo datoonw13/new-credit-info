@@ -1,13 +1,13 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import * as colors from 'theme/colors';
 import {NumericKey, FingerPrintKey, DeleteKey} from './components';
+
 const PinKeyboard = ({onPress}) => {
   const onPressHandler = (value: Number) => {
     onPress(value);
   };
   return (
-    <View style={styles.container}>
+    <View>
       <View style={styles.pinRow}>
         <NumericKey onPress={onPressHandler} pinNumber={1} first />
         <NumericKey onPress={onPressHandler} pinNumber={2} />
@@ -35,9 +35,6 @@ const PinKeyboard = ({onPress}) => {
 export default PinKeyboard;
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: colors.GRAY6,
-  },
   pinRow: {
     flexDirection: 'row',
     marginTop: 5,

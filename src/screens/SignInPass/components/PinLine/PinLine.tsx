@@ -1,15 +1,21 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import * as colors from 'theme/colors';
+import {PinLineFC} from './types';
 
-const PinLine: PinLineFC = ({fillNumber}) => {
+const PinLine: PinLineFC = ({fillNumber, style}) => {
   const pinList = Array.from(Array(4).keys());
   return (
-    <View style={styles.pinContent}>
+    <View style={[styles.pinContent, style]}>
       {pinList.map((item) => (
-        <View style={[styles.pinItem, !item && styles.noMarginLeft]} key={item}>
-          {fillNumber > item && <View style={styles.pinItemContent} />}
-        </View>
+        <View
+          style={[
+            styles.pinItem,
+            !item && styles.noMarginLeft,
+            fillNumber > item && styles.filled,
+          ]}
+          key={item}
+        />
       ))}
     </View>
   );
@@ -22,21 +28,20 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   pinItem: {
-    width: 28,
-    height: 28,
-    borderRadius: 14,
+    width: 14,
+    height: 14,
+    borderRadius: 7,
     marginLeft: 12,
-    backgroundColor: colors.white,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  pinItemContent: {
-    width: 18,
-    height: 18,
-    borderRadius: 9,
-    backgroundColor: colors.black,
+    borderWidth: 1,
+    borderColor: colors.blackOp1,
   },
   noMarginLeft: {
     marginLeft: 0,
+  },
+  filled: {
+    backgroundColor: colors.blackOp7,
+    borderColor: colors.blackOp7,
   },
 });

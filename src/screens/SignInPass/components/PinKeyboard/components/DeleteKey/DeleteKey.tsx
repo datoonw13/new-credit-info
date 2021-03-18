@@ -13,12 +13,13 @@ export default FingerPrintKey;
 
 const styles = StyleSheet.create({
   pinItem: {
-    width: 93,
-    height: 58,
-    borderRadius: 14,
+    width: 75,
+    height: 75,
+    borderRadius: 75,
     marginLeft: 6,
-    backgroundColor: colors.white,
     alignItems: 'center',
     justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: colors.blackOp1,
   },
 });

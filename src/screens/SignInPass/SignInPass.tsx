@@ -10,58 +10,31 @@ const SignInPass = () => {
   const [pinNumber, setPinNumber] = useState(0);
 
   return (
-    <ScrollView style={styles.scrollView}>
+    <ScrollView>
       <SafeAreaView />
       <BaseHeader />
       <View style={styles.wrapper}>
-        <View style={styles.mainAreaWrapper}>
-          <Text style={styles.enterPinText}>შეიყვანეთ პინი</Text>
-          <View style={styles.pinWrapper}>
-            <PinLine fillNumber={pinNumber} />
-          </View>
-          <View style={styles.pinKeyboardWrapper}>
-            <PinKeyboard onPress={setPinNumber} />
-          </View>
-        </View>
+        <Text style={styles.enterPinText}>{t('signInPass.title')}</Text>
+        <PinLine fillNumber={pinNumber} style={styles.pinLine} />
+        <PinKeyboard onPress={setPinNumber} />
       </View>
     </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: colors.GRAY6,
-  },
   wrapper: {
     flex: 1,
-    backgroundColor: colors.white,
-  },
-  image: {
-    width: 79,
-    height: 79,
-    borderRadius: 40,
-  },
-  mainAreaWrapper: {
-    flex: 1,
-    backgroundColor: colors.GRAY6,
-    borderTopLeftRadius: 28,
-    borderTopRightRadius: 28,
-    paddingTop: 28,
+    alignItems: 'center',
   },
   enterPinText: {
     textAlign: 'center',
     fontSize: 14,
     color: colors.black,
+    marginBottom: 22,
   },
-  pinWrapper: {
-    marginTop: 22,
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
-  pinKeyboardWrapper: {
-    paddingTop: 22,
-    flexDirection: 'row',
-    justifyContent: 'center',
+  pinLine: {
+    marginBottom: 42,
   },
 });
 
