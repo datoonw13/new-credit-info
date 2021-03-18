@@ -100,6 +100,8 @@ export default {
 
   signInPass: {
     title: 'Touch ID-ით ან პასკოდით ავტორიზაცია',
+    otherUser: 'სხვა მომხმარებელი',
+    forgotPasscode: 'დაგავიწყდა პასკოდი?',
   },
 
   dropdownAlert: {

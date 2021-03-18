@@ -1,10 +1,11 @@
 import {StyleProp, TextStyle, ViewStyle} from 'react-native';
 
-type BlueActionProps = {
+type LightActionProps = {
   text: string;
   onPress?: () => void;
   style?: StyleProp<ViewStyle>;
   textStyle?: StyleProp<TextStyle>;
+  color?: string;
 };
 
-type BlueActionFC = (props: BlueActionProps) => JSX.Element;
+type LightActionFC = (props: LightActionProps) => JSX.Element;

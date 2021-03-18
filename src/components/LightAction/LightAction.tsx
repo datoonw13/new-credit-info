@@ -2,24 +2,27 @@ import React from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import Text from 'components/Text';
 import {colors} from 'theme';
-import {FIRAGO_REGULAR} from 'theme/fonts';
-import {BlueActionFC} from './types';
+import {LightActionFC} from './types';
 
-const BlueAction: BlueActionFC = ({text, onPress, style, textStyle}) => {
+const LightAction: LightActionFC = ({
+  text,
+  onPress,
+  style,
+  textStyle,
+  color = colors.blue,
+}) => {
   return (
     <TouchableOpacity onPress={onPress} style={[styles.container, style]}>
-      <Text style={[styles.text, textStyle]} children={text} />
+      <Text style={[styles.text, textStyle, {color}]} children={text} />
     </TouchableOpacity>
   );
 };
 
-export default BlueAction;
+export default LightAction;
 
 const styles = StyleSheet.create({
   container: {},
   text: {
-    color: colors.blue,
     fontSize: 12,
-    fontFamily: FIRAGO_REGULAR,
   },
 });

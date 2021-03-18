@@ -99,6 +99,8 @@ export default {
 
   signInPass: {
     title: 'Sign in by Touch ID or passcode',
+    otherUser: 'Other User',
+    forgotPasscode: 'Forgot Passcode?',
   },
 
   dropdownAlert: {

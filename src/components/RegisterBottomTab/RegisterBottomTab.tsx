@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, SafeAreaView, StyleSheet} from 'react-native';
-import BlueAction from 'components/BlueAction';
+import LightAction from 'components/LightAction';
 import {colors} from 'theme';
 import useRegisterBottomTab from './useRegisterBottomTab';
 
@@ -9,7 +9,7 @@ const RegisterBottomTab = () => {
   return (
     <View style={styles.container}>
       <View style={styles.innerContainer}>
-        <BlueAction text="back" onPress={onBackPress} />
+        <LightAction text="back" onPress={onBackPress} />
         <View style={styles.stepsWrapper}>
           <View style={[styles.step, hasVisited(1), currentlyVisiting(1)]} />
           <View style={[styles.step, hasVisited(2), currentlyVisiting(2)]} />

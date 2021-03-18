@@ -24,6 +24,7 @@ export const blackOp05 = 'rgba(0, 0, 0, 0.05)';
 export const blackOp025 = 'rgba(0, 0, 0, 0.025)';
 
 export const white = 'rgba(255, 255, 255, 1)';
+export const whiteOp5 = 'rgba(255, 255, 255, .5)';
 
 export const crimson = 'rgba(198, 43, 39, 1)';
 export const crimsonOp4 = 'rgba(198, 43, 39, .4)';
@@ -46,3 +47,4 @@ export const yellowOp1 = 'rgba(226, 155, 20, 0.1)';
 
 export const strangeBlue = 'rgba(111, 133, 226, 1)';
 export const strangeBlueOp1 = 'rgba(111, 133, 226, .1)';
+export const strangeBlueOp05 = 'rgba(111, 133, 226, .05)';

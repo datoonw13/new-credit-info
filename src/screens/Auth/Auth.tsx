@@ -16,7 +16,7 @@ import {RedGirl} from 'assets/svg';
 import {
   HeaderWithLogo,
   AuthFooter,
-  BlueAction,
+  LightAction,
   Button,
   Input,
   Text,
@@ -129,7 +129,7 @@ const Auth = () => {
                 style={styles.saveText}
                 children="authorization.rememberMe"
               />
-              <BlueAction
+              <LightAction
                 text="authorization.forgotPassword"
                 onPress={goToForgoPassword}
               />
