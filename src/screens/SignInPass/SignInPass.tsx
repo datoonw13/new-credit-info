@@ -1,19 +1,33 @@
-import React, {useState} from 'react';
-import {ScrollView, StyleSheet, Text, View, SafeAreaView} from 'react-native';
-import * as colors from 'theme/colors';
+import React from 'react';
+import {SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {BaseHeader, LightAction} from 'components';
-import {Account, PinKeyboard, PinLine} from './components';
-import {useTranslation} from 'react-i18next';
+import {
+  AuthWithPasswordModal,
+  PinKeyboard,
+  Account,
+  PinLine,
+} from './components';
+import useSignInPass from './useSignInPass';
+import * as colors from 'theme/colors';
 import {dummyUser} from './config';
-import {useNavigation} from '@react-navigation/core';
 
 const SignInPass = () => {
-  const {t} = useTranslation();
-  const [pinNumber, setPinNumber] = useState(0);
-  const {navigate} = useNavigation();
+  const {
+    onAuthModalBackdropPress,
+    onForgotPasswordPress,
+    onOtherUserPress,
+    passcodeLength,
+    forgotPasscode,
+    watchKeyboard,
+    t,
+  } = useSignInPass();
 
   return (
     <ScrollView>
+      <AuthWithPasswordModal
+        onBackdropPress={onAuthModalBackdropPress}
+        visible={forgotPasscode}
+      />
       <SafeAreaView />
       <BaseHeader />
       <View style={styles.wrapper}>
@@ -23,15 +37,16 @@ const SignInPass = () => {
             text="signInPass.otherUser"
             style={styles.otherUser}
             color={colors.blackOp5}
-            onPress={() => navigate('Auth')}
+            onPress={onOtherUserPress}
           />
         </View>
         <Text style={styles.enterPinText}>{t('signInPass.title')}</Text>
-        <PinLine fillNumber={pinNumber} style={styles.pinLine} />
-        <PinKeyboard onPress={setPinNumber} />
+        <PinLine fillNumber={passcodeLength} style={styles.pinLine} />
+        <PinKeyboard onPress={watchKeyboard} />
       </View>
       <LightAction
         text="signInPass.forgotPasscode"
+        onPress={onForgotPasswordPress}
         style={styles.forgotPasscode}
       />
     </ScrollView>
@@ -43,6 +58,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     paddingHorizontal: 15,
+    position: 'relative',
   },
   enterPinText: {
     textAlign: 'center',
@@ -55,11 +71,14 @@ const styles = StyleSheet.create({
   },
   accountWrapper: {
     width: '100%',
-    backgroundColor: colors.whiteOp5,
-    paddingVertical: 15,
+    backgroundColor: colors.white,
+    paddingTop: 15,
+    paddingBottom: 20,
     borderRadius: 10,
     marginBottom: 55,
     marginTop: 32,
+    zIndex: 12,
+    position: 'relative',
   },
   otherUser: {
     marginTop: 20,

@@ -1,4 +1,4 @@
-import {TextInputProps} from 'react-native';
+import {StyleProp, TextInputProps, TextStyle, ViewStyle} from 'react-native';
 
 type InputProps = {
   rightIconPressHandler?: () => void;
@@ -11,6 +11,8 @@ type InputProps = {
   leftIcon?: JSX.Element;
   label: string;
   value: string;
+  style?: StyleProp<TextStyle>;
+  containerStyle?: StyleProp<ViewStyle>;
   reverseError?: boolean;
 } & TextInputProps;
 

@@ -19,6 +19,7 @@ const Input: InputFC = ({
   inputPressHandler,
   secureTextEntry,
   autoCapitalize,
+  containerStyle,
   pointerEvents,
   onChangeText,
   keyboardType,
@@ -30,6 +31,7 @@ const Input: InputFC = ({
   leftIcon,
   editable,
   onBlur,
+  style,
   label,
   value,
 }) => {
@@ -38,7 +40,7 @@ const Input: InputFC = ({
 
   return (
     <TouchableOpacity
-      style={styles.container}
+      style={[styles.container, containerStyle]}
       onPress={inputPressHandler}
       disabled={!inputPressHandler}>
       {labelOnBorderToo && (
@@ -63,6 +65,7 @@ const Input: InputFC = ({
             styles.input,
             leftIcon && styles.paddingLeft,
             {borderColor: inputBorderColor},
+            style,
           ]}
           placeholderTextColor={colors.blackOp3}
           secureTextEntry={secureTextEntry}

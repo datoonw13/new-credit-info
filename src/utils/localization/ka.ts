@@ -102,6 +102,7 @@ export default {
     title: 'Touch ID-ით ან პასკოდით ავტორიზაცია',
     otherUser: 'სხვა მომხმარებელი',
     forgotPasscode: 'დაგავიწყდა პასკოდი?',
+    forgotPassword: 'დაგავიწყდა პაროლი?',
   },
 
   dropdownAlert: {

@@ -101,6 +101,7 @@ export default {
     title: 'Sign in by Touch ID or passcode',
     otherUser: 'Other User',
     forgotPasscode: 'Forgot Passcode?',
+    forgotPassword: 'Forgot Password?',
   },
 
   dropdownAlert: {
