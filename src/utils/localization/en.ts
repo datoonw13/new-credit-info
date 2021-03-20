@@ -102,6 +102,13 @@ export default {
     otherUser: 'Other User',
     forgotPasscode: 'Forgot Passcode?',
     forgotPassword: 'Forgot Password?',
+    biometricsNotAvailable:
+      'Sorry, biometrics are not available on this device!',
+    touchId: 'Touch ID',
+    faceId: 'Face ID',
+    biometrics: 'Biometrics',
+    passcode: 'Passcode',
+    authError: 'Error encountered during biometric authentication...',
   },
 
   dropdownAlert: {

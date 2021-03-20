@@ -17,6 +17,7 @@ import {
   removeRefreshToken,
 } from 'utils/token';
 import {alertError} from 'utils/dropdownAlert';
+import {setCredentials} from 'utils/keychain';
 
 /**
  * Saga for user sign in.
@@ -51,6 +52,7 @@ function* signInSaga({data}: any) {
       }
       goTo('MainStackNavigator', 'Register');
     } else {
+      yield setCredentials(data);
       yield put(setAuthStatusAction(true));
     }
   } catch (error) {

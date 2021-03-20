@@ -103,6 +103,13 @@ export default {
     otherUser: 'სხვა მომხმარებელი',
     forgotPasscode: 'დაგავიწყდა პასკოდი?',
     forgotPassword: 'დაგავიწყდა პაროლი?',
+    biometricsNotAvailable:
+      'ბიომეტრული საშუალებით ავტორიზაცია ამ მოწყობილობაზე არაა შესაძლებელი!',
+    touchId: 'Touch ID',
+    faceId: 'Face ID',
+    biometrics: 'Biometrics',
+    passcode: 'პასკოდი',
+    authError: 'დაფიქსირდა შეცდომა ბიომეტრული საშუალებით აუთენტიპიკაციისას...',
   },
 
   dropdownAlert: {

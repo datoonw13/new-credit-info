@@ -30,34 +30,38 @@ const AuthWithPasswordModal: AuthWithPasswordModalFC = ({
       onBackdropPress={onBackdropPress}
       animationIn="fadeInDownBig"
       style={styles.container}>
-      <View style={styles.accountWrapper}>
-        <Account image={dummyUser.image} user={dummyUser.name} />
-        <Controller
-          name="password"
-          control={control}
-          render={({onChange, onBlur, value}) => (
-            <Input
-              onBlur={onBlur}
-              value={value}
-              maxLength={35}
-              label={'password'}
-              secureTextEntry={passwordVisible}
-              rightIconPressHandler={onPasswordEyePress}
-              onChangeText={onChange}
-              errorMessage={errors.password && t('authorization.validPassword')}
-              rightIcon={EyeIcon}
-              containerStyle={styles.passwordInput}
-              labelOnBorderToo
-            />
-          )}
-          rules={{
-            required: true,
-          }}
-        />
-        <LightAction
-          text="signInPass.forgotPassword"
-          style={styles.forgotPassword}
-        />
+      <View style={styles.transparentWrapper}>
+        <View style={styles.accountWrapper}>
+          <Account image={dummyUser.image} user={dummyUser.name} />
+          <Controller
+            name="password"
+            control={control}
+            render={({onChange, onBlur, value}) => (
+              <Input
+                onBlur={onBlur}
+                value={value}
+                maxLength={35}
+                label={'password'}
+                secureTextEntry={!passwordVisible}
+                rightIconPressHandler={onPasswordEyePress}
+                onChangeText={onChange}
+                errorMessage={
+                  errors.password && t('authorization.validPassword')
+                }
+                rightIcon={EyeIcon}
+                containerStyle={styles.passwordInput}
+                labelOnBorderToo
+              />
+            )}
+            rules={{
+              required: true,
+            }}
+          />
+          <LightAction
+            text="signInPass.forgotPassword"
+            style={styles.forgotPassword}
+          />
+        </View>
         <Button text="auth" touchableStyle={styles.authButton} />
       </View>
     </Modal>
@@ -72,6 +76,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     paddingTop: 30,
   },
+  transparentWrapper: {},
   accountWrapper: {
     width: '100%',
     backgroundColor: colors.white,
@@ -93,9 +98,9 @@ const styles = StyleSheet.create({
   authButton: {
     width: '90%',
     marginLeft: '5%',
-    position: 'absolute',
-    bottom: -100,
+    marginTop: 20,
     backgroundColor: colors.white,
     borderRadius: 12,
+    zIndex: 10,
   },
 });
