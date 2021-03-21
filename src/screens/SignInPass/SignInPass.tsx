@@ -15,6 +15,7 @@ const SignInPass = () => {
   const {
     onAuthModalBackdropPress,
     onForgotPasswordPress,
+    setForgotPasscode,
     onOtherUserPress,
     passcodeLength,
     forgotPasscode,
@@ -23,9 +24,10 @@ const SignInPass = () => {
   } = useSignInPass();
 
   return (
-    <ScrollView>
+    <ScrollView style={styles.container}>
       <AuthWithPasswordModal
         onBackdropPress={onAuthModalBackdropPress}
+        setVisible={setForgotPasscode}
         visible={forgotPasscode}
       />
       <SafeAreaView />
@@ -54,6 +56,9 @@ const SignInPass = () => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    marginTop: 10,
+  },
   wrapper: {
     flex: 1,
     alignItems: 'center',

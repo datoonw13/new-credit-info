@@ -41,6 +41,8 @@ export default {
 
     validUsername: 'გთხოვთ, შეიყვანეთ სწორი ID...',
     validPassword: 'გთხოვთ, შეიყვანეთ სწორი პაროლი...',
+
+    wrongCredentials: 'გთხოვთ შეიყვანოთ სწორი მონაცემები!',
   },
 
   registration: {

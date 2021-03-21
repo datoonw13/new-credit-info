@@ -40,6 +40,8 @@ export default {
 
     validUsername: 'Please, enter your valid username...',
     validPassword: 'Please, enter your valid password...',
+
+    wrongCredentials: 'Invalid credentials provided!',
   },
 
   registration: {

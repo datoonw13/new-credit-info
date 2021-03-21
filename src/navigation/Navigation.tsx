@@ -23,36 +23,39 @@ import {saveReference, goTo} from 'utils/navigation';
 import {selectAuth} from 'store/select';
 import {getCredentials} from 'utils/keychain';
 
-const MainStack = createNativeStackNavigator();
-const DrawerNav = createDrawerNavigator();
+const BeforeAuthMainStack = createNativeStackNavigator();
+const BeforeAuthDrawerNav = createDrawerNavigator();
 
 const MainStackNavigator = () => {
   return (
-    <MainStack.Navigator
+    <BeforeAuthMainStack.Navigator
       initialRouteName="Auth"
       screenOptions={authStackScreenOptions}>
-      <MainStack.Screen component={Test} name="Test" />
-      <MainStack.Screen component={SignInPass} name="SignInPass" />
-      <MainStack.Screen component={Auth} name="Auth" />
-      <MainStack.Screen component={ForgotPassword} name="ForgotPassword" />
-      <MainStack.Screen component={Privacy} name="Privacy" />
-      <MainStack.Screen component={FAQ} name="FAQ" />
-      <MainStack.Screen component={Service} name="Service" />
-      <MainStack.Screen component={Register} name="Register" />
-    </MainStack.Navigator>
+      <BeforeAuthMainStack.Screen component={Test} name="Test" />
+      <BeforeAuthMainStack.Screen component={SignInPass} name="SignInPass" />
+      <BeforeAuthMainStack.Screen component={Auth} name="Auth" />
+      <BeforeAuthMainStack.Screen
+        component={ForgotPassword}
+        name="ForgotPassword"
+      />
+      <BeforeAuthMainStack.Screen component={Privacy} name="Privacy" />
+      <BeforeAuthMainStack.Screen component={FAQ} name="FAQ" />
+      <BeforeAuthMainStack.Screen component={Service} name="Service" />
+      <BeforeAuthMainStack.Screen component={Register} name="Register" />
+    </BeforeAuthMainStack.Navigator>
   );
 };
 
-const DrawerNavigator = () => (
-  <DrawerNav.Navigator
+const BeforeAuthDrawerNavigator = () => (
+  <BeforeAuthDrawerNav.Navigator
     drawerContent={() => <Drawer />}
     screenOptions={drawerNavigatorScreenOptions}
     drawerStyle={drawerStyle}>
-    <DrawerNav.Screen
+    <BeforeAuthDrawerNav.Screen
       component={MainStackNavigator}
       name="MainStackNavigator"
     />
-  </DrawerNav.Navigator>
+  </BeforeAuthDrawerNav.Navigator>
 );
 
 const Navigation = () => {
@@ -67,27 +70,27 @@ const Navigation = () => {
    * Navigate to use passcode screen if
    * storage has credentials.
    */
-
   const {isSignedIn} = useSelector(selectAuth);
 
   useEffect(() => {
     const signInWithFingerprint = async () => {
       try {
         const credentials = await getCredentials();
-        if (credentials && !isSignedIn) {
+        console.log(credentials);
+        if (credentials) {
           goTo('MainStackNavigator', 'SignInPass');
         }
       } catch (e) {}
     };
 
     signInWithFingerprint();
-  }, [isSignedIn]);
+  }, []);
 
   return isSignedIn ? (
     <Test />
   ) : (
     <NavigationContainer ref={saveReference}>
-      <DrawerNavigator />
+      <BeforeAuthDrawerNavigator />
     </NavigationContainer>
   );
 };

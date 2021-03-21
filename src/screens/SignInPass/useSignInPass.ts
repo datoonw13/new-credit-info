@@ -6,6 +6,7 @@ import {alertError} from 'utils/dropdownAlert';
 import {getCredentials} from 'utils/keychain';
 import {signIn} from 'store/auth/sagaActions';
 import {useDispatch} from 'react-redux';
+import {Alert} from 'react-native';
 
 const useSignInPass = () => {
   const {t} = useTranslation();
@@ -24,7 +25,13 @@ const useSignInPass = () => {
    */
   const watchKeyboard = (value: number) => {
     if (value !== 10 && value !== 11) {
-      pinNumber.length <= 4 && setPinNumber(`${pinNumber}${value}`);
+      if (pinNumber.length === 3) {
+        const newPin = `${pinNumber}${value}`;
+        Alert.alert(`Passcode ${newPin}`, 'Not yet implemented!');
+        setPinNumber('');
+      } else {
+        pinNumber.length <= 4 && setPinNumber(`${pinNumber}${value}`);
+      }
     } else if (value === 10) {
       onFingerPrintPress();
     } else if (value === 11 && pinNumber !== '') {
@@ -57,12 +64,11 @@ const useSignInPass = () => {
 
       if (success) {
         signInOnFingerprintSuccess();
-      } else {
-        alertError('', 'signInPass.biometricsNotAvailable');
+        return;
       }
-    } else {
-      alertError('', 'signInPass.biometricsNotAvailable');
     }
+
+    alertError('', 'signInPass.biometricsNotAvailable');
   };
 
   /**
@@ -99,6 +105,7 @@ const useSignInPass = () => {
   return {
     onAuthModalBackdropPress,
     onForgotPasswordPress,
+    setForgotPasscode,
     setForgotPasscode,
     onOtherUserPress,
     passcodeLength,

@@ -11,10 +11,17 @@ import {colors} from 'theme';
 
 const AuthWithPasswordModal: AuthWithPasswordModalFC = ({
   onBackdropPress,
+  setVisible,
   visible,
 }) => {
-  const {onPasswordEyePress, passwordVisible, t} = useAuthWithPasswordModal();
-  const {control, errors} = useForm(useFormConfig);
+  const {
+    onForgotPasswordPress,
+    onPasswordEyePress,
+    passwordVisible,
+    onAuthPress,
+    t,
+  } = useAuthWithPasswordModal({setVisible});
+  const {control, errors, handleSubmit} = useForm(useFormConfig);
 
   const EyeIcon = (
     <Ionicons
@@ -59,10 +66,15 @@ const AuthWithPasswordModal: AuthWithPasswordModalFC = ({
           />
           <LightAction
             text="signInPass.forgotPassword"
+            onPress={onForgotPasswordPress}
             style={styles.forgotPassword}
           />
         </View>
-        <Button text="auth" touchableStyle={styles.authButton} />
+        <Button
+          onPress={handleSubmit(onAuthPress)}
+          touchableStyle={styles.authButton}
+          text="auth"
+        />
       </View>
     </Modal>
   );

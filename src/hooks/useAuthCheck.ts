@@ -22,7 +22,7 @@ const useAuthCheck = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    refreshAuthState();
+    // refreshAuthState();
   }, [refreshAuthState]);
 };
 

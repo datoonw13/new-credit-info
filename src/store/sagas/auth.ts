@@ -17,7 +17,7 @@ import {
   removeRefreshToken,
 } from 'utils/token';
 import {alertError} from 'utils/dropdownAlert';
-import {setCredentials} from 'utils/keychain';
+import {setCredentials, clearCredentials} from 'utils/keychain';
 
 /**
  * Saga for user sign in.
@@ -32,6 +32,7 @@ function* signInSaga({data}: any) {
     yield setRefreshToken(refreshToken);
 
     const jwtData = jwtDecode<any>(accessToken);
+    console.log({jwtData});
     if (jwtData.status === 'REGISTERED') {
       const userInfo: CustomerInfoResponse = yield services.customerInfo();
       yield put(
@@ -60,6 +61,10 @@ function* signInSaga({data}: any) {
     if (error.response.status === 409) {
       alertError('error', error.response.data.errorCode.toUpperCase());
     }
+
+    if (error.response.status === 403) {
+      alertError('error', 'authorization.wrongCredentials');
+    }
   }
 }
 
@@ -70,6 +75,7 @@ function* signOut() {
   yield put(setAuthStatusAction(false));
   yield removeRefreshToken();
   yield removeAccessToken();
+  yield clearCredentials();
 }
 
 /**
