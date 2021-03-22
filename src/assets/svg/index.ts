@@ -27,3 +27,14 @@ export {default as Simulator} from './simulator.svg';
 export {default as Monitoring} from './monitoring.svg';
 
 export {default as RedGirlSearching} from './red-girl-searching.svg';
+
+export {default as DashboardActive} from './dashboard-active.svg';
+export {default as DashboardInactive} from './dashboard-inactive.svg';
+export {default as SimulatorActive} from './simulator-active.svg';
+export {default as SimulatorInactive} from './simulator-inactive.svg';
+export {default as CreditsActive} from './credits-active.svg';
+export {default as CreditsInactive} from './credits-inactive.svg';
+export {default as CompanyManagementActive} from './company-management-active.svg';
+export {default as CompanyManagementInactive} from './company-management-inactive.svg';
+export {default as PaymentsActive} from './payments-active.svg';
+export {default as PaymentsInactive} from './payments-inactive.svg';

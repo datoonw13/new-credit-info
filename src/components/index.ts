@@ -22,3 +22,4 @@ export {default as Modal} from './Modal';
 export {default as SentOTPModal} from './SentOTPModal';
 export {default as LightGreyButton} from './LightGreyButton';
 export {default as DateSelectorModal} from './DateSelectorModal';
+export {default as BottomTabs} from './BottomTabs';

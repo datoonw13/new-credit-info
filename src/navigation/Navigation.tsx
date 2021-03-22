@@ -2,31 +2,37 @@ import React, {useEffect} from 'react';
 import {useSelector} from 'react-redux';
 import {createNativeStackNavigator} from 'react-native-screens/native-stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 import {
+  DrawerBeforeAuth,
   ForgotPassword,
   SignInPass,
   Register,
   Privacy,
   Service,
-  Drawer,
   Auth,
   FAQ,
   Test,
 } from 'screens';
+import {BottomTabs} from 'components';
 import {
-  drawerNavigatorScreenOptions,
+  afterAuthScreenOptions,
   authStackScreenOptions,
-  drawerStyle,
+  drawerBeforeAuthStyle,
+  drawerAfterAuthStyle,
 } from './config';
 import {saveReference, goTo} from 'utils/navigation';
 import {selectAuth} from 'store/select';
 import {getCredentials} from 'utils/keychain';
 
+/**
+ * Before auth navigation components.
+ */
 const BeforeAuthMainStack = createNativeStackNavigator();
 const BeforeAuthDrawerNav = createDrawerNavigator();
 
-const MainStackNavigator = () => {
+const MainStackBeforeAuthNavigator = () => {
   return (
     <BeforeAuthMainStack.Navigator
       initialRouteName="Auth"
@@ -48,24 +54,47 @@ const MainStackNavigator = () => {
 
 const BeforeAuthDrawerNavigator = () => (
   <BeforeAuthDrawerNav.Navigator
-    drawerContent={() => <Drawer />}
-    screenOptions={drawerNavigatorScreenOptions}
-    drawerStyle={drawerStyle}>
+    drawerContent={() => <DrawerBeforeAuth />}
+    drawerStyle={drawerBeforeAuthStyle}>
     <BeforeAuthDrawerNav.Screen
-      component={MainStackNavigator}
-      name="MainStackNavigator"
+      component={MainStackBeforeAuthNavigator}
+      name="MainStackBeforeAuthNavigator"
     />
   </BeforeAuthDrawerNav.Navigator>
 );
 
-const Navigation = () => {
-  /**
-   * Only for development purposes.
-   */
-  // useEffect(() => {
-  //   goTo('MainStackNavigator', 'Service');
-  // }, []);
+/**
+ * After auth navigation components.
+ */
+const AfterAuthMainStack = createNativeStackNavigator();
+const BottomTabNav = createBottomTabNavigator();
+const AfterAuthDrawerNav = createDrawerNavigator();
 
+const AfterAuthMainStackNavigator = () => (
+  <AfterAuthMainStack.Navigator screenOptions={afterAuthScreenOptions}>
+    <AfterAuthMainStack.Screen component={Test} name="Test" />
+  </AfterAuthMainStack.Navigator>
+);
+
+const BottomTabNavigator = () => (
+  <BottomTabNav.Navigator tabBar={() => <BottomTabs />}>
+    <BottomTabNav.Screen
+      component={AfterAuthMainStackNavigator}
+      name="AfterAuthMainStackNavigator"
+    />
+  </BottomTabNav.Navigator>
+);
+
+const AfterAuthDrawerNavigator = () => (
+  <AfterAuthDrawerNav.Navigator drawerStyle={drawerAfterAuthStyle}>
+    <AfterAuthDrawerNav.Screen
+      component={BottomTabNavigator}
+      name="BottomTabNavigator"
+    />
+  </AfterAuthDrawerNav.Navigator>
+);
+
+const Navigation = () => {
   /**
    * Navigate to use passcode screen if
    * storage has credentials.
@@ -78,19 +107,21 @@ const Navigation = () => {
         const credentials = await getCredentials();
         console.log(credentials);
         if (credentials) {
-          goTo('MainStackNavigator', 'SignInPass');
+          goTo('MainStackBeforeAuthNavigator', 'SignInPass');
         }
       } catch (e) {}
     };
 
-    signInWithFingerprint();
-  }, []);
+    !isSignedIn && signInWithFingerprint();
+  }, [isSignedIn]);
 
-  return isSignedIn ? (
-    <Test />
-  ) : (
+  return (
     <NavigationContainer ref={saveReference}>
-      <BeforeAuthDrawerNavigator />
+      {isSignedIn ? (
+        <AfterAuthDrawerNavigator />
+      ) : (
+        <BeforeAuthDrawerNavigator />
+      )}
     </NavigationContainer>
   );
 };

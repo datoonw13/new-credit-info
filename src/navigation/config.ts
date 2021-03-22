@@ -1,4 +1,3 @@
-import {DrawerNavigationOptions} from '@react-navigation/drawer';
 import {StyleProp, ViewStyle} from 'react-native';
 import {NativeStackNavigationOptions} from 'react-native-screens/lib/typescript';
 import {config} from 'utils';
@@ -7,10 +6,14 @@ export const authStackScreenOptions: NativeStackNavigationOptions = {
   headerShown: false,
 };
 
-export const drawerNavigatorScreenOptions: DrawerNavigationOptions = {
+export const afterAuthScreenOptions: NativeStackNavigationOptions = {
   headerShown: false,
 };
 
-export const drawerStyle: StyleProp<ViewStyle> = {
+export const drawerBeforeAuthStyle: StyleProp<ViewStyle> = {
   width: config.mobileWidth * 0.8,
+};
+
+export const drawerAfterAuthStyle: StyleProp<ViewStyle> = {
+  width: config.mobileWidth,
 };

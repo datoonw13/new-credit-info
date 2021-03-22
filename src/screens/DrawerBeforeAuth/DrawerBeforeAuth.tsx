@@ -12,7 +12,7 @@ import {
 import {menuList} from './config';
 import {colors} from 'theme';
 
-const Drawer = () => {
+const DrawerBeforeAuth = () => {
   return (
     <View style={styles.container}>
       <View>
@@ -42,7 +42,7 @@ const Drawer = () => {
   );
 };
 
-export default Drawer;
+export default DrawerBeforeAuth;
 
 const styles = StyleSheet.create({
   container: {

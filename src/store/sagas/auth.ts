@@ -32,7 +32,7 @@ function* signInSaga({data}: any) {
     yield setRefreshToken(refreshToken);
 
     const jwtData = jwtDecode<any>(accessToken);
-    console.log({jwtData});
+
     if (jwtData.status === 'REGISTERED') {
       const userInfo: CustomerInfoResponse = yield services.customerInfo();
       yield put(
@@ -51,7 +51,7 @@ function* signInSaga({data}: any) {
         yield put(setRegisterLastStepAction(6));
         yield put(setRegisterSelectedStepAction(6));
       }
-      goTo('MainStackNavigator', 'Register');
+      goTo('MainStackBeforeAuthNavigator', 'Register');
     } else {
       yield setCredentials(data);
       yield put(setAuthStatusAction(true));
