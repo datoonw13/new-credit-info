@@ -15,5 +15,5 @@ export const drawerBeforeAuthStyle: StyleProp<ViewStyle> = {
 };
 
 export const drawerAfterAuthStyle: StyleProp<ViewStyle> = {
-  width: config.mobileWidth,
+  width: config.mobileWidth * 0.8,
 };

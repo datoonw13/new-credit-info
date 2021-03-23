@@ -5,10 +5,15 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 import {
+  CompanyManagement,
   DrawerBeforeAuth,
   ForgotPassword,
   SignInPass,
+  Dashboard,
+  Simulator,
+  Payments,
   Register,
+  Credits,
   Privacy,
   Service,
   Auth,
@@ -72,7 +77,14 @@ const AfterAuthDrawerNav = createDrawerNavigator();
 
 const AfterAuthMainStackNavigator = () => (
   <AfterAuthMainStack.Navigator screenOptions={afterAuthScreenOptions}>
-    <AfterAuthMainStack.Screen component={Test} name="Test" />
+    <AfterAuthMainStack.Screen component={Dashboard} name="Dashboard" />
+    <AfterAuthMainStack.Screen component={Simulator} name="Simulator" />
+    <AfterAuthMainStack.Screen component={Credits} name="Credits" />
+    <AfterAuthMainStack.Screen
+      component={CompanyManagement}
+      name="CompanyManagement"
+    />
+    <AfterAuthMainStack.Screen component={Payments} name="Payments" />
   </AfterAuthMainStack.Navigator>
 );
 
@@ -86,7 +98,9 @@ const BottomTabNavigator = () => (
 );
 
 const AfterAuthDrawerNavigator = () => (
-  <AfterAuthDrawerNav.Navigator drawerStyle={drawerAfterAuthStyle}>
+  <AfterAuthDrawerNav.Navigator
+    drawerStyle={drawerAfterAuthStyle}
+    drawerContent={() => <Test />}>
     <AfterAuthDrawerNav.Screen
       component={BottomTabNavigator}
       name="BottomTabNavigator"

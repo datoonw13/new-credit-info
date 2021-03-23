@@ -1,34 +1,40 @@
 import * as SVG from 'assets/svg';
+import {goTo} from 'utils/navigation';
 
 export const itemList = [
   {
     id: 1,
-    title: 'dashboard',
+    screen: 'Dashboard',
     ActiveIcon: SVG.DashboardActive,
     InactiveIcon: SVG.DashboardInactive,
+    navigate: () => goTo('AfterAuthMainStackNavigator', 'Dashboard'),
   },
   {
     id: 2,
-    title: 'simulator',
+    screen: 'Simulator',
     ActiveIcon: SVG.SimulatorActive,
     InactiveIcon: SVG.SimulatorInactive,
+    navigate: () => goTo('AfterAuthMainStackNavigator', 'Simulator'),
   },
   {
     id: 3,
-    title: 'credits',
+    screen: 'Credits',
     ActiveIcon: SVG.CreditsActive,
     InactiveIcon: SVG.CreditsInactive,
+    navigate: () => goTo('AfterAuthMainStackNavigator', 'Credits'),
   },
   {
     id: 4,
-    title: 'company-management',
+    screen: 'CompanyManagement',
     ActiveIcon: SVG.CompanyManagementActive,
     InactiveIcon: SVG.CompanyManagementInactive,
+    navigate: () => goTo('AfterAuthMainStackNavigator', 'CompanyManagement'),
   },
   {
     id: 5,
-    title: 'payments',
+    screen: 'Payments',
     ActiveIcon: SVG.PaymentsActive,
     InactiveIcon: SVG.PaymentsInactive,
+    navigate: () => goTo('AfterAuthMainStackNavigator', 'Payments'),
   },
 ];
