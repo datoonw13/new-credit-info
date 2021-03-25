@@ -115,6 +115,22 @@ export default {
     authError: 'დაფიქსირდა შეცდომა ბიომეტრული საშუალებით აუთენტიპიკაციისას...',
   },
 
+  drawer: {
+    notifications: 'შეტყობინებები',
+  },
+
+  personalInfo: {
+    title: 'პირადი ინფორმაცია',
+  },
+
+  security: {
+    title: 'უსაფრთხოება',
+  },
+
+  termsAndConditions: {
+    title: 'პირობები',
+  },
+
   dropdownAlert: {
     userCreateSuccess: 'მომხმარებელი წარმატებით შეიქმნა',
     registerSuccess: 'მომხმარებელი წარმატებით დარეგისტრირდა',

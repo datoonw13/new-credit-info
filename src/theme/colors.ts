@@ -48,5 +48,6 @@ export const yellowOp1 = 'rgba(226, 155, 20, 0.1)';
 
 export const strangeBlue = 'rgba(111, 133, 226, 1)';
 export const strangeBlueOp3 = 'rgba(111, 133, 226, .3)';
+export const strangeBlueOp2 = 'rgba(111, 133, 226, .2)';
 export const strangeBlueOp1 = 'rgba(111, 133, 226, .1)';
 export const strangeBlueOp05 = 'rgba(111, 133, 226, .05)';

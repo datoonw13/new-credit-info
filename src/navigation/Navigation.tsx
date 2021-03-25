@@ -132,12 +132,11 @@ const Navigation = () => {
 
   return (
     <NavigationContainer ref={saveReference}>
-      <DrawerAfterAuth />
-      {/* {isSignedIn ? (
+      {isSignedIn ? (
         <AfterAuthDrawerNavigator />
       ) : (
         <BeforeAuthDrawerNavigator />
-      )} */}
+      )}
     </NavigationContainer>
   );
 };

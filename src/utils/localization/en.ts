@@ -114,6 +114,22 @@ export default {
     authError: 'Error encountered during biometric authentication...',
   },
 
+  drawer: {
+    notifications: 'Notifications',
+  },
+
+  personalInfo: {
+    title: 'Personal Info',
+  },
+
+  security: {
+    title: 'Security',
+  },
+
+  termsAndConditions: {
+    title: 'Terms and Conditions',
+  },
+
   dropdownAlert: {
     userCreateSuccess: 'User created successfully!',
     registerSuccess: 'You have registered successfully!',

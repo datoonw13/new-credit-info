@@ -41,3 +41,8 @@ export {default as PaymentsInactive} from './payments-inactive.svg';
 
 export {default as Camera} from './camera.svg';
 export {default as Delete} from './delete.svg';
+
+export {default as Notification} from './notification.svg';
+export {default as PersonalInfo} from './personal-info.svg';
+export {default as Security} from './security.svg';
+export {default as TermsAndConditions} from './terms-and-conditions.svg';

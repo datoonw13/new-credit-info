@@ -3,12 +3,13 @@ import {useTranslation} from 'react-i18next';
 import {StyleSheet, View} from 'react-native';
 import {colors} from 'theme';
 import {LanguageButton} from './components';
+import {LanguageSwitcherFC} from './types';
 
-const LanguageSwitcher = () => {
+const LanguageSwitcher: LanguageSwitcherFC = ({style}) => {
   const {i18n} = useTranslation();
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       <LanguageButton type="ქართული" active={i18n.language === 'ka'} />
       <LanguageButton type="English" active={i18n.language === 'en'} />
     </View>
