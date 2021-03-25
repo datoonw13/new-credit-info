@@ -38,3 +38,6 @@ export {default as CompanyManagementActive} from './company-management-active.sv
 export {default as CompanyManagementInactive} from './company-management-inactive.svg';
 export {default as PaymentsActive} from './payments-active.svg';
 export {default as PaymentsInactive} from './payments-inactive.svg';
+
+export {default as Camera} from './camera.svg';
+export {default as Delete} from './delete.svg';

@@ -3,8 +3,7 @@ import {StyleSheet, View, SafeAreaView, TouchableOpacity} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Logo} from 'assets/svg';
 import {HeaderWithLogoFC} from './types';
-import {openDrawer} from 'utils/navigation';
-import {colors} from 'theme';
+import {toggleDrawer} from 'utils/navigation';
 
 const HeaderWithLogo: HeaderWithLogoFC = ({mode = 'Middle', style}) => {
   return (
@@ -21,7 +20,7 @@ const HeaderWithLogo: HeaderWithLogoFC = ({mode = 'Middle', style}) => {
         ]}>
         <Logo />
         {mode === 'WithMenu' && (
-          <TouchableOpacity onPress={openDrawer}>
+          <TouchableOpacity onPress={toggleDrawer}>
             <MaterialCommunityIcons size={28} name="menu" />
           </TouchableOpacity>
         )}

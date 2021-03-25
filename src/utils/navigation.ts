@@ -27,6 +27,13 @@ export const openDrawer = () => {
 };
 
 /**
+ * Open drawer.
+ */
+export const toggleDrawer = () => {
+  references.navigator?.dispatch(DrawerActions.toggleDrawer());
+};
+
+/**
  * Get current route name.
  */
 export const getCurrentRoute = () => {

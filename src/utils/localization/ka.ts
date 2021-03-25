@@ -14,6 +14,7 @@ export default {
   save: 'შეინახე',
   ok: 'OK',
   close: 'დახურვა',
+  settings: 'პარამეტრები',
 
   month: 'თვე',
 

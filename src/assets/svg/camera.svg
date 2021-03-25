@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18" viewBox="0 0 18 18">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_1203" data-name="Rectangle 1203" width="18" height="18" transform="translate(286 129)" fill="#fff" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+  </defs>
+  <g id="Mask_Group_257" data-name="Mask Group 257" transform="translate(-286 -129)" clip-path="url(#clip-path)">
+    <g id="photo-camera" transform="translate(286 130.8)">
+      <g id="Group_1076" data-name="Group 1076" transform="translate(0 0)">
+        <path id="Path_1178" fill="black" data-name="Path 1178" d="M15.848,4.5H13.97L12.933,2.939A2.155,2.155,0,0,0,11.152,2h-4.3a2.155,2.155,0,0,0-1.78.939L4.03,4.5H2.152A2.146,2.146,0,0,0,0,6.657v7.591A2.146,2.146,0,0,0,2.152,16.4h13.7A2.146,2.146,0,0,0,18,14.248V6.657A2.146,2.146,0,0,0,15.848,4.5ZM9,14.639a4.842,4.842,0,1,1,4.852-4.833A4.851,4.851,0,0,1,9,14.639Zm6.574-7.1h-.861a.637.637,0,0,1,0-1.272H15.5a.635.635,0,0,1,.665.607A.619.619,0,0,1,15.574,7.537Z" transform="translate(0 -2)"/>
+      </g>
+      <g id="Group_1078" data-name="Group 1078" transform="translate(6.3 5.107)">
+        <path id="Path_1179" fill="black" data-name="Path 1179" d="M9.7,7.674a2.69,2.69,0,1,0,2.7,2.68A2.705,2.705,0,0,0,9.7,7.674Z" transform="translate(-7 -7.674)"/>
+      </g>
+    </g>
+  </g>
+</svg>

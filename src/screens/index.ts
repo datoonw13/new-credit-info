@@ -13,4 +13,5 @@ export {default as Simulator} from './Simulator';
 export {default as Credits} from './Credits';
 export {default as CompanyManagement} from './CompanyManagement';
 export {default as Payments} from './Payments';
+export {default as DrawerAfterAuth} from './DrawerAfterAuth';
 export {default as Test} from './Test';

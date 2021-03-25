@@ -7,6 +7,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {
   CompanyManagement,
   DrawerBeforeAuth,
+  DrawerAfterAuth,
   ForgotPassword,
   SignInPass,
   Dashboard,
@@ -100,7 +101,7 @@ const BottomTabNavigator = () => (
 const AfterAuthDrawerNavigator = () => (
   <AfterAuthDrawerNav.Navigator
     drawerStyle={drawerAfterAuthStyle}
-    drawerContent={() => <Test />}>
+    drawerContent={() => <DrawerAfterAuth />}>
     <AfterAuthDrawerNav.Screen
       component={BottomTabNavigator}
       name="BottomTabNavigator"
@@ -131,11 +132,12 @@ const Navigation = () => {
 
   return (
     <NavigationContainer ref={saveReference}>
-      {isSignedIn ? (
+      <DrawerAfterAuth />
+      {/* {isSignedIn ? (
         <AfterAuthDrawerNavigator />
       ) : (
         <BeforeAuthDrawerNavigator />
-      )}
+      )} */}
     </NavigationContainer>
   );
 };

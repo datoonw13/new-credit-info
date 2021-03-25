@@ -13,6 +13,7 @@ export default {
   save: 'Save',
   ok: 'OK',
   close: 'Close',
+  settings: 'Settings',
 
   month: 'Month',
 
