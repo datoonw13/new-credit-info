@@ -1,6 +1,6 @@
 import axios from './axios';
 import * as API from './api';
-import {getRefreshToken} from 'utils/token';
+import {getRefreshToken} from 'utils/storage';
 
 /**
  * Auth service.

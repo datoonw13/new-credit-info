@@ -9,7 +9,7 @@ import * as actionTypes from 'store/registration/actionTypes';
 import {alertError, alertSuccess} from 'utils/dropdownAlert';
 import * as services from 'services';
 import {showSentOTPModal} from 'utils/modal';
-import {setAccessToken, setRefreshToken} from 'utils/token';
+import {setAccessToken, setRefreshToken} from 'utils/storage';
 
 /**
  * Saga for signing user up.

@@ -11,6 +11,14 @@ export const signIn = (data: any) => ({
 });
 
 /**
+ * Save profile information in global state and
+ * also in local storage.
+ */
+export const saveProfileInfo = () => ({
+  type: actionTypes.SAVE_PROFILE_INFO,
+});
+
+/**
  * Sign out saga.
  */
 export const signOut = () => ({

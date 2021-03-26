@@ -8,6 +8,14 @@ export const resetStoreAction = () => ({
 });
 
 /**
+ * Set user data.
+ */
+export const setUserDataAction = (data: ProfileInfo) => ({
+  type: actionTypes.SET_USER_DATA,
+  data,
+});
+
+/**
  * Save user auth status.
  */
 export const setAuthStatusAction = (isSignedIn: boolean) => ({

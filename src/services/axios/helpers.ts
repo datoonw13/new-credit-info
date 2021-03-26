@@ -5,7 +5,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import {resetStoreAction} from 'store/auth/actions';
 import {getCurrentRoute} from 'utils/navigation';
 import {getStore} from 'utils/redux';
-import {getAccessToken} from 'utils/token';
+import {getAccessToken} from 'utils/storage';
 
 let canNotPressBackButton = false;
 let counter = 0;

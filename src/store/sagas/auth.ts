@@ -1,11 +1,7 @@
 import {put, takeLatest} from 'redux-saga/effects';
-import {setAuthStatusAction} from 'store/auth/actions';
-import {
-  setRegisterSelectedStepAction,
-  setRegisterLastStepAction,
-  setRegisterDataAction,
-  setUserDataAction,
-} from 'store/registration/actions';
+import * as authActions from 'store/auth/actions';
+import * as registerActions from 'store/registration/actions';
+import {saveProfileInfo} from 'store/auth/sagaActions';
 import * as actionTypes from 'store/auth/actionTypes';
 import * as services from 'services';
 import jwtDecode from 'jwt-decode';
@@ -15,7 +11,8 @@ import {
   setRefreshToken,
   removeAccessToken,
   removeRefreshToken,
-} from 'utils/token';
+  setPersonalInfo,
+} from 'utils/storage';
 import {alertError} from 'utils/dropdownAlert';
 import {setCredentials, clearCredentials} from 'utils/keychain';
 
@@ -36,25 +33,26 @@ function* signInSaga({data}: any) {
     if (jwtData.status === 'REGISTERED') {
       const userInfo: CustomerInfoResponse = yield services.customerInfo();
       yield put(
-        setRegisterDataAction({
+        registerActions.setRegisterDataAction({
           ...userInfo,
           customerType: jwtData.customerType,
         }),
       );
       if (userInfo.userName) {
-        yield put(setRegisterLastStepAction(4));
-        yield put(setRegisterSelectedStepAction(4));
+        yield put(registerActions.setRegisterLastStepAction(4));
+        yield put(registerActions.setRegisterSelectedStepAction(4));
       } else if (userInfo.birthDate) {
-        yield put(setRegisterLastStepAction(5));
-        yield put(setRegisterSelectedStepAction(5));
+        yield put(registerActions.setRegisterLastStepAction(5));
+        yield put(registerActions.setRegisterSelectedStepAction(5));
       } else {
-        yield put(setRegisterLastStepAction(6));
-        yield put(setRegisterSelectedStepAction(6));
+        yield put(registerActions.setRegisterLastStepAction(6));
+        yield put(registerActions.setRegisterSelectedStepAction(6));
       }
       goTo('MainStackBeforeAuthNavigator', 'Register');
     } else {
       yield setCredentials(data);
-      yield put(setAuthStatusAction(true));
+      yield put(authActions.setAuthStatusAction(true));
+      yield put(saveProfileInfo());
     }
   } catch (error) {
     console.dir(error);
@@ -69,10 +67,23 @@ function* signInSaga({data}: any) {
 }
 
 /**
+ * Save profile information.
+ */
+function* saveProfileInformation() {
+  try {
+    const data: ProfileInfo = yield services.getProfileInfo();
+    yield setPersonalInfo(data);
+    yield put(authActions.setUserDataAction(data));
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+/**
  * Sign out delete tokens.
  */
 function* signOut() {
-  yield put(setAuthStatusAction(false));
+  yield put(authActions.setAuthStatusAction(false));
   yield removeRefreshToken();
   yield removeAccessToken();
   yield clearCredentials();
@@ -85,11 +96,11 @@ function* signOut() {
 function* authRefresh() {
   try {
     const userData: AuthResponse = yield services.refreshAuth();
-    yield put(setUserDataAction(userData));
-    yield put(setAuthStatusAction(true));
+    yield put(registerActions.setUserDataAction(userData));
+    yield put(authActions.setAuthStatusAction(true));
   } catch (error) {
     console.log(error);
-    yield put(setAuthStatusAction(false));
+    yield put(authActions.setAuthStatusAction(false));
   }
 }
 
@@ -99,6 +110,7 @@ function* authRefresh() {
 function* authSagas() {
   yield takeLatest(actionTypes.AUTH_REFRESH, authRefresh);
   yield takeLatest(actionTypes.REQUEST_SIGN_IN, signInSaga);
+  yield takeLatest(actionTypes.SAVE_PROFILE_INFO, saveProfileInformation);
   yield takeLatest(actionTypes.SIGN_OUT, signOut);
 }
 

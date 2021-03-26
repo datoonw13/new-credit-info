@@ -31,3 +31,22 @@ export const setRefreshToken = (refreshToken: string) =>
  * Remove refresh token.
  */
 export const removeRefreshToken = () => AsyncStorage.removeItem('refreshToken');
+
+/**
+ * Set user personal info.
+ */
+export const setPersonalInfo = (data: ProfileInfo) =>
+  AsyncStorage.setItem('userData', JSON.stringify(data));
+
+/**
+ * Get user personal info.
+ */
+export const getPersonalInfo = async () => {
+  const JSONData = await AsyncStorage.getItem('userData');
+
+  if (JSONData) {
+    return JSON.parse(JSONData) as ProfileInfo;
+  }
+
+  return null;
+};

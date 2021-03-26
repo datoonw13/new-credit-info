@@ -1,7 +1,7 @@
 import * as actionTypes from './actionTypes';
 import initialState from './initialState';
 
-const appReducer = (state = initialState, action: any) => {
+const authReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case actionTypes.CHECK_SIGNED_IN:
       return {
@@ -17,9 +17,14 @@ const appReducer = (state = initialState, action: any) => {
         isLoading: false,
         isSignedIn: false,
       };
+    case actionTypes.SET_USER_DATA:
+      return {
+        ...state,
+        user: action.data,
+      };
     default:
       return state;
   }
 };
 
-export default appReducer;
+export default authReducer;

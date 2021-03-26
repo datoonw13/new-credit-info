@@ -10,3 +10,8 @@ export const selectRegistration = ({registration}: ApplicationState) =>
  * Select app from state.
  */
 export const selectAuth = ({auth}: ApplicationState) => auth;
+
+/**
+ * Select user.
+ */
+export const selectUser = ({auth}: ApplicationState) => auth.user;

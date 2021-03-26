@@ -16,4 +16,5 @@ type RegistrationState = {
 type AuthState = {
   isLoading: boolean;
   isSignedIn: boolean;
+  user?: ProfileInfo;
 };

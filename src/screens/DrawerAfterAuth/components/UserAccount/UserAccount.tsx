@@ -4,13 +4,17 @@ import {Text} from 'components';
 import * as SVG from 'assets/svg';
 import {dummyData} from './config';
 import {colors} from 'theme';
+import {useSelector} from 'react-redux';
+import {selectUser} from 'store/select';
 
 const UserAccount = () => {
+  const {name, lastName} = useSelector(selectUser)!;
+
   return (
     <View style={styles.container}>
       <View style={styles.innerContainer}>
         <Image source={{uri: dummyData.image}} style={styles.image} />
-        <Text style={styles.username}>{dummyData.username}</Text>
+        <Text style={styles.username}>{`${name} ${lastName}`}</Text>
       </View>
       <View style={styles.innerContainer}>
         <TouchableOpacity style={styles.actionWrapper}>

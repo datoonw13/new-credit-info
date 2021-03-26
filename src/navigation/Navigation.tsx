@@ -28,9 +28,9 @@ import {
   drawerBeforeAuthStyle,
   drawerAfterAuthStyle,
 } from './config';
-import {saveReference, goTo} from 'utils/navigation';
+import {saveReference} from 'utils/navigation';
 import {selectAuth} from 'store/select';
-import {getCredentials} from 'utils/keychain';
+import {goToSignInWithFingerprint} from './helpers';
 
 /**
  * Before auth navigation components.
@@ -110,24 +110,14 @@ const AfterAuthDrawerNavigator = () => (
 );
 
 const Navigation = () => {
-  /**
-   * Navigate to use passcode screen if
-   * storage has credentials.
-   */
   const {isSignedIn} = useSelector(selectAuth);
 
   useEffect(() => {
-    const signInWithFingerprint = async () => {
-      try {
-        const credentials = await getCredentials();
-        console.log(credentials);
-        if (credentials) {
-          goTo('MainStackBeforeAuthNavigator', 'SignInPass');
-        }
-      } catch (e) {}
-    };
-
-    !isSignedIn && signInWithFingerprint();
+    /**
+     * Navigate to use passcode screen if
+     * storage has credentials.
+     */
+    !isSignedIn && goToSignInWithFingerprint();
   }, [isSignedIn]);
 
   return (

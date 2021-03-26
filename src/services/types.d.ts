@@ -70,3 +70,22 @@ type Service = {
   nameKa: string;
   organizationalProductType: 'STANDARD' | 'PREMIUM';
 };
+
+type ProfileInfo = {
+  name: string;
+  lastName: string;
+  personalCode: string;
+  address: string;
+  birthDate: string;
+  country: string;
+  countryId: number;
+  customerStatus: 'VERIFIED' | any;
+  customerType: EntityType;
+  email: string;
+  emailNotificationEnabled: boolean;
+  emailVerified: boolean;
+  mobileNotificationEnabled: boolean;
+  mobileNumber: string;
+  mobileNumberVerified: boolean;
+  profilePhoto?: string;
+};

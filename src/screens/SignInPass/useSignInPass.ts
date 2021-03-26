@@ -77,7 +77,6 @@ const useSignInPass = () => {
   const signInOnFingerprintSuccess = async () => {
     try {
       const credentials = await getCredentials();
-      console.log(credentials);
       dispatch(signIn(credentials));
     } catch (e) {
       console.log(e);

@@ -1,11 +1,11 @@
 /**
- * Authorization
+ * Authorization.
  */
 export const auth = 'auth';
 export const authRefresh = 'auth/refresh';
 
 /**
- * Register
+ * Register.
  */
 export const register = 'register';
 export const customerInfo = 'customer/info';
@@ -17,7 +17,7 @@ export const verifyOTP = 'customer/checkotp';
 export const getCountries = 'country';
 
 /**
- * Frequently Asked Questions
+ * Frequently Asked Questions.
  */
 export const FAQCategories = 'landingpage/faq/categories';
 export const FAQ = 'landingpage/faq';
@@ -33,3 +33,8 @@ export const getServices = 'landingpage/products';
 export const forgotPasswordSendOTP = 'passwordrecovery/sendotp';
 export const forgotPasswordCheckOTP = 'passwordrecovery/checkotp';
 export const forgotPasswordReset = 'passwordrecovery';
+
+/**
+ * Profile.
+ */
+export const profileInfo = 'profile';
