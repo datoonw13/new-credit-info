@@ -4,23 +4,24 @@ import {Text} from 'components';
 import * as SVG from 'assets/svg';
 import {dummyData} from './config';
 import {colors} from 'theme';
-import {useSelector} from 'react-redux';
-import {selectUser} from 'store/select';
+import useUserAccount from './useUserAccount';
 
 const UserAccount = () => {
-  const {name, lastName} = useSelector(selectUser)!;
+  const {fullName, onPhotoPress} = useUserAccount();
 
   return (
     <View style={styles.container}>
       <View style={styles.innerContainer}>
         <Image source={{uri: dummyData.image}} style={styles.image} />
-        <Text style={styles.username}>{`${name} ${lastName}`}</Text>
+        <Text style={styles.username}>{fullName}</Text>
       </View>
       <View style={styles.innerContainer}>
         <TouchableOpacity style={styles.actionWrapper}>
           <SVG.Delete />
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.actionWrapper, styles.actionDistance]}>
+        <TouchableOpacity
+          style={[styles.actionWrapper, styles.actionDistance]}
+          onPress={onPhotoPress}>
           <SVG.Camera />
         </TouchableOpacity>
       </View>
