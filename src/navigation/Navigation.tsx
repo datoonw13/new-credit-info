@@ -86,6 +86,8 @@ const AfterAuthMainStackNavigator = () => (
       name="CompanyManagement"
     />
     <AfterAuthMainStack.Screen component={Payments} name="Payments" />
+    <AfterAuthMainStack.Screen component={Privacy} name="Privacy" />
+    <AfterAuthMainStack.Screen component={FAQ} name="FAQ" />
   </AfterAuthMainStack.Navigator>
 );
 

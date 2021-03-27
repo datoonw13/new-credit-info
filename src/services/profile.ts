@@ -11,3 +11,13 @@ export const getProfileInfo = () =>
       language: global.lang.toUpperCase(),
     },
   });
+
+export const updateProfileImage = (data: FormData) =>
+  axios.put(API.updateProfile, data, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+    params: {
+      language: global.lang.toUpperCase(),
+    },
+  });

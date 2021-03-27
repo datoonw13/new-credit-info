@@ -38,3 +38,4 @@ export const forgotPasswordReset = 'passwordrecovery';
  * Profile.
  */
 export const profileInfo = 'profile';
+export const updateProfile = 'profile';

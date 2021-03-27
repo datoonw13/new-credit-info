@@ -2,17 +2,16 @@ import React from 'react';
 import {Image, StyleSheet, View, TouchableOpacity} from 'react-native';
 import {Text} from 'components';
 import * as SVG from 'assets/svg';
-import {dummyData} from './config';
 import {colors} from 'theme';
 import useUserAccount from './useUserAccount';
 
 const UserAccount = () => {
-  const {fullName, onPhotoPress} = useUserAccount();
+  const {fullName, onPhotoPress, img} = useUserAccount();
 
   return (
     <View style={styles.container}>
       <View style={styles.innerContainer}>
-        <Image source={{uri: dummyData.image}} style={styles.image} />
+        <Image source={{uri: img}} style={styles.image} />
         <Text style={styles.username}>{fullName}</Text>
       </View>
       <View style={styles.innerContainer}>

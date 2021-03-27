@@ -1,9 +1,14 @@
+import {useState} from 'react';
 import {useSelector} from 'react-redux';
 import {selectUser} from 'store/select';
 import DocPicker from 'react-native-document-picker';
+import * as services from 'services';
 
 const useUserAccount = () => {
   const user = useSelector(selectUser);
+  const [img, setImg] = useState(
+    'https://i.pinimg.com/originals/d4/9d/46/d49d467fd122ef34d7dd7630e173314a.jpg',
+  );
 
   /**
    * User full name.
@@ -16,11 +21,15 @@ const useUserAccount = () => {
   const onPhotoPress = async () => {
     try {
       const doc = await DocPicker.pick({
-        type: ['.jpeg .jpg .png'],
+        type: [DocPicker.types.images],
         copyTo: 'cachesDirectory',
       });
 
-      console.log(doc);
+      const data = new FormData();
+      data.append('profilePhoto', doc);
+
+      const result = await services.updateProfileImage(data);
+      console.log(result);
     } catch (e) {
       console.log(e);
     }
@@ -29,6 +38,7 @@ const useUserAccount = () => {
   return {
     onPhotoPress,
     fullName,
+    img,
   };
 };
 
