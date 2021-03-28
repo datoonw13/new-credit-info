@@ -1,12 +1,7 @@
 import React from 'react';
 import {SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
-import {BaseHeader, LightAction} from 'components';
-import {
-  AuthWithPasswordModal,
-  PinKeyboard,
-  Account,
-  PinLine,
-} from './components';
+import {BaseHeader, LightAction, PinKeyboard, PinLine} from 'components';
+import {AuthWithPasswordModal, Account} from './components';
 import useSignInPass from './useSignInPass';
 import * as colors from 'theme/colors';
 import {dummyUser} from './config';

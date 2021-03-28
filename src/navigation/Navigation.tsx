@@ -9,6 +9,7 @@ import {
   DrawerBeforeAuth,
   DrawerAfterAuth,
   ForgotPassword,
+  SetPasscode,
   SignInPass,
   Dashboard,
   Simulator,
@@ -28,7 +29,6 @@ import {
   authStackScreenOptions,
   drawerBeforeAuthStyle,
   drawerAfterAuthStyle,
-  tabBarOptions,
 } from './config';
 import {saveReference} from 'utils/navigation';
 import {selectAuth} from 'store/select';
@@ -91,6 +91,7 @@ const AfterAuthMainStackNavigator = () => (
     <AfterAuthMainStack.Screen component={FAQ} name="FAQ" />
     <AfterAuthMainStack.Screen component={Security} name="Security" />
     <AfterAuthMainStack.Screen component={Privacy} name="Privacy" />
+    <AfterAuthMainStack.Screen component={SetPasscode} name="SetPasscode" />
   </AfterAuthMainStack.Navigator>
 );
 

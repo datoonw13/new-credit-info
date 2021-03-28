@@ -1,16 +1,19 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {StyleSheet, Switch, TouchableOpacity, View} from 'react-native';
 import Text from 'components/Text';
 import {ListItemFC} from './types';
+import useListItem from './useListItem';
 
 const ListItem: ListItemFC = ({
   switcher = false,
+  offSwitch,
+  onSwitch,
   onPress,
   title,
   color,
   Icon,
 }) => {
-  const [val, setVal] = useState(false);
+  const {onSwitchPress, switchValue} = useListItem({offSwitch, onSwitch});
 
   return (
     <TouchableOpacity
@@ -23,7 +26,7 @@ const ListItem: ListItemFC = ({
         </View>
         <Text style={styles.text}>{title}</Text>
       </View>
-      {switcher && <Switch value={val} onValueChange={setVal} />}
+      {switcher && <Switch value={switchValue} onValueChange={onSwitchPress} />}
     </TouchableOpacity>
   );
 };

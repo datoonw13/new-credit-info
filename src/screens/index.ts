@@ -15,4 +15,5 @@ export {default as CompanyManagement} from './CompanyManagement';
 export {default as Payments} from './Payments';
 export {default as DrawerAfterAuth} from './DrawerAfterAuth';
 export {default as Security} from './Security';
+export {default as SetPasscode} from './SetPasscode';
 export {default as Test} from './Test';

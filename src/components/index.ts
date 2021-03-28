@@ -23,3 +23,5 @@ export {default as SentOTPModal} from './SentOTPModal';
 export {default as LightGreyButton} from './LightGreyButton';
 export {default as DateSelectorModal} from './DateSelectorModal';
 export {default as BottomTabs} from './BottomTabs';
+export {default as PinKeyboard} from './PinKeyboard';
+export {default as PinLine} from './PinLine';

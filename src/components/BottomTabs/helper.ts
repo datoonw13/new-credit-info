@@ -4,5 +4,5 @@ import {getCurrentRoute} from 'utils/navigation';
  */
 export const shouldHide = () => {
   const currentRoute = getCurrentRoute();
-  return ['Security', 'FAQ', 'Privacy'].has(currentRoute);
+  return ['Security', 'FAQ', 'Privacy', 'SetPasscode'].has(currentRoute);
 };

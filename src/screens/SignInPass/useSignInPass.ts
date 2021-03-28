@@ -105,7 +105,6 @@ const useSignInPass = () => {
     onAuthModalBackdropPress,
     onForgotPasswordPress,
     setForgotPasscode,
-    setForgotPasscode,
     onOtherUserPress,
     passcodeLength,
     forgotPasscode,

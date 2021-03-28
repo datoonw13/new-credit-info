@@ -3,9 +3,9 @@ import {TouchableOpacity, StyleSheet} from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {colors} from 'theme';
 
-const FingerPrintKey: FingerPrintKeyFC = ({onPress}) => (
+const FingerPrintKey: FingerPrintKeyFC = ({onPress, show}) => (
   <TouchableOpacity
-    style={[styles.pinItem, styles.firstPinItem]}
+    style={[styles.pinItem, styles.firstPinItem, !show && styles.hide]}
     onPress={() => onPress(10)}>
     <MaterialIcons name="fingerprint" color={colors.GRAY1} size={30} />
   </TouchableOpacity>
@@ -30,5 +30,8 @@ const styles = StyleSheet.create({
   pinItemText: {
     fontSize: 18,
     color: colors.black,
+  },
+  hide: {
+    display: 'none',
   },
 });

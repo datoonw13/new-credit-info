@@ -9,7 +9,17 @@ const Security = () => {
       <BaseHeader title="security.title" />
       <View style={styles.menuWrapper}>
         {menuList.map(
-          ({id, Icon, color, title, dividerWidth, onPress, switcher}) => (
+          ({
+            id,
+            Icon,
+            color,
+            title,
+            dividerWidth,
+            onPress,
+            switcher,
+            onSwitch,
+            offSwitch,
+          }) => (
             <View key={id}>
               <ListItem
                 Icon={Icon}
@@ -17,6 +27,8 @@ const Security = () => {
                 title={title}
                 onPress={onPress}
                 switcher={switcher}
+                onSwitch={onSwitch}
+                offSwitch={offSwitch}
               />
               <Divider width={dividerWidth} />
             </View>
