@@ -3,9 +3,9 @@ import {Platform, StyleSheet, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {
   LanguageSwitcher,
-  DrawerListItem,
   HeaderWithLogo,
   SocialLinks,
+  ListItem,
   Divider,
   Text,
 } from 'components';
@@ -18,13 +18,13 @@ const DrawerBeforeAuth = () => {
       <View>
         <SafeAreaView />
         <HeaderWithLogo mode="Left" style={styles.header} />
-        {menuList.map(({id, Icon, color, title, dividerWidth, navigate}) => (
+        {menuList.map(({id, Icon, color, title, dividerWidth, onPress}) => (
           <View key={id}>
-            <DrawerListItem
+            <ListItem
               Icon={Icon}
               color={color}
               title={title}
-              navigate={navigate}
+              onPress={onPress}
             />
             <Divider width={dividerWidth} />
           </View>

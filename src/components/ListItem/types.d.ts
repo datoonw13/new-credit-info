@@ -1,11 +1,12 @@
 import {StatelessComponent} from 'react';
 import {SvgProps} from 'react-native-svg';
 
-type DrawerListItemProps = {
+type ListItemProps = {
   title: string;
   Icon: StatelessComponent<SvgProps>;
   color: string;
-  navigate: null | (() => void);
+  onPress: null | (() => void);
+  switcher?: boolean;
 };
 
-type DrawerListItemFC = (props: DrawerListItemProps) => JSX.Element;
+type ListItemFC = (props: ListItemProps) => JSX.Element;

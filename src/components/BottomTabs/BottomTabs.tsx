@@ -3,10 +3,11 @@ import {StyleSheet, View} from 'react-native';
 import {colors} from 'theme';
 import {BottomTabItem} from './components';
 import {itemList} from './config';
+import {shouldHide} from './helper';
 
 const BottomTabs = () => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, shouldHide() && styles.hide]}>
       {itemList.map(({ActiveIcon, InactiveIcon, id, navigate, screen}) => (
         <BottomTabItem
           BottomTabActiveIcon={ActiveIcon}
@@ -32,5 +33,8 @@ const styles = StyleSheet.create({
     paddingBottom: 30,
     borderRadius: 33,
     marginHorizontal: 10,
+  },
+  hide: {
+    display: 'none',
   },
 });

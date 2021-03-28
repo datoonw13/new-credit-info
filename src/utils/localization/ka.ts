@@ -125,6 +125,10 @@ export default {
 
   security: {
     title: 'უსაფრთხოება',
+    signInWithPasscode: 'პასკოდით შესვლა',
+    signInWithFingerprint: 'თითის ანაბეჭდით შესვლა',
+    changePassword: 'პაროლის შეცვლა',
+    twoFactorAuth: 'ორმაგი ავტორიზაცია',
   },
 
   termsAndConditions: {

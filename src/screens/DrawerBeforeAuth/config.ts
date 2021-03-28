@@ -9,7 +9,7 @@ export const menuList = [
     color: colors.crimsonOp2,
     Icon: Login,
     dividerWidth: '100%',
-    navigate: () => goTo('MainStackBeforeAuthNavigator', 'Auth'),
+    onPress: () => goTo('MainStackBeforeAuthNavigator', 'Auth'),
   },
   {
     id: 2,
@@ -17,7 +17,7 @@ export const menuList = [
     color: colors.secondGreenOp1,
     Icon: Service,
     dividerWidth: '80%',
-    navigate: () => goTo('MainStackBeforeAuthNavigator', 'Service'),
+    onPress: () => goTo('MainStackBeforeAuthNavigator', 'Service'),
   },
   {
     id: 3,
@@ -25,7 +25,7 @@ export const menuList = [
     color: colors.yellowOp1,
     Icon: FAQ,
     dividerWidth: '80%',
-    navigate: () => goTo('MainStackBeforeAuthNavigator', 'FAQ'),
+    onPress: () => goTo('MainStackBeforeAuthNavigator', 'FAQ'),
   },
   {
     id: 4,
@@ -33,6 +33,6 @@ export const menuList = [
     color: colors.blackOp1,
     Icon: Privacy,
     dividerWidth: '100%',
-    navigate: () => goTo('MainStackBeforeAuthNavigator', 'Privacy'),
+    onPress: () => goTo('MainStackBeforeAuthNavigator', 'Privacy'),
   },
 ];

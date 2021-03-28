@@ -124,6 +124,10 @@ export default {
 
   security: {
     title: 'Security',
+    signInWithPasscode: 'Sign In with Passcode',
+    signInWithFingerprint: 'Sign In with Fingerprint',
+    changePassword: 'Change Password',
+    twoFactorAuth: 'Two Factor Authorization',
   },
 
   termsAndConditions: {

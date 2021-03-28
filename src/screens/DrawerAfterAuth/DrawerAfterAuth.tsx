@@ -4,7 +4,7 @@ import {useTranslation} from 'react-i18next';
 import {
   LanguageSwitcher,
   HeaderWithLogo,
-  DrawerListItem,
+  ListItem,
   Divider,
   Text,
 } from 'components';
@@ -23,13 +23,13 @@ const DrawerAfterAuth = () => {
         <UserAccount />
         <Notifications />
         <View style={styles.drawerMenu}>
-          {menuList.map(({id, Icon, color, title, dividerWidth, navigate}) => (
+          {menuList.map(({id, Icon, color, title, dividerWidth, onPress}) => (
             <View key={id}>
-              <DrawerListItem
+              <ListItem
                 Icon={Icon}
                 color={color}
                 title={title}
-                navigate={navigate}
+                onPress={onPress}
               />
               <Divider width={dividerWidth} />
             </View>

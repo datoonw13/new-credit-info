@@ -1,3 +1,4 @@
+import 'library/elastic-array';
 import React from 'react';
 import {AppRegistry} from 'react-native';
 import {Provider} from 'react-redux';

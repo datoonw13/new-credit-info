@@ -8,7 +8,7 @@ export {default as EntitySelector} from './EntitySelector';
 export {default as CountrySelectModal} from './CountrySelectModal';
 export {default as RegisterTabs} from './RegisterTabs';
 export {default as Divider} from './Divider';
-export {default as DrawerListItem} from './DrawerListItem';
+export {default as ListItem} from './ListItem';
 export {default as LanguageSwitcher} from './LanguageSwitcher';
 export {default as SocialLinks} from './SocialLinks';
 export {default as BaseHeader} from './BaseHeader';

@@ -46,3 +46,8 @@ export {default as Notification} from './notification.svg';
 export {default as PersonalInfo} from './personal-info.svg';
 export {default as Security} from './security.svg';
 export {default as TermsAndConditions} from './terms-and-conditions.svg';
+
+export {default as Passcode} from './passcode.svg';
+export {default as Fingerprint} from './fingerprint.svg';
+export {default as ChangePassword} from './change-password.svg';
+export {default as TwoFactorAuthorization} from './two-factor-authorization.svg';

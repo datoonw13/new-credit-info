@@ -14,6 +14,7 @@ import {
   Simulator,
   Payments,
   Register,
+  Security,
   Credits,
   Privacy,
   Service,
@@ -27,6 +28,7 @@ import {
   authStackScreenOptions,
   drawerBeforeAuthStyle,
   drawerAfterAuthStyle,
+  tabBarOptions,
 } from './config';
 import {saveReference} from 'utils/navigation';
 import {selectAuth} from 'store/select';
@@ -86,8 +88,9 @@ const AfterAuthMainStackNavigator = () => (
       name="CompanyManagement"
     />
     <AfterAuthMainStack.Screen component={Payments} name="Payments" />
-    <AfterAuthMainStack.Screen component={Privacy} name="Privacy" />
     <AfterAuthMainStack.Screen component={FAQ} name="FAQ" />
+    <AfterAuthMainStack.Screen component={Security} name="Security" />
+    <AfterAuthMainStack.Screen component={Privacy} name="Privacy" />
   </AfterAuthMainStack.Navigator>
 );
 
