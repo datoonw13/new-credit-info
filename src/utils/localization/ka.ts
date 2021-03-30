@@ -114,6 +114,8 @@ export default {
     biometrics: 'Biometrics',
     passcode: 'პასკოდი',
     authError: 'დაფიქსირდა შეცდომა ბიომეტრული საშუალებით აუთენტიპიკაციისას...',
+    wrongPasscode: 'თქვენს მიერ მითითებული პასკოდი არასწორია...',
+    passcodeNotSet: 'თქვენ არ გაქვთ გააქტიურებული პასკოდით ავტორიზაცია...',
   },
 
   drawer: {
@@ -135,6 +137,7 @@ export default {
     repeatPasscode: 'გაიმეორეთ პასკოდი',
     passcodeMismatch:
       'პასკოდები არ ემთხვევა ერთმანეთს... გთხოვთ სცადოთ ხელახლა...',
+    passcodeSaved: 'პასკოდით შესვლა წარმატებით გააქტიურდა!',
 
     easyAuth: 'მარტივი შესვლა',
     easyAuthDescription:

@@ -1,12 +1,12 @@
-import {useCallback, useMemo, useState} from 'react';
+import {useCallback, useEffect, useMemo, useState} from 'react';
 import {useNavigation} from '@react-navigation/core';
 import {useTranslation} from 'react-i18next';
 import Biometrics from 'react-native-biometrics';
-import {alertError} from 'utils/dropdownAlert';
+import {alertError, alertWarning} from 'utils/dropdownAlert';
 import {getCredentials} from 'utils/keychain';
 import {signIn} from 'store/auth/sagaActions';
+import {getPasscode} from 'utils/storage';
 import {useDispatch} from 'react-redux';
-import {Alert} from 'react-native';
 
 const useSignInPass = () => {
   const {t} = useTranslation();
@@ -14,6 +14,19 @@ const useSignInPass = () => {
   const [forgotPasscode, setForgotPasscode] = useState(false);
   const {navigate} = useNavigation();
   const dispatch = useDispatch();
+
+  /**
+   * Sign in to the app.
+   */
+  const signInOnSuccess = useCallback(async () => {
+    try {
+      const credentials = await getCredentials();
+      dispatch(signIn(credentials));
+    } catch (e) {
+      console.log(e);
+      alertError('', 'signInPass.authError');
+    }
+  }, [dispatch]);
 
   /**
    * Go to auth screen on OtherUser press.
@@ -25,12 +38,8 @@ const useSignInPass = () => {
    */
   const watchKeyboard = (value: number) => {
     if (value !== 10 && value !== 11) {
-      if (pinNumber.length === 3) {
-        const newPin = `${pinNumber}${value}`;
-        Alert.alert(`Passcode ${newPin}`, 'Not yet implemented!');
-        setPinNumber('');
-      } else {
-        pinNumber.length <= 4 && setPinNumber(`${pinNumber}${value}`);
+      if (pinNumber.length < 4) {
+        setPinNumber(`${pinNumber}${value}`);
       }
     } else if (value === 10) {
       onFingerPrintPress();
@@ -38,6 +47,27 @@ const useSignInPass = () => {
       setPinNumber(pinNumber.slice(0, pinNumber.length - 1));
     }
   };
+
+  /**
+   * Try login on pin fill.
+   */
+  useEffect(() => {
+    (async () => {
+      if (pinNumber.length === 4) {
+        const savedPasscode = await getPasscode();
+
+        if (savedPasscode === null) {
+          alertWarning('', 'signInPass.passcodeNotSet');
+          setPinNumber('');
+        } else if (savedPasscode !== pinNumber) {
+          alertWarning('', 'signInPass.wrongPasscode');
+          setPinNumber('');
+        } else {
+          signInOnSuccess();
+        }
+      }
+    })();
+  }, [pinNumber, signInOnSuccess]);
 
   /**
    * On fingerprint press.
@@ -63,25 +93,12 @@ const useSignInPass = () => {
       const {success} = await Biometrics.simplePrompt(simplePromptConfig);
 
       if (success) {
-        signInOnFingerprintSuccess();
+        signInOnSuccess();
         return;
       }
     }
 
     alertError('', 'signInPass.biometricsNotAvailable');
-  };
-
-  /**
-   * Sign in to the app.
-   */
-  const signInOnFingerprintSuccess = async () => {
-    try {
-      const credentials = await getCredentials();
-      dispatch(signIn(credentials));
-    } catch (e) {
-      console.log(e);
-      alertError('', 'signInPass.authError');
-    }
   };
 
   /**

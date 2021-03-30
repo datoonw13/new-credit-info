@@ -1,7 +1,7 @@
-import {useNavigation} from '@react-navigation/core';
 import {useEffect, useState} from 'react';
-import {Alert} from 'react-native';
-import {alertWarning} from 'utils/dropdownAlert';
+import {useNavigation} from '@react-navigation/core';
+import {alertSuccess, alertWarning} from 'utils/dropdownAlert';
+import {setPasscode as savePasscode} from 'utils/storage';
 
 const useSetPasscode = () => {
   const [view, setView] = useState<PasscodeView>('SetPasscode');
@@ -61,7 +61,7 @@ const useSetPasscode = () => {
 
   /**
    * On repeat-passcode change check if it reached 4 digits
-   * and if so send xhr call.
+   * and passcodes are the same, save it successfully.
    */
   useEffect(() => {
     if (repeatPasscode.length === 4) {
@@ -71,7 +71,8 @@ const useSetPasscode = () => {
         setRepeatPasscode('');
         setView('SetPasscode');
       } else {
-        Alert.alert('ბოდიში მომითხოვია', 'ჯერ ბექთან არ არის ჩაბმული...');
+        savePasscode(passcode);
+        alertSuccess('', 'security.passcodeSaved');
         goBack();
       }
     }

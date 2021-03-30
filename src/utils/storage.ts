@@ -60,3 +60,34 @@ export const setBiometricAuthStatus = (status: string) =>
 
 export const getBiometricAuthStatus = () =>
   AsyncStorage.getItem('biometricAuthStatus');
+/**
+ * Remember user.
+ */
+export const rememberUser = (username: string) =>
+  AsyncStorage.setItem('remember-me', username);
+
+/**
+ * Forget user.
+ */
+export const forgetUser = () => AsyncStorage.removeItem('remember-me');
+
+/**
+ * Get remembered user.
+ */
+export const getRememberedUser = () => AsyncStorage.getItem('remember-me');
+
+/**
+ * Set user passcode.
+ */
+export const setPasscode = (passcode: string) =>
+  AsyncStorage.setItem('passcode', passcode);
+
+/**
+ * Get passcode.
+ */
+export const getPasscode = () => AsyncStorage.getItem('passcode');
+
+/**
+ * Remove passcode.
+ */
+export const removePasscode = () => AsyncStorage.removeItem('passcode');

@@ -41,13 +41,6 @@ const Auth = () => {
   } = useAuth();
   const {t} = useTranslation();
 
-  /**
-   * Test user.
-   *
-   * username: 87198371293
-   * password: 87198371293
-   */
-
   return (
     <View style={styles.container}>
       <HeaderWithLogo mode="WithMenu" style={styles.header} />

@@ -8,12 +8,13 @@ type ListItemProps = {
   onPress: null | (() => void);
   switcher?: boolean;
   onSwitch?: () => void;
-  offSwitch?: () => void;
+  offSwitch: (() => void) | null;
+  switchValue?: boolean;
 };
 
 type UseListItem = Omit<
   ListItemProps,
-  'switcher' | 'title' | 'Icon' | 'color' | 'onPress'
+  'switcher' | 'title' | 'Icon' | 'color' | 'onPress' | 'switchValue'
 >;
 
 type ListItemFC = (props: ListItemProps) => JSX.Element;

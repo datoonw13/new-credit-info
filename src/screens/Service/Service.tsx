@@ -1,5 +1,5 @@
 import React from 'react';
-import {SafeAreaView, StyleSheet, Platform} from 'react-native';
+import {SafeAreaView, StyleSheet, ScrollView, Platform} from 'react-native';
 import Slider, {Pagination} from 'react-native-snap-carousel';
 import {
   IndividualLegalEntitySwitcher,
@@ -27,36 +27,41 @@ const Service = () => {
   return (
     <SafeAreaView style={styles.container}>
       <BaseHeader title="service" />
-      <IndividualLegalEntitySwitcher
-        entityType={entityType}
-        setEntityType={setEntityType}
-        style={styles.entitySwitcher}
-      />
-      <ServiceSwitcher
-        style={styles.serviceSwitcher}
-        serviceType={serviceType}
-        onPress={onServiceTypeChange}
-      />
-      <Info text="serviceScreen.promote" onPress={showNotificationsListModal} />
-      <Divider />
-      <Pagination
-        inactiveDotStyle={styles.inactiveDot}
-        containerStyle={styles.pagination}
-        activeDotIndex={activePackage}
-        dotStyle={styles.dot}
-        inactiveDotScale={1}
-        dotsLength={activeServices ? activeServices.length : 0}
-      />
-      <Slider
-        data={activeServices ?? []}
-        renderItem={({item}: SliderItem) => <Package service={item} />}
-        itemWidth={config.mobileWidth * 0.8}
-        sliderWidth={config.mobileWidth}
-        onSnapToItem={setActivePackage}
-        activeSlideAlignment="start"
-        callbackOffsetMargin={10}
-        enableSnap
-      />
+      <ScrollView>
+        <IndividualLegalEntitySwitcher
+          entityType={entityType}
+          setEntityType={setEntityType}
+          style={styles.entitySwitcher}
+        />
+        <ServiceSwitcher
+          style={styles.serviceSwitcher}
+          serviceType={serviceType}
+          onPress={onServiceTypeChange}
+        />
+        <Info
+          text="serviceScreen.promote"
+          onPress={showNotificationsListModal}
+        />
+        <Divider />
+        <Pagination
+          inactiveDotStyle={styles.inactiveDot}
+          containerStyle={styles.pagination}
+          activeDotIndex={activePackage}
+          dotStyle={styles.dot}
+          inactiveDotScale={1}
+          dotsLength={activeServices ? activeServices.length : 0}
+        />
+        <Slider
+          data={activeServices ?? []}
+          renderItem={({item}: SliderItem) => <Package service={item} />}
+          itemWidth={config.mobileWidth * 0.8}
+          sliderWidth={config.mobileWidth}
+          onSnapToItem={setActivePackage}
+          activeSlideAlignment="start"
+          callbackOffsetMargin={10}
+          enableSnap
+        />
+      </ScrollView>
     </SafeAreaView>
   );
 };

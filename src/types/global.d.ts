@@ -20,3 +20,8 @@ type ConfigureModalProps = {
 };
 
 type ConfigureModal = (props: ConfigureModalProps) => void;
+
+type Credentials = {
+  username: string;
+  password: string;
+};

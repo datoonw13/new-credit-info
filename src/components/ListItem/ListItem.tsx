@@ -5,6 +5,7 @@ import {ListItemFC} from './types';
 import useListItem from './useListItem';
 
 const ListItem: ListItemFC = ({
+  switchValue = false,
   switcher = false,
   offSwitch,
   onSwitch,
@@ -13,7 +14,7 @@ const ListItem: ListItemFC = ({
   color,
   Icon,
 }) => {
-  const {onSwitchPress, switchValue} = useListItem({offSwitch, onSwitch});
+  const {onSwitchPress} = useListItem({offSwitch, onSwitch});
 
   return (
     <TouchableOpacity

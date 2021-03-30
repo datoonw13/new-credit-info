@@ -5,6 +5,8 @@ import {useNavigation} from '@react-navigation/native';
 import {useForm} from 'react-hook-form';
 import {useDispatch} from 'react-redux';
 import {signIn} from 'store/auth/sagaActions';
+import {Credentials} from 'types/global';
+import {getRememberedUser} from 'utils/storage';
 
 const useAuth = () => {
   const {navigate} = useNavigation();
@@ -51,10 +53,9 @@ const useAuth = () => {
     Keyboard.dismiss();
     dispatch(
       signIn({
-        // username: '00000000001',
-        // password: 'msofliomshvidoba',
         username,
         password,
+        rememberMe: saveIsEnabled,
       }),
     );
   };
@@ -67,6 +68,20 @@ const useAuth = () => {
     setValue('password', '');
     navigate('Register');
   };
+
+  /**
+   * Set remembered user value.
+   */
+  useEffect(() => {
+    (async () => {
+      const rememberedUserName = await getRememberedUser();
+
+      if (rememberedUserName !== null) {
+        setSaveIsEnabled(true);
+        setValue('username', rememberedUserName);
+      }
+    })();
+  }, [setValue]);
 
   return {
     setPasswordVisible,
