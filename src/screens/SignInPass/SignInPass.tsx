@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {BaseHeader, LightAction, PinKeyboard, PinLine} from 'components';
 import {AuthWithPasswordModal, Account} from './components';
 import useSignInPass from './useSignInPass';
 import * as colors from 'theme/colors';
 import {dummyUser} from './config';
+import {getBiometricAuthStatus} from 'utils/storage';
 
 const SignInPass = () => {
   const {
@@ -17,6 +18,14 @@ const SignInPass = () => {
     watchKeyboard,
     t,
   } = useSignInPass();
+
+  const [biometricAuthStatus, setBiometricAuthStatus] = useState('');
+  useEffect(() => {
+    getBiometricAuthStatus().then((status) => {
+      setBiometricAuthStatus(status as string);
+      console.log(status);
+    });
+  }, []);
 
   return (
     <ScrollView style={styles.container}>
@@ -39,7 +48,10 @@ const SignInPass = () => {
         </View>
         <Text style={styles.enterPinText}>{t('signInPass.title')}</Text>
         <PinLine fillNumber={passcodeLength} style={styles.pinLine} />
-        <PinKeyboard onPress={watchKeyboard} />
+        <PinKeyboard
+          onPress={watchKeyboard}
+          withoutFingerprint={biometricAuthStatus !== 'active'}
+        />
       </View>
       <LightAction
         text="signInPass.forgotPasscode"
