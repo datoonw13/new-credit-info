@@ -1,6 +1,5 @@
 import * as SVG from 'assets/svg';
 import {colors} from 'theme';
-import {goTo} from 'utils/navigation';
 
 export const menuList = [
   {
@@ -10,7 +9,6 @@ export const menuList = [
     title: 'security.signInWithPasscode',
     dividerWidth: '100%',
     switcher: true,
-    onSwitch: () => goTo('AfterAuthMainStackNavigator', 'SetPasscode'),
     onPress: null,
   },
   {
@@ -20,7 +18,6 @@ export const menuList = [
     title: 'security.signInWithFingerprint',
     dividerWidth: '100%',
     switcher: true,
-    onSwitch: () => goTo('AfterAuthMainStackNavigator', 'SetFingerprint'),
     onPress: null,
   },
   {
@@ -30,7 +27,6 @@ export const menuList = [
     title: 'security.changePassword',
     dividerWidth: '100%',
     switcher: false,
-    onSwitch: undefined,
     onPress: null,
   },
   {
@@ -40,7 +36,6 @@ export const menuList = [
     title: 'security.twoFactorAuth',
     dividerWidth: '100%',
     switcher: true,
-    onSwitch: undefined,
     onPress: null,
   },
 ];

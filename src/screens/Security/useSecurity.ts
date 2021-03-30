@@ -1,8 +1,11 @@
+import {useNavigation} from '@react-navigation/core';
 import {useEffect, useState} from 'react';
 import {getPasscode, removePasscode} from 'utils/storage';
 
 const useSecurity = () => {
   const [passcodeSwitchValue, setPasscodeSwitchValue] = useState(false);
+  const [fingerprintSwitchValue, setFingerprintSwitchValue] = useState(false);
+  const {navigate} = useNavigation();
 
   /**
    * Set passcode switch value to true
@@ -25,9 +28,42 @@ const useSecurity = () => {
     setPasscodeSwitchValue(false);
   };
 
+  /**
+   * On passcode successfully set.
+   */
+  const onPasscodeSetSuccess = () => {
+    setPasscodeSwitchValue(true);
+  };
+
+  /**
+   * On fingerprint successfully set.
+   */
+  const onFingerprintSetSuccess = () => {
+    setFingerprintSwitchValue(true);
+  };
+
+  /**
+   * Navigate to passcode.
+   */
+  const navigateToSetPasscode = () =>
+    navigate('SetPasscode', {
+      onSuccess: onPasscodeSetSuccess,
+    });
+
+  /**
+   * Navigate to fingerprint.
+   */
+  const navigateToSetFingerprint = () => {
+    navigate('SetFingerprint', {
+      onSuccess: onFingerprintSetSuccess,
+    });
+  };
+
   return {
     passcodeSwitchValue,
     onPasscodeSwitchOff,
+    navigateToSetPasscode,
+    navigateToSetFingerprint,
   };
 };
 

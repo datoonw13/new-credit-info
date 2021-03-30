@@ -1,0 +1,3 @@
+type SetPasscodeRouteParams = {
+  onSuccess: () => void;
+};

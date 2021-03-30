@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import {useNavigation} from '@react-navigation/core';
+import {useNavigation, useRoute} from '@react-navigation/core';
 import {alertSuccess, alertWarning} from 'utils/dropdownAlert';
 import {setPasscode as savePasscode} from 'utils/storage';
 
@@ -9,7 +9,9 @@ const useSetPasscode = () => {
   const [passcode, setPasscode] = useState('');
   const [repeatPasscode, setRepeatPasscode] = useState('');
   const {goBack} = useNavigation();
+  const {params} = useRoute();
 
+  params as SetPasscodeRouteParams;
   /**
    * On passcode press filter
    * keys and update state.
@@ -73,10 +75,11 @@ const useSetPasscode = () => {
       } else {
         savePasscode(passcode);
         alertSuccess('', 'security.passcodeSaved');
+        (params as any)?.onSuccess();
         goBack();
       }
     }
-  }, [repeatPasscode, passcode, goBack]);
+  }, [repeatPasscode, passcode, goBack, params]);
 
   return {
     onRepeatPasscodePress,
