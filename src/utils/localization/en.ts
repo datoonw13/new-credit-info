@@ -128,6 +128,10 @@ export default {
     signInWithFingerprint: 'Sign In with Fingerprint',
     changePassword: 'Change Password',
     twoFactorAuth: 'Two Factor Authorization',
+
+    setPasscode: 'Set Passcode',
+    repeatPasscode: 'Repeat Passcode',
+    passcodeMismatch: "Typed passcodes arn't same... please try again...",
   },
 
   termsAndConditions: {

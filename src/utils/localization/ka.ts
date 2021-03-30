@@ -129,6 +129,11 @@ export default {
     signInWithFingerprint: 'თითის ანაბეჭდით შესვლა',
     changePassword: 'პაროლის შეცვლა',
     twoFactorAuth: 'ორმაგი ავტორიზაცია',
+
+    setPasscode: 'დააყენეთ პასკოდი',
+    repeatPasscode: 'გაიმეორეთ პასკოდი',
+    passcodeMismatch:
+      'პასკოდები არ ემთხვევა ერთმანეთს... გთხოვთ სცადოთ ხელახლა...',
   },
 
   termsAndConditions: {

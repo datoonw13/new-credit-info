@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import * as colors from 'theme/colors';
-import {Text} from 'components';
+import Text from 'components/Text';
 
 const NumericKey: NumericKeyFC = ({onPress, pinNumber, first}) => (
   <TouchableOpacity

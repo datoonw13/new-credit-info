@@ -1,16 +1,43 @@
 import React from 'react';
-import {SafeAreaView} from 'react-native';
-import {BaseHeader, Text} from 'components';
+import {SafeAreaView, StyleSheet} from 'react-native';
+import {BaseHeader} from 'components';
 import {PasscodeInput} from './components';
+import useSetPasscode from './useSetPasscode';
 
 const SetPasscode = () => {
+  const {
+    valueLength,
+    onPasscodePress,
+    view,
+    onRepeatPasscodePress,
+  } = useSetPasscode();
+
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <BaseHeader />
-      <Text>Set Passcode</Text>
-      <PasscodeInput />
+      {view === 'SetPasscode' && (
+        <PasscodeInput
+          title="security.setPasscode"
+          onPasscodeChange={onPasscodePress}
+          valueLength={valueLength}
+        />
+      )}
+
+      {view === 'RepeatPasscode' && (
+        <PasscodeInput
+          onPasscodeChange={onRepeatPasscodePress}
+          title="security.repeatPasscode"
+          valueLength={valueLength}
+        />
+      )}
     </SafeAreaView>
   );
 };
 
 export default SetPasscode;
+
+const styles = StyleSheet.create({
+  container: {
+    paddingTop: 10,
+  },
+});
