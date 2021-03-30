@@ -7,23 +7,30 @@ import * as services from 'services';
 import jwtDecode from 'jwt-decode';
 import {goTo} from 'utils/navigation';
 import {
-  setAccessToken,
-  setRefreshToken,
-  removeAccessToken,
   removeRefreshToken,
+  removeAccessToken,
+  setRefreshToken,
   setPersonalInfo,
+  setAccessToken,
+  rememberUser,
+  forgetUser,
 } from 'utils/storage';
 import {alertError} from 'utils/dropdownAlert';
 import {setCredentials, clearCredentials} from 'utils/keychain';
+import {SignInSagaAction} from 'store/types';
 
 /**
  * Saga for user sign in.
  * Also determine if user is being registered,
  * and if so set proper data into the state.
  */
-function* signInSaga({data}: any) {
+function* signInSaga({data}: SignInSagaAction) {
+  const {username, password, rememberMe} = data;
   try {
-    const {accessToken, refreshToken}: AuthResponse = yield services.auth(data);
+    const {accessToken, refreshToken}: AuthResponse = yield services.auth({
+      username,
+      password,
+    });
 
     yield setAccessToken(accessToken);
     yield setRefreshToken(refreshToken);
@@ -53,6 +60,12 @@ function* signInSaga({data}: any) {
       yield setCredentials(data);
       yield put(authActions.setAuthStatusAction(true));
       yield put(saveProfileInfo());
+
+      if (rememberMe === true) {
+        rememberUser(username);
+      } else if (rememberMe === false) {
+        forgetUser();
+      }
     }
   } catch (error) {
     console.dir(error);

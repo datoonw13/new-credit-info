@@ -1,3 +1,4 @@
+import {SignInData} from 'store/types';
 import * as actionTypes from './actionTypes';
 
 /**
@@ -5,7 +6,7 @@ import * as actionTypes from './actionTypes';
  * If user is being registered,
  * make him continue registration process.
  */
-export const signIn = (data: any) => ({
+export const signIn = (data: SignInData) => ({
   type: actionTypes.REQUEST_SIGN_IN,
   data,
 });

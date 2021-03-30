@@ -50,3 +50,19 @@ export const getPersonalInfo = async () => {
 
   return null;
 };
+
+/**
+ * Remember user.
+ */
+export const rememberUser = (username: string) =>
+  AsyncStorage.setItem('remember-me', username);
+
+/**
+ * Forget user.
+ */
+export const forgetUser = () => AsyncStorage.removeItem('remember-me');
+
+/**
+ * Get remembered user.
+ */
+export const getRememberedUser = () => AsyncStorage.getItem('remember-me');
