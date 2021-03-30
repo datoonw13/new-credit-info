@@ -16,4 +16,5 @@ export {default as Payments} from './Payments';
 export {default as DrawerAfterAuth} from './DrawerAfterAuth';
 export {default as Security} from './Security';
 export {default as SetPasscode} from './SetPasscode';
+export {default as SetFingerprint} from './SetFingerprint';
 export {default as Test} from './Test';

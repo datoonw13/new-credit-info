@@ -14,6 +14,7 @@ export default {
   ok: 'OK',
   close: 'Close',
   settings: 'Settings',
+  activate: 'Activate',
 
   month: 'Month',
 
@@ -132,6 +133,10 @@ export default {
     setPasscode: 'Set Passcode',
     repeatPasscode: 'Repeat Passcode',
     passcodeMismatch: "Typed passcodes arn't same... please try again...",
+
+    easyAuth: 'Easy Authorization',
+    easyAuthDescription:
+      'Use biometrics feature or passcode for easy authorization...',
   },
 
   termsAndConditions: {

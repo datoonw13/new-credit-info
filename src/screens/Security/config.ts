@@ -21,7 +21,7 @@ export const menuList = [
     title: 'security.signInWithFingerprint',
     dividerWidth: '100%',
     switcher: true,
-    onSwitch: undefined,
+    onSwitch: () => goTo('AfterAuthMainStackNavigator', 'SetFingerprint'),
     offSwitch: undefined,
     onPress: null,
   },

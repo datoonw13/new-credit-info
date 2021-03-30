@@ -9,6 +9,7 @@ import {
   DrawerBeforeAuth,
   DrawerAfterAuth,
   ForgotPassword,
+  SetFingerprint,
   SetPasscode,
   SignInPass,
   Dashboard,
@@ -92,6 +93,10 @@ const AfterAuthMainStackNavigator = () => (
     <AfterAuthMainStack.Screen component={Security} name="Security" />
     <AfterAuthMainStack.Screen component={Privacy} name="Privacy" />
     <AfterAuthMainStack.Screen component={SetPasscode} name="SetPasscode" />
+    <AfterAuthMainStack.Screen
+      component={SetFingerprint}
+      name="SetFingerprint"
+    />
   </AfterAuthMainStack.Navigator>
 );
 

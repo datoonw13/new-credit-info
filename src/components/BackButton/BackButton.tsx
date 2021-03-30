@@ -10,8 +10,11 @@ const BackButton: BackButtonFC = ({style}) => {
   const {t} = useTranslation();
   const {goBack} = useNavigation();
   return (
-    <TouchableOpacity style={[styles.container, style]} onPress={goBack}>
-      <Arrow style={styles.arrow} height={9} width={5} />
+    <TouchableOpacity
+      style={[styles.container, style]}
+      onPress={goBack}
+      hitSlop={styles.hitSlop}>
+      <Arrow height={9} width={5} />
       <Text style={styles.text} caps>
         {t('back')}
       </Text>
@@ -28,7 +31,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  arrow: {},
+  hitSlop: {
+    top: 10,
+    left: 10,
+    right: 10,
+    bottom: 10,
+  },
   text: {
     marginLeft: 8,
     fontSize: 12,

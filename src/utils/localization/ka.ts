@@ -15,6 +15,7 @@ export default {
   ok: 'OK',
   close: 'დახურვა',
   settings: 'პარამეტრები',
+  activate: 'გაააქტიურე',
 
   month: 'თვე',
 
@@ -134,6 +135,10 @@ export default {
     repeatPasscode: 'გაიმეორეთ პასკოდი',
     passcodeMismatch:
       'პასკოდები არ ემთხვევა ერთმანეთს... გთხოვთ სცადოთ ხელახლა...',
+
+    easyAuth: 'მარტივი შესვლა',
+    easyAuthDescription:
+      'მარტივი შესვლისთვის გამოიყენე თითის ანაბეჭდით ან პასკოდით შესვლა',
   },
 
   termsAndConditions: {
