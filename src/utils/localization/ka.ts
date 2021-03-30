@@ -141,6 +141,10 @@ export default {
       'მარტივი შესვლისთვის გამოიყენე თითის ანაბეჭდით ან პასკოდით შესვლა',
   },
 
+  updatePersonalData: {
+    title: 'პირადი ინფორმაციის შეცვლა',
+  },
+
   termsAndConditions: {
     title: 'პირობები',
   },

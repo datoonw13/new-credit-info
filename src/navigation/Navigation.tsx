@@ -5,6 +5,7 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 import {
+  UpdatePersonalData,
   CompanyManagement,
   DrawerBeforeAuth,
   DrawerAfterAuth,
@@ -130,6 +131,8 @@ const Navigation = () => {
      */
     !isSignedIn && goToSignInWithFingerprint();
   }, [isSignedIn]);
+
+  // return <UpdatePersonalData />;
 
   return (
     <NavigationContainer ref={saveReference}>

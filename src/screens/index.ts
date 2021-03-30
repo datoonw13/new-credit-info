@@ -17,4 +17,5 @@ export {default as DrawerAfterAuth} from './DrawerAfterAuth';
 export {default as Security} from './Security';
 export {default as SetPasscode} from './SetPasscode';
 export {default as SetFingerprint} from './SetFingerprint';
+export {default as UpdatePersonalData} from './UpdatePersonalData';
 export {default as Test} from './Test';

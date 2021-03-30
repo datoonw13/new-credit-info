@@ -139,6 +139,10 @@ export default {
       'Use biometrics feature or passcode for easy authorization...',
   },
 
+  updatePersonalData: {
+    title: 'Update Personal Data',
+  },
+
   termsAndConditions: {
     title: 'Terms and Conditions',
   },
