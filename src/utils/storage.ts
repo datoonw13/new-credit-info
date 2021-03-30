@@ -50,3 +50,13 @@ export const getPersonalInfo = async () => {
 
   return null;
 };
+
+/**
+ * Get Access token.
+ * @value active
+ */
+export const setBiometricAuthStatus = (status: string) =>
+  AsyncStorage.setItem('biometricAuthStatus', status);
+
+export const getBiometricAuthStatus = () =>
+  AsyncStorage.getItem('biometricAuthStatus');
