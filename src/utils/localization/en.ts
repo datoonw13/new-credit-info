@@ -113,6 +113,8 @@ export default {
     biometrics: 'Biometrics',
     passcode: 'Passcode',
     authError: 'Error encountered during biometric authentication...',
+    wrongPasscode: 'You have provided wrong passcode...',
+    passcodeNotSet: "You haven't set passcode in you settings...",
   },
 
   drawer: {
@@ -133,6 +135,7 @@ export default {
     setPasscode: 'Set Passcode',
     repeatPasscode: 'Repeat Passcode',
     passcodeMismatch: "Typed passcodes arn't same... please try again...",
+    passcodeSaved: 'Sign with passcode has successfully activated!',
 
     easyAuth: 'Easy Authorization',
     easyAuthDescription:
