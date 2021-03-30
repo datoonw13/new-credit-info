@@ -142,6 +142,7 @@ export default {
     easyAuth: 'მარტივი შესვლა',
     easyAuthDescription:
       'მარტივი შესვლისთვის გამოიყენე თითის ანაბეჭდით ან პასკოდით შესვლა',
+    easyAuthActivated: 'მარტივი ავტორიზაცია გააქტიურებულია!',
   },
 
   updatePersonalData: {

@@ -11,7 +11,6 @@ const useSetPasscode = () => {
   const {goBack} = useNavigation();
   const {params} = useRoute();
 
-  params as SetPasscodeRouteParams;
   /**
    * On passcode press filter
    * keys and update state.

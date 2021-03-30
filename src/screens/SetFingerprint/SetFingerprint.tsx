@@ -2,36 +2,13 @@ import React from 'react';
 import {SafeAreaView, StyleSheet, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {BaseHeader, Button, Text} from 'components';
-import ReactNativeBiometrics from 'react-native-biometrics';
 import {Fingerprint} from 'assets/svg';
 import {colors} from 'theme';
-import {setBiometricAuthStatus} from 'utils/storage';
-import {notify} from 'utils/dropdownAlert';
-import {useNavigation} from '@react-navigation/core';
+import useSetFingerprint from './useSetFingerprint';
 
 const SetFingerprint = () => {
   const {t} = useTranslation();
-  const navigation = useNavigation();
-
-  const onActivatePress = async () => {
-    console.log('available');
-    try {
-      const {available} = await ReactNativeBiometrics.isSensorAvailable();
-      if (available) {
-        await setBiometricAuthStatus('active');
-        notify('success', 'Success', 'biometric authorization activated');
-        navigation.goBack();
-      } else {
-        notify(
-          'error',
-          'Error',
-          "your device doesn't support biometric authorization",
-        );
-      }
-    } catch {
-      notify('error', 'Error', 'unable to complete required action');
-    }
-  };
+  const {onActivatePress} = useSetFingerprint();
 
   return (
     <SafeAreaView style={styles.container}>

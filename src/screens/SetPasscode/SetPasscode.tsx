@@ -6,10 +6,10 @@ import useSetPasscode from './useSetPasscode';
 
 const SetPasscode = () => {
   const {
+    onRepeatPasscodePress,
     onPasscodePress,
     valueLength,
     view,
-    onRepeatPasscodePress,
   } = useSetPasscode();
 
   return (

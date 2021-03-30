@@ -52,14 +52,25 @@ export const getPersonalInfo = async () => {
 };
 
 /**
- * Get Access token.
- * @value active
+ * Set biometrics auth status.
  */
-export const setBiometricAuthStatus = (status: string) =>
-  AsyncStorage.setItem('biometricAuthStatus', status);
+export const activateBiometricsAuth = () =>
+  AsyncStorage.setItem('biometric-auth-status', 'true');
 
-export const getBiometricAuthStatus = () =>
-  AsyncStorage.getItem('biometricAuthStatus');
+/**
+ * Set biometrics auth status.
+ */
+export const disableBiometricAuth = () =>
+  AsyncStorage.removeItem('biometric-auth-status');
+
+/**
+ * Get biometrics auth status.
+ */
+export const getBiometricsAuthStatus = async () => {
+  const biometricsStatus = await AsyncStorage.getItem('biometric-auth-status');
+  return !!biometricsStatus;
+};
+
 /**
  * Remember user.
  */

@@ -140,6 +140,7 @@ export default {
     easyAuth: 'Easy Authorization',
     easyAuthDescription:
       'Use biometrics feature or passcode for easy authorization...',
+    easyAuthActivated: 'Easy authorizations is activated!',
   },
 
   updatePersonalData: {

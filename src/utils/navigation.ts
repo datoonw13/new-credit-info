@@ -16,7 +16,6 @@ export const saveReference = (navigator: NavigationContainerRef) => {
  * Manual navigation.
  */
 export const goTo = (stack: string, screen: string) => {
-  console.log(references.navigator);
   references.navigator?.dispatch(CommonActions.navigate(stack, {screen}));
 };
 

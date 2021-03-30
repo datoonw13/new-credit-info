@@ -1,14 +1,14 @@
 import React from 'react';
 import {SafeAreaView, View, StyleSheet} from 'react-native';
-import {useNavigation} from '@react-navigation/core';
 import {BaseHeader, ListItem, Divider} from 'components';
 import useSecurity from './useSecurity';
 import {menuList} from './config';
 
 const Security = () => {
-  const {navigate} = useNavigation();
   const {
     navigateToSetFingerprint,
+    fingerprintSwitchValue,
+    onFingerprintSwitchOff,
     navigateToSetPasscode,
     passcodeSwitchValue,
     onPasscodeSwitchOff,
@@ -20,8 +20,18 @@ const Security = () => {
       <View style={styles.menuWrapper}>
         {menuList.map(
           ({id, Icon, color, title, onPress, switcher, dividerWidth}) => {
-            const switchValue = [passcodeSwitchValue, false, false, false][id];
-            const offSwitch = [onPasscodeSwitchOff, null, null, null][id];
+            const switchValue = [
+              passcodeSwitchValue,
+              fingerprintSwitchValue,
+              false,
+              false,
+            ][id];
+            const offSwitch = [
+              onPasscodeSwitchOff,
+              onFingerprintSwitchOff,
+              null,
+              null,
+            ][id];
             const onSwitch = [
               navigateToSetPasscode,
               navigateToSetFingerprint,
