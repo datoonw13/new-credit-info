@@ -25,3 +25,4 @@ export {default as DateSelectorModal} from './DateSelectorModal';
 export {default as BottomTabs} from './BottomTabs';
 export {default as PinKeyboard} from './PinKeyboard';
 export {default as PinLine} from './PinLine';
+export {default as PersonalDataInput} from './PersonalDataInput';

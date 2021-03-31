@@ -132,17 +132,17 @@ const Navigation = () => {
     !isSignedIn && goToSignInWithFingerprint();
   }, [isSignedIn]);
 
-  // return <UpdatePersonalData />;
+  return <UpdatePersonalData />;
 
-  return (
-    <NavigationContainer ref={saveReference}>
-      {isSignedIn ? (
-        <AfterAuthDrawerNavigator />
-      ) : (
-        <BeforeAuthDrawerNavigator />
-      )}
-    </NavigationContainer>
-  );
+  // return (
+  //   <NavigationContainer ref={saveReference}>
+  //     {isSignedIn ? (
+  //       <AfterAuthDrawerNavigator />
+  //     ) : (
+  //       <BeforeAuthDrawerNavigator />
+  //     )}
+  //   </NavigationContainer>
+  // );
 };
 
 export default Navigation;
