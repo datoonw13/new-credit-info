@@ -76,6 +76,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
     position: 'relative',
+    marginTop: 25,
   },
   inputWrapper: {
     width: '100%',
@@ -83,12 +84,13 @@ const styles = StyleSheet.create({
   },
   input: {
     borderBottomWidth: 1,
-    borderColor: colors.blackOp5,
+    borderBottomColor: colors.blackOp2,
     color: colors.black,
     width: '100%',
-    height: 67,
     borderStyle: 'solid',
-    padding: 22,
+    paddingLeft: 22,
+    paddingBottom: 10,
+    paddingTop: 22,
   },
   label: {
     fontSize: 12,

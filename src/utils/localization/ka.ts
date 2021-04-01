@@ -147,6 +147,7 @@ export default {
 
   updatePersonalData: {
     title: 'პირადი ინფორმაციის შეცვლა',
+    contact: 'საკონტაქტო ინფორმაცია',
   },
 
   termsAndConditions: {

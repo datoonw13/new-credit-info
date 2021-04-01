@@ -123,6 +123,7 @@ export default {
 
   personalInfo: {
     title: 'Personal Info',
+    contact: 'Contact Info',
   },
 
   security: {
