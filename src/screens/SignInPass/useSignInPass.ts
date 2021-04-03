@@ -21,7 +21,11 @@ const useSignInPass = () => {
   const signInOnSuccess = useCallback(async () => {
     try {
       const credentials = await getCredentials();
-      dispatch(signIn(credentials));
+      if (credentials) {
+        dispatch(signIn(credentials));
+      } else {
+        throw Error();
+      }
     } catch (e) {
       console.log(e);
       alertError('', 'signInPass.authError');

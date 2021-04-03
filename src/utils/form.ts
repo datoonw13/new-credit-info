@@ -28,4 +28,11 @@ export const rules = {
     minLength: 6,
     pattern: regex.number,
   }),
+  required: (): ValidationRules => ({
+    required: true,
+  }),
+  email: (): ValidationRules => ({
+    required: false,
+    pattern: regex.email,
+  }),
 };

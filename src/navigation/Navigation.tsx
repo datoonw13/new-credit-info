@@ -35,6 +35,9 @@ import {
 import {saveReference} from 'utils/navigation';
 import {selectAuth} from 'store/select';
 import {goToSignInWithFingerprint} from './helpers';
+import {getCredentials} from 'utils/keychain';
+import {useDispatch} from 'react-redux';
+import {signIn} from 'store/auth/sagaActions';
 
 /**
  * Before auth navigation components.
@@ -122,15 +125,23 @@ const AfterAuthDrawerNavigator = () => (
 );
 
 const Navigation = () => {
-  const {isSignedIn} = useSelector(selectAuth);
+  // const {isSignedIn} = useSelector(selectAuth);
 
-  useEffect(() => {
-    /**
-     * Navigate to use passcode screen if
-     * storage has credentials.
-     */
-    !isSignedIn && goToSignInWithFingerprint();
-  }, [isSignedIn]);
+  // useEffect(() => {
+  //   /**
+  //    * Navigate to use passcode screen if
+  //    * storage has credentials.
+  //    */
+  //   !isSignedIn && goToSignInWithFingerprint();
+  // }, [isSignedIn]);
+  const dispatch = useDispatch();
+
+  dispatch(
+    signIn({
+      username: '00000000000',
+      password: 'atasertigame',
+    }),
+  );
 
   return <UpdatePersonalData />;
 

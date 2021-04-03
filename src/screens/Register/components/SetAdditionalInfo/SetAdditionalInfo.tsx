@@ -5,9 +5,9 @@ import {Controller} from 'react-hook-form';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {GRAY8} from 'theme/colors';
 import {CountrySelectModal, Input, Button, DateSelectorModal} from 'components';
-import {expression} from './config';
 import useSetAdditionalInfo from './useSetAdditionalInfo';
 import {useTranslation} from 'react-i18next';
+import {rules} from 'utils/form';
 
 const SetAdditionalInfo: SetAdditionalInfoFC = ({
   lastStep,
@@ -70,7 +70,7 @@ const SetAdditionalInfo: SetAdditionalInfoFC = ({
                 }
               />
             )}
-            rules={{required: true}}
+            rules={rules.required()}
           />
           <Divider />
           <Controller
@@ -100,9 +100,7 @@ const SetAdditionalInfo: SetAdditionalInfoFC = ({
                 }
               />
             )}
-            rules={{
-              required: true,
-            }}
+            rules={rules.required()}
           />
           <Divider />
           <Controller
@@ -120,9 +118,7 @@ const SetAdditionalInfo: SetAdditionalInfoFC = ({
                 autoCorrect={false}
               />
             )}
-            rules={{
-              required: true,
-            }}
+            rules={rules.required()}
           />
           <Divider />
           <Controller
@@ -141,10 +137,7 @@ const SetAdditionalInfo: SetAdditionalInfoFC = ({
                 notRequired
               />
             )}
-            rules={{
-              required: false,
-              pattern: expression,
-            }}
+            rules={rules.email()}
           />
         </ScrollView>
         <Divider />

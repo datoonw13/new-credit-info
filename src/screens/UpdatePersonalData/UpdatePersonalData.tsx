@@ -4,15 +4,18 @@ import {Controller} from 'react-hook-form';
 import {useTranslation} from 'react-i18next';
 import {BaseHeader, Text, PersonalDataInput, Button} from 'components';
 import useUpdatePersonalData from './useUpdatePersonalData';
+import {rules} from 'utils/form';
 
 const UpdatePersonalData = () => {
   const {
     onSaveButtonPress,
     handleSubmit,
+    isPerson,
     control,
     errors,
   } = useUpdatePersonalData();
   const {t} = useTranslation();
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollViewContentContainer}>
@@ -31,6 +34,7 @@ const UpdatePersonalData = () => {
               errorMessage={errors.username?.message}
             />
           )}
+          rules={rules.userName(isPerson)}
         />
 
         <Controller
@@ -45,6 +49,7 @@ const UpdatePersonalData = () => {
               errorMessage={errors.firstName?.message}
             />
           )}
+          rules={rules.nameField()}
         />
 
         <Controller
@@ -59,6 +64,7 @@ const UpdatePersonalData = () => {
               errorMessage={errors.lastName?.message}
             />
           )}
+          rules={rules.nameField()}
         />
 
         <Controller
@@ -73,6 +79,7 @@ const UpdatePersonalData = () => {
               errorMessage={errors.birthDate?.message}
             />
           )}
+          rules={rules.required()}
         />
 
         <Text style={[styles.title, styles.marginTop10]}>
@@ -91,6 +98,7 @@ const UpdatePersonalData = () => {
               errorMessage={errors.phoneNumber?.message}
             />
           )}
+          rules={rules.phone()}
         />
 
         <Controller
@@ -105,6 +113,7 @@ const UpdatePersonalData = () => {
               errorMessage={errors.email?.message}
             />
           )}
+          rules={rules.email()}
         />
 
         <Controller
@@ -119,6 +128,7 @@ const UpdatePersonalData = () => {
               errorMessage={errors.country?.message}
             />
           )}
+          rules={rules.required()}
         />
 
         <Controller
@@ -133,6 +143,7 @@ const UpdatePersonalData = () => {
               errorMessage={errors.address?.message}
             />
           )}
+          rules={rules.required()}
         />
         <Button
           onPress={handleSubmit(onSaveButtonPress)}
