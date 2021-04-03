@@ -10,7 +10,7 @@ const useUpdatePersonalData = () => {
       firstName: '',
       lastName: '',
       birthDate: '',
-      phoneNumber: '',
+      phone: '',
       email: '',
       country: '',
       address: '',
@@ -45,7 +45,7 @@ const useUpdatePersonalData = () => {
       setValue('firstName', name);
       setValue('lastName', lastName);
       setValue('birthDate', birthDate);
-      setValue('phoneNumber', mobileNumber);
+      setValue('phone', mobileNumber);
       setValue('email', email);
       setValue('country', country);
       setValue('address', address);

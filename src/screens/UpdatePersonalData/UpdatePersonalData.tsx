@@ -3,6 +3,7 @@ import {SafeAreaView, ScrollView, StyleSheet} from 'react-native';
 import {Controller} from 'react-hook-form';
 import {useTranslation} from 'react-i18next';
 import {BaseHeader, Text, PersonalDataInput, Button} from 'components';
+import {useErrorMessage} from 'hooks';
 import useUpdatePersonalData from './useUpdatePersonalData';
 import {rules} from 'utils/form';
 
@@ -18,10 +19,21 @@ const UpdatePersonalData = () => {
   } = useUpdatePersonalData();
   const {t} = useTranslation();
 
+  const {
+    userNameErrorMsg,
+    firstNameErrorMsg,
+    lastNameErrorMsg,
+    birthDateErrorMsg,
+    phoneErrorMsg,
+    countryErrorMsg,
+    addressErrorMsg,
+    emailErrorMsg,
+  } = useErrorMessage(errors);
+
   return (
     <SafeAreaView style={styles.container}>
+      <BaseHeader />
       <ScrollView contentContainerStyle={styles.scrollViewContentContainer}>
-        <BaseHeader />
         <Text style={styles.title}>{t('updatePersonalData.title')}</Text>
 
         <Controller
@@ -33,7 +45,7 @@ const UpdatePersonalData = () => {
               onChangeText={onChange}
               onBlur={onBlur}
               label="registration.personalNumber"
-              errorMessage={errors.username?.message}
+              errorMessage={userNameErrorMsg(isPerson)}
             />
           )}
           rules={rules.userName(isPerson)}
@@ -48,7 +60,7 @@ const UpdatePersonalData = () => {
               onChangeText={onChange}
               onBlur={onBlur}
               label="registration.firstName"
-              errorMessage={errors.firstName?.message}
+              errorMessage={firstNameErrorMsg(isPerson)}
             />
           )}
           rules={rules.nameField()}
@@ -63,7 +75,7 @@ const UpdatePersonalData = () => {
               onChangeText={onChange}
               onBlur={onBlur}
               label="registration.lastName"
-              errorMessage={errors.lastName?.message}
+              errorMessage={lastNameErrorMsg()}
             />
           )}
           rules={rules.nameField()}
@@ -78,7 +90,7 @@ const UpdatePersonalData = () => {
               onChangeText={onChange}
               onBlur={onBlur}
               label="registration.birthDate"
-              errorMessage={errors.birthDate?.message}
+              errorMessage={birthDateErrorMsg(isPerson)}
             />
           )}
           rules={rules.required()}
@@ -89,7 +101,7 @@ const UpdatePersonalData = () => {
         </Text>
 
         <Controller
-          name="phoneNumber"
+          name="phone"
           control={control}
           render={({onBlur, onChange, value}) => (
             <PersonalDataInput
@@ -97,7 +109,7 @@ const UpdatePersonalData = () => {
               onChangeText={onChange}
               onBlur={onBlur}
               label="registration.phone"
-              errorMessage={errors.phoneNumber?.message}
+              errorMessage={phoneErrorMsg()}
               verified={phoneVerified}
             />
           )}
@@ -113,7 +125,7 @@ const UpdatePersonalData = () => {
               onChangeText={onChange}
               onBlur={onBlur}
               label="registration.email"
-              errorMessage={errors.email?.message}
+              errorMessage={emailErrorMsg()}
               verified={emailVerified}
             />
           )}
@@ -129,7 +141,7 @@ const UpdatePersonalData = () => {
               onChangeText={onChange}
               onBlur={onBlur}
               label="registration.country"
-              errorMessage={errors.country?.message}
+              errorMessage={countryErrorMsg()}
             />
           )}
           rules={rules.required()}
@@ -144,7 +156,7 @@ const UpdatePersonalData = () => {
               onChangeText={onChange}
               onBlur={onBlur}
               label="registration.address"
-              errorMessage={errors.address?.message}
+              errorMessage={addressErrorMsg()}
             />
           )}
           rules={rules.required()}

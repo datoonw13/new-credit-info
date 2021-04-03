@@ -107,7 +107,8 @@ const styles = StyleSheet.create({
   errorTextWrapper: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-start',
+    paddingLeft: 20,
     paddingRight: 10,
     paddingTop: 2,
   },
