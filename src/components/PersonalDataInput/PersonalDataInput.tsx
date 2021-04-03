@@ -98,7 +98,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: colors.blackOp5,
     position: 'absolute',
-    backgroundColor: colors.white,
     paddingHorizontal: 10,
     left: 12,
     top: 0,
@@ -114,5 +113,6 @@ const styles = StyleSheet.create({
   },
   errorText: {
     color: colors.crimson,
+    fontSize: 11,
   },
 });

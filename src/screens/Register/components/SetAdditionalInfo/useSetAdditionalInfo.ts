@@ -8,7 +8,7 @@ import {
   getCountries,
 } from 'store/registration/sagaActions';
 import {selectRegistration} from 'store/select';
-import {formateDate} from './helpers';
+import {formatDate} from 'utils/calendar';
 
 const useSetAdditionalInfo = ({
   registerData,
@@ -72,7 +72,7 @@ const useSetAdditionalInfo = ({
   const updateBirthDay = (date: Date) => {
     setCalendarModalVisible(false);
     setActiveDate(date);
-    setValue('birthDate', formateDate(date));
+    setValue('birthDate', formatDate(date));
     trigger('birthDate').done();
   };
 

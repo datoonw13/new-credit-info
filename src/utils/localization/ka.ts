@@ -150,6 +150,8 @@ export default {
     contact: 'საკონტაქტო ინფორმაცია',
     verification: 'ვერიფიკაცია',
     verified: 'ვერიფიცირებული',
+    updateSuccess: 'მონაცემები წარმატებით განახლდა!',
+    updateError: 'სამწუხაროდ მონაცემების განახლება ვერ მოხერხდა...',
   },
 
   termsAndConditions: {

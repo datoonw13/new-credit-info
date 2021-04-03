@@ -149,6 +149,8 @@ export default {
     contact: 'Contact Info',
     verification: 'Verification',
     verified: 'Verified',
+    updateSuccess: 'Personal information successfully updated!',
+    updateError: 'Encountered error during personal information update...',
   },
 
   termsAndConditions: {

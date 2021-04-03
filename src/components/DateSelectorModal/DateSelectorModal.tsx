@@ -34,7 +34,6 @@ const DateSelectorModal: DateSelectorModalFC = ({
     updateDate,
     setDateType,
   } = useDateSelector({activeDate, isPerson, setDate});
-
   const formattedMonth = month > 9 ? month : '0' + month;
   const formattedDay = day > 9 ? day : '0' + day;
   const formattedDate = `${year} - ${formattedMonth} - ${formattedDay}`;

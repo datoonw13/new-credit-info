@@ -46,7 +46,7 @@ const Auth = () => {
       <HeaderWithLogo mode="WithMenu" style={styles.header} />
       <KeyboardAvoidingView
         style={styles.keyboardAvoidingView}
-        behavior={Platform.OS === 'ios' ? 'padding' : 'padding'}>
+        behavior="padding">
         <ScrollView style={styles.scrollViewContainer} ref={scrollViewRef}>
           <RedGirl style={styles.redGirl} />
           <View style={styles.wrapper}>

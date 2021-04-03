@@ -1,18 +1,35 @@
 import React from 'react';
-import {SafeAreaView, ScrollView, StyleSheet} from 'react-native';
+import {
+  KeyboardAvoidingView,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+} from 'react-native';
 import {Controller} from 'react-hook-form';
 import {useTranslation} from 'react-i18next';
-import {BaseHeader, Text, PersonalDataInput, Button} from 'components';
+import {
+  DateSelectorModal,
+  PersonalDataInput,
+  BaseHeader,
+  Button,
+  Text,
+} from 'components';
 import {useErrorMessage} from 'hooks';
 import useUpdatePersonalData from './useUpdatePersonalData';
 import {rules} from 'utils/form';
 
 const UpdatePersonalData = () => {
   const {
+    setDateModalVisible,
+    onPhoneVerifyPress,
+    onEmailVerifyPress,
     onSaveButtonPress,
+    dateModalVisible,
     emailVerified,
     phoneVerified,
+    onDateSelect,
     handleSubmit,
+    dateOfBirth,
     isPerson,
     control,
     errors,
@@ -33,140 +50,152 @@ const UpdatePersonalData = () => {
   return (
     <SafeAreaView style={styles.container}>
       <BaseHeader />
-      <ScrollView contentContainerStyle={styles.scrollViewContentContainer}>
-        <Text style={styles.title}>{t('updatePersonalData.title')}</Text>
+      <KeyboardAvoidingView behavior="padding">
+        <ScrollView contentContainerStyle={styles.scrollViewContentContainer}>
+          <Text style={styles.title}>{t('updatePersonalData.title')}</Text>
+          <Controller
+            name="userName"
+            control={control}
+            render={({onBlur, onChange, value}) => (
+              <PersonalDataInput
+                value={value}
+                onChangeText={onChange}
+                onBlur={onBlur}
+                label="registration.personalNumber"
+                errorMessage={userNameErrorMsg(isPerson)}
+              />
+            )}
+            rules={rules.userName(isPerson)}
+          />
 
-        <Controller
-          name="username"
-          control={control}
-          render={({onBlur, onChange, value}) => (
-            <PersonalDataInput
-              value={value}
-              onChangeText={onChange}
-              onBlur={onBlur}
-              label="registration.personalNumber"
-              errorMessage={userNameErrorMsg(isPerson)}
-            />
-          )}
-          rules={rules.userName(isPerson)}
-        />
+          <Controller
+            name="firstName"
+            control={control}
+            render={({onBlur, onChange, value}) => (
+              <PersonalDataInput
+                value={value}
+                onChangeText={onChange}
+                onBlur={onBlur}
+                label="registration.firstName"
+                errorMessage={firstNameErrorMsg(isPerson)}
+              />
+            )}
+            rules={rules.nameField()}
+          />
 
-        <Controller
-          name="firstName"
-          control={control}
-          render={({onBlur, onChange, value}) => (
-            <PersonalDataInput
-              value={value}
-              onChangeText={onChange}
-              onBlur={onBlur}
-              label="registration.firstName"
-              errorMessage={firstNameErrorMsg(isPerson)}
-            />
-          )}
-          rules={rules.nameField()}
-        />
+          <Controller
+            name="lastName"
+            control={control}
+            render={({onBlur, onChange, value}) => (
+              <PersonalDataInput
+                value={value}
+                onChangeText={onChange}
+                onBlur={onBlur}
+                label="registration.lastName"
+                errorMessage={lastNameErrorMsg()}
+              />
+            )}
+            rules={rules.nameField()}
+          />
 
-        <Controller
-          name="lastName"
-          control={control}
-          render={({onBlur, onChange, value}) => (
-            <PersonalDataInput
-              value={value}
-              onChangeText={onChange}
-              onBlur={onBlur}
-              label="registration.lastName"
-              errorMessage={lastNameErrorMsg()}
-            />
-          )}
-          rules={rules.nameField()}
-        />
+          <Controller
+            name="birthDate"
+            control={control}
+            render={({onBlur, onChange, value}) => (
+              <PersonalDataInput
+                value={value}
+                onChangeText={onChange}
+                onBlur={onBlur}
+                editable={false}
+                label="registration.birthDate"
+                errorMessage={birthDateErrorMsg(isPerson)}
+                inputPressHandler={() => setDateModalVisible(true)}
+              />
+            )}
+            rules={rules.required()}
+          />
 
-        <Controller
-          name="birthDate"
-          control={control}
-          render={({onBlur, onChange, value}) => (
-            <PersonalDataInput
-              value={value}
-              onChangeText={onChange}
-              onBlur={onBlur}
-              label="registration.birthDate"
-              errorMessage={birthDateErrorMsg(isPerson)}
-            />
-          )}
-          rules={rules.required()}
-        />
+          <Text style={[styles.title, styles.marginTop10]}>
+            {t('updatePersonalData.contact')}
+          </Text>
 
-        <Text style={[styles.title, styles.marginTop10]}>
-          {t('updatePersonalData.contact')}
-        </Text>
+          <Controller
+            name="phone"
+            control={control}
+            render={({onBlur, onChange, value}) => (
+              <PersonalDataInput
+                value={value}
+                onChangeText={onChange}
+                onBlur={onBlur}
+                label="registration.phone"
+                errorMessage={phoneErrorMsg()}
+                verified={phoneVerified}
+                onVerifyPress={onPhoneVerifyPress}
+              />
+            )}
+            rules={rules.phone()}
+          />
 
-        <Controller
-          name="phone"
-          control={control}
-          render={({onBlur, onChange, value}) => (
-            <PersonalDataInput
-              value={value}
-              onChangeText={onChange}
-              onBlur={onBlur}
-              label="registration.phone"
-              errorMessage={phoneErrorMsg()}
-              verified={phoneVerified}
-            />
-          )}
-          rules={rules.phone()}
-        />
+          <Controller
+            name="email"
+            control={control}
+            render={({onBlur, onChange, value}) => (
+              <PersonalDataInput
+                value={value}
+                onChangeText={onChange}
+                onBlur={onBlur}
+                label="registration.email"
+                errorMessage={emailErrorMsg()}
+                verified={emailVerified}
+                onVerifyPress={onEmailVerifyPress}
+              />
+            )}
+            rules={rules.email()}
+          />
 
-        <Controller
-          name="email"
-          control={control}
-          render={({onBlur, onChange, value}) => (
-            <PersonalDataInput
-              value={value}
-              onChangeText={onChange}
-              onBlur={onBlur}
-              label="registration.email"
-              errorMessage={emailErrorMsg()}
-              verified={emailVerified}
-            />
-          )}
-          rules={rules.email()}
-        />
+          <Controller
+            name="country"
+            control={control}
+            render={({onBlur, onChange, value}) => (
+              <PersonalDataInput
+                value={value}
+                onChangeText={onChange}
+                onBlur={onBlur}
+                label="registration.country"
+                errorMessage={countryErrorMsg()}
+              />
+            )}
+            rules={rules.required()}
+          />
 
-        <Controller
-          name="country"
-          control={control}
-          render={({onBlur, onChange, value}) => (
-            <PersonalDataInput
-              value={value}
-              onChangeText={onChange}
-              onBlur={onBlur}
-              label="registration.country"
-              errorMessage={countryErrorMsg()}
-            />
-          )}
-          rules={rules.required()}
-        />
-
-        <Controller
-          name="address"
-          control={control}
-          render={({onBlur, onChange, value}) => (
-            <PersonalDataInput
-              value={value}
-              onChangeText={onChange}
-              onBlur={onBlur}
-              label="registration.address"
-              errorMessage={addressErrorMsg()}
-            />
-          )}
-          rules={rules.required()}
-        />
-        <Button
-          onPress={handleSubmit(onSaveButtonPress)}
-          touchableStyle={styles.saveButton}
-          text="save"
-        />
-      </ScrollView>
+          <Controller
+            name="address"
+            control={control}
+            render={({onBlur, onChange, value}) => (
+              <PersonalDataInput
+                value={value}
+                onChangeText={onChange}
+                onBlur={onBlur}
+                label="registration.address"
+                errorMessage={addressErrorMsg()}
+              />
+            )}
+            rules={rules.required()}
+          />
+          <Button
+            onPress={handleSubmit(onSaveButtonPress)}
+            touchableStyle={styles.saveButton}
+            text="save"
+          />
+        </ScrollView>
+      </KeyboardAvoidingView>
+      <DateSelectorModal
+        activeDate={dateOfBirth}
+        isPerson={isPerson}
+        setDate={onDateSelect}
+        dateSelectorVisible={dateModalVisible}
+        setDateSelectorVisible={setDateModalVisible}
+      />
     </SafeAreaView>
   );
 };
@@ -179,6 +208,7 @@ const styles = StyleSheet.create({
   },
   scrollViewContentContainer: {
     paddingHorizontal: 10,
+    paddingBottom: 50,
   },
   title: {
     fontSize: 16,

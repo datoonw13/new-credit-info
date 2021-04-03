@@ -12,11 +12,24 @@ export const getProfileInfo = () =>
     },
   });
 
+/**
+ * Update profile image.
+ */
 export const updateProfileImage = (data: FormData) =>
   axios.put(API.updateProfile, data, {
     headers: {
       'Content-Type': 'multipart/form-data',
     },
+    params: {
+      language: global.lang.toUpperCase(),
+    },
+  });
+
+/**
+ * Update profile data(partial).
+ */
+export const updateProfileData = (data: UpdateProfile) =>
+  axios.put(API.updateProfile, data, {
     params: {
       language: global.lang.toUpperCase(),
     },

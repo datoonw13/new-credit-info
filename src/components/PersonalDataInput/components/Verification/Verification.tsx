@@ -36,9 +36,10 @@ const styles = StyleSheet.create({
   container: {
     position: 'absolute',
     right: 0,
-    top: 5,
+    top: 20,
     zIndex: 10,
-    padding: 12,
+    paddingVertical: 7,
+    paddingHorizontal: 12,
     borderRadius: 20,
   },
 

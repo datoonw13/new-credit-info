@@ -89,3 +89,13 @@ type ProfileInfo = {
   mobileNumberVerified: boolean;
   profilePhoto?: string;
 };
+
+type UpdateProfile = Omit<
+  ProfileInfo,
+  | 'country'
+  | 'customerStatus'
+  | 'customerType'
+  | 'emailVerified'
+  | 'mobileNumberVerified'
+  | 'profilePhoto'
+>;
