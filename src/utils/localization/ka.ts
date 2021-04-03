@@ -148,6 +148,8 @@ export default {
   updatePersonalData: {
     title: 'პირადი ინფორმაციის შეცვლა',
     contact: 'საკონტაქტო ინფორმაცია',
+    verification: 'ვერიფიკაცია',
+    verified: 'ვერიფიცირებული',
   },
 
   termsAndConditions: {

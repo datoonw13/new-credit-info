@@ -11,12 +11,14 @@ import {
 import * as colors from 'theme/colors';
 import {PersonalDataInputFC} from './types';
 import usePersonalDataInput from './usePersonalDataInput';
+import {RightIcon, Verification} from './components';
 
 const PersonalDataInput: PersonalDataInputFC = ({
   rightIconPressHandler,
   inputPressHandler,
   containerStyle,
   pointerEvents,
+  onVerifyPress,
   onChangeText,
   keyboardType,
   errorMessage,
@@ -24,6 +26,7 @@ const PersonalDataInput: PersonalDataInputFC = ({
   maxLength,
   rightIcon,
   editable,
+  verified,
   onBlur,
   style,
   label,
@@ -37,13 +40,12 @@ const PersonalDataInput: PersonalDataInputFC = ({
       style={[styles.container, containerStyle]}
       onPress={inputPressHandler}
       disabled={!inputPressHandler}>
-      {rightIcon && (
-        <TouchableOpacity
-          style={styles.rightIcon}
-          onPress={rightIconPressHandler}>
-          {rightIcon}
-        </TouchableOpacity>
-      )}
+      <RightIcon
+        show={!!rightIcon}
+        Icon={rightIcon}
+        onIconPressHandler={rightIconPressHandler}
+      />
+      <Verification verified={verified} onVerifyPress={onVerifyPress} />
       <View style={styles.inputWrapper}>
         <Text style={styles.label}>{t(label)}</Text>
         <TextInput
@@ -100,17 +102,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     left: 12,
     top: 0,
-    zIndex: 1,
-  },
-  rightIcon: {
-    position: 'absolute',
-    right: 10,
-    top: 0,
-    width: 32,
-    height: 67,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
     zIndex: 1,
   },
   errorTextWrapper: {

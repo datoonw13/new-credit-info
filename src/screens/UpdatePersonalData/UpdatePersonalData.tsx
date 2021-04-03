@@ -9,6 +9,8 @@ import {rules} from 'utils/form';
 const UpdatePersonalData = () => {
   const {
     onSaveButtonPress,
+    emailVerified,
+    phoneVerified,
     handleSubmit,
     isPerson,
     control,
@@ -96,6 +98,7 @@ const UpdatePersonalData = () => {
               onBlur={onBlur}
               label="registration.phone"
               errorMessage={errors.phoneNumber?.message}
+              verified={phoneVerified}
             />
           )}
           rules={rules.phone()}
@@ -111,6 +114,7 @@ const UpdatePersonalData = () => {
               onBlur={onBlur}
               label="registration.email"
               errorMessage={errors.email?.message}
+              verified={emailVerified}
             />
           )}
           rules={rules.email()}

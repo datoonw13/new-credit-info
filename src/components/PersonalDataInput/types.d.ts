@@ -10,6 +10,8 @@ type PersonalDataInputProps = {
   value: string;
   style?: StyleProp<TextStyle>;
   containerStyle?: StyleProp<ViewStyle>;
+  verified?: boolean;
+  onVerifyPress?: () => void;
 } & TextInputProps;
 
 type UseInputProps = {

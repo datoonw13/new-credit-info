@@ -146,6 +146,9 @@ export default {
 
   updatePersonalData: {
     title: 'Update Personal Data',
+    contact: 'Contact Info',
+    verification: 'Verification',
+    verified: 'Verified',
   },
 
   termsAndConditions: {
