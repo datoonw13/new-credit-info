@@ -18,7 +18,7 @@ const CountrySelectModal: CountrySelectedModalFC = ({
   isVisible,
   countries,
 }) => {
-  return (
+  return activeCountry ? (
     <Modal
       hideModalContentWhileAnimating={true}
       isVisible={isVisible}
@@ -40,7 +40,9 @@ const CountrySelectModal: CountrySelectedModalFC = ({
                   style={{
                     ...styles.box,
                     backgroundColor:
-                      activeCountry.id === el.id ? colors.RED2 : colors.white,
+                      activeCountry.id === el.id
+                        ? colors.crimsonOp4
+                        : colors.white,
                   }}>
                   <Text
                     style={{
@@ -59,7 +61,7 @@ const CountrySelectModal: CountrySelectedModalFC = ({
         </View>
       </TouchableWithoutFeedback>
     </Modal>
-  );
+  ) : null;
 };
 
 const styles = StyleSheet.create({

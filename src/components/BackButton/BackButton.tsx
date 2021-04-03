@@ -8,11 +8,11 @@ import {BackButtonFC} from './types';
 
 const BackButton: BackButtonFC = ({style}) => {
   const {t} = useTranslation();
-  // const {goBack} = useNavigation();
+  const {goBack} = useNavigation();
   return (
     <TouchableOpacity
       style={[styles.container, style]}
-      // onPress={goBack}
+      onPress={goBack}
       hitSlop={styles.hitSlop}>
       <Arrow height={9} width={5} />
       <Text style={styles.text} caps>

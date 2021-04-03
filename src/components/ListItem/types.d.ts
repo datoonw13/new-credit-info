@@ -8,7 +8,7 @@ type ListItemProps = {
   onPress: null | (() => void);
   switcher?: boolean;
   onSwitch?: () => void;
-  offSwitch: (() => void) | null;
+  offSwitch?: (() => void) | null;
   switchValue?: boolean;
 };
 

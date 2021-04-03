@@ -8,6 +8,7 @@ import {
 import {Controller} from 'react-hook-form';
 import {useTranslation} from 'react-i18next';
 import {
+  CountrySelectModal,
   DateSelectorModal,
   PersonalDataInput,
   BaseHeader,
@@ -20,16 +21,21 @@ import {rules} from 'utils/form';
 
 const UpdatePersonalData = () => {
   const {
+    setCountriesModalVisible,
+    countriesModalVisible,
     setDateModalVisible,
     onPhoneVerifyPress,
     onEmailVerifyPress,
     onSaveButtonPress,
+    setActiveCountry,
     dateModalVisible,
+    activeCountry,
     emailVerified,
     phoneVerified,
     onDateSelect,
     handleSubmit,
     dateOfBirth,
+    countries,
     isPerson,
     control,
     errors,
@@ -161,8 +167,10 @@ const UpdatePersonalData = () => {
                 value={value}
                 onChangeText={onChange}
                 onBlur={onBlur}
+                editable={false}
                 label="registration.country"
                 errorMessage={countryErrorMsg()}
+                inputPressHandler={() => setCountriesModalVisible(true)}
               />
             )}
             rules={rules.required()}
@@ -195,6 +203,13 @@ const UpdatePersonalData = () => {
         setDate={onDateSelect}
         dateSelectorVisible={dateModalVisible}
         setDateSelectorVisible={setDateModalVisible}
+      />
+      <CountrySelectModal
+        activeCountry={activeCountry}
+        setCountry={setActiveCountry}
+        isVisible={countriesModalVisible}
+        setModalVisible={setCountriesModalVisible}
+        countries={countries}
       />
     </SafeAreaView>
   );

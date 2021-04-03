@@ -8,6 +8,8 @@ import {alertSuccess, alertWarning} from 'utils/dropdownAlert';
 import {formatDate, reverseFormatDate} from 'utils/calendar';
 
 const useUpdatePersonalData = () => {
+  const user = useSelector(selectUser);
+
   const {
     control,
     errors,
@@ -32,10 +34,11 @@ const useUpdatePersonalData = () => {
   const [customerType, setCustomerType] = useState<Entity>('PERSON');
   const [emailVerified, setEmailVerified] = useState(true);
   const [phoneVerified, setPhoneVerified] = useState(true);
-  const [dateOfBirth, setDateOfBirth] = useState<Date>();
+  const [dateOfBirth, setDateOfBirth] = useState<Date>(new Date());
+  const [activeCountry, setActiveCountry] = useState<Country>();
   const [dateModalVisible, setDateModalVisible] = useState(false);
-
-  const user = useSelector(selectUser);
+  const [countriesModalVisible, setCountriesModalVisible] = useState(false);
+  const [countries, setCountries] = useState<Country[]>([]);
 
   /**
    * Set user data for the form.
@@ -54,6 +57,7 @@ const useUpdatePersonalData = () => {
         customerType: fetchedCustomerType,
         emailVerified: fetchedEmailVerified,
         mobileNumberVerified,
+        countryId,
       } = user;
       setValue('userName', personalCode);
       setValue('firstName', name);
@@ -68,8 +72,26 @@ const useUpdatePersonalData = () => {
       setPhoneVerified(mobileNumberVerified);
 
       setDateOfBirth(reverseFormatDate(birthDate));
+      const foundCountry = countries.find(({id}) => id === countryId);
+      if (foundCountry) {
+        setActiveCountry(foundCountry);
+      }
     }
-  }, [user, setValue]);
+  }, [user, setValue, countries]);
+
+  /**
+   * Fetch countries.
+   */
+  useEffect(() => {
+    const fetchCountries = async () => {
+      const fetchedCountries = await services.getCountries();
+      setCountries(fetchedCountries);
+    };
+
+    if (user) {
+      fetchCountries();
+    }
+  }, [user]);
 
   /**
    * Watch email verified option.
@@ -95,6 +117,17 @@ const useUpdatePersonalData = () => {
       setPhoneVerified(false);
     }
   }, [user?.mobileNumber, user?.mobileNumberVerified, watch]);
+
+  /**
+   * Watch country selection and update form state.
+   */
+  useEffect(() => {
+    const countryId = countries.find(({id}) => id === activeCountry?.id)?.id;
+    if (countryId) {
+      setValue('country', activeCountry?.name);
+      trigger('country');
+    }
+  }, [countries, activeCountry, setValue, trigger]);
 
   /**
    * Verify phone number if phone is correct.
@@ -140,7 +173,7 @@ const useUpdatePersonalData = () => {
       phone,
       email,
     } = getValues();
-
+    console.log(activeCountry);
     try {
       await services.updateProfileData({
         personalCode: userName,
@@ -148,7 +181,7 @@ const useUpdatePersonalData = () => {
         lastName,
         address,
         birthDate,
-        countryId: user?.countryId || 1,
+        countryId: activeCountry?.id || 1,
         emailNotificationEnabled: user?.emailNotificationEnabled || false,
         mobileNotificationEnabled: user?.mobileNotificationEnabled || false,
         mobileNumber: phone,
@@ -167,17 +200,22 @@ const useUpdatePersonalData = () => {
   const isPerson = customerType === 'PERSON';
 
   return {
+    setCountriesModalVisible,
+    countriesModalVisible,
     setDateModalVisible,
     onPhoneVerifyPress,
     onEmailVerifyPress,
     onSaveButtonPress,
     dateModalVisible,
+    setActiveCountry,
+    activeCountry,
     emailVerified,
     phoneVerified,
     onDateSelect,
     handleSubmit,
     customerType,
     dateOfBirth,
+    countries,
     isPerson,
     control,
     errors,

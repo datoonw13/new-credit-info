@@ -15,7 +15,7 @@ export const menuList = [
     color: colors.strangeBlueOp1,
     Icon: PersonalInfo,
     dividerWidth: '85%',
-    onPress: () => {},
+    onPress: () => goTo('AfterAuthMainStackNavigator', 'UpdatePersonalData'),
   },
   {
     id: 2,
