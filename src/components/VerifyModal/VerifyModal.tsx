@@ -6,13 +6,10 @@ import Button from 'components/Button';
 import {Input} from './components';
 import {colors} from 'theme';
 import {config} from 'utils';
-import {VerifyPhoneModalProps, VerifyPhoneModalState} from './types';
+import {VerifyModalProps, VerifyModalState} from './types';
 
-class VerifyPhoneModal extends Component<
-  VerifyPhoneModalProps,
-  VerifyPhoneModalState
-> {
-  constructor(props: VerifyPhoneModalProps) {
+class VerifyModal extends Component<VerifyModalProps, VerifyModalState> {
+  constructor(props: VerifyModalProps) {
     super(props);
     this.state = {
       visible: false,
@@ -23,26 +20,33 @@ class VerifyPhoneModal extends Component<
     this.codeHandler = this.codeHandler.bind(this);
   }
 
+  /**
+   * Show the verify modal.
+   */
   show() {
-    this.setState({visible: true});
+    this.setState((prevState) => ({...prevState, visible: true}));
   }
 
+  /**
+   * Update code input text.
+   */
   codeHandler(code: string) {
     this.setState((prevState) => ({...prevState, code}));
   }
 
   render() {
     const {visible} = this.state;
-    const {t} = this.props;
+    const {t, title, description, onPress} = this.props;
     return (
       <Modal style={styles.modalContainer} isVisible={true}>
         <View style={styles.container}>
-          <Text style={styles.title}>{t('modal.verifyPhone')}</Text>
-          <Text style={styles.description}>{t('modal.verifyPhoneText')}</Text>
+          <Text style={styles.title}>{t(title)}</Text>
+          <Text style={styles.description}>{t(description)}</Text>
           <Input onTextChange={this.codeHandler} />
           <Button
-            text={t('modal.verifyPhone')}
+            text={t('modal.verify')}
             touchableStyle={styles.button}
+            onPress={onPress}
           />
         </View>
       </Modal>
@@ -50,7 +54,7 @@ class VerifyPhoneModal extends Component<
   }
 }
 
-export default VerifyPhoneModal;
+export default VerifyModal;
 
 const styles = StyleSheet.create({
   modalContainer: {

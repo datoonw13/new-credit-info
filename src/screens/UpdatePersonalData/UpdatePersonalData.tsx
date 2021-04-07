@@ -11,7 +11,7 @@ import {
   CountrySelectModal,
   DateSelectorModal,
   PersonalDataInput,
-  VerifyPhoneModal,
+  VerifyModal,
   BaseHeader,
   Button,
   Text,
@@ -213,7 +213,12 @@ const UpdatePersonalData = () => {
         setModalVisible={setCountriesModalVisible}
         countries={countries}
       />
-      <VerifyPhoneModal ref={verifyModalRef} t={t} />
+      <VerifyModal
+        t={t}
+        ref={verifyModalRef}
+        title="modal.verifyPhone"
+        description="modal.verifyPhoneText"
+      />
     </SafeAreaView>
   );
 };

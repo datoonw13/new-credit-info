@@ -170,6 +170,7 @@ export default {
     smsCode: 'SMS Code',
     sendOTPSuccess:
       'We sent you one time password, please follow instructions...',
+    verify: 'Verify',
     verifyPhone: 'Verify Phone',
     verifyPhoneText: 'You have received code, please fill in and verify...',
   },
