@@ -138,24 +138,27 @@ const Navigation = () => {
     !isSignedIn && goToSignInWithFingerprint();
   }, [isSignedIn]);
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(
+      signIn({
+        username: '00000000000',
+        password: 'atasertigame',
+      }),
+    );
+  }, [dispatch]);
 
-  // dispatch(
-  //   signIn({
-  //     username: '00000000000',
-  //     password: 'atasertigame',
-  //   }),
+  return <UpdatePersonalData />;
+
+  // return (
+  //   <NavigationContainer ref={saveReference}>
+  //     {isSignedIn ? (
+  //       <AfterAuthDrawerNavigator />
+  //     ) : (
+  //       <BeforeAuthDrawerNavigator />
+  //     )}
+  //   </NavigationContainer>
   // );
-
-  return (
-    <NavigationContainer ref={saveReference}>
-      {isSignedIn ? (
-        <AfterAuthDrawerNavigator />
-      ) : (
-        <BeforeAuthDrawerNavigator />
-      )}
-    </NavigationContainer>
-  );
 };
 
 export default Navigation;

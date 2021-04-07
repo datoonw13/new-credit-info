@@ -11,6 +11,7 @@ import {
   CountrySelectModal,
   DateSelectorModal,
   PersonalDataInput,
+  VerifyPhoneModal,
   BaseHeader,
   Button,
   Text,
@@ -29,6 +30,7 @@ const UpdatePersonalData = () => {
     onSaveButtonPress,
     setActiveCountry,
     dateModalVisible,
+    verifyModalRef,
     activeCountry,
     emailVerified,
     phoneVerified,
@@ -211,6 +213,7 @@ const UpdatePersonalData = () => {
         setModalVisible={setCountriesModalVisible}
         countries={countries}
       />
+      <VerifyPhoneModal ref={verifyModalRef} t={t} />
     </SafeAreaView>
   );
 };

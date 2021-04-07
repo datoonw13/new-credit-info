@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {createRef, useEffect, useState} from 'react';
 import {useForm} from 'react-hook-form';
 import {Alert} from 'react-native';
 import {useSelector} from 'react-redux';
@@ -6,6 +6,7 @@ import {selectUser} from 'store/select';
 import * as services from 'services';
 import {alertSuccess, alertWarning} from 'utils/dropdownAlert';
 import {formatDate, reverseFormatDate} from 'utils/calendar';
+import {VerifyPhoneModal} from 'components';
 
 const useUpdatePersonalData = () => {
   const user = useSelector(selectUser);
@@ -39,6 +40,12 @@ const useUpdatePersonalData = () => {
   const [dateModalVisible, setDateModalVisible] = useState(false);
   const [countriesModalVisible, setCountriesModalVisible] = useState(false);
   const [countries, setCountries] = useState<Country[]>([]);
+
+  const verifyModalRef = createRef<VerifyPhoneModal>();
+
+  useEffect(() => {
+    verifyModalRef.current?.show();
+  }, [verifyModalRef]);
 
   /**
    * Set user data for the form.
@@ -208,6 +215,7 @@ const useUpdatePersonalData = () => {
     onSaveButtonPress,
     dateModalVisible,
     setActiveCountry,
+    verifyModalRef,
     activeCountry,
     emailVerified,
     phoneVerified,

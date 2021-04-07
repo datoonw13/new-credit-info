@@ -1,7 +1,7 @@
 import Text from 'components/Text';
 import React from 'react';
 import {useTranslation} from 'react-i18next';
-import {StyleSheet, View, TouchableOpacity} from 'react-native';
+import {StyleSheet, View, TouchableOpacity, Platform} from 'react-native';
 import {colors} from 'theme';
 
 const Verification: VerificationFC = ({verified, onVerifyPress}) => {
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   container: {
     position: 'absolute',
     right: 0,
-    top: 20,
+    top: Platform.OS === 'ios' ? 10 : 20,
     zIndex: 10,
     paddingVertical: 7,
     paddingHorizontal: 12,
