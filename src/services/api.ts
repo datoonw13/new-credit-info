@@ -39,3 +39,5 @@ export const forgotPasswordReset = 'passwordrecovery';
  */
 export const profileInfo = 'profile';
 export const updateProfile = 'profile';
+export const sendEmailOTP = 'profile/sendemailotp';
+export const verifyEmail = 'profile/checkemailotp';

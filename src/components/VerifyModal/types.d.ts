@@ -4,7 +4,8 @@ type VerifyModalProps = {
   t: TFunction;
   title: string;
   description: string;
-  onPress: () => void;
+  onPress: (code: string) => void;
+  mode: 'phone' | 'email';
 };
 
 type VerifyModalState = {

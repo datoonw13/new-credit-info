@@ -1,9 +1,9 @@
 import {NativeSyntheticEvent, TextInputChangeEventData} from 'react-native';
 
-type InputProps = {
+type PhoneCodeInputProps = {
   onTextChange: (text: string) => void;
 };
 
-type InputFC = (props: InputProps) => JSX.Element;
+type PhoneCodeInputFC = (props: PhoneCodeInputProps) => JSX.Element;
 
 type InputEvent = NativeSyntheticEvent<TextInputChangeEventData>;

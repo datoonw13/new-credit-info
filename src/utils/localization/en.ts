@@ -172,7 +172,13 @@ export default {
       'We sent you one time password, please follow instructions...',
     verify: 'Verify',
     verifyPhone: 'Verify Phone',
-    verifyPhoneText: 'You have received code, please fill in and verify...',
+    verifyText: 'You have received code, please fill in and verify...',
+    verifyEmail: 'Verify Email',
+    verifyEmailText:
+      'You have received code on e-mail, please fill in and verify...',
+    verifyEmailSuccess: 'E-mail successfully approved!',
+    verifyEmailFailure: "E-mail couldn't approved!",
+    correctCode: 'Please correct verification code...',
   },
 
   dates: {

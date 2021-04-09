@@ -6,7 +6,8 @@ import {selectUser} from 'store/select';
 import * as services from 'services';
 import {alertSuccess, alertWarning} from 'utils/dropdownAlert';
 import {formatDate, reverseFormatDate} from 'utils/calendar';
-import {VerifyPhoneModal} from 'components';
+import {VerifyModal} from 'components';
+import {isEmailCodeInvalid} from './helpers';
 
 const useUpdatePersonalData = () => {
   const user = useSelector(selectUser);
@@ -41,11 +42,8 @@ const useUpdatePersonalData = () => {
   const [countriesModalVisible, setCountriesModalVisible] = useState(false);
   const [countries, setCountries] = useState<Country[]>([]);
 
-  const verifyModalRef = createRef<VerifyPhoneModal>();
-
-  useEffect(() => {
-    verifyModalRef.current?.show();
-  }, [verifyModalRef]);
+  const verifyPhoneModalRef = createRef<VerifyModal>();
+  const verifyEmailModalRef = createRef<VerifyModal>();
 
   /**
    * Set user data for the form.
@@ -137,9 +135,16 @@ const useUpdatePersonalData = () => {
   }, [countries, activeCountry, setValue, trigger]);
 
   /**
+   * Show verify phone modal.
+   */
+  const showVerifyPhoneModal = () => {
+    verifyPhoneModalRef.current?.show();
+  };
+
+  /**
    * Verify phone number if phone is correct.
    */
-  const onPhoneVerifyPress = async () => {
+  const onPhoneVerifyPress = async (code: string) => {
     const result = await trigger('phone');
 
     if (result) {
@@ -148,13 +153,43 @@ const useUpdatePersonalData = () => {
   };
 
   /**
+   * Show verify email modal.
+   */
+  const showVerifyEmailModal = async () => {
+    const emailVerifiedModal = verifyEmailModalRef.current;
+    const result = await trigger('email');
+    if (result) {
+      const email = getValues('email');
+      try {
+        await services.sendEmailVerificationCode(email);
+        emailVerifiedModal?.clear();
+        emailVerifiedModal?.show();
+      } catch (e) {}
+    }
+  };
+
+  /**
    * Verify phone number if phone is correct.
    */
-  const onEmailVerifyPress = async () => {
+  const onEmailVerifyPress = async (code: string) => {
     const result = await trigger('email');
+    const emailVerifiedModal = verifyEmailModalRef.current;
+
+    if (isEmailCodeInvalid(code)) {
+      alertWarning('', 'modal.correctCode');
+      emailVerifiedModal?.clear();
+      return;
+    }
 
     if (result) {
-      Alert.alert('Not yet implemented!');
+      try {
+        emailVerifiedModal?.hide();
+        emailVerifiedModal?.clear();
+        await services.verifyEmail(code);
+        alertSuccess('', 'modal.verifyEmailSuccess');
+      } catch (e) {
+        alertWarning('', 'modal.verifyEmailFailure');
+      }
     }
   };
 
@@ -209,13 +244,16 @@ const useUpdatePersonalData = () => {
   return {
     setCountriesModalVisible,
     countriesModalVisible,
+    showVerifyPhoneModal,
+    showVerifyEmailModal,
     setDateModalVisible,
+    verifyPhoneModalRef,
+    verifyEmailModalRef,
     onPhoneVerifyPress,
     onEmailVerifyPress,
     onSaveButtonPress,
     dateModalVisible,
     setActiveCountry,
-    verifyModalRef,
     activeCountry,
     emailVerified,
     phoneVerified,

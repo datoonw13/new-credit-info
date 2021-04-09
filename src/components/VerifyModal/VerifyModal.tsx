@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React, {Component, createRef} from 'react';
 import {StyleSheet, View} from 'react-native';
 import Modal from 'react-native-modal';
 import Text from 'components/Text';
 import Button from 'components/Button';
-import {Input} from './components';
+import {PhoneCodeInput, EmailCodeInput} from './components';
 import {colors} from 'theme';
 import {config} from 'utils';
 import {VerifyModalProps, VerifyModalState} from './types';
@@ -18,6 +18,7 @@ class VerifyModal extends Component<VerifyModalProps, VerifyModalState> {
 
     this.show = this.show.bind(this);
     this.codeHandler = this.codeHandler.bind(this);
+    this.inputsRef = createRef();
   }
 
   /**
@@ -28,6 +29,26 @@ class VerifyModal extends Component<VerifyModalProps, VerifyModalState> {
   }
 
   /**
+   * Hide verify modal.
+   */
+  hide() {
+    this.setState((prevState) => ({...prevState, visible: false}));
+  }
+
+  /**
+   * Clear input.
+   */
+  clear() {
+    console.log(this.inputsRef);
+    this.inputsRef.current?.clearInputs();
+  }
+
+  /**
+   * Input reference.
+   */
+  inputsRef: any;
+
+  /**
    * Update code input text.
    */
   codeHandler(code: string) {
@@ -35,18 +56,26 @@ class VerifyModal extends Component<VerifyModalProps, VerifyModalState> {
   }
 
   render() {
-    const {visible} = this.state;
-    const {t, title, description, onPress} = this.props;
+    const {visible, code} = this.state;
+    const {t, title, description, onPress, mode = 'phone'} = this.props;
     return (
-      <Modal style={styles.modalContainer} isVisible={true}>
+      <Modal style={styles.modalContainer} isVisible={visible}>
         <View style={styles.container}>
           <Text style={styles.title}>{t(title)}</Text>
           <Text style={styles.description}>{t(description)}</Text>
-          <Input onTextChange={this.codeHandler} />
+          {mode === 'phone' && (
+            <PhoneCodeInput onTextChange={this.codeHandler} />
+          )}
+          {mode === 'email' && (
+            <EmailCodeInput
+              onTextChange={this.codeHandler}
+              ref={this.inputsRef}
+            />
+          )}
           <Button
             text={t('modal.verify')}
             touchableStyle={styles.button}
-            onPress={onPress}
+            onPress={() => onPress(code)}
           />
         </View>
       </Modal>

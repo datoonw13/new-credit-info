@@ -1,8 +1,18 @@
-import {createRef, useCallback, useEffect, useMemo, useState} from 'react';
+import {
+  createRef,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useMemo,
+  useState,
+} from 'react';
 import {TextInput} from 'react-native';
-import {InputProps, InputEvent} from './types';
+import {EmailCodeInputProps, InputEvent} from './types';
+import {filterInput} from '../helpers';
 
-const useInput = ({onTextChange}: InputProps) => {
+const useInput = (props: EmailCodeInputProps, ref: any) => {
+  const {onTextChange} = props;
+
   /**
    * Input state.
    */
@@ -10,6 +20,8 @@ const useInput = ({onTextChange}: InputProps) => {
   const [secondInput, setSecondInput] = useState('');
   const [thirdInput, setThirdInput] = useState('');
   const [forthInput, setForthInput] = useState('');
+  const [fifthInput, setFifthInput] = useState('');
+  const [sixthInput, setSixthInput] = useState('');
 
   /**
    * Input refs.
@@ -18,22 +30,48 @@ const useInput = ({onTextChange}: InputProps) => {
   const secondInputRef = createRef<TextInput>();
   const thirdInputRef = createRef<TextInput>();
   const forthInputRef = createRef<TextInput>();
+  const fifthInputRef = createRef<TextInput>();
+  const sixthInputRef = createRef<TextInput>();
+
+  /**
+   * Set imperative handle.
+   */
+  useImperativeHandle(ref, () => ({
+    clearInputs: () => {
+      setSixthInput('');
+      setFifthInput('');
+      setForthInput('');
+      setThirdInput('');
+      setSecondInput('');
+      setFirstInput('');
+      setTimeout(() => firstInputRef.current?.focus(), 1000);
+    },
+  }));
 
   /**
    * On input change emit updated digits.
    */
   useEffect(() => {
-    const code = `${firstInput}${secondInput}${thirdInput}${forthInput}`;
+    const code = `${firstInput}${secondInput}${thirdInput}${forthInput}${fifthInput}${sixthInput}`;
     onTextChange(code);
-  }, [firstInput, secondInput, thirdInput, forthInput, onTextChange]);
+  }, [
+    firstInput,
+    secondInput,
+    thirdInput,
+    forthInput,
+    fifthInput,
+    sixthInput,
+    onTextChange,
+  ]);
 
   /**
    * First digit handler.
    */
   const onFirstTextChange = useCallback(
     ({nativeEvent: {text}}: InputEvent) => {
-      if (text !== '') {
-        setFirstInput(text.slice(0, 1));
+      const character = filterInput(text);
+      if (character !== '') {
+        setFirstInput(character);
         secondInputRef.current?.focus();
       } else {
         setFirstInput('');
@@ -47,8 +85,9 @@ const useInput = ({onTextChange}: InputProps) => {
    */
   const onSecondInputTextChange = useCallback(
     ({nativeEvent: {text}}: InputEvent) => {
-      if (text !== '') {
-        setSecondInput(text.slice(0, 1));
+      const character = filterInput(text);
+      if (character !== '') {
+        setSecondInput(character);
         thirdInputRef.current?.focus();
       } else {
         setSecondInput('');
@@ -63,8 +102,9 @@ const useInput = ({onTextChange}: InputProps) => {
    */
   const onThirdInputTextChange = useCallback(
     ({nativeEvent: {text}}: InputEvent) => {
-      if (text !== '') {
-        setThirdInput(text.slice(0, 1));
+      const character = filterInput(text);
+      if (character !== '') {
+        setThirdInput(character);
         forthInputRef.current?.focus();
       } else {
         setThirdInput('');
@@ -79,14 +119,49 @@ const useInput = ({onTextChange}: InputProps) => {
    */
   const onForthInputTextChange = useCallback(
     ({nativeEvent: {text}}: InputEvent) => {
-      if (text !== '') {
-        setForthInput(text.slice(0, 1));
+      const character = filterInput(text);
+      if (character !== '') {
+        setForthInput(character);
+        fifthInputRef.current?.focus();
       } else {
         setForthInput('');
         thirdInputRef.current?.focus();
       }
     },
-    [thirdInputRef],
+    [thirdInputRef, fifthInputRef],
+  );
+
+  /**
+   * Fifth digit handler.
+   */
+  const onFifthInputTextChange = useCallback(
+    ({nativeEvent: {text}}: InputEvent) => {
+      const character = filterInput(text);
+      if (character !== '') {
+        setFifthInput(character);
+        sixthInputRef.current?.focus();
+      } else {
+        setFifthInput('');
+        forthInputRef.current?.focus();
+      }
+    },
+    [forthInputRef, sixthInputRef],
+  );
+
+  /**
+   * Sixth digit handler.
+   */
+  const onSixthInputTextChange = useCallback(
+    ({nativeEvent: {text}}: InputEvent) => {
+      const character = filterInput(text);
+      if (character !== '') {
+        setSixthInput(character);
+      } else {
+        setSixthInput('');
+        fifthInputRef.current?.focus();
+      }
+    },
+    [fifthInputRef],
   );
 
   /**
@@ -100,15 +175,23 @@ const useInput = ({onTextChange}: InputProps) => {
         secondInputRef.current?.focus();
       } else if (num === 4 && thirdInput === '') {
         thirdInputRef.current?.focus();
+      } else if (num === 5 && forthInput === '') {
+        forthInputRef.current?.focus();
+      } else if (num === 6 && fifthInput === '') {
+        fifthInputRef.current?.focus();
       }
     },
     [
       firstInput,
       secondInput,
       thirdInput,
+      forthInput,
+      fifthInput,
       firstInputRef,
       secondInputRef,
       thirdInputRef,
+      forthInputRef,
+      fifthInputRef,
     ],
   );
 
@@ -145,20 +228,40 @@ const useInput = ({onTextChange}: InputProps) => {
         ref: forthInputRef,
         onFocus: () => onInputFocus(4),
       },
+      {
+        id: 5,
+        value: fifthInput,
+        onChange: onFifthInputTextChange,
+        ref: fifthInputRef,
+        onFocus: () => onInputFocus(5),
+      },
+      {
+        id: 6,
+        value: sixthInput,
+        onChange: onSixthInputTextChange,
+        ref: sixthInputRef,
+        onFocus: () => onInputFocus(6),
+      },
     ],
     [
       firstInput,
       secondInput,
       thirdInput,
       forthInput,
+      fifthInput,
+      sixthInput,
       firstInputRef,
       secondInputRef,
       thirdInputRef,
       forthInputRef,
+      fifthInputRef,
+      sixthInputRef,
       onFirstTextChange,
       onSecondInputTextChange,
       onThirdInputTextChange,
       onForthInputTextChange,
+      onFifthInputTextChange,
+      onSixthInputTextChange,
       onInputFocus,
     ],
   );

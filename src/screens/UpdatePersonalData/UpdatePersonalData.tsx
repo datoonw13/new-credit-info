@@ -24,13 +24,16 @@ const UpdatePersonalData = () => {
   const {
     setCountriesModalVisible,
     countriesModalVisible,
+    showVerifyPhoneModal,
+    showVerifyEmailModal,
     setDateModalVisible,
+    verifyEmailModalRef,
+    verifyPhoneModalRef,
     onPhoneVerifyPress,
     onEmailVerifyPress,
     onSaveButtonPress,
     setActiveCountry,
     dateModalVisible,
-    verifyModalRef,
     activeCountry,
     emailVerified,
     phoneVerified,
@@ -138,7 +141,7 @@ const UpdatePersonalData = () => {
                 label="registration.phone"
                 errorMessage={phoneErrorMsg()}
                 verified={phoneVerified}
-                onVerifyPress={onPhoneVerifyPress}
+                onVerifyPress={showVerifyPhoneModal}
               />
             )}
             rules={rules.phone()}
@@ -155,7 +158,7 @@ const UpdatePersonalData = () => {
                 label="registration.email"
                 errorMessage={emailErrorMsg()}
                 verified={emailVerified}
-                onVerifyPress={onEmailVerifyPress}
+                onVerifyPress={showVerifyEmailModal}
               />
             )}
             rules={rules.email()}
@@ -215,9 +218,19 @@ const UpdatePersonalData = () => {
       />
       <VerifyModal
         t={t}
-        ref={verifyModalRef}
+        ref={verifyPhoneModalRef}
         title="modal.verifyPhone"
         description="modal.verifyPhoneText"
+        onPress={onPhoneVerifyPress}
+        mode="phone"
+      />
+      <VerifyModal
+        t={t}
+        ref={verifyEmailModalRef}
+        title="modal.verifyEmail"
+        description="modal.verifyEmailText"
+        onPress={onEmailVerifyPress}
+        mode="email"
       />
     </SafeAreaView>
   );

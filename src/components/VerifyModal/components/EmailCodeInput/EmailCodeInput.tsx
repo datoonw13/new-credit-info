@@ -1,20 +1,21 @@
-import React from 'react';
+import React, {forwardRef} from 'react';
 import {View, TextInput, StyleSheet} from 'react-native';
 import {colors} from 'theme';
-import useInput from './useInput';
-import {InputFC} from './types';
+import useInput from './useEmailCodeInput';
+import {EmailCodeInputProps} from './types';
 
-const Input: InputFC = ({onTextChange}) => {
-  const {inputConfigList} = useInput({onTextChange});
+const EmailCodeInput = (props: EmailCodeInputProps, ref: any) => {
+  console.log(props);
+  const {inputConfigList} = useInput(props, ref);
 
   return (
     <View style={styles.container}>
-      {inputConfigList.map(({id, onChange, onFocus, ref, value}) => (
+      {inputConfigList.map(({id, onChange, onFocus, ref: InputRef, value}) => (
         <TextInput
           style={styles.input}
           value={value}
           onChange={onChange}
-          ref={ref}
+          ref={InputRef}
           keyboardType="number-pad"
           onFocus={onFocus}
           key={id}
@@ -24,7 +25,7 @@ const Input: InputFC = ({onTextChange}) => {
   );
 };
 
-export default Input;
+export default forwardRef(EmailCodeInput);
 
 const styles = StyleSheet.create({
   container: {
@@ -35,11 +36,11 @@ const styles = StyleSheet.create({
   input: {
     borderWidth: 1,
     borderColor: colors.blackOp3,
-    width: 42,
-    height: 52,
-    marginHorizontal: 10,
+    marginHorizontal: 5,
     borderRadius: 13,
     textAlign: 'center',
-    fontSize: 25,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    fontSize: 15,
   },
 });

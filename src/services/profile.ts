@@ -34,3 +34,25 @@ export const updateProfileData = (data: UpdateProfile) =>
       language: global.lang.toUpperCase(),
     },
   });
+
+/**
+ * Send email verification code.
+ */
+export const sendEmailVerificationCode = (email: string) =>
+  axios.put(
+    API.sendEmailOTP,
+    {},
+    {
+      params: {
+        email,
+      },
+    },
+  );
+
+/**
+ * Verify email.
+ */
+export const verifyEmail = (code: string) =>
+  axios.put(API.verifyEmail, {
+    code,
+  });
