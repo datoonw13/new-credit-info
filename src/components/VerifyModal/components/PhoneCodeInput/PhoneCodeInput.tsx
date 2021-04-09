@@ -1,20 +1,20 @@
-import React from 'react';
+import React, {forwardRef} from 'react';
 import {View, TextInput, StyleSheet} from 'react-native';
 import {colors} from 'theme';
 import useInput from './usePhoneCodeInput';
-import {PhoneCodeInputFC} from './types';
+import {PhoneCodeInputProps} from './types';
 
-const PhoneCodeInput: PhoneCodeInputFC = ({onTextChange}) => {
-  const {inputConfigList} = useInput({onTextChange});
+const PhoneCodeInput = (props: PhoneCodeInputProps, ref: any) => {
+  const {inputConfigList} = useInput(props, ref);
 
   return (
     <View style={styles.container}>
-      {inputConfigList.map(({id, onChange, onFocus, ref, value}) => (
+      {inputConfigList.map(({id, onChange, onFocus, ref: inputRef, value}) => (
         <TextInput
           style={styles.input}
           value={value}
           onChange={onChange}
-          ref={ref}
+          ref={inputRef}
           keyboardType="numeric"
           onFocus={onFocus}
           key={id}
@@ -24,7 +24,7 @@ const PhoneCodeInput: PhoneCodeInputFC = ({onTextChange}) => {
   );
 };
 
-export default PhoneCodeInput;
+export default forwardRef(PhoneCodeInput);
 
 const styles = StyleSheet.create({
   container: {

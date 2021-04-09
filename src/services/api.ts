@@ -41,3 +41,5 @@ export const profileInfo = 'profile';
 export const updateProfile = 'profile';
 export const sendEmailOTP = 'profile/sendemailotp';
 export const verifyEmail = 'profile/checkemailotp';
+export const sendPhoneOTP = 'profile/sendotp';
+export const verifyPhone = 'profile/checkotp';

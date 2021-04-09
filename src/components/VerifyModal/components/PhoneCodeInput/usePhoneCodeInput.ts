@@ -1,9 +1,16 @@
-import {createRef, useCallback, useEffect, useMemo, useState} from 'react';
+import {
+  createRef,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useMemo,
+  useState,
+} from 'react';
 import {TextInput} from 'react-native';
 import {PhoneCodeInputProps, InputEvent} from './types';
 import {filterInput} from '../helpers';
 
-const useInput = ({onTextChange}: PhoneCodeInputProps) => {
+const useInput = ({onTextChange}: PhoneCodeInputProps, ref: any) => {
   /**
    * Input state.
    */
@@ -19,6 +26,19 @@ const useInput = ({onTextChange}: PhoneCodeInputProps) => {
   const secondInputRef = createRef<TextInput>();
   const thirdInputRef = createRef<TextInput>();
   const forthInputRef = createRef<TextInput>();
+
+  /**
+   * Handle imperative calls.
+   */
+  useImperativeHandle(ref, () => ({
+    clearInputs: () => {
+      setFirstInput('');
+      setSecondInput('');
+      setThirdInput('');
+      setForthInput('');
+      setTimeout(() => firstInputRef.current?.focus(), 1000);
+    },
+  }));
 
   /**
    * On input change emit updated digits.

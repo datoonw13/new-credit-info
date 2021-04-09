@@ -17,6 +17,7 @@ class VerifyModal extends Component<VerifyModalProps, VerifyModalState> {
     };
 
     this.show = this.show.bind(this);
+    this.hide = this.hide.bind(this);
     this.codeHandler = this.codeHandler.bind(this);
     this.inputsRef = createRef();
   }
@@ -59,12 +60,18 @@ class VerifyModal extends Component<VerifyModalProps, VerifyModalState> {
     const {visible, code} = this.state;
     const {t, title, description, onPress, mode = 'phone'} = this.props;
     return (
-      <Modal style={styles.modalContainer} isVisible={visible}>
+      <Modal
+        style={styles.modalContainer}
+        isVisible={visible}
+        onBackdropPress={this.hide}>
         <View style={styles.container}>
           <Text style={styles.title}>{t(title)}</Text>
           <Text style={styles.description}>{t(description)}</Text>
           {mode === 'phone' && (
-            <PhoneCodeInput onTextChange={this.codeHandler} />
+            <PhoneCodeInput
+              onTextChange={this.codeHandler}
+              ref={this.inputsRef}
+            />
           )}
           {mode === 'email' && (
             <EmailCodeInput

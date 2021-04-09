@@ -1,13 +1,12 @@
 import {createRef, useEffect, useState} from 'react';
 import {useForm} from 'react-hook-form';
-import {Alert} from 'react-native';
 import {useSelector} from 'react-redux';
 import {selectUser} from 'store/select';
 import * as services from 'services';
 import {alertSuccess, alertWarning} from 'utils/dropdownAlert';
 import {formatDate, reverseFormatDate} from 'utils/calendar';
 import {VerifyModal} from 'components';
-import {isEmailCodeInvalid} from './helpers';
+import {isEmailCodeInvalid, isPhoneCodeInvalid} from './helpers';
 
 const useUpdatePersonalData = () => {
   const user = useSelector(selectUser);
@@ -137,18 +136,40 @@ const useUpdatePersonalData = () => {
   /**
    * Show verify phone modal.
    */
-  const showVerifyPhoneModal = () => {
-    verifyPhoneModalRef.current?.show();
+  const showVerifyPhoneModal = async () => {
+    const phoneVerifyModal = verifyPhoneModalRef.current;
+
+    const result = await trigger('phone');
+
+    if (result) {
+      const phone = getValues('phone');
+      try {
+        await services.sendPhoneVerificationCode(phone);
+        phoneVerifyModal?.clear();
+        phoneVerifyModal?.show();
+      } catch (e) {
+        alertWarning('', 'dropdownAlert.errorTryLater');
+      }
+    }
   };
 
   /**
    * Verify phone number if phone is correct.
    */
   const onPhoneVerifyPress = async (code: string) => {
-    const result = await trigger('phone');
+    const verifyPhoneModal = verifyPhoneModalRef.current;
 
-    if (result) {
-      Alert.alert('Not yet implemented!');
+    if (isPhoneCodeInvalid(code)) {
+      alertWarning('', 'modal.correctCode');
+    } else {
+      try {
+        verifyPhoneModal?.hide();
+        verifyPhoneModal?.clear();
+        await services.verifyPhone(code);
+        alertSuccess('', 'modal.verifyPhoneSuccess');
+      } catch (e) {
+        alertWarning('', 'modal.verifyPhoneFailure');
+      }
     }
   };
 
@@ -164,7 +185,9 @@ const useUpdatePersonalData = () => {
         await services.sendEmailVerificationCode(email);
         emailVerifiedModal?.clear();
         emailVerifiedModal?.show();
-      } catch (e) {}
+      } catch (e) {
+        alertWarning('', 'dropdownAlert.errorTryLater');
+      }
     }
   };
 

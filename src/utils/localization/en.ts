@@ -164,6 +164,7 @@ export default {
       'We have sent you one-time-password, please, follow the instructions...',
     invalidCodeTitle: 'Invalid Code',
     invalidCode: 'The code you entered is invalid',
+    errorTryLater: 'Encountered error, please try later...',
   },
 
   modal: {
@@ -178,6 +179,8 @@ export default {
       'You have received code on e-mail, please fill in and verify...',
     verifyEmailSuccess: 'E-mail successfully approved!',
     verifyEmailFailure: "E-mail couldn't approved!",
+    verifyPhoneSuccess: 'Phone number successfully approved!',
+    verifyPhoneFailure: "Phone number couldn't approved!",
     correctCode: 'Please correct verification code...',
   },
 

@@ -164,6 +164,7 @@ export default {
     sendOTPSuccess: 'ჩვენ გამოგიგზავნეთ ერთჯერადი კოდი, მიყევით ინსტრუქციას.',
     invalidCodeTitle: 'არასწორი SMS კოდი',
     invalidCode: 'თქვენს მიერ შეყვანილი SMS კოდი არასწორია',
+    errorTryLater: 'დაფიქსირდა შეცდომა, გთხოვთ მოგვიანებით სცადეთ...',
   },
 
   modal: {
@@ -178,6 +179,8 @@ export default {
       'თქვენ გამოგეგზავნათ კოდი e-mail ზე, გთხოვთ შეიყვანეთ და დაადასტურეთ...',
     verifyEmailSuccess: 'e-mail-ი წარმატებით დადასტურდა!',
     verifyEmailFailure: 'სამწუხაროდ e-mail-ი ვერ დადასტურდა!',
+    verifyPhoneSuccess: 'მობილურის ნომერი წარმატებით დადასტურდა!',
+    verifyPhoneFailure: 'სამწუხაროდ მობილურის ნომერი ვერ დადასტურდა!',
     correctCode: 'გთხოვთ შეასწოროთ ვერიფიკაციის კოდი...',
   },
 

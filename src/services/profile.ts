@@ -56,3 +56,25 @@ export const verifyEmail = (code: string) =>
   axios.put(API.verifyEmail, {
     code,
   });
+
+/**
+ * Send phone verification code.
+ */
+export const sendPhoneVerificationCode = (phone: string) =>
+  axios.put(
+    API.sendPhoneOTP,
+    {},
+    {
+      params: {
+        phone,
+      },
+    },
+  );
+
+/**
+ * Verify phone.
+ */
+export const verifyPhone = (code: string) =>
+  axios.put(API.verifyPhone, {
+    code,
+  });
