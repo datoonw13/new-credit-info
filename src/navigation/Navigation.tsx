@@ -11,6 +11,7 @@ import {
   DrawerBeforeAuth,
   DrawerAfterAuth,
   ForgotPassword,
+  ChangePassword,
   SetFingerprint,
   SetPasscode,
   SignInPass,
@@ -143,27 +144,27 @@ const Navigation = () => {
     !isSignedIn && goToSignInWithFingerprint();
   }, [isSignedIn]);
 
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(
-  //     signIn({
-  //       username: '00000000000',
-  //       password: 'atasertigame',
-  //     }),
-  //   );
-  // }, [dispatch]);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(
+      signIn({
+        username: '00000000000',
+        password: 'atasertigame',
+      }),
+    );
+  }, [dispatch]);
 
-  // return <TermsAndConditions />;
+  return <ChangePassword />;
 
-  return (
-    <NavigationContainer ref={saveReference}>
-      {isSignedIn ? (
-        <AfterAuthDrawerNavigator />
-      ) : (
-        <BeforeAuthDrawerNavigator />
-      )}
-    </NavigationContainer>
-  );
+  // return (
+  //   <NavigationContainer ref={saveReference}>
+  //     {isSignedIn ? (
+  //       <AfterAuthDrawerNavigator />
+  //     ) : (
+  //       <BeforeAuthDrawerNavigator />
+  //     )}
+  //   </NavigationContainer>
+  // );
 };
 
 export default Navigation;

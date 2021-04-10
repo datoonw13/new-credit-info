@@ -153,6 +153,10 @@ export default {
     updateError: 'Encountered error during personal information update...',
   },
 
+  changePassword: {
+    title: 'Change Password',
+  },
+
   termsAndConditions: {
     title: 'Terms and Conditions',
     lastModify: 'Last modify date',

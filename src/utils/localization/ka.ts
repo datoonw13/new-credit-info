@@ -154,6 +154,10 @@ export default {
     updateError: 'სამწუხაროდ მონაცემების განახლება ვერ მოხერხდა...',
   },
 
+  changePassword: {
+    title: 'პაროლის ცვლილება',
+  },
+
   termsAndConditions: {
     title: 'პირობები',
     lastModify: 'განახლების თარიღი',
