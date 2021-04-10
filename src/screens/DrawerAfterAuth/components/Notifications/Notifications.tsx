@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import {Platform, StyleSheet, TouchableOpacity, View} from 'react-native';
 import * as SVG from 'assets/svg';
 import Text from 'components/Text';
 import {useTranslation} from 'react-i18next';
@@ -15,7 +15,9 @@ const Notifications = () => {
         </View>
         <Text style={styles.text}>{t('drawer.notifications')}</Text>
       </View>
-      <Text style={styles.badge}>2</Text>
+      <View style={styles.badgeWrapper}>
+        <Text style={styles.badge}>2</Text>
+      </View>
     </TouchableOpacity>
   );
 };
@@ -53,11 +55,14 @@ const styles = StyleSheet.create({
   text: {
     letterSpacing: 0.2,
   },
-  badge: {
+  badgeWrapper: {
     backgroundColor: colors.crimson,
-    color: colors.white,
     paddingHorizontal: 10,
-    paddingVertical: 4,
+    paddingVertical: Platform.OS === 'android' ? 4 : 5,
     borderRadius: 15,
+  },
+  badge: {
+    color: colors.white,
+    marginBottom: 1,
   },
 });
