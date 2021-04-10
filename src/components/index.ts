@@ -27,3 +27,5 @@ export {default as PinKeyboard} from './PinKeyboard';
 export {default as PinLine} from './PinLine';
 export {default as PersonalDataInput} from './PersonalDataInput';
 export {default as VerifyModal} from './VerifyModal';
+export {default as PasswordGuide} from './PasswordGuide';
+export {default as InputEye} from './InputEye';

@@ -74,6 +74,9 @@ export default {
     validPassword: 'Please, type stronger password...',
     repeatPassword: 'Please, repeat password',
     validRepeatPassword: 'Passwords are not same',
+    passwordGuideTitle: 'Strong password should be hard to guess',
+    passwordGuideDescription:
+      'Please use hard to guess words, phrases, symbols and numbers, also non-standard uPPercasing',
 
     dateOfFoundation: 'Date of Foundation',
     validDateOfFoundation: 'Please, choose Date of Foundation',

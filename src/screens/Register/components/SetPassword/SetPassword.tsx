@@ -5,9 +5,7 @@ import zxc from 'zxcvbn';
 import {Controller} from 'react-hook-form';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import * as colors from 'theme/colors';
-import {passwordGuidText} from './config';
-import {Info} from 'assets/svg';
-import {Button, Input, Text} from 'components';
+import {Button, Input, PasswordGuide} from 'components';
 import useSetPassword from './useSetPassword';
 import {useTranslation} from 'react-i18next';
 
@@ -35,23 +33,7 @@ const SetPassword: SetPasswordFC = ({lastStep, registerData}) => {
     <>
       <View style={styles.container}>
         <ScrollView>
-          <View style={styles.setPasswordGuide}>
-            <View style={styles.infoIconWrapper}>
-              <Info />
-            </View>
-            <View>
-              <Text
-                children={passwordGuidText.bold}
-                style={styles.guideTextBold}
-                dontTranslate
-              />
-              <Text
-                children={passwordGuidText.norm}
-                style={styles.guideTextNorm}
-                dontTranslate
-              />
-            </View>
-          </View>
+          <PasswordGuide />
           <Controller
             name="password"
             control={control}
@@ -155,35 +137,5 @@ const styles = StyleSheet.create({
   },
   passwordError: {
     height: 0,
-  },
-  setPasswordGuide: {
-    display: 'flex',
-    flexDirection: 'row',
-    backgroundColor: colors.strangeBlueOp1,
-    borderRadius: 18,
-    padding: 12,
-    marginTop: 5,
-    marginBottom: 15,
-  },
-  infoIconWrapper: {
-    width: 32,
-    height: 32,
-    backgroundColor: colors.blackOp1,
-    borderRadius: 25,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: 9,
-  },
-  guideTextBold: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    lineHeight: 20,
-  },
-  guideTextNorm: {
-    fontSize: 14,
-    marginTop: 8,
-    lineHeight: 20,
-    marginRight: 30,
   },
 });

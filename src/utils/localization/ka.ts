@@ -75,6 +75,9 @@ export default {
     validPassword: 'გთხოვთ, შეიყვანეთ უფრო ძლიერი პაროლი...',
     repeatPassword: 'გაიმეორეთ პაროლი',
     validRepeatPassword: 'პაროლები არ ემთხვევა',
+    passwordGuideTitle: 'ძლიერი პაროლი უნდა იყოს რთულად გამოსაცნობი',
+    passwordGuideDescription:
+      'გამოიყენეთ ძნელად მისახვედრი და გამოსაცნობი სიტყვები, ფრაზები, სიმბოლოები და რიცხვები, არასტანდართული uPPercasing-ი',
 
     dateOfFoundation: 'დაარსების თარიღი',
     validDateOfFoundation: 'გთხოვთ, აირჩიეთ დაარსების თარიღი',
