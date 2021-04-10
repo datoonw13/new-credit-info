@@ -40,7 +40,6 @@ class VerifyModal extends Component<VerifyModalProps, VerifyModalState> {
    * Clear input.
    */
   clear() {
-    console.log(this.inputsRef);
     this.inputsRef.current?.clearInputs();
   }
 

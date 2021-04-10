@@ -94,20 +94,22 @@ const UpdatePersonalData = () => {
             rules={rules.nameField()}
           />
 
-          <Controller
-            name="lastName"
-            control={control}
-            render={({onBlur, onChange, value}) => (
-              <PersonalDataInput
-                value={value}
-                onChangeText={onChange}
-                onBlur={onBlur}
-                label="registration.lastName"
-                errorMessage={lastNameErrorMsg()}
-              />
-            )}
-            rules={rules.nameField()}
-          />
+          {isPerson && (
+            <Controller
+              name="lastName"
+              control={control}
+              render={({onBlur, onChange, value}) => (
+                <PersonalDataInput
+                  value={value}
+                  onChangeText={onChange}
+                  onBlur={onBlur}
+                  label="registration.lastName"
+                  errorMessage={lastNameErrorMsg()}
+                />
+              )}
+              rules={rules.nameField()}
+            />
+          )}
 
           <Controller
             name="birthDate"
@@ -135,13 +137,14 @@ const UpdatePersonalData = () => {
             control={control}
             render={({onBlur, onChange, value}) => (
               <PersonalDataInput
-                value={value}
+                onVerifyPress={showVerifyPhoneModal}
+                errorMessage={phoneErrorMsg()}
+                label="registration.phone"
+                verified={phoneVerified}
                 onChangeText={onChange}
                 onBlur={onBlur}
-                label="registration.phone"
-                errorMessage={phoneErrorMsg()}
-                verified={phoneVerified}
-                onVerifyPress={showVerifyPhoneModal}
+                value={value}
+                isPhone
               />
             )}
             rules={rules.phone()}

@@ -11,12 +11,12 @@ const PhoneCodeInput = (props: PhoneCodeInputProps, ref: any) => {
     <View style={styles.container}>
       {inputConfigList.map(({id, onChange, onFocus, ref: inputRef, value}) => (
         <TextInput
-          style={styles.input}
-          value={value}
-          onChange={onChange}
-          ref={inputRef}
           keyboardType="numeric"
+          style={styles.input}
+          onChange={onChange}
           onFocus={onFocus}
+          ref={inputRef}
+          value={value}
           key={id}
         />
       ))}

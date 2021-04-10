@@ -1,13 +1,14 @@
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {
-  TouchableOpacity,
   StyleSheet,
   TextInput,
   Animated,
   View,
   Text,
+  Platform,
 } from 'react-native';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 import * as colors from 'theme/colors';
 import {PersonalDataInputFC} from './types';
 import usePersonalDataInput from './usePersonalDataInput';
@@ -16,6 +17,7 @@ import {RightIcon, Verification} from './components';
 const PersonalDataInput: PersonalDataInputFC = ({
   rightIconPressHandler,
   inputPressHandler,
+  isPhone = false,
   containerStyle,
   pointerEvents,
   onVerifyPress,
@@ -49,7 +51,12 @@ const PersonalDataInput: PersonalDataInputFC = ({
       <View style={styles.inputWrapper}>
         <Text style={styles.label}>{t(label)}</Text>
         <TextInput
-          style={[styles.input, {borderColor: inputBorderColor}, style]}
+          style={[
+            styles.input,
+            {borderColor: inputBorderColor},
+            style,
+            isPhone && styles.inputWithPhonePrefix,
+          ]}
           placeholderTextColor={colors.blackOp3}
           pointerEvents={pointerEvents}
           onChangeText={onChangeText}
@@ -61,6 +68,7 @@ const PersonalDataInput: PersonalDataInputFC = ({
           onBlur={onBlur}
           value={value}
         />
+        {isPhone && <Text style={styles.phonePrefix}>+995</Text>}
         <Animated.View style={[styles.errorTextWrapper, {height}]}>
           <Text style={styles.errorText} children={errorMessage} />
         </Animated.View>
@@ -102,6 +110,15 @@ const styles = StyleSheet.create({
     left: 12,
     top: 0,
     zIndex: 1,
+  },
+  phonePrefix: {
+    position: 'absolute',
+    left: 18,
+    top: Platform.OS === 'android' ? 27 : 22,
+    color: colors.blue,
+  },
+  inputWithPhonePrefix: {
+    paddingLeft: 55,
   },
   errorTextWrapper: {
     display: 'flex',

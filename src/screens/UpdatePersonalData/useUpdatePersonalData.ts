@@ -1,24 +1,26 @@
 import {createRef, useEffect, useState} from 'react';
 import {useForm} from 'react-hook-form';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {selectUser} from 'store/select';
 import * as services from 'services';
 import {alertSuccess, alertWarning} from 'utils/dropdownAlert';
 import {formatDate, reverseFormatDate} from 'utils/calendar';
 import {VerifyModal} from 'components';
+import {saveProfileInfo} from 'store/auth/sagaActions';
 import {isEmailCodeInvalid, isPhoneCodeInvalid} from './helpers';
 
 const useUpdatePersonalData = () => {
   const user = useSelector(selectUser);
+  const dispatch = useDispatch();
 
   const {
-    control,
-    errors,
     handleSubmit,
-    setValue,
     getValues,
-    watch,
+    setValue,
+    control,
     trigger,
+    errors,
+    watch,
   } = useForm({
     defaultValues: {
       userName: '',
@@ -166,6 +168,7 @@ const useUpdatePersonalData = () => {
         verifyPhoneModal?.hide();
         verifyPhoneModal?.clear();
         await services.verifyPhone(code);
+        dispatch(saveProfileInfo());
         alertSuccess('', 'modal.verifyPhoneSuccess');
       } catch (e) {
         alertWarning('', 'modal.verifyPhoneFailure');
@@ -209,6 +212,7 @@ const useUpdatePersonalData = () => {
         emailVerifiedModal?.hide();
         emailVerifiedModal?.clear();
         await services.verifyEmail(code);
+        dispatch(saveProfileInfo());
         alertSuccess('', 'modal.verifyEmailSuccess');
       } catch (e) {
         alertWarning('', 'modal.verifyEmailFailure');
@@ -238,7 +242,7 @@ const useUpdatePersonalData = () => {
       phone,
       email,
     } = getValues();
-    console.log(activeCountry);
+
     try {
       await services.updateProfileData({
         personalCode: userName,

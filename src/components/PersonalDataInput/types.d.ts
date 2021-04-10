@@ -12,6 +12,7 @@ type PersonalDataInputProps = {
   containerStyle?: StyleProp<ViewStyle>;
   verified?: boolean;
   onVerifyPress?: () => void;
+  isPhone?: boolean;
 } & TextInputProps;
 
 type UseInputProps = {
