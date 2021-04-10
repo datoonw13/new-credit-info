@@ -5,6 +5,7 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 import {
+  TermsAndConditions,
   UpdatePersonalData,
   CompanyManagement,
   DrawerBeforeAuth,
@@ -104,6 +105,10 @@ const AfterAuthMainStackNavigator = () => (
       component={SetFingerprint}
       name="SetFingerprint"
     />
+    <AfterAuthMainStack.Screen
+      component={TermsAndConditions}
+      name="TermsAndConditions"
+    />
   </AfterAuthMainStack.Navigator>
 );
 
@@ -148,7 +153,7 @@ const Navigation = () => {
   //   );
   // }, [dispatch]);
 
-  // return <UpdatePersonalData />;
+  // return <TermsAndConditions />;
 
   return (
     <NavigationContainer ref={saveReference}>

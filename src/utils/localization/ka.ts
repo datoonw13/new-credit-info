@@ -156,6 +156,7 @@ export default {
 
   termsAndConditions: {
     title: 'პირობები',
+    lastModify: 'განახლების თარიღი',
   },
 
   dropdownAlert: {

@@ -39,7 +39,7 @@ export const menuList = [
     color: colors.greenOp1,
     Icon: TermsAndConditions,
     dividerWidth: '85%',
-    onPress: () => {},
+    onPress: () => goTo('AfterAuthMainStackNavigator', 'TermsAndConditions'),
   },
   {
     id: 5,

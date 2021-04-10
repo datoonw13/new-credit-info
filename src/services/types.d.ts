@@ -90,6 +90,11 @@ type ProfileInfo = {
   profilePhoto?: string;
 };
 
+type UserAgreement = {
+  content: string;
+  lastModify: string;
+};
+
 type UpdateProfile = Omit<
   ProfileInfo,
   | 'country'

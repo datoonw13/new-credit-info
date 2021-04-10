@@ -155,6 +155,7 @@ export default {
 
   termsAndConditions: {
     title: 'Terms and Conditions',
+    lastModify: 'Last modify date',
   },
 
   dropdownAlert: {
