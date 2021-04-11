@@ -158,6 +158,19 @@ export default {
 
   changePassword: {
     title: 'Change Password',
+    currentPassword: 'Current Password',
+    newPassword: 'New Password',
+    repeatNewPassword: 'Repeat Password',
+
+    currentPasswordRequired: 'Please, fill current password...',
+    newPasswordRequired: 'Please, fill new password...',
+    repeatNewPasswordRequired: 'Please, repeat new password...',
+
+    newPasswordStronger: 'New password is weak...',
+
+    successfullyChanged: 'Password successfully changed!',
+    updateFailed:
+      "Couldn't change passwords, please ensure to provide correct data...",
   },
 
   termsAndConditions: {

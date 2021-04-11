@@ -78,3 +78,9 @@ export const verifyPhone = (code: string) =>
   axios.put(API.verifyPhone, {
     code,
   });
+
+export const changePassword = (currentPassword: string, newPassword: string) =>
+  axios.patch(API.changePassword, {
+    password: currentPassword,
+    newPassword,
+  });

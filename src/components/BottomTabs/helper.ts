@@ -9,6 +9,7 @@ export const shouldHide = () => {
     'Privacy',
     'Security',
     'SetPasscode',
+    'ChangePassword',
     'SetFingerprint',
     'UpdatePersonalData',
     'TermsAndConditions',

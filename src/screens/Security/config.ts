@@ -9,7 +9,6 @@ export const menuList = [
     title: 'security.signInWithPasscode',
     dividerWidth: '100%',
     switcher: true,
-    onPress: null,
   },
   {
     id: 1,
@@ -18,7 +17,6 @@ export const menuList = [
     title: 'security.signInWithFingerprint',
     dividerWidth: '100%',
     switcher: true,
-    onPress: null,
   },
   {
     id: 2,
@@ -27,7 +25,6 @@ export const menuList = [
     title: 'security.changePassword',
     dividerWidth: '100%',
     switcher: false,
-    onPress: null,
   },
   {
     id: 3,
@@ -36,6 +33,5 @@ export const menuList = [
     title: 'security.twoFactorAuth',
     dividerWidth: '100%',
     switcher: true,
-    onPress: null,
   },
 ];

@@ -39,6 +39,7 @@ import {selectAuth} from 'store/select';
 import {goToSignInWithFingerprint} from './helpers';
 import {useDispatch} from 'react-redux';
 import {signIn} from 'store/auth/sagaActions';
+import {getCredentials, ifCredentialsSetPassword} from 'utils/keychain';
 
 /**
  * Before auth navigation components.
@@ -100,6 +101,10 @@ const AfterAuthMainStackNavigator = () => (
       name="UpdatePersonalData"
     />
     <AfterAuthMainStack.Screen component={Security} name="Security" />
+    <AfterAuthMainStack.Screen
+      component={ChangePassword}
+      name="ChangePassword"
+    />
     <AfterAuthMainStack.Screen component={Privacy} name="Privacy" />
     <AfterAuthMainStack.Screen component={SetPasscode} name="SetPasscode" />
     <AfterAuthMainStack.Screen
@@ -144,27 +149,41 @@ const Navigation = () => {
     !isSignedIn && goToSignInWithFingerprint();
   }, [isSignedIn]);
 
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(
-      signIn({
-        username: '00000000000',
-        password: 'atasertigame',
-      }),
-    );
-  }, [dispatch]);
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   const authenticate = async () => {
+  //     const credentials = await getCredentials();
 
-  return <ChangePassword />;
+  //     if (credentials) {
+  //       const {username, password} = credentials;
+  //       dispatch(
+  //         signIn({
+  //           username,
+  //           password,
+  //         }),
+  //       );
+  //     } else {
+  //       dispatch(
+  //         signIn({
+  //           username: '00000000000',
+  //           password: 'atasertigame',
+  //         }),
+  //       );
+  //     }
+  //   };
 
-  // return (
-  //   <NavigationContainer ref={saveReference}>
-  //     {isSignedIn ? (
-  //       <AfterAuthDrawerNavigator />
-  //     ) : (
-  //       <BeforeAuthDrawerNavigator />
-  //     )}
-  //   </NavigationContainer>
-  // );
+  //   authenticate();
+  // }, [dispatch]);
+
+  return (
+    <NavigationContainer ref={saveReference}>
+      {isSignedIn ? (
+        <AfterAuthDrawerNavigator />
+      ) : (
+        <BeforeAuthDrawerNavigator />
+      )}
+    </NavigationContainer>
+  );
 };
 
 export default Navigation;

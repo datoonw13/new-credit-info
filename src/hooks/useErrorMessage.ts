@@ -1,4 +1,5 @@
 import {useCallback} from 'react';
+import {FieldError} from 'react-hook-form';
 import {useTranslation} from 'react-i18next';
 
 const useErrorMessage = (errors: ErrorMessages) => {
@@ -71,6 +72,27 @@ const useErrorMessage = (errors: ErrorMessages) => {
     }
   }, [errors.email, t]);
 
+  const currentPasswordErrorMsg = useCallback(() => {
+    if (errors.currentPassword) {
+      return t('changePassword.currentPasswordRequired');
+    }
+  }, [errors, t]);
+
+  const newPasswordErrorMsg = useCallback(() => {
+    if (errors.newPassword) {
+      if (errors.newPassword.type === 'validate') {
+        return t('changePassword.newPasswordStronger');
+      }
+      return t('changePassword.newPasswordRequired');
+    }
+  }, [errors, t]);
+
+  const repeatNewPasswordErrorMsg = useCallback(() => {
+    if (errors.repeatNewPassword) {
+      return t('changePassword.repeatNewPasswordRequired');
+    }
+  }, [errors, t]);
+
   return {
     userNameErrorMsg,
     firstNameErrorMsg,
@@ -80,18 +102,25 @@ const useErrorMessage = (errors: ErrorMessages) => {
     countryErrorMsg,
     addressErrorMsg,
     emailErrorMsg,
+    currentPasswordErrorMsg,
+    newPasswordErrorMsg,
+    repeatNewPasswordErrorMsg,
   };
 };
 
 export default useErrorMessage;
 
 type ErrorMessages = {
-  firstName?: any;
-  userName?: any;
-  lastName?: any;
-  birthDate?: any;
-  phone?: any;
-  country?: any;
-  address?: any;
-  email?: any;
+  firstName?: FieldError;
+  userName?: FieldError;
+  lastName?: FieldError;
+  birthDate?: FieldError;
+  phone?: FieldError;
+  country?: FieldError;
+  address?: FieldError;
+  email?: FieldError;
+
+  currentPassword?: FieldError;
+  newPassword?: FieldError;
+  repeatNewPassword?: FieldError;
 };

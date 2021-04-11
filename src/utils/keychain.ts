@@ -1,4 +1,5 @@
 import KeyChain from 'react-native-keychain';
+import {Credentials} from 'types/global';
 
 /**
  * Get username and password from key chain.
@@ -15,3 +16,14 @@ export const setCredentials = ({username, password}: Credentials) =>
  * Clear credentials.
  */
 export const clearCredentials = () => KeyChain.resetGenericPassword();
+
+/**
+ * Set password.
+ */
+export const ifCredentialsSetPassword = async (password: string) => {
+  const user = await KeyChain.getGenericPassword();
+  if (user) {
+    const {username} = user;
+    KeyChain.setGenericPassword(username, password);
+  }
+};

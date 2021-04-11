@@ -6,6 +6,7 @@ import {menuList} from './config';
 
 const Security = () => {
   const {
+    navigateToChangePassword,
     navigateToSetFingerprint,
     fingerprintSwitchValue,
     onFingerprintSwitchOff,
@@ -18,44 +19,44 @@ const Security = () => {
     <SafeAreaView style={styles.container}>
       <BaseHeader title="security.title" />
       <View style={styles.menuWrapper}>
-        {menuList.map(
-          ({id, Icon, color, title, onPress, switcher, dividerWidth}) => {
-            const switchValue = [
-              passcodeSwitchValue,
-              fingerprintSwitchValue,
-              false,
-              false,
-            ][id];
-            const offSwitch = [
-              onPasscodeSwitchOff,
-              onFingerprintSwitchOff,
-              null,
-              null,
-            ][id];
-            const onSwitch = [
-              navigateToSetPasscode,
-              navigateToSetFingerprint,
-              undefined,
-              undefined,
-            ][id];
+        {menuList.map(({id, Icon, color, title, switcher, dividerWidth}) => {
+          const onPress = [null, null, navigateToChangePassword, null][id];
 
-            return (
-              <View key={id}>
-                <ListItem
-                  Icon={Icon}
-                  color={color}
-                  title={title}
-                  onPress={onPress}
-                  switcher={switcher}
-                  onSwitch={onSwitch}
-                  offSwitch={offSwitch}
-                  switchValue={switchValue}
-                />
-                <Divider width={dividerWidth} />
-              </View>
-            );
-          },
-        )}
+          const switchValue = [
+            passcodeSwitchValue,
+            fingerprintSwitchValue,
+            false,
+            false,
+          ][id];
+          const offSwitch = [
+            onPasscodeSwitchOff,
+            onFingerprintSwitchOff,
+            null,
+            null,
+          ][id];
+          const onSwitch = [
+            navigateToSetPasscode,
+            navigateToSetFingerprint,
+            undefined,
+            undefined,
+          ][id];
+
+          return (
+            <View key={id}>
+              <ListItem
+                Icon={Icon}
+                color={color}
+                title={title}
+                onPress={onPress}
+                switcher={switcher}
+                onSwitch={onSwitch}
+                offSwitch={offSwitch}
+                switchValue={switchValue}
+              />
+              <Divider width={dividerWidth} />
+            </View>
+          );
+        })}
       </View>
     </SafeAreaView>
   );

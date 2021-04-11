@@ -159,6 +159,20 @@ export default {
 
   changePassword: {
     title: 'პაროლის ცვლილება',
+
+    currentPassword: 'ამჟამინდელი პაროლი',
+    newPassword: 'ახალი პაროლი',
+    repeatNewPassword: 'გაიმეორეთ ახალი პაროლი',
+
+    currentPasswordRequired: 'გთხოვთ, შეიყვანეთ ამჟამინდელი პაროლი...',
+    newPasswordRequired: 'გთხოვთ, შეიყვანეთ ახალი პაროლი...',
+    repeatNewPasswordRequired: 'გთხოვთ, გაიმეორეთ ახალი პაროლი...',
+
+    newPasswordStronger: 'ახალი პაროლი არის ძალიან სუსტი...',
+
+    successfullyChanged: 'პაროლი წარმატებით შეიცვალა!',
+    updateFailed:
+      'ვერ მოხერხდა პაროლის ცვლილება, გთხოვთ სწორი მონაცემები შეიყვანოთ...',
   },
 
   termsAndConditions: {

@@ -35,7 +35,7 @@ const Register = () => {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <KeyboardAvoidingView
           style={styles.keyboardAvoidingView}
-          behavior={Platform.OS === 'ios' ? 'padding' : 'padding'}>
+          behavior="padding">
           <View style={styles.wrapper}>
             <View style={styles.titleWrapper}>
               <Text style={styles.authText} children="registration.title" />

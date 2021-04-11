@@ -86,6 +86,13 @@ const useSecurity = () => {
     });
   };
 
+  /**
+   * Navigate to Change Password.
+   */
+  const navigateToChangePassword = () => {
+    navigate('ChangePassword');
+  };
+
   return {
     passcodeSwitchValue,
     onPasscodeSwitchOff,
@@ -93,6 +100,7 @@ const useSecurity = () => {
     fingerprintSwitchValue,
     onFingerprintSwitchOff,
     navigateToSetFingerprint,
+    navigateToChangePassword,
   };
 };
 

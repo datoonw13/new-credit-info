@@ -5,7 +5,7 @@ import {colors} from 'theme';
 const InputEye: InputEyeFC = ({visible}) => {
   return (
     <Ionicons
-      name={visible ? 'eye-off' : 'eye'}
+      name={visible ? 'eye' : 'eye-off'}
       color={colors.GRAY8}
       size={22}
     />

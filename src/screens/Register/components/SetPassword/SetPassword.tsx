@@ -3,9 +3,7 @@ import {ScrollView, StyleSheet, View} from 'react-native';
 import {Divider} from 'react-native-elements';
 import zxc from 'zxcvbn';
 import {Controller} from 'react-hook-form';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import * as colors from 'theme/colors';
-import {Button, Input, PasswordGuide} from 'components';
+import {Button, Input, PasswordGuide, InputEye} from 'components';
 import useSetPassword from './useSetPassword';
 import {useTranslation} from 'react-i18next';
 
@@ -53,13 +51,7 @@ const SetPassword: SetPasswordFC = ({lastStep, registerData}) => {
                   onChange(val);
                   setPasswordScore(zxc(val).score);
                 }}
-                rightIcon={
-                  <Ionicons
-                    name={passwordVisible ? 'eye-off' : 'eye'}
-                    color={colors.GRAY8}
-                    size={22}
-                  />
-                }
+                rightIcon={<InputEye visible={passwordVisible} />}
               />
             )}
             rules={{
@@ -89,13 +81,7 @@ const SetPassword: SetPasswordFC = ({lastStep, registerData}) => {
                 }
                 editable={lastStep === 3}
                 onChangeText={onChange}
-                rightIcon={
-                  <Ionicons
-                    name={repeatPasswordVisible ? 'eye-off' : 'eye'}
-                    color={colors.GRAY8}
-                    size={22}
-                  />
-                }
+                rightIcon={<InputEye visible={repeatPasswordVisible} />}
                 errorMessage={errors.repeatPassword?.message}
               />
             )}
