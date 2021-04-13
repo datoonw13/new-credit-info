@@ -178,6 +178,15 @@ export default {
     lastModify: 'Last modify date',
   },
 
+  paymentInstructions: {
+    title: 'Payment Instructions',
+    instructions:
+      'To use free-of-charge credit report services, you have to make at least 1 tetris of transaction...',
+    receiverAccount: 'Receiver Account Number',
+    guideText: 'Payment can be done vie mobile bank or usual bank transaction.',
+    guideTextUnderlined: 'The payer of this transaction must be you.',
+  },
+
   dropdownAlert: {
     userCreateSuccess: 'User created successfully!',
     registerSuccess: 'You have registered successfully!',

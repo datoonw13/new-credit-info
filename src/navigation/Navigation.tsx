@@ -5,6 +5,7 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 import {
+  PaymentInstructions,
   TermsAndConditions,
   UpdatePersonalData,
   CompanyManagement,
@@ -175,15 +176,16 @@ const Navigation = () => {
   //   authenticate();
   // }, [dispatch]);
 
-  return (
-    <NavigationContainer ref={saveReference}>
-      {isSignedIn ? (
-        <AfterAuthDrawerNavigator />
-      ) : (
-        <BeforeAuthDrawerNavigator />
-      )}
-    </NavigationContainer>
-  );
+  return <PaymentInstructions />;
+  // return (
+  //   <NavigationContainer ref={saveReference}>
+  //     {isSignedIn ? (
+  //       <AfterAuthDrawerNavigator />
+  //     ) : (
+  //       <BeforeAuthDrawerNavigator />
+  //     )}
+  //   </NavigationContainer>
+  // );
 };
 
 export default Navigation;

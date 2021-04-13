@@ -1,9 +1,8 @@
 import React from 'react';
-import {StyleSheet, View, SafeAreaView, TouchableOpacity} from 'react-native';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {StyleSheet, View, SafeAreaView} from 'react-native';
 import {Logo} from 'assets/svg';
 import {HeaderWithLogoFC} from './types';
-import {toggleDrawer} from 'utils/navigation';
+import DrawerToggle from 'components/DrawerToggle';
 
 const HeaderWithLogo: HeaderWithLogoFC = ({mode = 'Middle', style}) => {
   return (
@@ -19,11 +18,7 @@ const HeaderWithLogo: HeaderWithLogoFC = ({mode = 'Middle', style}) => {
           style,
         ]}>
         <Logo />
-        {mode === 'WithMenu' && (
-          <TouchableOpacity onPress={toggleDrawer}>
-            <MaterialCommunityIcons size={28} name="menu" />
-          </TouchableOpacity>
-        )}
+        <DrawerToggle visible={mode === 'WithMenu'} />
       </View>
     </>
   );

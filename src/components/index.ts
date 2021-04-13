@@ -29,3 +29,4 @@ export {default as PersonalDataInput} from './PersonalDataInput';
 export {default as VerifyModal} from './VerifyModal';
 export {default as PasswordGuide} from './PasswordGuide';
 export {default as InputEye} from './InputEye';
+export {default as DrawerToggle} from './DrawerToggle';
