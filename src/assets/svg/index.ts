@@ -10,8 +10,12 @@ export {default as Facebook} from './fb.svg';
 export {default as Message} from './message.svg';
 export {default as Phone} from './phone.svg';
 export {default as Arrow} from './arrow.svg';
+
 export {default as StandardService} from './standard-service.svg';
 export {default as PremiumService} from './premium-service.svg';
+export {default as StandardServiceWhite} from './standard-service-white.svg';
+export {default as PremiumServiceWhite} from './premium-service-white.svg';
+
 export {default as IndividualEntity} from './individual-entity.svg';
 export {default as LegalEntity} from './legal-entity.svg';
 export {default as IndividualEntitySelected} from './individual-entity-selected.svg';

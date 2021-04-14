@@ -2,12 +2,20 @@ import React from 'react';
 import {SafeAreaView, ScrollView, StyleSheet, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {Text, DrawerToggle} from 'components';
-import {AccountNumber, PayGuide} from './components';
+import {AccountNumber, PayGuide, Service} from './components';
 import * as SVG from 'assets/svg';
 import {colors} from 'theme';
+import usePaymentInstructions from './usePaymentInstructions';
 
 const PaymentInstructions = () => {
   const {t} = useTranslation();
+  const {
+    premiumServiceSubscribed,
+    standardServiceSubscribed,
+    onPremiumServiceSubscribe,
+    onStandardServiceSubscribe,
+  } = usePaymentInstructions();
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollViewContainer}>
@@ -27,6 +35,22 @@ const PaymentInstructions = () => {
           accountNumber="GE48BG0000000905231300"
           style={styles.accountNumber}
         />
+        <View style={styles.services}>
+          <Service
+            onSwitch={onStandardServiceSubscribe}
+            value={standardServiceSubscribed}
+            serviceType="STANDARD"
+            price="4.99"
+            time="1 თვე"
+          />
+          <Service
+            onSwitch={onPremiumServiceSubscribe}
+            value={premiumServiceSubscribed}
+            serviceType="PREMIUM"
+            price="29.99"
+            time="12 თვე"
+          />
+        </View>
         <PayGuide style={styles.payGuide} />
       </ScrollView>
     </SafeAreaView>
@@ -79,5 +103,12 @@ const styles = StyleSheet.create({
   payGuide: {
     marginHorizontal: 15,
     marginTop: 12,
+  },
+  services: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 15,
+    marginTop: 15,
   },
 });
