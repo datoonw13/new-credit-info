@@ -12,6 +12,7 @@ export default {
   success: 'Success',
   save: 'Save',
   ok: 'OK',
+  agree: 'I Agree',
   close: 'Close',
   settings: 'Settings',
   activate: 'Activate',
@@ -176,6 +177,8 @@ export default {
   termsAndConditions: {
     title: 'Terms and Conditions',
     lastModify: 'Last modify date',
+    acceptTerms: 'I agree terms and conditions',
+    mustAgree: 'You mast agree terms and conditions in order to use the app...',
   },
 
   paymentInstructions: {

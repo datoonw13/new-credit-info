@@ -29,12 +29,12 @@ const App = () => {
         </View>
         <Navigation />
         <Loader ref={saveLoaderRef} />
+        <Modal ref={saveModalRef} />
         <DropdownAlert
           updateStatusBar={false}
           closeInterval={3000}
           ref={saveDropdownRef}
         />
-        <Modal ref={saveModalRef} />
       </ThemeProvider>
     </>
   );

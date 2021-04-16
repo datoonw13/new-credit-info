@@ -1,7 +1,7 @@
 import React from 'react';
 import {ScrollView, View, StyleSheet, Platform} from 'react-native';
 import {BaseHeader, Text} from 'components';
-import useTermsAndConditions from './useTermsAndConditions';
+import useTermsAndConditions from 'hooks/useTermsAndConditions';
 import HTMLRenderer from 'react-native-render-html';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {colors} from 'theme';

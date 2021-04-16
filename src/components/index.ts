@@ -30,3 +30,4 @@ export {default as VerifyModal} from './VerifyModal';
 export {default as PasswordGuide} from './PasswordGuide';
 export {default as InputEye} from './InputEye';
 export {default as DrawerToggle} from './DrawerToggle';
+export {default as AgreementModal} from './AgreementModal';

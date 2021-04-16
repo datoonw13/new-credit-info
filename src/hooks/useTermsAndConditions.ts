@@ -1,7 +1,7 @@
 import {useEffect, useMemo, useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import * as services from 'services';
-import {parseDate} from './helpers';
+import {parseDate} from 'utils/date';
 import {months} from 'utils/localization/date';
 
 const useTermsAndConditions = () => {

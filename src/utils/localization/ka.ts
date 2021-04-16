@@ -13,6 +13,7 @@ export default {
   success: 'ოპერაცია წარმატებით შესრულდა',
   save: 'შეინახე',
   ok: 'OK',
+  agree: 'ვადასტურებ',
   close: 'დახურვა',
   settings: 'პარამეტრები',
   activate: 'გაააქტიურე',
@@ -176,8 +177,11 @@ export default {
   },
 
   termsAndConditions: {
-    title: 'პირობები',
+    title: 'წესები და პირობები',
     lastModify: 'განახლების თარიღი',
+    acceptTerms: 'ვადასტურებ, რომ გავეცანი და ვეთანხმები წესებს და პირობებს',
+    mustAgree:
+      'იმისათვის რომ აპლიკაციის გამოყენება შეძლოთ, საჭიროა წესებს და პირობებს დაეთანხმოთ...',
   },
 
   paymentInstructions: {
