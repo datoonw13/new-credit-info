@@ -2,7 +2,7 @@ import React from 'react';
 import {SafeAreaView, ScrollView, StyleSheet, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {Text, DrawerToggle} from 'components';
-import {AccountNumber, PayGuide, Service} from './components';
+import {AccountNumber, PayGuide, Service, BankSwitcher} from './components';
 import * as SVG from 'assets/svg';
 import {colors} from 'theme';
 import usePaymentInstructions from './usePaymentInstructions';
@@ -10,6 +10,8 @@ import usePaymentInstructions from './usePaymentInstructions';
 const PaymentInstructions = () => {
   const {t} = useTranslation();
   const {
+    selectedBank,
+    setSelectedBank,
     premiumServiceSubscribed,
     standardServiceSubscribed,
     onPremiumServiceSubscribe,
@@ -31,6 +33,11 @@ const PaymentInstructions = () => {
             {t('paymentInstructions.instructions')}
           </Text>
         </View>
+        <BankSwitcher
+          style={styles.bankSwitcher}
+          selected={selectedBank}
+          onPress={setSelectedBank}
+        />
         <AccountNumber
           accountNumber="GE48BG0000000905231300"
           style={styles.accountNumber}
@@ -85,6 +92,10 @@ const styles = StyleSheet.create({
     marginTop: 20,
     alignItems: 'flex-start',
     backgroundColor: colors.blackOp1,
+  },
+  bankSwitcher: {
+    marginTop: 20,
+    marginHorizontal: 15,
   },
   instructionsIconWrapper: {
     backgroundColor: colors.white,

@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import {BankType} from './components/BankSwitcher/types';
 
 const usePaymentInstructions = () => {
   const [standardServiceSubscribed, setStandardServiceSubscribed] = useState(
@@ -7,6 +8,8 @@ const usePaymentInstructions = () => {
   const [premiumServiceSubscribed, setPremiumServiceSubscribed] = useState(
     false,
   );
+
+  const [selectedBank, setSelectedBank] = useState<BankType>('BOG');
 
   /**
    * On standard service subscribe...
@@ -23,6 +26,8 @@ const usePaymentInstructions = () => {
   };
 
   return {
+    selectedBank,
+    setSelectedBank,
     standardServiceSubscribed,
     premiumServiceSubscribed,
     onPremiumServiceSubscribe,

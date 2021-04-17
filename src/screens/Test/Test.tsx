@@ -1,26 +1,21 @@
-import React, {useEffect, useState} from 'react';
-import {SafeAreaView, StyleSheet} from 'react-native';
-import {Button, Text, AgreementModal} from 'components';
-import {ScrollView} from 'react-native-gesture-handler';
-import {signOut} from 'store/auth/sagaActions';
-import {useDispatch} from 'react-redux';
+import React from 'react';
+import {SafeAreaView, ScrollView, View, StyleSheet} from 'react-native';
+import {colors} from 'theme';
+// import {Button, Text} from 'components';
+// import {signOut} from 'store/auth/sagaActions';
+// import {useDispatch} from 'react-redux';
 
 const Test = () => {
-  const dispatch = useDispatch();
-  const [showModal, setShowModal] = useState(false);
+  // const dispatch = useDispatch();
 
-  const logout = () => dispatch(signOut());
-
-  useEffect(() => {
-    setTimeout(() => setShowModal(true), 3000);
-  }, []);
+  // const logout = () => dispatch(signOut());
 
   return (
     <ScrollView style={styles.container}>
       <SafeAreaView />
-      <Text style={styles.text}>Logged In!</Text>
-      <Button touchableStyle={styles.button} text="logout" onPress={logout} />
-      {showModal && <AgreementModal />}
+      {/* <Text style={styles.text}>Logged In!</Text> */}
+      {/* <Button touchableStyle={styles.button} text="logout" onPress={logout} /> */}
+      <View style={styles.simulator} />
     </ScrollView>
   );
 };
@@ -40,5 +35,13 @@ const styles = StyleSheet.create({
   button: {
     alignSelf: 'center',
     width: '70%',
+  },
+  simulator: {
+    width: 300,
+    height: 300,
+    backgroundColor: colors.strangeBlue,
+    alignSelf: 'center',
+    marginTop: 150,
+    borderRadius: 300,
   },
 });

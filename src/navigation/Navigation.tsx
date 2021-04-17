@@ -176,16 +176,16 @@ const Navigation = () => {
   //   authenticate();
   // }, [dispatch]);
 
-  // return <Test />;
-  return (
-    <NavigationContainer ref={saveReference}>
-      {isSignedIn ? (
-        <AfterAuthDrawerNavigator />
-      ) : (
-        <BeforeAuthDrawerNavigator />
-      )}
-    </NavigationContainer>
-  );
+  return <PaymentInstructions />;
+  // return (
+  //   <NavigationContainer ref={saveReference}>
+  //     {isSignedIn ? (
+  //       <AfterAuthDrawerNavigator />
+  //     ) : (
+  //       <BeforeAuthDrawerNavigator />
+  //     )}
+  //   </NavigationContainer>
+  // );
 };
 
 export default Navigation;
