@@ -4,6 +4,7 @@ import {Credentials} from 'types/global';
 type ApplicationState = {
   registration: RegistrationState;
   auth: AuthState;
+  app: AppState;
 };
 
 type RegistrationState = {
@@ -20,6 +21,10 @@ type AuthState = {
   user?: ProfileInfo;
 };
 
+type AppState = {
+  mode: AppMode;
+};
+
 type SignInData = Credentials & {
   rememberMe?: boolean;
 };
@@ -28,3 +33,10 @@ type SignInSagaAction = {
   type: string;
   data: SignInData;
 };
+
+type AppMode =
+  | 'INITIATION'
+  | 'NON_AUTHORIZED'
+  | 'BILLING'
+  | 'PACKAGE_SELECTION'
+  | 'AUTHORIZED';

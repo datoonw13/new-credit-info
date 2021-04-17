@@ -1,8 +1,8 @@
 import {AuthState} from 'store/types';
 
-const appInitialState: AuthState = {
+const authInitialState: AuthState = {
   isLoading: true,
   isSignedIn: false,
 };
 
-export default appInitialState;
+export default authInitialState;

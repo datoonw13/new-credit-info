@@ -1,5 +1,6 @@
 import {put, takeLatest} from 'redux-saga/effects';
 import * as authActions from 'store/auth/actions';
+import * as appActions from 'store/app/actions';
 import * as registerActions from 'store/registration/actions';
 import {saveProfileInfo} from 'store/auth/sagaActions';
 import * as actionTypes from 'store/auth/actionTypes';
@@ -67,6 +68,7 @@ function* signInSaga({data}: SignInSagaAction) {
         forgetUser();
       }
     }
+    yield put(appActions.setAppMode('AUTHORIZED'));
   } catch (error) {
     console.dir(error);
     if (error.response.status === 409) {

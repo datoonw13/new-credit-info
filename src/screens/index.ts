@@ -21,4 +21,5 @@ export {default as UpdatePersonalData} from './UpdatePersonalData';
 export {default as TermsAndConditions} from './TermsAndConditions';
 export {default as ChangePassword} from './ChangePassword';
 export {default as PaymentInstructions} from './PaymentInstructions';
+export {default as Opening} from './Opening';
 export {default as Test} from './Test';
