@@ -22,9 +22,13 @@ const Navigation = () => {
      * Navigate to use passcode screen if
      * storage has credentials.
      */
+    dispatch(appActions.setAppMode('INITIATION'));
+
     if (!isSignedIn) {
       goToSignInWithFingerprint();
-      dispatch(appActions.setAppMode('NON_AUTHORIZED'));
+      setTimeout(() => dispatch(appActions.setAppMode('NON_AUTHORIZED')), 3000);
+    } else {
+      setTimeout(() => dispatch(appActions.setAppMode('AUTHORIZED')), 3000);
     }
   }, [isSignedIn, dispatch]);
 

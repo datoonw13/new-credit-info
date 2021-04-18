@@ -3,11 +3,10 @@ import {StyleSheet, View} from 'react-native';
 import {colors} from 'theme';
 import {BottomTabItem} from './components';
 import {itemList} from './config';
-import {shouldHide} from './helper';
 
 const BottomTabs = () => {
   return (
-    <View style={[styles.container, shouldHide() && styles.hide]}>
+    <View style={styles.container}>
       {itemList.map(({ActiveIcon, InactiveIcon, id, navigate, screen}) => (
         <BottomTabItem
           BottomTabActiveIcon={ActiveIcon}
