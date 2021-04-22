@@ -55,3 +55,8 @@ export {default as Passcode} from './passcode.svg';
 export {default as Fingerprint} from './fingerprint.svg';
 export {default as ChangePassword} from './change-password.svg';
 export {default as TwoFactorAuthorization} from './two-factor-authorization.svg';
+
+export {default as BOGPhone} from './bog-phone.svg';
+export {default as BOGLaptop} from './bog-laptop.svg';
+export {default as TBCPhone} from './tbc-phone.svg';
+export {default as TBCLaptop} from './tbc-laptop.svg';

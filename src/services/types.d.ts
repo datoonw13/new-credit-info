@@ -104,3 +104,21 @@ type UpdateProfile = Omit<
   | 'mobileNumberVerified'
   | 'profilePhoto'
 >;
+
+type DecodedJWT = {
+  status: 'REGISTERED' | 'VERIFIED' | 'AUTHORIZED';
+  customerType: Entity;
+  companies: string[];
+  customer: number;
+  customerActions: string[];
+  exp: number;
+  iat: number;
+  passwordReset: boolean;
+  productId: number;
+  requiredMobileNumberVerification: boolean;
+  requiresAgreementAccept: boolean;
+  requiresWalkthrough: boolean;
+  requiresWelcomePopup: boolean;
+  session: string;
+  twoFactorAuth: boolean;
+};

@@ -6,6 +6,7 @@ import {saveProfileInfo} from 'store/auth/sagaActions';
 import * as actionTypes from 'store/auth/actionTypes';
 import * as services from 'services';
 import jwtDecode from 'jwt-decode';
+import {isBeingRegistered} from 'helpers/user';
 import {goTo} from 'utils/navigation';
 import {
   removeRefreshToken,
@@ -36,9 +37,9 @@ function* signInSaga({data}: SignInSagaAction) {
     yield setAccessToken(accessToken);
     yield setRefreshToken(refreshToken);
 
-    const jwtData = jwtDecode<any>(accessToken);
+    const jwtData: DecodedJWT = jwtDecode(accessToken);
 
-    if (jwtData.status === 'REGISTERED') {
+    if (isBeingRegistered(jwtData)) {
       const userInfo: CustomerInfoResponse = yield services.customerInfo();
       yield put(
         registerActions.setRegisterDataAction({
