@@ -1,13 +1,14 @@
+import {AuthState} from 'store/types';
 import * as actionTypes from './actionTypes';
 import initialState from './initialState';
 
-const authReducer = (state = initialState, action: any) => {
+const authReducer = (state = initialState, action: any): AuthState => {
   switch (action.type) {
     case actionTypes.CHECK_SIGNED_IN:
       return {
         ...state,
         isLoading: false,
-        isSignedIn: action.isSignedIn,
+        authStatus: action.authStatus,
       };
     case actionTypes.DEFAULT:
       return state;
@@ -15,7 +16,7 @@ const authReducer = (state = initialState, action: any) => {
       return {
         ...initialState,
         isLoading: false,
-        isSignedIn: false,
+        authStatus: null,
       };
     case actionTypes.SET_USER_DATA:
       return {

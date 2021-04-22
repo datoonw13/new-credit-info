@@ -4,7 +4,6 @@ import {Credentials} from 'types/global';
 type ApplicationState = {
   registration: RegistrationState;
   auth: AuthState;
-  app: AppState;
 };
 
 type RegistrationState = {
@@ -17,13 +16,16 @@ type RegistrationState = {
 
 type AuthState = {
   isLoading: boolean;
-  isSignedIn: boolean;
+  authStatus: AuthStatus;
   user?: ProfileInfo;
 };
 
-type AppState = {
-  mode: AppMode;
-};
+type AuthStatus =
+  | null
+  | 'NON_AUTHORIZED'
+  | 'SHOULD_PAY'
+  | 'SHOULD_SUBSCRIBE'
+  | 'FULL_ACCESS';
 
 type SignInData = Credentials & {
   rememberMe?: boolean;
@@ -33,10 +35,3 @@ type SignInSagaAction = {
   type: string;
   data: SignInData;
 };
-
-type AppMode =
-  | 'INITIATION'
-  | 'NON_AUTHORIZED'
-  | 'BILLING'
-  | 'PACKAGE_SELECTION'
-  | 'AUTHORIZED';

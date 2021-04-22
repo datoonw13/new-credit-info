@@ -1,6 +1,5 @@
 import {put, takeLatest} from 'redux-saga/effects';
 import * as authActions from 'store/auth/actions';
-import * as appActions from 'store/app/actions';
 import * as registerActions from 'store/registration/actions';
 import {saveProfileInfo} from 'store/auth/sagaActions';
 import * as actionTypes from 'store/auth/actionTypes';
@@ -60,7 +59,7 @@ function* signInSaga({data}: SignInSagaAction) {
       goTo('MainStackBeforeAuthNavigator', 'Register');
     } else {
       yield setCredentials(data);
-      yield put(authActions.setAuthStatusAction(true));
+      yield put(authActions.setAuthStatusAction('FULL_ACCESS'));
       yield put(saveProfileInfo());
 
       if (rememberMe === true) {
@@ -69,7 +68,6 @@ function* signInSaga({data}: SignInSagaAction) {
         forgetUser();
       }
     }
-    yield put(appActions.setAppMode('AUTHORIZED'));
   } catch (error) {
     console.dir(error);
     if (error.response.status === 409) {
@@ -99,7 +97,7 @@ function* saveProfileInformation() {
  * Sign out delete tokens.
  */
 function* signOut() {
-  yield put(authActions.setAuthStatusAction(false));
+  yield put(authActions.setAuthStatusAction(null));
   yield removeRefreshToken();
   yield removeAccessToken();
   yield clearCredentials();
@@ -113,10 +111,10 @@ function* authRefresh() {
   try {
     const userData: AuthResponse = yield services.refreshAuth();
     yield put(registerActions.setUserDataAction(userData));
-    yield put(authActions.setAuthStatusAction(true));
+    yield put(authActions.setAuthStatusAction('FULL_ACCESS'));
   } catch (error) {
     console.log(error);
-    yield put(authActions.setAuthStatusAction(false));
+    yield put(authActions.setAuthStatusAction(null));
   }
 }
 

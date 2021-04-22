@@ -6,7 +6,7 @@ import {
   Security,
   TermsAndConditions,
 } from 'assets/svg';
-import {goTo} from 'utils/navigation';
+import {navigate} from 'utils/navigation';
 
 export const menuList = [
   {
@@ -15,7 +15,7 @@ export const menuList = [
     color: colors.strangeBlueOp1,
     Icon: PersonalInfo,
     dividerWidth: '85%',
-    onPress: () => goTo('AfterAuthMainStackNavigator', 'UpdatePersonalData'),
+    onPress: () => navigate('UpdatePersonalData'),
   },
   {
     id: 2,
@@ -23,7 +23,7 @@ export const menuList = [
     color: colors.strangeBlueOp2,
     Icon: Security,
     dividerWidth: '85%',
-    onPress: () => goTo('AfterAuthMainStackNavigator', 'Security'),
+    onPress: () => navigate('Security'),
   },
   {
     id: 3,
@@ -31,7 +31,7 @@ export const menuList = [
     color: colors.blackOp1,
     Icon: Privacy,
     dividerWidth: '85%',
-    onPress: () => goTo('AfterAuthMainStackNavigator', 'Privacy'),
+    onPress: () => navigate('Privacy'),
   },
   {
     id: 4,
@@ -39,7 +39,7 @@ export const menuList = [
     color: colors.greenOp1,
     Icon: TermsAndConditions,
     dividerWidth: '85%',
-    onPress: () => goTo('AfterAuthMainStackNavigator', 'TermsAndConditions'),
+    onPress: () => navigate('TermsAndConditions'),
   },
   {
     id: 5,
@@ -47,6 +47,6 @@ export const menuList = [
     color: colors.yellowOp1,
     Icon: FAQ,
     dividerWidth: null,
-    onPress: () => goTo('AfterAuthMainStackNavigator', 'FAQ'),
+    onPress: () => navigate('FAQ'),
   },
 ];

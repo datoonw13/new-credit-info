@@ -20,6 +20,12 @@ export const goTo = (stack: string, screen: string) => {
 };
 
 /**
+ * Navigate.
+ */
+export const navigate = (screen: string) =>
+  references.navigator?.dispatch(CommonActions.navigate(screen));
+
+/**
  * Open drawer.
  */
 export const openDrawer = () => {
