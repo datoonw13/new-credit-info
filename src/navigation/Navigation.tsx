@@ -5,16 +5,14 @@ import NonAuthorized from './NonAuthorized';
 import Authorized from './Authorized';
 import {Opening} from 'screens';
 import {saveReference} from 'utils/navigation';
-import {selectAuth, selectAppMode} from 'store/select';
+import {selectAuth} from 'store/select';
 import {goToSignInWithFingerprint} from './helpers';
 import {useDispatch} from 'react-redux';
-import * as appActions from 'store/app/actions';
 import {signIn} from 'store/auth/sagaActions';
 import {getCredentials, ifCredentialsSetPassword} from 'utils/keychain';
 
 const Navigation = () => {
-  const {isSignedIn} = useSelector(selectAuth);
-  const appMode = useSelector(selectAppMode);
+  const {authStatus} = useSelector(selectAuth);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -22,15 +20,10 @@ const Navigation = () => {
      * Navigate to use passcode screen if
      * storage has credentials.
      */
-    dispatch(appActions.setAppMode('INITIATION'));
-
-    if (!isSignedIn) {
+    if (authStatus === 'NON_AUTHORIZED') {
       goToSignInWithFingerprint();
-      setTimeout(() => dispatch(appActions.setAppMode('NON_AUTHORIZED')), 3000);
-    } else {
-      setTimeout(() => dispatch(appActions.setAppMode('AUTHORIZED')), 3000);
     }
-  }, [isSignedIn, dispatch]);
+  }, [authStatus, dispatch]);
 
   // const dispatch = useDispatch();
   // useEffect(() => {
@@ -60,13 +53,13 @@ const Navigation = () => {
 
   // return <PaymentInstructions />;
 
-  if (appMode === 'INITIATION') {
+  if (authStatus === null) {
     return <Opening />;
   }
 
   return (
     <NavigationContainer ref={saveReference}>
-      {isSignedIn ? <Authorized /> : <NonAuthorized />}
+      {authStatus !== 'NON_AUTHORIZED' ? <Authorized /> : <NonAuthorized />}
     </NavigationContainer>
   );
 };

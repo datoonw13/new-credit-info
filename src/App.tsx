@@ -10,14 +10,11 @@ import {colors} from 'theme';
 import {saveLoaderRef} from 'utils/loader';
 import {saveDropdownRef} from 'utils/dropdownAlert';
 import {saveModalRef} from 'utils/modal';
-import {useAuthCheck} from 'hooks';
 import 'utils/localization/config';
 
 enableScreens();
 
 const App = () => {
-  useAuthCheck();
-
   return (
     <>
       <ThemeProvider theme={theme}>

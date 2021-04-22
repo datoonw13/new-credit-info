@@ -1,3 +1,4 @@
+import {AuthStatus} from 'store/types';
 import * as actionTypes from './actionTypes';
 
 /**
@@ -18,7 +19,7 @@ export const setUserDataAction = (data: ProfileInfo) => ({
 /**
  * Save user auth status.
  */
-export const setAuthStatusAction = (isSignedIn: boolean) => ({
+export const setAuthStatusAction = (authStatus: AuthStatus) => ({
   type: actionTypes.CHECK_SIGNED_IN,
-  isSignedIn,
+  authStatus,
 });

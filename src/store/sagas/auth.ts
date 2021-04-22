@@ -58,7 +58,7 @@ function* signInSaga({data}: SignInSagaAction) {
       goTo('MainStackBeforeAuthNavigator', 'Register');
     } else {
       yield setCredentials(data);
-      yield put(authActions.setAuthStatusAction(true));
+      yield put(authActions.setAuthStatusAction('FULL_ACCESS'));
       yield put(saveProfileInfo());
 
       if (rememberMe === true) {
@@ -96,7 +96,7 @@ function* saveProfileInformation() {
  * Sign out delete tokens.
  */
 function* signOut() {
-  yield put(authActions.setAuthStatusAction(false));
+  yield put(authActions.setAuthStatusAction(null));
   yield removeRefreshToken();
   yield removeAccessToken();
   yield clearCredentials();
@@ -110,10 +110,10 @@ function* authRefresh() {
   try {
     const userData: AuthResponse = yield services.refreshAuth();
     yield put(registerActions.setUserDataAction(userData));
-    yield put(authActions.setAuthStatusAction(true));
+    yield put(authActions.setAuthStatusAction('FULL_ACCESS'));
   } catch (error) {
     console.log(error);
-    yield put(authActions.setAuthStatusAction(false));
+    yield put(authActions.setAuthStatusAction(null));
   }
 }
 
