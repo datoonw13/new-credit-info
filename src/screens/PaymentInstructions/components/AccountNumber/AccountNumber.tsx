@@ -21,7 +21,7 @@ const AccountNumber: AccountNumberFC = ({accountNumber, style}) => {
       <TouchableOpacity
         style={styles.copyIconWrapper}
         onPress={copyToClipboard}>
-        <SVG.Delete />
+        <SVG.Copy />
       </TouchableOpacity>
     </View>
   );

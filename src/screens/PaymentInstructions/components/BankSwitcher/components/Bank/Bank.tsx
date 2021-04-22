@@ -1,7 +1,7 @@
 import React from 'react';
-import {StyleSheet, TouchableOpacity, Image} from 'react-native';
-import {BOGImage, TBCImage} from 'assets/images';
-// import {colors} from 'theme';
+import {StyleSheet, TouchableOpacity} from 'react-native';
+import {BOGLogo, TBCLogo} from 'assets/svg';
+import {colors} from 'theme';
 import {BankFC} from './types';
 
 const Bank: BankFC = ({active, type, onPress}) => {
@@ -10,17 +10,9 @@ const Bank: BankFC = ({active, type, onPress}) => {
       style={[styles.container, active ? styles.active : {}]}
       onPress={() => onPress(type)}>
       {type === 'BOG' ? (
-        <Image
-          source={BOGImage}
-          style={styles.bankImage}
-          resizeMode="contain"
-        />
+        <BOGLogo width="90%" />
       ) : (
-        <Image
-          source={TBCImage}
-          style={styles.bankImage}
-          resizeMode="contain"
-        />
+        <TBCLogo width="90%" style={styles.tbcShift} />
       )}
     </TouchableOpacity>
   );
@@ -39,10 +31,9 @@ const styles = StyleSheet.create({
     borderRadius: 12,
   },
   active: {
-    // backgroundColor: colors.white,
+    backgroundColor: colors.white,
   },
-  bankImage: {
-    height: 40,
-    borderRadius: 12,
+  tbcShift: {
+    marginBottom: 3,
   },
 });

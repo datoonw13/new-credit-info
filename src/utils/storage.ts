@@ -102,3 +102,17 @@ export const getPasscode = () => AsyncStorage.getItem('passcode');
  * Remove passcode.
  */
 export const removePasscode = () => AsyncStorage.removeItem('passcode');
+
+/**
+ * Remember user if passed condition is true.
+ */
+export const rememberIfTrueOrForget = (
+  shouldRemember: boolean,
+  username: string,
+) => {
+  if (shouldRemember === true) {
+    rememberUser(username);
+  } else if (shouldRemember === false) {
+    forgetUser();
+  }
+};

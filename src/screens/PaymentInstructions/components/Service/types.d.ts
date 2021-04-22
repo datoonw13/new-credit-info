@@ -5,8 +5,6 @@ type ServiceProps = {
   serviceType: ServiceType;
   time: string;
   price: string;
-  value: boolean;
-  onSwitch: (value: boolean) => void;
 };
 
 type ServiceFC = (props: ServiceProps) => JSX.Element;

@@ -1,5 +1,7 @@
 import React from 'react';
 import {SafeAreaView, ScrollView, StyleSheet, View} from 'react-native';
+import {useSelector} from 'react-redux';
+import {selectAuth} from 'store/select';
 import {useTranslation} from 'react-i18next';
 import {
   LanguageSwitcher,
@@ -12,6 +14,7 @@ import {UserAccount, Notifications} from './components';
 import {menuList} from './config';
 
 const DrawerAfterAuth = () => {
+  const {authStatus} = useSelector(selectAuth);
   const {t} = useTranslation();
   return (
     <ScrollView
@@ -21,7 +24,7 @@ const DrawerAfterAuth = () => {
         <HeaderWithLogo mode="WithMenu" />
         <Text style={styles.heading}>{t('settings')}</Text>
         <UserAccount />
-        <Notifications />
+        <Notifications show={authStatus === 'FULL_ACCESS'} />
         <View style={styles.drawerMenu}>
           {menuList.map(({id, Icon, color, title, dividerWidth, onPress}) => (
             <View key={id}>

@@ -1,12 +1,14 @@
 /* eslint-disable prettier/prettier */
-import React from 'react';
+import React, {useMemo} from 'react';
 import {createNativeStackNavigator} from 'react-native-screens/native-stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {
+  PaymentInstructions,
   TermsAndConditions,
   UpdatePersonalData,
   CompanyManagement,
+  SubscribeService,
   DrawerAfterAuth,
   ChangePassword,
   SetFingerprint,
@@ -15,11 +17,14 @@ import {
   Simulator,
   Payments,
   Security,
+  Reports,
   Credits,
   Privacy,
   FAQ,
 } from 'screens';
 import {BottomTabs} from 'components';
+import {useSelector} from 'react-redux';
+import {selectAuth} from 'store/select';
 import {afterAuthScreenOptions, drawerAfterAuthStyle} from './config';
 
 /**
@@ -45,22 +50,35 @@ const BottomTabNavigator = () => (
   </BottomTabNav.Navigator>
 );
 
-const AfterAuthDrawerNavigator = () => (
-  <AfterAuthDrawerNav.Navigator
-    drawerStyle={drawerAfterAuthStyle}
-    drawerContent={() => <DrawerAfterAuth />}  >
+const AfterAuthDrawerNavigator = () => {
+  const {authStatus} = useSelector(selectAuth);
 
-    <AfterAuthDrawerNav.Screen component={BottomTabNavigator} name="BottomTabNavigator" />
+  const MainAuthorizedScreen = useMemo(() => {
+    if (authStatus === 'SHOULD_PAY') {
+      return <AfterAuthDrawerNav.Screen component={PaymentInstructions} name="PaymentInstructions" />;
+    } else if (authStatus === 'SHOULD_SEE_REPORTS') {
+      return <AfterAuthDrawerNav.Screen component={Reports} name="Reports" />;
+    } else if (authStatus === 'SHOULD_SUBSCRIBE') {
+      return <AfterAuthDrawerNav.Screen component={SubscribeService} name="SubscribeService" />;
+    }
+    return  <AfterAuthDrawerNav.Screen component={BottomTabNavigator} name="BottomTabNavigator" />;
+  } , [authStatus]);
 
-    <AfterAuthDrawerNav.Screen component={FAQ} name="FAQ" />
-    <AfterAuthDrawerNav.Screen component={UpdatePersonalData} name="UpdatePersonalData" />
-    <AfterAuthDrawerNav.Screen component={Security} name="Security" />
-    <AfterAuthDrawerNav.Screen component={ChangePassword} name="ChangePassword" />
-    <AfterAuthDrawerNav.Screen component={Privacy} name="Privacy" />
-    <AfterAuthDrawerNav.Screen component={SetPasscode} name="SetPasscode" />
-    <AfterAuthDrawerNav.Screen component={SetFingerprint} name="SetFingerprint" />
-    <AfterAuthDrawerNav.Screen component={TermsAndConditions} name="TermsAndConditions" />
-  </AfterAuthDrawerNav.Navigator>
-);
+  return (
+    <AfterAuthDrawerNav.Navigator
+      drawerStyle={drawerAfterAuthStyle}
+      drawerContent={() => <DrawerAfterAuth />}  >
+      {MainAuthorizedScreen}
+      <AfterAuthDrawerNav.Screen component={FAQ} name="FAQ" />
+      <AfterAuthDrawerNav.Screen component={UpdatePersonalData} name="UpdatePersonalData" />
+      <AfterAuthDrawerNav.Screen component={Security} name="Security" />
+      <AfterAuthDrawerNav.Screen component={ChangePassword} name="ChangePassword" />
+      <AfterAuthDrawerNav.Screen component={Privacy} name="Privacy" />
+      <AfterAuthDrawerNav.Screen component={SetPasscode} name="SetPasscode" />
+      <AfterAuthDrawerNav.Screen component={SetFingerprint} name="SetFingerprint" />
+      <AfterAuthDrawerNav.Screen component={TermsAndConditions} name="TermsAndConditions" />
+    </AfterAuthDrawerNav.Navigator>
+  );
+};
 
 export default AfterAuthDrawerNavigator;

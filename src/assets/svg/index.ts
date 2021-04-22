@@ -60,3 +60,8 @@ export {default as BOGPhone} from './bog-phone.svg';
 export {default as BOGLaptop} from './bog-laptop.svg';
 export {default as TBCPhone} from './tbc-phone.svg';
 export {default as TBCLaptop} from './tbc-laptop.svg';
+export {default as BOGLogo} from './bog-logo.svg';
+export {default as TBCLogo} from './tbc-logo.svg';
+
+export {default as Copy} from './copy.svg';
+export {default as Report} from './report.svg';

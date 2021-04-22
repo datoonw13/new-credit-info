@@ -21,10 +21,10 @@ type AuthState = {
 };
 
 type AuthStatus =
-  | null
   | 'NON_AUTHORIZED'
   | 'SHOULD_PAY'
   | 'SHOULD_SUBSCRIBE'
+  | 'SHOULD_SEE_REPORTS'
   | 'FULL_ACCESS';
 
 type SignInData = Credentials & {

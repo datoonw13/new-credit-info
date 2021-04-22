@@ -6,14 +6,7 @@ import {ServiceFC} from './types';
 import {colors} from 'theme';
 import {useTranslation} from 'react-i18next';
 
-const Service: ServiceFC = ({
-  serviceType,
-  onSwitch,
-  style,
-  value,
-  price,
-  time,
-}) => {
+const Service: ServiceFC = ({serviceType, style, price, time}) => {
   const {t} = useTranslation();
   const title =
     serviceType === 'PREMIUM'
@@ -36,7 +29,7 @@ const Service: ServiceFC = ({
           <Text style={styles.descriptionWrapper}>{time}</Text>
           <Text style={styles.price}>{price}</Text>
         </View>
-        <Switch style={styles.switch} value={value} onValueChange={onSwitch} />
+        <Switch style={styles.switch} value={false} disabled />
       </View>
     </View>
   );

@@ -1,37 +1,26 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {BankType} from './components/BankSwitcher/types';
+import {accounts} from './config';
 
 const usePaymentInstructions = () => {
-  const [standardServiceSubscribed, setStandardServiceSubscribed] = useState(
-    false,
-  );
-  const [premiumServiceSubscribed, setPremiumServiceSubscribed] = useState(
-    false,
-  );
-
   const [selectedBank, setSelectedBank] = useState<BankType>('BOG');
+  const [accountNumber, setAccountNumber] = useState<string>(accounts.bog);
 
   /**
-   * On standard service subscribe...
+   * Switch account number based on selected bank.
    */
-  const onStandardServiceSubscribe = (value: boolean) => {
-    setStandardServiceSubscribed(value);
-  };
-
-  /**
-   * On premium service subscribe...
-   */
-  const onPremiumServiceSubscribe = (value: boolean) => {
-    setPremiumServiceSubscribed(value);
-  };
+  useEffect(() => {
+    if (selectedBank === 'BOG') {
+      setAccountNumber(accounts.bog);
+    } else {
+      setAccountNumber(accounts.tbc);
+    }
+  }, [selectedBank]);
 
   return {
     selectedBank,
+    accountNumber,
     setSelectedBank,
-    standardServiceSubscribed,
-    premiumServiceSubscribed,
-    onPremiumServiceSubscribe,
-    onStandardServiceSubscribe,
   };
 };
 

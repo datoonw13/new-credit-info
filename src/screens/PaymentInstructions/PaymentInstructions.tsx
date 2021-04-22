@@ -2,7 +2,13 @@ import React from 'react';
 import {SafeAreaView, ScrollView, StyleSheet, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {Text, DrawerToggle} from 'components';
-import {AccountNumber, PayGuide, Service, BankSwitcher} from './components';
+import {
+  AccountNumber,
+  BankSwitcher,
+  BankImages,
+  PayGuide,
+  Service,
+} from './components';
 import * as SVG from 'assets/svg';
 import {colors} from 'theme';
 import usePaymentInstructions from './usePaymentInstructions';
@@ -11,23 +17,20 @@ const PaymentInstructions = () => {
   const {t} = useTranslation();
   const {
     selectedBank,
+    accountNumber,
     setSelectedBank,
-    premiumServiceSubscribed,
-    standardServiceSubscribed,
-    onPremiumServiceSubscribe,
-    onStandardServiceSubscribe,
   } = usePaymentInstructions();
 
   return (
     <SafeAreaView style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.heading}>{t('paymentInstructions.title')}</Text>
+        <DrawerToggle visible />
+      </View>
       <ScrollView style={styles.scrollViewContainer}>
-        <View style={styles.header}>
-          <Text style={styles.heading}>{t('paymentInstructions.title')}</Text>
-          <DrawerToggle visible />
-        </View>
         <View style={styles.instructions}>
           <View style={styles.instructionsIconWrapper}>
-            <SVG.Camera />
+            <SVG.Report />
           </View>
           <Text style={styles.instructionsText}>
             {t('paymentInstructions.instructions')}
@@ -38,24 +41,21 @@ const PaymentInstructions = () => {
           selected={selectedBank}
           onPress={setSelectedBank}
         />
+        <BankImages bankType={selectedBank} />
         <AccountNumber
-          accountNumber="GE48BG0000000905231300"
+          accountNumber={accountNumber}
           style={styles.accountNumber}
         />
         <View style={styles.services}>
           <Service
-            onSwitch={onStandardServiceSubscribe}
-            value={standardServiceSubscribed}
             serviceType="STANDARD"
             price="4.99"
-            time="1 თვე"
+            time={`1 ${t('month')}`}
           />
           <Service
-            onSwitch={onPremiumServiceSubscribe}
-            value={premiumServiceSubscribed}
             serviceType="PREMIUM"
             price="29.99"
-            time="12 თვე"
+            time={`12 ${t('month')}`}
           />
         </View>
         <PayGuide style={styles.payGuide} />
@@ -79,6 +79,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingHorizontal: 15,
     alignItems: 'center',
+    paddingVertical: 10,
   },
   heading: {
     fontSize: 16,
@@ -106,9 +107,10 @@ const styles = StyleSheet.create({
   },
   instructionsText: {
     fontSize: 14,
+    width: '90%',
   },
   accountNumber: {
-    marginTop: 26,
+    marginTop: 5,
     marginHorizontal: 15,
   },
   payGuide: {

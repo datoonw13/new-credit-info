@@ -5,8 +5,13 @@ import Text from 'components/Text';
 import {useTranslation} from 'react-i18next';
 import {colors} from 'theme';
 
-const Notifications = () => {
+const Notifications: NotificationsFC = ({show}) => {
   const {t} = useTranslation();
+
+  if (show === false) {
+    return null;
+  }
+
   return (
     <TouchableOpacity style={styles.container}>
       <View style={styles.innerContainer}>

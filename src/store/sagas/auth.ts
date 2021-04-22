@@ -5,16 +5,20 @@ import {saveProfileInfo} from 'store/auth/sagaActions';
 import * as actionTypes from 'store/auth/actionTypes';
 import * as services from 'services';
 import jwtDecode from 'jwt-decode';
-import {isBeingRegistered} from 'helpers/user';
+import {
+  shouldMakeTransaction,
+  shouldTabNavigation,
+  isBeingRegistered,
+  shouldSeeReports,
+} from 'helpers/user';
 import {goTo} from 'utils/navigation';
 import {
+  rememberIfTrueOrForget,
   removeRefreshToken,
   removeAccessToken,
   setRefreshToken,
   setPersonalInfo,
   setAccessToken,
-  rememberUser,
-  forgetUser,
 } from 'utils/storage';
 import {alertError} from 'utils/dropdownAlert';
 import {setCredentials, clearCredentials} from 'utils/keychain';
@@ -38,7 +42,16 @@ function* signInSaga({data}: SignInSagaAction) {
 
     const jwtData: DecodedJWT = jwtDecode(accessToken);
 
+    console.groupCollapsed('Auth - JWT Decoded');
+    console.log(jwtData);
+    console.groupEnd();
+
     if (isBeingRegistered(jwtData)) {
+      /**
+       * User is being registered and has required
+       * fields to fill in before we let user to
+       * use the app.
+       */
       const userInfo: CustomerInfoResponse = yield services.customerInfo();
       yield put(
         registerActions.setRegisterDataAction({
@@ -57,17 +70,29 @@ function* signInSaga({data}: SignInSagaAction) {
         yield put(registerActions.setRegisterSelectedStepAction(6));
       }
       goTo('MainStackBeforeAuthNavigator', 'Register');
-    } else {
-      yield setCredentials(data);
+    } else if (shouldMakeTransaction(jwtData)) {
+      /**
+       * User is regitered and verified and transaction
+       * should be made for the user to be able to
+       * choose service and use the app.
+       */
+      yield put(authActions.setAuthStatusAction('SHOULD_PAY'));
+    } else if (shouldSeeReports(jwtData)) {
+      /**
+       * After transaction is made user should see reports
+       * screen after authorization.
+       */
+      yield put(authActions.setAuthStatusAction('SHOULD_SEE_REPORTS'));
+    } else if (shouldTabNavigation(jwtData)) {
+      /**
+       * User is fully authorized.
+       */
       yield put(authActions.setAuthStatusAction('FULL_ACCESS'));
-      yield put(saveProfileInfo());
-
-      if (rememberMe === true) {
-        rememberUser(username);
-      } else if (rememberMe === false) {
-        forgetUser();
-      }
     }
+
+    yield setCredentials(data);
+    yield put(saveProfileInfo());
+    yield rememberIfTrueOrForget(!!rememberMe, username);
   } catch (error) {
     console.dir(error);
     if (error.response.status === 409) {

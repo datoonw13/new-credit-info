@@ -2,7 +2,7 @@ import {AuthState} from 'store/types';
 
 const authInitialState: AuthState = {
   isLoading: true,
-  authStatus: null,
+  authStatus: 'NON_AUTHORIZED',
 };
 
 export default authInitialState;
