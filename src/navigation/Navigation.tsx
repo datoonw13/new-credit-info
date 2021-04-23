@@ -51,18 +51,18 @@ const Navigation = () => {
   //   authenticate();
   // }, [dispatch]);
 
-  return <Reports />;
+  // return <Reports />;
 
   // if (authStatus === null) {
   //   return <Opening />;
   // }
 
   // console.log({authStatus});
-  // return (
-  //   <NavigationContainer ref={saveReference}>
-  //     {authStatus !== 'NON_AUTHORIZED' ? <Authorized /> : <NonAuthorized />}
-  //   </NavigationContainer>
-  // );
+  return (
+    <NavigationContainer ref={saveReference}>
+      {authStatus !== 'NON_AUTHORIZED' ? <Authorized /> : <NonAuthorized />}
+    </NavigationContainer>
+  );
 };
 
 export default Navigation;

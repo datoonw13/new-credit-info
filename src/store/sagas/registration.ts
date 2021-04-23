@@ -112,7 +112,7 @@ function* sendOTPSaga(payload: any) {
 function* verifyOTPSaga(payload: any) {
   try {
     yield services.verifyOTP(payload.code);
-    yield authActions.setAuthStatusAction('SHOULD_PAY');
+    yield put(authActions.setAuthStatusAction('SHOULD_PAY'));
     alertSuccess('success', 'dropdownAlert.registerSuccess');
   } catch (error) {
     if (error.response.status === 409) {
@@ -128,7 +128,7 @@ function* verifyOTPSaga(payload: any) {
 function* getCountriesSaga() {
   try {
     const countries: Country[] = yield services.getCountries();
-    yield put(setCountriesAction(countries));
+    yield put(registerActions.setCountriesAction(countries));
   } catch (error) {
     alertError('error');
   }
