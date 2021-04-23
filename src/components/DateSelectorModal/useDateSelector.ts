@@ -1,7 +1,10 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useMemo, useState} from 'react';
 import {getAppropriateDate} from './helpers';
 const useDateSelector = ({isPerson, activeDate, setDate}: UseDateSelector) => {
-  const date = activeDate ? activeDate : getAppropriateDate(isPerson);
+  const date = useMemo(
+    () => (activeDate ? activeDate : getAppropriateDate(isPerson)),
+    [activeDate, isPerson],
+  );
 
   const [dateType, setDateType] = useState<SelectedDate>('year');
   const [year, setYear] = useState(date.getFullYear());

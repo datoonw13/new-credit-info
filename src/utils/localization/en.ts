@@ -95,6 +95,7 @@ export default {
 
     phone: 'Phone Number',
     validPhone: 'Please, type phone number',
+    phoneAlreadyUsed: 'This phone number is already been registered...',
     OTP: 'One Time Password',
     validOTP: 'Please, type One Time Password',
     sendAgain: 'Send Again',
@@ -229,5 +230,15 @@ export default {
     premium: 'Premium',
 
     promote: 'Choose annual plan and save money!',
+  },
+
+  reports: {
+    download: 'Download Report',
+    checkCreditHistory:
+      'Check your credit history 3 times per year free of charge!',
+    sendReport: 'Send Report',
+    sendReportToSomeone: 'Send your credit history to somebody...',
+    scoreAndRaiting:
+      'Your score and raiting will be available after subscribing standard or premium service!',
   },
 };

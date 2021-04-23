@@ -1,3 +1,7 @@
+import AsyncStorage from '@react-native-community/async-storage';
+import {getPersonalInfo} from 'utils/storage';
+import {clearCredentials} from 'utils/keychain';
+
 /**
  * Determine if user status is registered.
  */
@@ -23,4 +27,21 @@ export const shouldSeeReports = ({status, productId}: DecodedJWT) => {
  */
 export const shouldTabNavigation = ({status, productId}: DecodedJWT) => {
   return status === 'AUTHORIZED' && [1, 2, 3, 4].has(productId);
+};
+
+/**
+ * Clean keychain and storage if previously
+ * authenticated user is different
+ * than existing one.
+ */
+export const cleanPreviousUserDataIfDifferent = async (username: string) => {
+  const personalInfo = await getPersonalInfo();
+
+  if (personalInfo?.personalCode !== username) {
+    await AsyncStorage.removeItem('biometric-auth-status');
+    await AsyncStorage.removeItem('passcode');
+    await AsyncStorage.removeItem('authData');
+    await AsyncStorage.removeItem('userData');
+    await clearCredentials();
+  }
 };

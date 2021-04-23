@@ -6,6 +6,7 @@ import * as actionTypes from 'store/auth/actionTypes';
 import * as services from 'services';
 import jwtDecode from 'jwt-decode';
 import {
+  cleanPreviousUserDataIfDifferent,
   shouldMakeTransaction,
   shouldTabNavigation,
   isBeingRegistered,
@@ -37,6 +38,7 @@ function* signInSaga({data}: SignInSagaAction) {
       password,
     });
 
+    yield cleanPreviousUserDataIfDifferent(username);
     yield setAccessToken(accessToken);
     yield setRefreshToken(refreshToken);
 
@@ -69,6 +71,7 @@ function* signInSaga({data}: SignInSagaAction) {
         yield put(registerActions.setRegisterLastStepAction(6));
         yield put(registerActions.setRegisterSelectedStepAction(6));
       }
+      yield rememberIfTrueOrForget(!!rememberMe, username);
       goTo('MainStackBeforeAuthNavigator', 'Register');
     } else if (shouldMakeTransaction(jwtData)) {
       /**
@@ -77,22 +80,27 @@ function* signInSaga({data}: SignInSagaAction) {
        * choose service and use the app.
        */
       yield put(authActions.setAuthStatusAction('SHOULD_PAY'));
+      yield put(saveProfileInfo());
+      yield setCredentials(data);
+      yield rememberIfTrueOrForget(!!rememberMe, username);
     } else if (shouldSeeReports(jwtData)) {
       /**
        * After transaction is made user should see reports
        * screen after authorization.
        */
       yield put(authActions.setAuthStatusAction('SHOULD_SEE_REPORTS'));
+      yield put(saveProfileInfo());
+      yield setCredentials(data);
+      yield rememberIfTrueOrForget(!!rememberMe, username);
     } else if (shouldTabNavigation(jwtData)) {
       /**
        * User is fully authorized.
        */
       yield put(authActions.setAuthStatusAction('FULL_ACCESS'));
+      yield put(saveProfileInfo());
+      yield setCredentials(data);
+      yield rememberIfTrueOrForget(!!rememberMe, username);
     }
-
-    yield setCredentials(data);
-    yield put(saveProfileInfo());
-    yield rememberIfTrueOrForget(!!rememberMe, username);
   } catch (error) {
     console.dir(error);
     if (error.response.status === 409) {
@@ -122,7 +130,7 @@ function* saveProfileInformation() {
  * Sign out delete tokens.
  */
 function* signOut() {
-  yield put(authActions.setAuthStatusAction(null));
+  yield put(authActions.setAuthStatusAction('NON_AUTHORIZED'));
   yield removeRefreshToken();
   yield removeAccessToken();
   yield clearCredentials();
@@ -139,7 +147,7 @@ function* authRefresh() {
     yield put(authActions.setAuthStatusAction('FULL_ACCESS'));
   } catch (error) {
     console.log(error);
-    yield put(authActions.setAuthStatusAction(null));
+    yield put(authActions.setAuthStatusAction('NON_AUTHORIZED'));
   }
 }
 

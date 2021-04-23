@@ -16,7 +16,7 @@ const authReducer = (state = initialState, action: any): AuthState => {
       return {
         ...initialState,
         isLoading: false,
-        authStatus: null,
+        authStatus: 'NON_AUTHORIZED',
       };
     case actionTypes.SET_USER_DATA:
       return {

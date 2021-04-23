@@ -52,6 +52,7 @@ const BottomTabNavigator = () => (
 
 const AfterAuthDrawerNavigator = () => {
   const {authStatus} = useSelector(selectAuth);
+  console.log({authStatus});
 
   const MainAuthorizedScreen = useMemo(() => {
     if (authStatus === 'SHOULD_PAY') {

@@ -30,6 +30,7 @@ const SetAdditionalInfo: SetAdditionalInfoFC = ({
     errors,
   } = useSetAdditionalInfo({lastStep, registerData});
   const {t} = useTranslation();
+
   return (
     <>
       <View style={styles.container}>

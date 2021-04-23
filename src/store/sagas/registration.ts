@@ -1,12 +1,8 @@
 import {put, takeLatest} from 'redux-saga/effects';
-import {
-  setRegisterSelectedStepAction,
-  setRegisterLastStepAction,
-  updateRegisterDataAction,
-  setCountriesAction,
-} from 'store/registration/actions';
+import * as registerActions from 'store/registration/actions';
+import * as authActions from 'store/auth/actions';
 import * as actionTypes from 'store/registration/actionTypes';
-import {alertError, alertSuccess} from 'utils/dropdownAlert';
+import {alertError, alertSuccess, alertWarning} from 'utils/dropdownAlert';
 import * as services from 'services';
 import {showSentOTPModal} from 'utils/modal';
 import {setAccessToken, setRefreshToken} from 'utils/storage';
@@ -31,9 +27,9 @@ function* signUpSaga(payload: any) {
     yield setAccessToken(accessToken);
     yield setRefreshToken(refreshToken);
 
-    yield put(updateRegisterDataAction(payload.data));
-    yield put(setRegisterLastStepAction(4));
-    yield put(setRegisterSelectedStepAction(4));
+    yield put(registerActions.updateRegisterDataAction(payload.data));
+    yield put(registerActions.setRegisterLastStepAction(4));
+    yield put(registerActions.setRegisterSelectedStepAction(4));
     yield alertSuccess('success', 'dropdownAlert.userCreateSuccess');
   } catch (error) {
     console.log(error);
@@ -51,7 +47,7 @@ function* getCustomerInfoSaga(payload: any) {
     const userInfo: CustomerInfoResponse = yield services.customerInfo(
       payload.step,
     );
-    yield put(updateRegisterDataAction(userInfo));
+    yield put(registerActions.updateRegisterDataAction(userInfo));
   } catch (error) {
     if (error.response.status === 409) {
       alertError('error', error.response.data.errorCode.toUpperCase());
@@ -65,9 +61,9 @@ function* getCustomerInfoSaga(payload: any) {
 function* setCustomerExtraSaga(payload: any) {
   try {
     yield services.setAdditionalUserInfo(payload.data);
-    yield put(updateRegisterDataAction(payload.data));
-    yield put(setRegisterLastStepAction(5));
-    yield put(setRegisterSelectedStepAction(5));
+    yield put(registerActions.updateRegisterDataAction(payload.data));
+    yield put(registerActions.setRegisterLastStepAction(5));
+    yield put(registerActions.setRegisterSelectedStepAction(5));
   } catch (error) {
     if (error.response.status === 409) {
       alertError('error', error.response.data.errorCode.toUpperCase());
@@ -82,9 +78,9 @@ function* setCustomerExtraSaga(payload: any) {
 function* acceptAgreementSaga() {
   try {
     yield services.saveCustomerAgreement();
-    yield put(updateRegisterDataAction({agreement: true}));
-    yield put(setRegisterLastStepAction(6));
-    yield put(setRegisterSelectedStepAction(6));
+    yield put(registerActions.updateRegisterDataAction({agreement: true}));
+    yield put(registerActions.setRegisterLastStepAction(6));
+    yield put(registerActions.setRegisterSelectedStepAction(6));
   } catch (error) {
     if (error.response.status === 409) {
       alertError('error', error.response.data.errorCode.toUpperCase());
@@ -100,12 +96,12 @@ function* sendOTPSaga(payload: any) {
   try {
     console.log({phone: payload.phone});
     yield services.SendOTP(payload.phone);
-    yield put(updateRegisterDataAction({phone: payload.phone}));
+    yield put(registerActions.updateRegisterDataAction({phone: payload.phone}));
     showSentOTPModal();
   } catch (error) {
     console.dir(error);
     if (error.response.status === 409) {
-      alertError('error', error.response.data.errorCode.toUpperCase());
+      alertWarning('', 'registration.phoneAlreadyUsed');
     }
   }
 }
@@ -116,6 +112,7 @@ function* sendOTPSaga(payload: any) {
 function* verifyOTPSaga(payload: any) {
   try {
     yield services.verifyOTP(payload.code);
+    yield authActions.setAuthStatusAction('SHOULD_PAY');
     alertSuccess('success', 'dropdownAlert.registerSuccess');
   } catch (error) {
     if (error.response.status === 409) {

@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useCallback} from 'react';
 import {useForm} from 'react-hook-form';
 import {useDispatch, useSelector} from 'react-redux';
 import {setRegisterSelectedStepAction} from 'store/registration/actions';
@@ -19,7 +19,7 @@ const useSetAdditionalInfo = ({
   const [calendarModalVisible, setCalendarModalVisible] = useState(false);
   const [countryModalVisible, setCountryModalVisible] = useState(false);
   const [activeDate, setActiveDate] = useState<Date>();
-  const [activeCountry, setActiveCountry] = useState({
+  const [activeCountry, setActiveCountry] = useState<Country>({
     id: null,
     name: '',
   });
@@ -51,7 +51,7 @@ const useSetAdditionalInfo = ({
       const country = countries.find((el) => el.alpha2Code === 'GE');
       setActiveCountry(country);
       setValue('country', country.name);
-      trigger('country').done();
+      trigger('country');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, countries, registerData]);
@@ -69,18 +69,21 @@ const useSetAdditionalInfo = ({
     }
   };
 
-  const updateBirthDay = (date: Date) => {
-    setCalendarModalVisible(false);
-    setActiveDate(date);
-    setValue('birthDate', formatDate(date));
-    trigger('birthDate').done();
-  };
+  const updateBirthDay = useCallback(
+    (date: Date) => {
+      setCalendarModalVisible(false);
+      setActiveDate(date);
+      setValue('birthDate', formatDate(date));
+      trigger('birthDate');
+    },
+    [setValue, trigger],
+  );
 
-  const updateCountry = (country) => {
+  const updateCountry = (country: Country) => {
     setCountryModalVisible(false);
     setActiveCountry(country);
     setValue('country', country.name);
-    trigger('country').done();
+    trigger('country');
   };
 
   return {

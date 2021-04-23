@@ -65,3 +65,8 @@ export {default as TBCLogo} from './tbc-logo.svg';
 
 export {default as Copy} from './copy.svg';
 export {default as Report} from './report.svg';
+
+export {default as DownloadReport} from './download-report.svg';
+export {default as DownloadReportAction} from './download-report-action.svg';
+export {default as SendReport} from './send-report.svg';
+export {default as SendReportAction} from './send-report-action.svg';
