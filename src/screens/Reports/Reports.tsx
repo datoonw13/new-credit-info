@@ -1,5 +1,5 @@
 import React from 'react';
-import {SafeAreaView, StyleSheet, View} from 'react-native';
+import {SafeAreaView, StyleSheet, ScrollView, View} from 'react-native';
 import {HeaderWithLogo} from 'components';
 import * as SVG from 'assets/svg';
 import {ReportItem, Scoring, ServiceItem} from './components';
@@ -14,7 +14,9 @@ const Reports = () => {
     onStandardPurchasePress,
   } = useReports();
   return (
-    <View style={styles.container}>
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={styles.contentContainer}>
       <SafeAreaView />
       <HeaderWithLogo mode="WithMenu" />
       <ReportItem
@@ -48,7 +50,7 @@ const Reports = () => {
           marginedLeft
         />
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -56,9 +58,12 @@ export default Reports;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.blackOp025,
     flex: 1,
+    backgroundColor: colors.blackOp025,
     paddingTop: 10,
+  },
+  contentContainer: {
+    flex: 1,
   },
   serviceItemsWrapper: {
     display: 'flex',
