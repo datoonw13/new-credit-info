@@ -51,3 +51,9 @@ export const strangeBlueOp3 = 'rgba(111, 133, 226, .3)';
 export const strangeBlueOp2 = 'rgba(111, 133, 226, .2)';
 export const strangeBlueOp1 = 'rgba(111, 133, 226, .1)';
 export const strangeBlueOp05 = 'rgba(111, 133, 226, .05)';
+
+export const ratingRed = 'rgba(230, 21, 16, 1)';
+export const ratingBrown = 'rgba(248, 128, 62, 1)';
+export const ratingYellow = 'rgba(255, 181, 0, 1)';
+export const ratingLightGreen = 'rgba(169, 209, 11, 1)';
+export const ratingGreen = 'rgba(5, 171, 79, 1)';

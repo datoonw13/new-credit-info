@@ -4,8 +4,10 @@ type ReportItemProps = {
   HeadingIcon: React.StatelessComponent<SvgProps>;
   headingIconBg: string;
   ActionIcon: React.StatelessComponent<SvgProps>;
-  heading: string;
+  actionIconBg: string;
   description: string;
+  heading: string;
+  onPress: () => void;
 };
 
 type ReportItemFC = (props: ReportItemProps) => JSX.Element;

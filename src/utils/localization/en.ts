@@ -16,6 +16,7 @@ export default {
   close: 'Close',
   settings: 'Settings',
   activate: 'Activate',
+  subscribe: 'Subscribe',
 
   month: 'Month',
 
@@ -238,7 +239,7 @@ export default {
       'Check your credit history 3 times per year free of charge!',
     sendReport: 'Send Report',
     sendReportToSomeone: 'Send your credit history to somebody...',
-    scoreAndRaiting:
-      'Your score and raiting will be available after subscribing standard or premium service!',
+    scoreAndRating:
+      'Your score and rating will be available after subscribing standard or premium service!',
   },
 };
