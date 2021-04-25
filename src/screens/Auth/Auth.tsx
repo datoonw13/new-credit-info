@@ -42,7 +42,7 @@ const Auth = () => {
   const {t} = useTranslation();
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID="AuthScreen">
       <HeaderWithLogo mode="WithMenu" style={styles.header} />
       <KeyboardAvoidingView
         style={styles.keyboardAvoidingView}
