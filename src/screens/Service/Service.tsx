@@ -5,8 +5,9 @@ import {
   IndividualLegalEntitySwitcher,
   ServiceSwitcher,
   BaseHeader,
+  Package,
 } from 'components';
-import {Package, Info} from './components';
+import {Info} from './components';
 import useService from './useService';
 import {colors} from 'theme';
 import {Divider} from 'react-native-elements';

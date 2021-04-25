@@ -49,3 +49,8 @@ export const changePassword = 'security';
  * User agreement.
  */
 export const userAgreement = 'agreement';
+
+/**
+ * Subscription services.
+ */
+export const subscriptionServices = 'services/products';

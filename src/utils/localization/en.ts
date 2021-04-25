@@ -229,6 +229,7 @@ export default {
   serviceScreen: {
     standard: 'Standard',
     premium: 'Premium',
+    motivateText: 'Enable access on scoring and rating!',
 
     promote: 'Choose annual plan and save money!',
   },
@@ -241,5 +242,10 @@ export default {
     sendReportToSomeone: 'Send your credit history to somebody...',
     scoreAndRating:
       'Your score and rating will be available after subscribing standard or premium service!',
+  },
+
+  subscribeService: {
+    title: 'Subscribe Service',
+    balance: 'MYCI Main Balance',
   },
 };

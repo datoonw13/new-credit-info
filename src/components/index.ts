@@ -31,3 +31,7 @@ export {default as PasswordGuide} from './PasswordGuide';
 export {default as InputEye} from './InputEye';
 export {default as DrawerToggle} from './DrawerToggle';
 export {default as AgreementModal} from './AgreementModal';
+export {default as FancyHeader} from './FancyHeader';
+export {default as FancyBackButton} from './FancyBackButton';
+export {default as Package} from './Package';
+export {default as SubscribeButton} from './SubscribeButton';

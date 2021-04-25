@@ -10,46 +10,46 @@ import {goToSignInWithFingerprint} from './helpers';
 import {useDispatch} from 'react-redux';
 import {signIn} from 'store/auth/sagaActions';
 import {getCredentials, ifCredentialsSetPassword} from 'utils/keychain';
+import ServiceSubscriptionNavigator from './ServiceSubscription';
 
 const Navigation = () => {
   const {authStatus} = useSelector(selectAuth);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    /**
-     * Navigate to use passcode screen if
-     * storage has credentials.
-     */
-    if (authStatus === 'NON_AUTHORIZED') {
-      goToSignInWithFingerprint();
-    }
-  }, [authStatus, dispatch]);
-
-  // const dispatch = useDispatch();
   // useEffect(() => {
-  //   const authenticate = async () => {
-  //     const credentials = await getCredentials();
+  //   /**
+  //    * Navigate to use passcode screen if
+  //    * storage has credentials.
+  //    */
+  //   if (authStatus === 'NON_AUTHORIZED') {
+  //     goToSignInWithFingerprint();
+  //   }
+  // }, [authStatus, dispatch]);
 
-  //     if (credentials) {
-  //       const {username, password} = credentials;
-  //       dispatch(
-  //         signIn({
-  //           username,
-  //           password,
-  //         }),
-  //       );
-  //     } else {
-  //       dispatch(
-  //         signIn({
-  //           username: '00000000000',
-  //           password: 'atasertigame',
-  //         }),
-  //       );
-  //     }
-  //   };
+  useEffect(() => {
+    const authenticate = async () => {
+      const credentials = await getCredentials();
 
-  //   authenticate();
-  // }, [dispatch]);
+      if (credentials) {
+        const {username, password} = credentials;
+        dispatch(
+          signIn({
+            username,
+            password,
+          }),
+        );
+      } else {
+        dispatch(
+          signIn({
+            username: '36001051963',
+            password: 'atasertigame',
+          }),
+        );
+      }
+    };
+
+    authenticate();
+  }, [dispatch]);
 
   // return <Reports />;
 
@@ -60,9 +60,14 @@ const Navigation = () => {
   // console.log({authStatus});
   return (
     <NavigationContainer ref={saveReference}>
-      {authStatus !== 'NON_AUTHORIZED' ? <Authorized /> : <NonAuthorized />}
+      <ServiceSubscriptionNavigator />
     </NavigationContainer>
   );
+  // return (
+  //   <NavigationContainer ref={saveReference}>
+  //     {authStatus !== 'NON_AUTHORIZED' ? <Authorized /> : <NonAuthorized />}
+  //   </NavigationContainer>
+  // );
 };
 
 export default Navigation;

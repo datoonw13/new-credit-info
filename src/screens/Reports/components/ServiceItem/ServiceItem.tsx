@@ -1,7 +1,7 @@
 import React from 'react';
-import {StyleSheet, Switch, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, Switch, View} from 'react-native';
 import * as SVG from 'assets/svg';
-import {Text} from 'components';
+import {Text, SubscribeButton} from 'components';
 import {colors} from 'theme';
 import {useTranslation} from 'react-i18next';
 import useServiceItem from './useServiceItem';
@@ -46,10 +46,7 @@ const ServiceItem: ServiceItemFC = ({
         <Switch value={isYearly} onValueChange={setIsYearly} />
         <Text>{t('dates.year')}</Text>
       </View>
-      <TouchableOpacity style={styles.purchaseButton} onPress={onPress}>
-        <SVG.Purchase />
-        <Text style={styles.purchaseTitle}>{t('subscribe')}</Text>
-      </TouchableOpacity>
+      <SubscribeButton onPress={onPress} />
     </View>
   );
 };
@@ -100,21 +97,5 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginTop: 27,
-  },
-  purchaseButton: {
-    width: '80%',
-    height: 42,
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderRadius: 26,
-    justifyContent: 'center',
-    backgroundColor: colors.greenOp1,
-    marginTop: 26,
-    alignSelf: 'center',
-  },
-  purchaseTitle: {
-    marginLeft: 10,
-    color: colors.green,
   },
 });

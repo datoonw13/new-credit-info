@@ -25,3 +25,5 @@ type Credentials = {
   username: string;
   password: string;
 };
+
+type DateType = 'Month' | 'Year';
