@@ -26,30 +26,30 @@ const Navigation = () => {
   //   }
   // }, [authStatus, dispatch]);
 
-  useEffect(() => {
-    const authenticate = async () => {
-      const credentials = await getCredentials();
+  // useEffect(() => {
+  //   const authenticate = async () => {
+  //     const credentials = await getCredentials();
 
-      if (credentials) {
-        const {username, password} = credentials;
-        dispatch(
-          signIn({
-            username,
-            password,
-          }),
-        );
-      } else {
-        dispatch(
-          signIn({
-            username: '36001051963',
-            password: 'atasertigame',
-          }),
-        );
-      }
-    };
+  //     if (credentials) {
+  //       const {username, password} = credentials;
+  //       dispatch(
+  //         signIn({
+  //           username,
+  //           password,
+  //         }),
+  //       );
+  //     } else {
+  //       dispatch(
+  //         signIn({
+  //           username: '36001051963',
+  //           password: 'atasertigame',
+  //         }),
+  //       );
+  //     }
+  //   };
 
-    authenticate();
-  }, [dispatch]);
+  //   authenticate();
+  // }, [dispatch]);
 
   // return <Reports />;
 
