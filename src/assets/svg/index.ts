@@ -73,3 +73,4 @@ export {default as SendReportAction} from './send-report-action.svg';
 export {default as Purchase} from './purchase.svg';
 
 export {default as CreditInfo} from './creditinfo.svg';
+export {default as Close} from './close.svg';

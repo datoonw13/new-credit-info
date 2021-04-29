@@ -1,12 +1,12 @@
-import {useState} from 'react';
-import {alertInfo} from 'utils/dropdownAlert';
+import {useState, createRef} from 'react';
 
 const useSubscribeService = () => {
   const [serviceType, setServiceType] = useState<ServiceType>('STANDARD');
+  const choosePaymentTypeModalRef = createRef<any>();
 
-  const onSubscribe = () => alertInfo('', 'Not yet implemented!');
+  const onSubscribe = () => choosePaymentTypeModalRef.current?.open();
 
-  return {serviceType, setServiceType, onSubscribe};
+  return {serviceType, setServiceType, onSubscribe, choosePaymentTypeModalRef};
 };
 
 export default useSubscribeService;

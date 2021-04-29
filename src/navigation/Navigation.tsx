@@ -3,7 +3,7 @@ import {useSelector} from 'react-redux';
 import {NavigationContainer} from '@react-navigation/native';
 import NonAuthorized from './NonAuthorized';
 import Authorized from './Authorized';
-import {Opening, Reports} from 'screens';
+import {Opening, Reports, Test} from 'screens';
 import {saveReference} from 'utils/navigation';
 import {selectAuth} from 'store/select';
 import {goToSignInWithFingerprint} from './helpers';
@@ -50,8 +50,6 @@ const Navigation = () => {
 
   //   authenticate();
   // }, [dispatch]);
-
-  // return <Reports />;
 
   // if (authStatus === null) {
   //   return <Opening />;

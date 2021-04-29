@@ -6,7 +6,12 @@ import useSubscribeService from './useSubscribeService';
 import {colors} from 'theme';
 
 const SubscribeService = () => {
-  const {serviceType, setServiceType, onSubscribe} = useSubscribeService();
+  const {
+    serviceType,
+    setServiceType,
+    onSubscribe,
+    choosePaymentTypeModalRef,
+  } = useSubscribeService();
 
   const service: Service = {
     organizationalProductType: 'STANDARD',
@@ -59,7 +64,7 @@ const SubscribeService = () => {
           service={service}
         />
       </ScrollView>
-      <ChoosePaymentTypeModal />
+      <ChoosePaymentTypeModal ref={choosePaymentTypeModalRef} />
     </View>
   );
 };

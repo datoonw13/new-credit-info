@@ -1,47 +1,25 @@
-import React from 'react';
-import {SafeAreaView, ScrollView, View, StyleSheet} from 'react-native';
-import {colors} from 'theme';
-// import {Button, Text} from 'components';
-// import {signOut} from 'store/auth/sagaActions';
-// import {useDispatch} from 'react-redux';
+import React, {createRef, useEffect} from 'react';
+import {View} from 'react-native';
+import {Text} from 'components';
+import {BottomSheetModal, BottomSheetModalProvider} from '@gorhom/bottom-sheet';
 
 const Test = () => {
-  // const dispatch = useDispatch();
+  const ref = createRef<BottomSheetModal>();
 
-  // const logout = () => dispatch(signOut());
+  useEffect(() => {
+    ref.current?.present();
+    // ref.current?.expand();
+  }, [ref]);
 
   return (
-    <ScrollView style={styles.container}>
-      <SafeAreaView />
-      {/* <Text style={styles.text}>Logged In!</Text> */}
-      {/* <Button touchableStyle={styles.button} text="logout" onPress={logout} /> */}
-      <View style={styles.simulator} />
-    </ScrollView>
+    <BottomSheetModalProvider>
+      <View style={{flex: 1}}>
+        <BottomSheetModal snapPoints={['10%', '50%']} index={1} ref={ref}>
+          <Text>This is a modal</Text>
+        </BottomSheetModal>
+      </View>
+    </BottomSheetModalProvider>
   );
 };
 
 export default Test;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  text: {
-    textAlign: 'center',
-    marginTop: 10,
-    marginBottom: 20,
-    fontSize: 20,
-  },
-  button: {
-    alignSelf: 'center',
-    width: '70%',
-  },
-  simulator: {
-    width: 300,
-    height: 300,
-    backgroundColor: colors.strangeBlue,
-    alignSelf: 'center',
-    marginTop: 150,
-    borderRadius: 300,
-  },
-});
