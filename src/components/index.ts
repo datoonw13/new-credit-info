@@ -36,3 +36,4 @@ export {default as FancyBackButton} from './FancyBackButton';
 export {default as Package} from './Package';
 export {default as SubscribeButton} from './SubscribeButton';
 export {default as BaseBottomSheetModal} from './BaseBottomSheetModal';
+export {default as Select} from './Select';

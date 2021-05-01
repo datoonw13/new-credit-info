@@ -21,6 +21,7 @@ export {default as LegalEntity} from './legal-entity.svg';
 export {default as IndividualEntitySelected} from './individual-entity-selected.svg';
 export {default as LegalEntitySelected} from './legal-entity-selected.svg';
 export {default as Info} from './info.svg';
+export {default as WhiteTick} from './white-tick.svg';
 export {default as GreenTick} from './green-tick.svg';
 export {default as GreenTick2} from './green-tick-2.svg';
 
@@ -75,3 +76,4 @@ export {default as Purchase} from './purchase.svg';
 export {default as CreditInfo} from './creditinfo.svg';
 export {default as Close} from './close.svg';
 export {default as CreditCard} from './credit-card.svg';
+export {default as CreditCard2} from './credit-card2.svg';

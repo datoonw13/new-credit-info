@@ -255,5 +255,10 @@ export default {
 
     standardPackagePrice: 'Standard Service Price',
     chooseCard: 'Choose Card',
+
+    transactionWarning:
+      "You'll be directed to transaction screen in order to finish payment. In case of saving your credit card transaction will happen automatically and you'll be subscribed to the service!",
+    payWithSavingCard: 'Pay with Saving the Card',
+    payWithoutSavingCard: 'Pay without Saving the Card',
   },
 };

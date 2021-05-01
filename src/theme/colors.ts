@@ -36,10 +36,17 @@ export const crimsonOp1 = 'rgba(198, 43, 39, .1)';
 export const blue = 'rgba(0, 118, 255, 1)';
 
 export const green = 'rgba(52, 195, 107, 1)';
+export const greenOp6 = 'rgba(52, 195, 107, 0.6)';
+export const greenOp5 = 'rgba(52, 195, 107, 0.5)';
+export const greenOp4 = 'rgba(52, 195, 107, 0.4)';
+export const greenOp3 = 'rgba(52, 195, 107, 0.3)';
 export const greenOp2 = 'rgba(52, 195, 107, 0.2)';
 export const greenOp1 = 'rgba(52, 195, 107, 0.1)';
 
 export const secondGreen = 'rgba(82, 185, 37, 1)';
+export const secondGreenOp4 = 'rgba(82, 185, 37, .4)';
+export const secondGreenOp3 = 'rgba(82, 185, 37, .3)';
+export const secondGreenOp2 = 'rgba(82, 185, 37, .2)';
 export const secondGreenOp1 = 'rgba(82, 185, 37, .1)';
 export const secondGreenOp25 = 'rgba(82, 185, 37, .25)';
 
