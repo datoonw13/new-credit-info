@@ -17,8 +17,8 @@ const SubscribeFlow = forwardRef((_, ref: any) => {
       <ChoosePaymentType visible={false} />
       <ChooseCard visible={false} />
       <SaveCardOrNot visible={false} />
-      <ProceedToPay visible={true} />
-      <PaymentCompleted visible={false} />
+      <ProceedToPay visible={false} />
+      <PaymentCompleted visible={true} />
     </BaseBottomSheetModal>
   );
 });

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {StyleSheet, View, TouchableOpacity} from 'react-native';
 import {useTranslation} from 'react-i18next';
-import {Text, Button, Select} from 'components';
+import {Text, Button, Select, ItemCost} from 'components';
 import {colors} from 'theme';
 import * as SVG from 'assets/svg';
 
@@ -18,12 +18,10 @@ const ChooseCard: ChooseCardFC = ({visible}) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.packagePriceContainer}>
-        <Text style={styles.packagePriceDescription}>
-          {t('subscribeService.standardPackagePrice')}
-        </Text>
-        <Text style={styles.packagePrice}>12.97 ₾</Text>
-      </View>
+      <ItemCost
+        amount={12.97}
+        description="subscribeService.standardPackagePrice"
+      />
       <View style={styles.chooseCardWrapper}>
         <Text style={styles.chooseCardTitle}>
           {t('subscribeService.chooseCard')}
@@ -97,25 +95,6 @@ export default ChooseCard;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  packagePriceContainer: {
-    height: 95,
-    borderWidth: 1,
-    borderColor: colors.blackOp1,
-    borderRadius: 16,
-    display: 'flex',
-    justifyContent: 'center',
-    paddingHorizontal: 16,
-    marginHorizontal: 10,
-  },
-  packagePriceDescription: {
-    marginBottom: 6,
-    fontSize: 14,
-  },
-  packagePrice: {
-    marginTop: 6,
-    fontSize: 24,
-    fontWeight: 'bold',
   },
   chooseCardWrapper: {
     marginVertical: 24,

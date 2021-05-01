@@ -264,5 +264,7 @@ export default {
     transactionWarning2:
       "Please understand that by pressing Proceed Transaction button you'll be charged from your balance!",
     proceedTransaction: 'Proceed Transaction',
+
+    subscriptionComplete: 'Subscription successfully completed!',
   },
 };

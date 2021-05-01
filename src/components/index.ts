@@ -38,3 +38,4 @@ export {default as SubscribeButton} from './SubscribeButton';
 export {default as BaseBottomSheetModal} from './BaseBottomSheetModal';
 export {default as Select} from './Select';
 export {default as FancyIcon} from './FancyIcon';
+export {default as ItemCost} from './ItemCost';
