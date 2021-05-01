@@ -17,6 +17,7 @@ export default {
   settings: 'Settings',
   activate: 'Activate',
   subscribe: 'Subscribe',
+  next: 'Next',
 
   month: 'Month',
 
@@ -247,5 +248,12 @@ export default {
   subscribeService: {
     title: 'Subscribe Service',
     balance: 'MYCI Main Balance',
+
+    paymentMethod: 'Payment Method',
+    payWithCurrentCard: 'Make Payment with Current Card',
+    payWithOtherCard: 'Make Payment with Other Card',
+
+    standardPackagePrice: 'Standard Service Price',
+    chooseCard: 'Choose Card',
   },
 };

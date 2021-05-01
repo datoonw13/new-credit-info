@@ -1,2 +1,3 @@
 export {default as Balance} from './Balance';
-export {default as ChoosePaymentTypeModal} from './ChoosePaymentTypeModal';
+export {default as ChoosePaymentType} from './ChoosePaymentType';
+export {default as ChooseCard} from './ChooseCard';

@@ -43,6 +43,8 @@ export const secondGreen = 'rgba(82, 185, 37, 1)';
 export const secondGreenOp1 = 'rgba(82, 185, 37, .1)';
 export const secondGreenOp25 = 'rgba(82, 185, 37, .25)';
 
+export const thirdGreen = 'rgba(76, 222, 132, 1)';
+
 export const yellow = 'rgba(226, 155, 20, 1)';
 export const yellowOp1 = 'rgba(226, 155, 20, 0.1)';
 

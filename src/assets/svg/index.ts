@@ -74,3 +74,4 @@ export {default as Purchase} from './purchase.svg';
 
 export {default as CreditInfo} from './creditinfo.svg';
 export {default as Close} from './close.svg';
+export {default as CreditCard} from './credit-card.svg';

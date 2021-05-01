@@ -18,6 +18,7 @@ export default {
   settings: 'პარამეტრები',
   activate: 'გაააქტიურე',
   subscribe: 'შეძენა',
+  next: 'გაგრძელება',
 
   month: 'თვე',
 
@@ -250,5 +251,12 @@ export default {
   subscribeService: {
     title: 'პაკეტის შეძენა',
     balance: 'MYCI მთავარი ბალანსი',
+
+    paymentMethod: 'გადახდის ტიპი',
+    payWithCurrentCard: 'არსებული ბარათით გადახდა',
+    payWithOtherCard: 'ახალი ბარათით გადახდა',
+
+    standardPackagePrice: 'სტანდარტული პაკეტის ღირებულება',
+    chooseCard: 'აირჩიეთ ბარათი',
   },
 };

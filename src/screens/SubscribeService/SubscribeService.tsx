@@ -1,7 +1,8 @@
 import React from 'react';
 import {SafeAreaView, StyleSheet, View, ScrollView} from 'react-native';
 import {FancyHeader, ServiceSwitcher, Package} from 'components';
-import {Balance, ChoosePaymentTypeModal} from './components';
+import {Balance} from './components';
+import SubscribeFlow from './components/SubscribeFlow';
 import useSubscribeService from './useSubscribeService';
 import {colors} from 'theme';
 
@@ -64,7 +65,7 @@ const SubscribeService = () => {
           service={service}
         />
       </ScrollView>
-      <ChoosePaymentTypeModal ref={choosePaymentTypeModalRef} />
+      <SubscribeFlow ref={choosePaymentTypeModalRef} />
     </View>
   );
 };
