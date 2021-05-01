@@ -260,5 +260,9 @@ export default {
       "You'll be directed to transaction screen in order to finish payment. In case of saving your credit card transaction will happen automatically and you'll be subscribed to the service!",
     payWithSavingCard: 'Pay with Saving the Card',
     payWithoutSavingCard: 'Pay without Saving the Card',
+
+    transactionWarning2:
+      "Please understand that by pressing Proceed Transaction button you'll be charged from your balance!",
+    proceedTransaction: 'Proceed Transaction',
   },
 };

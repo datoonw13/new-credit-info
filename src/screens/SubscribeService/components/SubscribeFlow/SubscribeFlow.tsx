@@ -16,8 +16,8 @@ const SubscribeFlow = forwardRef((_, ref: any) => {
     <BaseBottomSheetModal ref={ref} title={modalTitle} modalHeight="60%">
       <ChoosePaymentType visible={false} />
       <ChooseCard visible={false} />
-      <SaveCardOrNot visible={true} />
-      <ProceedToPay visible={false} />
+      <SaveCardOrNot visible={false} />
+      <ProceedToPay visible={true} />
       <PaymentCompleted visible={false} />
     </BaseBottomSheetModal>
   );
