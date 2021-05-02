@@ -80,3 +80,4 @@ export {default as CreditCard} from './credit-card.svg';
 export {default as CreditCard2} from './credit-card2.svg';
 export {default as DownloadReportImage} from './download-report-image.svg';
 export {default as DownloadReportWhite} from './download-report-white.svg';
+export {default as ReportItem} from './report-item.svg';

@@ -19,6 +19,7 @@ export default {
   activate: 'გაააქტიურე',
   subscribe: 'შეძენა',
   next: 'გაგრძელება',
+  download: 'გადმოწერა',
 
   month: 'თვე',
 
@@ -277,5 +278,9 @@ export default {
     freeReport2: 'უფასო რეპორტი!',
     updatedReport1: 'განახლებული რეპორტი ხელმისაწვდომია',
     updatedReport2: 'საათზე',
+    availableReport: 'ხელმისაწვდომი რეპორტი',
+    report: 'რეპორტი',
+    used: 'გამოყენებული',
+    unused: 'გამოუყენებელი',
   },
 };

@@ -18,6 +18,7 @@ export default {
   activate: 'Activate',
   subscribe: 'Subscribe',
   next: 'Next',
+  download: 'Download',
 
   month: 'Month',
 
@@ -274,5 +275,9 @@ export default {
     freeReport2: 'Report Free of Charge!',
     updatedReport1: 'Updated report will be available at',
     updatedReport2: "o'clock",
+    availableReport: 'Available Reports',
+    report: 'Report',
+    used: 'Used',
+    unused: 'Unused',
   },
 };

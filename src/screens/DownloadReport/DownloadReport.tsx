@@ -1,6 +1,8 @@
-import React, {useMemo} from 'react';
-import {SafeAreaView, StyleSheet, View} from 'react-native';
-import {FancyHeader, Divider, FancyIcon, Text} from 'components';
+import React from 'react';
+import {SafeAreaView, StyleSheet, View, Text} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
+import {FancyHeader, Divider, Button} from 'components';
+import {DownloadReportHeader, ReportItem} from './components';
 import * as SVG from 'assets/svg';
 import {colors} from 'theme';
 import {useTranslation} from 'react-i18next';
@@ -8,52 +10,30 @@ import {useTranslation} from 'react-i18next';
 const DownloadReport = () => {
   const {t} = useTranslation();
 
-  const time = '12:26';
-  const space = ' ';
-  const numberOfFreeReports = 2;
-
-  const reportAvailability = useMemo(
-    () =>
-      [
-        t('downloadReport.updatedReport1'),
-        time,
-        t('downloadReport.updatedReport2'),
-      ].join(' '),
-    [time, t],
-  );
-
   return (
     <SafeAreaView style={styles.container}>
-      <FancyHeader title="downloadReport.title" style={styles.header} />
-      <Divider width="100%" />
-      <SVG.DownloadReportImage style={styles.downloadReportImage} />
-      <View style={styles.innerContainer}>
-        <View style={styles.innerContainerHeader}>
-          <View style={styles.innerContainerHeaderHeading}>
-            <FancyIcon
-              style={styles.innerContainerHeaderIcon}
-              Icon={SVG.DownloadReportWhite}
-              bg={colors.blue}
-              dimensions={40}
-              roundness={20}
-            />
-            <View style={styles.freeReportsTextsWrapper}>
-              <Text>{t('downloadReport.freeReport1')}</Text>
-              <Text>{space}</Text>
-              <Text style={styles.freeReportsNumber}>
-                {numberOfFreeReports.toString()}
-              </Text>
-              <Text>{space}</Text>
-              {t('downloadReport.freeReport2')
-                .split(' ')
-                .map((word) => (
-                  <Text key={word}>{word}</Text>
-                ))}
-            </View>
-          </View>
-          <Text style={styles.updatedReportText}>{reportAvailability}</Text>
+      <ScrollView
+        style={styles.scrollViewContainer}
+        contentContainerStyle={styles.scrollViewContentContainer}>
+        <FancyHeader title="downloadReport.title" style={styles.header} />
+        <Divider width="100%" />
+        <SVG.DownloadReportImage style={styles.downloadReportImage} />
+        <View style={styles.innerContainer}>
+          <DownloadReportHeader />
+          <Text style={styles.availableReportsText}>
+            {t('downloadReport.availableReport')}
+          </Text>
+          <ReportItem color={colors.green} />
+          <ReportItem color={colors.purple} />
+          <ReportItem color={colors.purple} used />
+          <Button
+            text="download"
+            containerStyle={styles.downloadButton}
+            textStyle={styles.downloadButtonText}
+            touchableStyle={styles.downloadButtonContainer}
+          />
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -64,6 +44,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     display: 'flex',
+  },
+  scrollViewContainer: {
+    flex: 1,
+  },
+  scrollViewContentContainer: {
+    // flex: 1,
   },
   header: {
     marginTop: 10,
@@ -79,40 +65,23 @@ const styles = StyleSheet.create({
     marginHorizontal: 15,
     marginBottom: 15,
     borderRadius: 32,
+    padding: 5,
+    paddingBottom: 20,
   },
-  innerContainerHeader: {
-    backgroundColor: colors.blackOp1,
-    borderTopEndRadius: 32,
-    borderTopStartRadius: 32,
-    marginHorizontal: 5,
-    marginTop: 5,
-    padding: 22,
-    paddingBottom: 17,
-  },
-  innerContainerHeaderHeading: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  innerContainerHeaderIcon: {
-    paddingTop: 2,
-    paddingLeft: 2,
-    marginRight: 10,
-  },
-  freeReportsTextsWrapper: {
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    flex: 1,
-    alignItems: 'center',
-  },
-  freeReportsNumber: {
-    fontSize: 18,
+  availableReportsText: {
+    fontSize: 14,
     fontWeight: 'bold',
-    textDecorationLine: 'underline',
+    textTransform: 'uppercase',
+    marginTop: 6,
+    marginBottom: 15,
   },
-  updatedReportText: {
-    marginTop: 12,
-    fontSize: 12,
+  downloadButtonContainer: {
+    marginTop: 16,
+  },
+  downloadButton: {
+    backgroundColor: colors.strangeBlueOp1,
+  },
+  downloadButtonText: {
+    color: colors.blue,
   },
 });

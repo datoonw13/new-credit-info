@@ -66,3 +66,5 @@ export const ratingBrown = 'rgba(248, 128, 62, 1)';
 export const ratingYellow = 'rgba(255, 181, 0, 1)';
 export const ratingLightGreen = 'rgba(169, 209, 11, 1)';
 export const ratingGreen = 'rgba(5, 171, 79, 1)';
+
+export const purple = 'rgba(119, 76, 234, 1)';
