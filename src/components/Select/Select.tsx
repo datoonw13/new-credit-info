@@ -38,7 +38,6 @@ const Select: SelectFC = ({
           data={data}
           keyExtractor={keyExtractor}
           renderItem={({item}) => {
-            console.log(item);
             const key = keyExtractor(item);
             const value = valueExtractor(item);
 

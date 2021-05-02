@@ -5,7 +5,7 @@ import * as SVG from 'assets/svg';
 import {colors} from 'theme';
 import {useTranslation} from 'react-i18next';
 
-const PaymentCompleted: PaymentCompletedFC = ({visible}) => {
+const PaymentCompleted: PaymentCompletedFC = ({visible, closeModal}) => {
   const {t} = useTranslation();
 
   if (!visible) {
@@ -28,7 +28,11 @@ const PaymentCompleted: PaymentCompletedFC = ({visible}) => {
         description="subscribeService.standardPackagePrice"
         amount={4.45}
       />
-      <LightGreyButton text="close" touchableContainer={styles.button} />
+      <LightGreyButton
+        text="close"
+        touchableContainer={styles.button}
+        onPress={closeModal}
+      />
     </View>
   );
 };

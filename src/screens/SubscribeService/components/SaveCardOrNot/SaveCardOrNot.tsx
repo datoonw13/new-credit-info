@@ -6,7 +6,7 @@ import {colors} from 'theme';
 import {useTranslation} from 'react-i18next';
 import {Divider} from 'react-native-elements';
 
-const SaveCardOrNot: SaveCardOrNotFC = ({visible}) => {
+const SaveCardOrNot: SaveCardOrNotFC = ({visible, handler}) => {
   const {t} = useTranslation();
 
   if (!visible) {
@@ -25,12 +25,14 @@ const SaveCardOrNot: SaveCardOrNotFC = ({visible}) => {
         text="subscribeService.payWithSavingCard"
         containerStyle={styles.saveCardButton}
         textStyle={styles.saveCardButtonText}
+        onPress={handler}
       />
       <Divider />
       <Button
         text="subscribeService.payWithoutSavingCard"
         containerStyle={styles.dontSaveButton}
         textStyle={styles.dontSaveButtonText}
+        onPress={handler}
       />
     </View>
   );

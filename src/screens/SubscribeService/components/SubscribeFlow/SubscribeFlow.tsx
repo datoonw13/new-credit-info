@@ -1,24 +1,37 @@
-import React, {forwardRef, useState} from 'react';
+/* eslint-disable prettier/prettier */
+import React, {forwardRef} from 'react';
 import {BaseBottomSheetModal} from 'components';
 import {
   ChoosePaymentType,
-  ChooseCard,
+  PaymentCompleted,
   SaveCardOrNot,
   ProceedToPay,
-  PaymentCompleted,
+  ChooseCard,
 } from '../index';
-import {modalTitles} from './config';
+import useSubscribeFlow from './useSubscribeFlow';
 
 const SubscribeFlow = forwardRef((_, ref: any) => {
-  const [modalTitle, setModalTitle] = useState(modalTitles.chooseCard);
+  const {
+    choosePaymentTypeVisible,
+    choosePaymentTypeHandler,
+    paymentCompletedVisible,
+    saveCardOrNotVisible,
+    saveCardOrNotHandler,
+    proceedToPayVisible,
+    proceedToPayHandler,
+    chooseCardVisible,
+    chooseCardHandler,
+    closeModal,
+    modalTitle,
+  } = useSubscribeFlow(ref);
 
   return (
     <BaseBottomSheetModal ref={ref} title={modalTitle} modalHeight="60%">
-      <ChoosePaymentType visible={false} />
-      <ChooseCard visible={false} />
-      <SaveCardOrNot visible={false} />
-      <ProceedToPay visible={false} />
-      <PaymentCompleted visible={true} />
+      <ChoosePaymentType visible={choosePaymentTypeVisible} handler={choosePaymentTypeHandler} />
+      <ChooseCard visible={chooseCardVisible} handler={chooseCardHandler} />
+      <SaveCardOrNot visible={saveCardOrNotVisible} handler={saveCardOrNotHandler} />
+      <ProceedToPay visible={proceedToPayVisible} handler={proceedToPayHandler} />
+      <PaymentCompleted visible={paymentCompletedVisible} closeModal={closeModal} />
     </BaseBottomSheetModal>
   );
 });

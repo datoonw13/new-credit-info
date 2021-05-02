@@ -1,5 +1,6 @@
 type ProceedToPayProps = {
   visible: boolean;
+  handler: () => void;
 };
 
 interface ProceedToPayFC {

@@ -17,6 +17,9 @@ const useChoosePaymentTypeModal = (ref: any) => {
       await delay(0.3);
       bottomSheetModalRef.current?.snapTo(1);
     },
+    close: () => {
+      bottomSheetModalRef.current?.close();
+    },
   }));
 
   /**

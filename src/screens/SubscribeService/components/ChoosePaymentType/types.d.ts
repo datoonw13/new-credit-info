@@ -19,6 +19,7 @@ type PaymentType = 'WithCurrentCard' | 'WithOtherCard';
 
 type ChoosePaymentTypeProps = {
   visible: boolean;
+  handler: () => void;
 };
 
 type ChoosePaymentTypeFC = (

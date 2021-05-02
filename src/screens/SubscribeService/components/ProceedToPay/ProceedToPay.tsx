@@ -4,7 +4,7 @@ import {Button, Text, FancyIcon} from 'components';
 import {useTranslation} from 'react-i18next';
 import * as SVG from 'assets/svg';
 
-const ProceedToPay: ProceedToPayFC = ({visible}) => {
+const ProceedToPay: ProceedToPayFC = ({visible, handler}) => {
   const {t} = useTranslation();
 
   if (!visible) {
@@ -25,6 +25,7 @@ const ProceedToPay: ProceedToPayFC = ({visible}) => {
       <Button
         touchableStyle={styles.button}
         text="subscribeService.proceedTransaction"
+        onPress={handler}
       />
     </View>
   );

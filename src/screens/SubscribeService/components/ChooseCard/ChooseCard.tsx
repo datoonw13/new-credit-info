@@ -5,7 +5,7 @@ import {Text, Button, Select, ItemCost} from 'components';
 import {colors} from 'theme';
 import * as SVG from 'assets/svg';
 
-const ChooseCard: ChooseCardFC = ({visible}) => {
+const ChooseCard: ChooseCardFC = ({visible, handler}) => {
   const {t} = useTranslation();
   const [selectVisible, setSelectVisible] = useState(false);
   const [activeCard, setActiveCard] = useState(dummyData[0]);
@@ -36,7 +36,7 @@ const ChooseCard: ChooseCardFC = ({visible}) => {
           <SVG.Arrow style={styles.chooseCardArrowIcon} />
         </TouchableOpacity>
       </View>
-      <Button text="next" />
+      <Button text="next" onPress={handler} />
       <Select
         data={dummyData}
         visible={selectVisible}

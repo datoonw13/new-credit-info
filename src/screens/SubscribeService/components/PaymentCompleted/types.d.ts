@@ -1,5 +1,6 @@
 type PaymentCompletedProps = {
   visible: boolean;
+  closeModal: () => void;
 };
 
 interface PaymentCompletedFC {

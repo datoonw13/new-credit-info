@@ -6,7 +6,7 @@ import {PaymentTypeItemFC, ChoosePaymentTypeFC} from './types';
 import {useTranslation} from 'react-i18next';
 import useChoosePaymentType from './useChoosePaymentType';
 
-const ChoosePaymentTypeModal: ChoosePaymentTypeFC = ({visible}) => {
+const ChoosePaymentTypeModal: ChoosePaymentTypeFC = ({visible, handler}) => {
   const {
     onPayWithCurrentCardPress,
     onPayWithOtherCardPress,
@@ -32,7 +32,11 @@ const ChoosePaymentTypeModal: ChoosePaymentTypeFC = ({visible}) => {
           selected={withOtherCard}
         />
       </View>
-      <Button text="next" touchableStyle={styles.nextButton} />
+      <Button
+        touchableStyle={styles.nextButton}
+        onPress={handler}
+        text="next"
+      />
     </View>
   );
 };
