@@ -13,6 +13,7 @@ const i18nextConfig = i18next.use(initReactI18next).init({
   interpolation: {
     escapeValue: false,
   },
+  nsSeparator: false,
 });
 
 export default i18nextConfig;

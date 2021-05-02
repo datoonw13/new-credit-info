@@ -267,4 +267,12 @@ export default {
 
     subscriptionComplete: 'Subscription successfully completed!',
   },
+
+  downloadReport: {
+    title: 'Download Report',
+    freeReport1: 'Available',
+    freeReport2: 'Report Free of Charge!',
+    updatedReport1: 'Updated report will be available at',
+    updatedReport2: "o'clock",
+  },
 };

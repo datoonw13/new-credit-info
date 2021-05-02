@@ -270,4 +270,12 @@ export default {
 
     subscriptionComplete: 'პაკეტის შეძენა წარმატებით დასრულდა!',
   },
+
+  downloadReport: {
+    title: 'რეპორტის გადმოწერა',
+    freeReport1: 'ხელმისაწვდომია',
+    freeReport2: 'უფასო რეპორტი!',
+    updatedReport1: 'განახლებული რეპორტი ხელმისაწვდომია',
+    updatedReport2: 'საათზე',
+  },
 };

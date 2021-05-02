@@ -78,3 +78,5 @@ export {default as CreditInfo} from './creditinfo.svg';
 export {default as Close} from './close.svg';
 export {default as CreditCard} from './credit-card.svg';
 export {default as CreditCard2} from './credit-card2.svg';
+export {default as DownloadReportImage} from './download-report-image.svg';
+export {default as DownloadReportWhite} from './download-report-white.svg';

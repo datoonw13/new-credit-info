@@ -12,7 +12,9 @@ const FancyHeader: FancyHeaderFC = ({title, style, hideBackButton = false}) => {
     <View style={[styles.container, style]}>
       <View style={styles.innerContainer}>
         <FancyBackButton visible={!hideBackButton} />
-        <Text style={styles.title} capsBold>
+        <Text
+          style={[styles.title, !hideBackButton && styles.titleWithBackButton]}
+          capsBold>
           {t(title)}
         </Text>
       </View>
@@ -34,6 +36,9 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     textTransform: 'uppercase',
     fontSize: 16,
+  },
+  titleWithBackButton: {
+    marginLeft: 10,
   },
   innerContainer: {
     display: 'flex',
