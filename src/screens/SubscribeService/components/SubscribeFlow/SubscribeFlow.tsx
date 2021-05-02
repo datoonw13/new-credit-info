@@ -22,11 +22,12 @@ const SubscribeFlow = forwardRef((_, ref: any) => {
     chooseCardVisible,
     chooseCardHandler,
     closeModal,
+    resetSteps,
     modalTitle,
   } = useSubscribeFlow(ref);
 
   return (
-    <BaseBottomSheetModal ref={ref} title={modalTitle} modalHeight="60%">
+    <BaseBottomSheetModal ref={ref} title={modalTitle} modalHeight="60%" onDismiss={resetSteps}>
       <ChoosePaymentType visible={choosePaymentTypeVisible} handler={choosePaymentTypeHandler} />
       <ChooseCard visible={chooseCardVisible} handler={chooseCardHandler} />
       <SaveCardOrNot visible={saveCardOrNotVisible} handler={saveCardOrNotHandler} />

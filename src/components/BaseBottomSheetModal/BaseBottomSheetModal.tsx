@@ -14,7 +14,7 @@ import {useTranslation} from 'react-i18next';
 import useBaseBottomSheetModal from './useBaseBottomSheetModal';
 
 const BaseBottomSheetModal = forwardRef<any, BaseBottomSheetModalProps>(
-  ({children, title, modalHeight = '50%'}, ref: any) => {
+  ({children, title, onDismiss, modalHeight = '50%'}, ref: any) => {
     const {
       bottomSheetModalRef,
       backdropValue,
@@ -26,6 +26,7 @@ const BaseBottomSheetModal = forwardRef<any, BaseBottomSheetModalProps>(
         <BottomSheetModal
           snapPoints={[-1, modalHeight]}
           ref={bottomSheetModalRef}
+          onDismiss={onDismiss}
           backdropComponent={() => (
             <BottomSheetBackdrop
               animatedIndex={backdropValue}

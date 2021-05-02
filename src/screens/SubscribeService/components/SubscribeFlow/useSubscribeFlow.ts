@@ -24,11 +24,6 @@ const useSubscribeFlow = (ref: any) => {
   }, [choosePaymentTypeVisible]);
 
   /**
-   * Close modal handler.
-   */
-  const closeModal = useCallback(() => ref.current?.close(), [ref]);
-
-  /**
    * Disable all steps.
    */
   const disableAllSteps = useCallback(() => {
@@ -38,6 +33,23 @@ const useSubscribeFlow = (ref: any) => {
     setProceedToPayVisible(false);
     setPaymentCompletedVisible(false);
   }, []);
+
+  /**
+   * Reset steps.
+   */
+  const resetSteps = useCallback(() => {
+    setTimeout(() => {
+      disableAllSteps();
+      setChoosePaymentTypeVisible(true);
+    }, 1000);
+  }, [disableAllSteps]);
+
+  /**
+   * Close modal handler.
+   */
+  const closeModal = useCallback(() => {
+    ref.current?.close();
+  }, [ref]);
 
   /**
    *  Choose payment method handler.
@@ -74,6 +86,7 @@ const useSubscribeFlow = (ref: any) => {
   return {
     modalTitle,
     closeModal,
+    resetSteps,
     chooseCardHandler,
     chooseCardVisible,
     proceedToPayHandler,
