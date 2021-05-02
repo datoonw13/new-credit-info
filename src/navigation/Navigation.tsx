@@ -10,7 +10,7 @@ import {goToSignInWithFingerprint} from './helpers';
 import {useDispatch} from 'react-redux';
 import {signIn} from 'store/auth/sagaActions';
 import {getCredentials, ifCredentialsSetPassword} from 'utils/keychain';
-import ServiceSubscriptionNavigator from './ServiceSubscription';
+import ReportsAndSubscriptionNavigator from './ReportsAndSubscription';
 
 const Navigation = () => {
   const {authStatus} = useSelector(selectAuth);
@@ -58,7 +58,7 @@ const Navigation = () => {
   // console.log({authStatus});
   return (
     <NavigationContainer ref={saveReference}>
-      <ServiceSubscriptionNavigator />
+      <ReportsAndSubscriptionNavigator />
     </NavigationContainer>
   );
   // return (

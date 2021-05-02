@@ -24,4 +24,6 @@ export {default as PaymentInstructions} from './PaymentInstructions';
 export {default as Opening} from './Opening';
 export {default as Reports} from './Reports';
 export {default as SubscribeService} from './SubscribeService';
+export {default as DownloadReport} from './DownloadReport';
+export {default as SendReport} from './SendReport';
 export {default as Test} from './Test';

@@ -1,32 +1,34 @@
-import {alertInfo} from 'utils/dropdownAlert';
+import {useNavigation} from '@react-navigation/native';
 
 const useReports = () => {
+  const {navigate} = useNavigation();
+
   /**
    * Download user's yearly report.
    */
   const onReportDownloadPress = () => {
-    alertInfo('', 'Not yet implemented!');
+    navigate('DownloadReport');
   };
 
   /**
    * Send user's yearly report to someone.
    */
   const onSendReportToSomeone = () => {
-    alertInfo('', 'Not yet implemented!');
+    navigate('SendReport');
   };
 
   /**
    * Handle standard service purchase.
    */
   const onStandardPurchasePress = () => {
-    alertInfo('', 'Not yet implemented!');
+    navigate('SubscribeService');
   };
 
   /**
    * Handle premium service purchase.
    */
   const onPremiumPurchasePress = () => {
-    alertInfo('', 'Not yet implemented!');
+    navigate('SubscribeService');
   };
 
   return {

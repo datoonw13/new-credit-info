@@ -94,16 +94,16 @@ const useErrorMessage = (errors: ErrorMessages) => {
   }, [errors, t]);
 
   return {
-    userNameErrorMsg,
-    firstNameErrorMsg,
-    lastNameErrorMsg,
-    birthDateErrorMsg,
+    emailErrorMsg,
     phoneErrorMsg,
     countryErrorMsg,
     addressErrorMsg,
-    emailErrorMsg,
-    currentPasswordErrorMsg,
+    lastNameErrorMsg,
+    userNameErrorMsg,
+    birthDateErrorMsg,
+    firstNameErrorMsg,
     newPasswordErrorMsg,
+    currentPasswordErrorMsg,
     repeatNewPasswordErrorMsg,
   };
 };
