@@ -12,9 +12,7 @@ const DownloadReport = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView
-        style={styles.scrollViewContainer}
-        contentContainerStyle={styles.scrollViewContentContainer}>
+      <ScrollView style={styles.scrollViewContainer}>
         <FancyHeader title="downloadReport.title" style={styles.header} />
         <Divider width="100%" />
         <SVG.DownloadReportImage style={styles.downloadReportImage} />
@@ -47,9 +45,6 @@ const styles = StyleSheet.create({
   },
   scrollViewContainer: {
     flex: 1,
-  },
-  scrollViewContentContainer: {
-    // flex: 1,
   },
   header: {
     marginTop: 10,

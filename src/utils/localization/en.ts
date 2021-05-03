@@ -280,4 +280,12 @@ export default {
     used: 'Used',
     unused: 'Unused',
   },
+
+  sendReport: {
+    title: 'Send Report',
+    balance: 'Your Balance',
+    sendReportCost: 'Send Report Cost',
+    sendToSomeoneDescription:
+      "if you'd like to send your credit report to somebody, please provide below his or her phone number or email, and we'll send download link to this person...",
+  },
 };

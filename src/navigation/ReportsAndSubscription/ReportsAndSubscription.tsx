@@ -9,7 +9,7 @@ const ReportsAndSubscriptionStack = createNativeStackNavigator();
 const ServiceSubscriptionNavigator = () => (
   <ReportsAndSubscriptionStack.Navigator screenOptions={options}>
     {/* <ReportsAndSubscriptionStack.Screen name="Reports" component={Reports} /> */}
-    <ReportsAndSubscriptionStack.Screen name="DownloadReport" component={DownloadReport} />
+    {/* <ReportsAndSubscriptionStack.Screen name="DownloadReport" component={DownloadReport} /> */}
     <ReportsAndSubscriptionStack.Screen name="SendReport" component={SendReport} />
     <ReportsAndSubscriptionStack.Screen name="SubscribeService" component={SubscribeService} />
   </ReportsAndSubscriptionStack.Navigator>
