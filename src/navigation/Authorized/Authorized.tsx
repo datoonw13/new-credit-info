@@ -8,7 +8,6 @@ import {
   TermsAndConditions,
   UpdatePersonalData,
   CompanyManagement,
-  SubscribeService,
   DrawerAfterAuth,
   ChangePassword,
   SetFingerprint,
@@ -17,7 +16,6 @@ import {
   Simulator,
   Payments,
   Security,
-  Reports,
   Credits,
   Privacy,
   FAQ,
@@ -26,6 +24,7 @@ import {BottomTabs} from 'components';
 import {useSelector} from 'react-redux';
 import {selectAuth} from 'store/select';
 import {afterAuthScreenOptions, drawerAfterAuthStyle} from './config';
+import ReportsAndSubscriptionNavigator from '../ReportsAndSubscription';
 
 /**
  * After auth navigation components.
@@ -57,12 +56,10 @@ const AfterAuthDrawerNavigator = () => {
   const MainAuthorizedScreen = useMemo(() => {
     if (authStatus === 'SHOULD_PAY') {
       return <AfterAuthDrawerNav.Screen component={PaymentInstructions} name="PaymentInstructions" />;
-    } else if (authStatus === 'SHOULD_SEE_REPORTS') {
-      return <AfterAuthDrawerNav.Screen component={Reports} name="Reports" />;
-    } else if (authStatus === 'SHOULD_SUBSCRIBE') {
-      return <AfterAuthDrawerNav.Screen component={SubscribeService} name="SubscribeService" />;
+    } else if (authStatus === 'FULL_ACCESS') {
+      return <AfterAuthDrawerNav.Screen component={BottomTabNavigator} name="BottomTabNavigator" />;
     }
-    return  <AfterAuthDrawerNav.Screen component={BottomTabNavigator} name="BottomTabNavigator" />;
+    return <AfterAuthDrawerNav.Screen component={ReportsAndSubscriptionNavigator} name="ReportsAndSubscriptionNavigator" />;
   } , [authStatus]);
 
   return (

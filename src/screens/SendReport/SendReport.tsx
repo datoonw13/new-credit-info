@@ -1,6 +1,6 @@
 import React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
-import {FancyHeader, Text} from 'components';
+import {FancyHeader} from 'components';
 import {BalanceAndReportCost} from './components';
 import {ScrollView} from 'react-native-gesture-handler';
 import {colors} from 'theme';
